@@ -1,49 +1,92 @@
-<script setup lang="ts">
-const name = $ref('')
+/**
+  2022/4/6
+  https://www.bilibili.com/video/BV1ia411b7jY/?spm_id_from=pageDriver
+  0:31:48
+ */
 
-const router = useRouter()
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
+<script setup lang="ts">
+interface BlockState {
+  x: number
+  y: number
+  /* 是否掀开 */
+  revealed?: boolean
+  /*  */
+  mine?: boolean
+  /* 是否是炸弹 */
+  flagged?: boolean
+  /* 周围炸弹数 */
+  adjacentMines: number
 }
+
+const WIDTH = 10
+const HEIGHT = 10
+const state = reactive(Array.from({ length: HEIGHT }, (_, y) =>
+  Array.from({ length: WIDTH }, (_, x): BlockState => ({
+    x, y, adjacentMines: 0,
+  }))))
+
+function generateMines() {
+  for (const row of state) {
+    for (const block of row)
+      block.mine = Math.random() < 0.3
+  }
+}
+
+const directions = [
+  [1, 0],
+  [1, 1],
+  [0, 1],
+  [-1, 1],
+  [-1, 0],
+  [-1, -1],
+  [0, -1],
+  [1, -1],
+]
+
+function updateNumbers() {
+  state.forEach((row, y) => {
+    row.forEach((block, x) => {
+      if (block.mine)
+        return
+      directions.forEach(([dx, dy]) => {
+        const x2 = x + dx
+        const y2 = y + dy
+        if (x2 < 0 || x2 >= WIDTH || y2 < 0 || y2 >= HEIGHT)
+          return
+
+        if (state[y2][x2].mine)
+          block.adjacentMines += 1
+      })
+    })
+  })
+}
+
+function getBlockClass(block: BlockState) {
+  return block.mine ? 'text-red' : 'text-gray'
+}
+
+function onClick(x: number, y: number) {
+  console.log(`Clicked ${x}, ${y}`)
+}
+
+generateMines()
+updateNumbers()
 </script>
 
 <template>
   <div>
-    <div i-carbon-campsite text-4xl inline-block />
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
-    </p>
-
-    <div py-4 />
-
-    <input
-      id="input"
-      v-model="name"
-      placeholder="What's your name?"
-      type="text"
-      autocomplete="false"
-      p="x-4 y-2"
-      w="250px"
-      text="center"
-      bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
-      outline="none active:none"
-      @keydown.enter="go"
-    >
-
-    <div>
+    minesweeper
+    {{ state }}
+    <div v-for="row, y in state" :key="y">
       <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
+        v-for="item, x in row"
+        :key="x"
+        w-10 h-10 border
+        hover:bg-gray
+        :class="getBlockClass(item)"
+        @click="onClick(x, y)"
       >
-        Go
+        {{ item.mine ? '💣': item.adjacentMines || '-' }}
       </button>
     </div>
   </div>
