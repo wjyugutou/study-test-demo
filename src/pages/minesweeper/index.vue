@@ -78,8 +78,8 @@ function updateNumbers() {
 
 function getSiblings(block: BlockState) {
   return directions.map(([dx, dy]) => {
-    const x2 = block.x + dx;
-    const y2 = block.y + dy;
+    const x2 = block.x + dx
+    const y2 = block.y + dy
     if (x2 < 0 || x2 >= WIDTH || y2 < 0 || y2 >= HEIGHT)
       return undefined
 
