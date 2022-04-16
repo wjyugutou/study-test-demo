@@ -1,7 +1,7 @@
 /**
   2022/4/7
   https://www.bilibili.com/video/BV15b4y1s7it/?spm_id_from=pageDriver
-  00： 18：57
+  00： 45：16
  */
 
 <script lang="ts" setup>
@@ -38,6 +38,7 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
       break
   }
 }
+
 </script>
 
 <template>
