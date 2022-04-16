@@ -129,7 +129,7 @@ class GamePlay {
     if (block.mine) {
       this.state.value.gameState = 'lost'
       this.showAllMines()
-      alert('You lost')
+      return
     }
     this.expendZero(block)
   }
@@ -144,8 +144,6 @@ class GamePlay {
   }
 
   checkGameState() {
-    console.log('checkGameState')
-
     if (!this.state.value.mineGenerate)
       return
     const blocks = this.state.value.board.flat()
@@ -153,11 +151,9 @@ class GamePlay {
       if (blocks.some(block => block.flagged && !block.mine)) {
         this.state.value.gameState = 'lost'
         this.showAllMines()
-        alert('You lost')
       }
       else {
         this.state.value.gameState = 'won'
-        alert('You won')
       }
     }
   }

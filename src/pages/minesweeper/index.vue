@@ -8,6 +8,7 @@
 import MineBlock from './components/MineBlock.vue'
 import GamePlay from './logic'
 import { isDev, toggleDev } from '~/composables'
+import Fireworks from '~/components/Fireworks.vue'
 
 const paly = new GamePlay(10, 10, 30)
 useStorage('vue-minesweeper', paly.state)
@@ -52,5 +53,7 @@ watchEffect(() => {
         />
       </div>
     </div>
+
+    <Fireworks :passed="paly.state.value.gameState === 'won'" />
   </div>
 </template>
