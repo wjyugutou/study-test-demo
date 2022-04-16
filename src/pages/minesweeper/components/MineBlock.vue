@@ -29,7 +29,7 @@ function getBlockClass(block: BlockState) {
     flex
     items-center
     justify-center
-    m-1
+    m="0.5"
     w-10 h-10 border
     :class="getBlockClass(block)"
   >
@@ -43,7 +43,7 @@ function getBlockClass(block: BlockState) {
         💣
       </div>
       <div v-else font-bold>
-        {{ block.adjacentMines || '0' }}
+        {{ block.adjacentMines || '' }}
       </div>
     </template>
   </button>

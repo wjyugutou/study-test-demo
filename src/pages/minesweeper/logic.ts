@@ -28,8 +28,10 @@ class GamePlay {
   }
 
   // 重置
-  reset() {
-    console.warn('reset')
+  reset(width: number = this.width, height: number = this.height, mines: number = this.mines) {
+    this.width = width
+    this.height = height
+    this.mines = mines
 
     this.state.value = {
       board: Array.from({ length: this.height }, (_, y) =>
@@ -56,7 +58,7 @@ class GamePlay {
       const y = this.randomInt(0, this.height - 1)
       const block = state[y][x]
       // 点击的第一下不能是炸弹 判断 === 0  点击的第一下的周围也不能是炸弹 判断 <= 1
-      if (Math.abs(initial.x - block.x) <= 1 || Math.abs(initial.y - block.y) <= 1)
+      if (Math.abs(initial.x - block.x) <= 1 && Math.abs(initial.y - block.y) <= 1)
         return false
 
       if (block.mine)
@@ -116,7 +118,7 @@ class GamePlay {
   onRightClick(block: BlockState) {
     if (block.revealed)
       return
-    block.flagged = true
+    block.flagged = !block.flagged
   }
 
   onClick(block: BlockState) {
@@ -124,6 +126,9 @@ class GamePlay {
       this.generateMines(this.board, block)
       this.state.value.mineGenerate = true
     }
+
+    if (block.flagged)
+      block.flagged = false
 
     block.revealed = true
     if (block.mine) {
@@ -144,9 +149,10 @@ class GamePlay {
   }
 
   checkGameState() {
-    if (!this.state.value.mineGenerate)
+    if (!this.state.value.mineGenerate || this.state.value.gameState !== 'play')
       return
     const blocks = this.state.value.board.flat()
+
     if (blocks.every(b => b.revealed || b.flagged)) {
       if (blocks.some(block => block.flagged && !block.mine)) {
         this.state.value.gameState = 'lost'

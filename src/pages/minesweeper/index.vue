@@ -10,7 +10,7 @@ import GamePlay from './logic'
 import { isDev, toggleDev } from '~/composables'
 import Fireworks from '~/components/Fireworks.vue'
 
-const paly = new GamePlay(10, 10, 30)
+const paly = new GamePlay(10, 10, 5)
 useStorage('vue-minesweeper', paly.state)
 const state = computed(() => paly.board)
 
@@ -24,6 +24,20 @@ const mineCount = computed(() => paly.blocks.reduce((pre, cur) => {
 watchEffect(() => {
   paly.checkGameState()
 })
+
+function newGame(difficulty: 'easy' | 'normal' | 'hard') {
+  switch (difficulty) {
+    case 'easy':
+      paly.reset(9, 9, 10)
+      break
+    case 'normal':
+      paly.reset(16, 16, 40)
+      break
+    case 'hard':
+      paly.reset(16, 30, 99)
+      break
+  }
+}
 </script>
 
 <template>
@@ -31,17 +45,27 @@ watchEffect(() => {
     minesweeper
 
     <div>
-      {{ mineCount }}
+      mineCount: {{ mineCount }}
     </div>
 
     <div flex="~ gap-1" justify-center>
       <button bg-green-500 p-1 rounded text-black @click="toggleDev()">
-        {{ isDev ? 'DEV' : 'normal' }}
+        {{ isDev ? 'DEV' : 'NORMAL' }}
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="paly.reset">
-        REST
+      <button bg-green-500 p-1 rounded text-black @click="paly.reset()">
+        RESET
+      </button>
+      <button bg-green-500 p-1 rounded text-black @click="newGame('easy')">
+        easy
+      </button>
+      <button bg-green-500 p-1 rounded text-black @click="newGame('normal')">
+        normal
+      </button>
+      <button bg-green-500 p-1 rounded text-black @click="newGame('hard')">
+        hard
       </button>
     </div>
+
     <div p-5>
       <div v-for="row, y in state" :key="y" flex items-center justify-center>
         <MineBlock
