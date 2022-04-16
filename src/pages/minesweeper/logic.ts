@@ -19,18 +19,25 @@ class GamePlay {
     return this.state.value.board
   }
 
+<<<<<<< HEAD
   get blocks() {
     return this.state.value.board.flat()
   }
 
   constructor(public width: number, public height: number, public mines: number) {
+=======
+  constructor(public width: number, public height: number) {
+>>>>>>> main
     this.reset()
   }
 
   // 重置
   reset() {
+<<<<<<< HEAD
     console.warn('reset')
 
+=======
+>>>>>>> main
     this.state.value = {
       board: Array.from({ length: this.height }, (_, y) =>
         Array.from({ length: this.width }, (_, x): BlockState => ({
@@ -41,6 +48,7 @@ class GamePlay {
     }
   }
 
+<<<<<<< HEAD
   random(min: number, max: number) {
     return Math.random() * (max - min) + min
   }
@@ -70,6 +78,18 @@ class GamePlay {
       while (placeRandom()) {}
     })
 
+=======
+  // 生成炸弹
+  generateMines(state: BlockState[][], initial: BlockState) {
+    for (const row of state) {
+      for (const block of row) {
+        // 点击的第一下不能是炸弹 判断 === 0  电机的第一下的周围也不能是炸弹 判断 <= 1
+        if (Math.abs(initial.x - block.x) <= 1 || Math.abs(initial.y - block.y) <= 1)
+          continue
+        block.mine = Math.random() < 0.3
+      }
+    }
+>>>>>>> main
     this.updateNumbers(state)
   }
 
@@ -129,7 +149,10 @@ class GamePlay {
     if (block.mine) {
       this.state.value.gameState = 'lost'
       this.showAllMines()
+<<<<<<< HEAD
       alert('You lost')
+=======
+>>>>>>> main
     }
     this.expendZero(block)
   }
@@ -143,20 +166,32 @@ class GamePlay {
     })
   }
 
+<<<<<<< HEAD
   checkGameState() {
     if (!this.state.value.mineGenerate)
       return
     const blocks = this.state.value.board.flat()
+=======
+  checkGameState(state: BlockState[][]) {
+    if (!this.state.value.mineGenerate)
+      return
+    const blocks = state.flat()
+>>>>>>> main
     if (blocks.every(b => b.revealed || b.flagged)) {
       if (blocks.some(block => block.flagged && !block.mine)) {
         this.state.value.gameState = 'lost'
         this.showAllMines()
+<<<<<<< HEAD
         alert('You lost')
       }
       else {
         this.state.value.gameState = 'won'
         alert('You won')
       }
+=======
+      }
+      else { this.state.value.gameState = 'won' }
+>>>>>>> main
     }
   }
 }
