@@ -16,8 +16,8 @@ function fireworks() {
     particleCount: 100,
     spread: 70,
     origin: { y: 0.6 },
-  // any other options from the global
-  // confetti function
+    // any other options from the global
+    // confetti function
   })
 }
 

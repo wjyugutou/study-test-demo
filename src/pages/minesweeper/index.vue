@@ -11,14 +11,37 @@ import { isDev, toggleDev } from '~/composables'
 import Fireworks from '~/components/Fireworks.vue'
 
 const paly = new GamePlay(10, 10, 5)
-useStorage('vue-minesweeper', paly.state)
-const state = computed(() => paly.board)
 
-const mineCount = computed(() => paly.blocks.reduce((pre, cur) => {
-  if (cur.mine)
+const now = $(useNow())
+
+const timeMS = $computed(() => {
+  if (paly.state.value.endTime)
+    return Math.round((+paly.state.value.endTime - (paly.state.value.startTime)) / 1000)
+
+  if (!paly.state.value.mineGenerate)
+    return 0
+  return Math.round((+now - (paly.state.value.startTime)) / 1000)
+})
+
+useStorage('vue-minesweeper', paly.state)
+const state = $computed(() => paly.board)
+
+const mineRest = $computed(() => paly.blocks.reduce((pre, cur) => {
+  if (!paly.state.value.mineGenerate)
+    return paly.mines
+
+  if (cur.mine) {
+    if (cur.flagged)
+      pre -= 1
+
     return pre += 1
-  else
-    return pre
+  }
+  else {
+    if (cur.flagged)
+      return pre -= 1
+  }
+
+  return pre
 }, 0))
 
 watchEffect(() => {
@@ -43,10 +66,20 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
 
 <template>
   <div>
-    minesweeper
-
     <div>
-      mineCount: {{ mineCount }}
+      minesweeper
+    </div>
+
+    <div flex items-center justify-center>
+      <div p-3 flex items-center justify-center text-2xl>
+        <div i-carbon-timer />
+        {{ timeMS }}
+      </div>
+
+      <div p-3 flex items-center justify-center text-2xl>
+        <div i-carbon-switch-layer-3 />
+        {{ mineRest }}
+      </div>
     </div>
 
     <div flex="~ gap-1" justify-center>
@@ -75,6 +108,7 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
           :block="block"
           @click="paly.onClick(block)"
           @contextmenu.prevent="paly.onRightClick(block)"
+          @dblclick="paly.onDoubleClick(block)"
         />
       </div>
     </div>

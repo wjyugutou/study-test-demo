@@ -4,6 +4,8 @@ interface StateBoard {
   board: BlockState[][]
   mineGenerate: boolean
   gameState: 'play'|'won'|'lost'
+  startTime: number
+  endTime?: number
 }
 
 class GamePlay {
@@ -40,6 +42,7 @@ class GamePlay {
         }))),
       gameState: 'play',
       mineGenerate: false,
+      startTime: +Date.now(),
     }
   }
 
@@ -132,11 +135,15 @@ class GamePlay {
 
     block.revealed = true
     if (block.mine) {
-      this.state.value.gameState = 'lost'
+      this.onGameOver('lost')
       this.showAllMines()
       return
     }
     this.expendZero(block)
+  }
+
+  onDoubleClick(block: BlockState) {
+    this.autoExpand(block)
   }
 
   showAllMines() {
@@ -148,18 +155,57 @@ class GamePlay {
     })
   }
 
+  autoExpand(block: BlockState) {
+    // 周围旗子数
+    const flags = this.getSiblings(block).reduce((a, b) => {
+      if (b.flagged)
+        return a += 1
+      else
+        return a
+    }, 0)
+    // 如果周围的炸弹数等于标记的数量 就掀开周围
+    if (flags === block.adjacentMines) {
+      this.getSiblings(block).forEach((b) => {
+        if (!b.flagged) {
+          b.revealed = true
+          if (b.mine)
+            this.onGameOver('lost')
+        }
+      })
+    }
+    // 如果未掀开数量 === 炸弹数量 就插个旗子
+    const missingflagged = block.adjacentMines - flags
+    const missingRevealed = this.getSiblings(block).reduce((a, b) => {
+      if (!b.revealed && !b.flagged)
+        return a += 1
+      else
+        return a
+    }, 0)
+    if (missingRevealed === missingflagged) {
+      this.getSiblings(block).forEach((b) => {
+        if (!b.revealed)
+          b.flagged = true
+      })
+    }
+  }
+
+  onGameOver(state: StateBoard['gameState']) {
+    this.state.value.gameState = state
+    this.state.value.endTime = +Date.now()
+  }
+
   checkGameState() {
     if (!this.state.value.mineGenerate || this.state.value.gameState !== 'play')
       return
     const blocks = this.state.value.board.flat()
 
-    if (blocks.every(b => b.revealed || b.flagged)) {
+    if (blocks.every(b => b.revealed || b.flagged || b.mine)) {
       if (blocks.some(block => block.flagged && !block.mine)) {
-        this.state.value.gameState = 'lost'
+        this.onGameOver('lost')
         this.showAllMines()
       }
       else {
-        this.state.value.gameState = 'won'
+        this.onGameOver('won')
       }
     }
   }
