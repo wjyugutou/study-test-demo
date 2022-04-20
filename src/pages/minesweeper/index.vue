@@ -16,7 +16,7 @@ const now = $(useNow())
 
 const timeMS = $computed(() => {
   if (paly.state.value.endTime)
-    return Math.round((+paly.state.value.endTime - (paly.state.value.startTime)) / 1000)
+    return Math.round(((+paly.state.value.endTime || +now) - paly.state.value.startTime) / 1000)
 
   if (!paly.state.value.mineGenerate)
     return 0
@@ -87,7 +87,7 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
         {{ isDev ? 'DEV' : 'NORMAL' }}
       </button>
       <button bg-green-500 p-1 rounded text-black @click="paly.reset()">
-        RESET
+        NEW GAME
       </button>
       <button bg-green-500 p-1 rounded text-black @click="newGame('easy')">
         easy
@@ -113,6 +113,6 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
       </div>
     </div>
 
-    <Fireworks :passed="paly.state.value.gameState === 'won'" />
+    <Fireworks :passed=" paly.state.value.mineGenerate && paly.state.value.gameState === 'won'" />
   </div>
 </template>

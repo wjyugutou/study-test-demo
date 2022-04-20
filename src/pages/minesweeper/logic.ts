@@ -192,6 +192,12 @@ class GamePlay {
   onGameOver(state: StateBoard['gameState']) {
     this.state.value.gameState = state
     this.state.value.endTime = +Date.now()
+    if (state === 'lost') {
+      this.showAllMines()
+      setTimeout(() => {
+        alert('lost')
+      }, 100)
+    }
   }
 
   checkGameState() {
@@ -200,13 +206,11 @@ class GamePlay {
     const blocks = this.state.value.board.flat()
 
     if (blocks.every(b => b.revealed || b.flagged || b.mine)) {
-      if (blocks.some(block => block.flagged && !block.mine)) {
+      if (blocks.some(block => block.flagged && !block.mine))
         this.onGameOver('lost')
-        this.showAllMines()
-      }
-      else {
+
+      else
         this.onGameOver('won')
-      }
     }
   }
 }
