@@ -1,9 +1,3 @@
-/**
-  2022/4/7
-  https://www.bilibili.com/video/BV15b4y1s7it/?spm_id_from=pageDriver
-  01： 02：16
- */
-
 <script lang="ts" setup>
 import MineBlock from './components/MineBlock.vue'
 import GamePlay from './logic'
