@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
@@ -19,7 +19,7 @@
       "vite-plugin-pages/client"
     ],
     "paths": {
-      "~/*": ["src/*"]
+      "@/*": ["src/*"]
     }
   },
   "exclude": ["dist", "node_modules"]

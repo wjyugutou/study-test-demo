@@ -5,6 +5,9 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Carousel: typeof import('./src/components/Carousel/index.vue')['default']
+    CarouselDot: typeof import('./src/components/Carousel/CarouselDot.vue')['default']
+    CarouselItem: typeof import('./src/components/Carousel/CarouselItem.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']

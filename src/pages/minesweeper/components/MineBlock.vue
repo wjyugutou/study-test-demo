@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import type { BlockState } from '../type'
-import { isDev } from '~/composables'
+import { isDev } from '@/composables'
 
 defineProps<{
   block: BlockState

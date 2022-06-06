@@ -26,11 +26,10 @@ watch(() => props.passed, (val) => {
     fireworks()
   }, 100)
 }, { flush: 'post' })
-
 </script>
 
 <template>
-  <canvas id="fireworks" z="-1" fixed top-0 w-100vw h-100vh />
+  <canvas id="fireworks" class="z--1 fixed top-0 w-100vw h-100vh" />
 </template>
 
 <style lang='less' scoped>

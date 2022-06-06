@@ -3,7 +3,7 @@ const canvas = $ref<HTMLCanvasElement>()
 const ctx = $computed(() => canvas!.getContext('2d')!)
 const WIDTH = 600
 const HEIGHT = 600
-const theta = $ref<number>(0.2)
+const theta = $ref<number>(0.5)
 
 interface Point {
   x: number
@@ -16,32 +16,55 @@ interface Branch {
   // 角度
   theta: number
 }
+function getRandomArbitrary(min: number, max: number) {
+  return Math.random() * (max - min) + min
+}
 function initPlum() {
+  const length = 5
+  const vertex = [
+    {
+      start: { x: 0, y: 0 },
+      length: length * Math.random() + length,
+      theta: Math.PI * getRandomArbitrary(1 / 3, 1 / 6),
+    },
+    {
+      start: { x: WIDTH, y: 0 },
+      length: length * Math.random() + length,
+      theta: Math.PI * getRandomArbitrary(2 / 3, 5 / 6),
+    },
+    {
+      start: { x: WIDTH, y: HEIGHT },
+      length: length * Math.random() + length,
+      theta: -Math.PI * getRandomArbitrary(2 / 3, 5 / 6),
+    },
+    {
+      start: { x: 0, y: HEIGHT },
+      length: length * Math.random() + length,
+      theta: -Math.PI * getRandomArbitrary(1 / 3, 1 / 6),
+    },
+  ]
   ctx.strokeStyle = '#000'
-  const branch = {
-    start: { x: WIDTH / 2, y: HEIGHT },
-    length: 35,
-    theta: -Math.PI / 2,
-  }
-  step(branch)
+  vertex.forEach((branch) => {
+    step(branch)
+  })
 }
 const tasksPending: Function[] = []
 function step(b: Branch, depth = 0) {
   const end = getEndpoint(b)
   drawBranch(b)
 
-  if (depth < 2 || Math.random() < 0.6) {
+  if (depth < 5 || Math.random() < 0.6) {
     tasksPending.push(() => step({
       start: end,
       length: b.length + (Math.random() * 10 - 5),
-      theta: b.theta - Math.random() * theta,
+      theta: b.theta - (Math.random() * theta * (Math.random() < 0.5 ? 1 : -1)),
     }, depth + 1))
   }
-  if (depth < 2 && Math.random() < 0.6) {
+  if (depth < 5 && Math.random() < 0.6) {
     tasksPending.push(() => step({
       start: end,
       length: b.length + (Math.random() * 10 - 5),
-      theta: b.theta + Math.random() * theta,
+      theta: b.theta + (Math.random() * theta * (Math.random() < 0.5 ? 1 : -1)),
     }, depth + 1))
   }
 }
@@ -50,6 +73,7 @@ function frame() {
   tasksPending.length = 0
   tasks.forEach(task => task())
 }
+//
 let frameCount = 0
 function frameStart() {
   frameCount++
@@ -85,7 +109,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" border="~ #000" />
+  <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" mx-auto border="~ #000" />
 </template>
 
 <style lang='less' scoped>
