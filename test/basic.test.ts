@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
+const a = () => {
+  return 'a'
+}
+
 describe('Hi', () => {
   it('should works', () => {
-    expect(1 + 1).toEqual(2)
+    expect(a()).toEqual('a')
   })
 })
