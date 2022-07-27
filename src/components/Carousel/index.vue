@@ -1,5 +1,12 @@
-<script lang='ts' setup>
+<script lang="ts">
 import { currentIndexKey, dataLenKey } from '.'
+
+export default {
+  name: 'Carousel',
+}
+</script>
+
+<script lang='ts' setup>
 const props = defineProps({
   autoplay: {
     type: Boolean,
@@ -26,7 +33,7 @@ const props = defineProps({
 const instance = getCurrentInstance()
 
 const currentIndex = ref(props.initial)
-const dataLen = computed(() => instance.slots.default()[0].children.length as number)
+const dataLen = computed(() => instance?.slots.default?.()[0].children?.length as number ?? 0)
 provide(currentIndexKey, currentIndex)
 provide(dataLenKey, dataLen)
 

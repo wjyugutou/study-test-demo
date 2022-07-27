@@ -15,10 +15,12 @@ const data = [
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const btnsList = [
+const btnList = [
   { title: '扫雷', url: '/minesweeper' },
   { title: '梅花动画', url: '/canvas-plum' },
   { title: 'js小demo', url: '/js-demo' },
+  { title: 'flip', url: '/flip/flip-one' },
+  { title: 'fileUpload', url: '/fileUpload' },
 ]
 const pageJump = (url: string) => {
   push(url)
@@ -40,7 +42,7 @@ const pageJump = (url: string) => {
     </router-link>
   </div>
   <div flex gap-1 justify-center>
-    <template v-for="item in btnsList" :key="item.url">
+    <template v-for="item in btnList" :key="item.url">
       <button bg-green-400 w-20 h-10 rounded-5 @click="pageJump(item.url)">
         {{ item.title }}
       </button>

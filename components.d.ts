@@ -12,9 +12,11 @@ declare module '@vue/runtime-core' {
     CarouselItem: typeof import('./src/components/Carousel/CarouselItem.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
+    FloatContainer: typeof import('./src/components/starPort/FloatContainer.vue')['default']
+    FloatProxy: typeof import('./src/components/starPort/FloatProxy.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheImage: typeof import('./src/components/starPort/TheImage.vue')['default']
   }
-
 }

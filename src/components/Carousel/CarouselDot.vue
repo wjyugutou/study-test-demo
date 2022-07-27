@@ -5,7 +5,7 @@ const currentIndex = inject(currentIndexKey, 0)
 </script>
 
 <template>
-  <ul v-if="dataLen > 1" class="dots" flex gap-2 absolute bottom-10px left-10px z-1>
+  <ul v-if="dataLen > 1" class="dots" flex gap-2 absolute bottom-3px left-5px z-1>
     <li
       v-for="(item, index) of dataLen"
       :key="index"
