@@ -38,7 +38,6 @@ export function createStarport<T extends Component>(component: T, options: Float
        */
       const cleanRouterGuard = router.beforeEach(async () => {
         liftOff()
-        await nextTick()
       })
 
       onBeforeUnmount(() => {
