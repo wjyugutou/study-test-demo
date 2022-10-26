@@ -1,6 +1,4 @@
 <script lang='ts' setup>
-
-
 const file = ref<HTMLInputElement>()
 
 function onChange(e: Event) {

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { TheImageContainer } from '@/composables/image'
 const route = useRoute ()
 </script>
 
@@ -7,4 +8,5 @@ const route = useRoute ()
     {{ route.fullPath }}
   </div>
   <router-view />
+  <TheImageContainer />
 </template>

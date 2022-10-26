@@ -14,10 +14,16 @@ export function createStarport<T extends Component>(component: T, options: Float
 
   const proxyEl = ref<HTMLElement>()
   let landed = $ref(false)
-  function liftOff() { // 起飞
+  /**
+   * 起飞
+   */
+  function liftOff() {
     landed = false
   }
-  function land() { // 降落
+  /**
+   * 降落
+   */
+  function land() {
     landed = true
   }
 
@@ -28,7 +34,7 @@ export function createStarport<T extends Component>(component: T, options: Float
       const router = useRouter()
 
       /**
-       * @desc 等待 Teleport 将component插入到指定位置 然后切换路由
+       * 等待 Teleport 将component插入到指定位置 然后切换路由
        */
       const cleanRouterGuard = router.beforeEach(async () => {
         liftOff()
