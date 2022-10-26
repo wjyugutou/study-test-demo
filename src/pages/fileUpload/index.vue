@@ -1,4 +1,6 @@
 <script lang='ts' setup>
+
+
 const file = ref<HTMLInputElement>()
 
 function onChange(e: Event) {
@@ -7,7 +9,7 @@ function onChange(e: Event) {
 
 function onSubmit(e: Event) {
   console.log(e)
-  file.value.f
+  // file.value.f
 }
 </script>
 
