@@ -8,7 +8,7 @@ const paly = new GamePlay(10, 10, 5)
 
 const now = $(useNow())
 
-const timeMS = $computed(() => {
+const timeMS = computed(() => {
   if (paly.state.value.endTime)
     return Math.round(((+paly.state.value.endTime || +now) - paly.state.value.startTime) / 1000)
 
@@ -18,9 +18,9 @@ const timeMS = $computed(() => {
 })
 
 useStorage('vue-minesweeper', paly.state)
-const state = $computed(() => paly.board)
+const state = computed(() => paly.board)
 
-const mineRest = $computed(() => paly.blocks.reduce((pre, cur) => {
+const mineRest = computed(() => paly.blocks.reduce((pre, cur) => {
   if (!paly.state.value.mineGenerate)
     return paly.mines
 
@@ -55,7 +55,6 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
       break
   }
 }
-
 </script>
 
 <template>

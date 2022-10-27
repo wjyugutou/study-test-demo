@@ -6,7 +6,7 @@ import nanny from '@/static/carousel/nanny.jpg'
 
 const { push } = useRouter()
 
-const data = [
+const carouselData = [
   { title: 'woman', url: butt },
   { title: '千珏', url: kindred },
   { title: '荷花池', url: lotusPond },
@@ -32,7 +32,7 @@ const pageJump = (url: string) => {
     w-100 h-50 autoplay dot director
     :duration="3000" :initial="2"
   >
-    <template v-for="item, index of data" :key="index">
+    <template v-for="item, index of carouselData" :key="index">
       <carousel-item :data="item" />
     </template>
   </Carousel>

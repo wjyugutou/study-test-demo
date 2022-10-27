@@ -13,39 +13,27 @@ export function createStarport<T extends Component>(component: T, options: Float
   const { duration = 1000 } = options
 
   const proxyEl = ref<HTMLElement>()
-  let landed = $ref(false)
+  const landed = ref(false)
   /**
    * 起飞
    */
   function liftOff() {
-    landed = false
+    landed.value = false
   }
   /**
    * 降落
    */
   function land() {
-    landed = true
+    landed.value = true
   }
 
   const rect = useElementBounding(proxyEl)
 
   const container = defineComponent({
+    name: 'StarportContainer',
     setup() {
-      const router = useRouter()
-
-      /**
-       * 等待 Teleport 将component插入到指定位置 然后切换路由
-       */
-      const cleanRouterGuard = router.beforeEach(async () => {
-        liftOff()
-      })
-
-      onBeforeUnmount(() => {
-        cleanRouterGuard()
-      })
-
-      const style = $computed((): StyleValue => {
-        return {
+      const style = computed((): StyleValue => {
+        const style: StyleValue = {
           position: 'fixed',
           top: `${rect.top.value}px`,
           left: `${rect.left.value}px`,
@@ -53,25 +41,36 @@ export function createStarport<T extends Component>(component: T, options: Float
           height: `${rect.height.value}px`,
           transition: `all ${duration}ms ease-in-out`,
         }
+
+        if (landed)
+          style.display = 'none'
+
+        return style
       })
 
+      const first = ref(true)
+      if (first)
+        land()
+
       return () => {
+        const teleport = landed.value && proxyEl.value
         const children = [h(component, metadata.attrs)]
         return h('div', {
-          style,
+          style: style.value,
           onTransitionend: async () => {
             await nextTick()
             land()
           },
         }, h(Teleport, {
-          to: landed ? proxyEl.value : 'body',
-          disabled: !landed,
+          to: teleport ? '#container' : 'body',
+          disabled: !teleport,
         }, children))
       }
     },
   }) as T
 
   const proxy = defineComponent({
+    name: 'StarportProxy',
     setup(props, { attrs }) {
       metadata.props = props
       metadata.attrs = attrs
@@ -83,6 +82,8 @@ export function createStarport<T extends Component>(component: T, options: Float
       })
 
       onBeforeUnmount(() => {
+        console.log('起飞')
+
         liftOff()
       })
 

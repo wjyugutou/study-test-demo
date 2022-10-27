@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import { debounce, throttle } from '@/utils'
 
-const colorChangeRef = $ref<HTMLDivElement>()
+const colorChangeRef = ref<HTMLDivElement>()
 
 function randomColor() {
   const r = Math.floor(Math.random() * 256)
@@ -11,16 +11,16 @@ function randomColor() {
 }
 
 useEventListener(window, 'resize', throttle(() => {
-  colorChangeRef.style.backgroundColor = randomColor()
+  colorChangeRef.value!.style.backgroundColor = randomColor()
 }))
 
 const debounceHandle = debounce(() => {
-  colorChangeRef.style.backgroundColor = randomColor()
+  colorChangeRef.value!.style.backgroundColor = randomColor()
 })
 
-const interSection1 = $ref<HTMLDivElement>()
-const interSection2 = $ref<HTMLDivElement>()
-const interSectionParent = $ref<HTMLDivElement>()
+const interSection1 = ref<HTMLDivElement>()
+const interSection2 = ref<HTMLDivElement>()
+const interSectionParent = ref<HTMLDivElement>()
 const createIntersectionObserver = () => {
   const observer = new IntersectionObserver((entries) => {
     console.log(entries)
@@ -29,8 +29,8 @@ const createIntersectionObserver = () => {
     threshold: 1, // 阀值设为1，当只有比例达到1时才触发回调函数
   })
 
-  observer.observe(interSection1)
-  observer.observe(interSection2)
+  observer.observe(interSection1.value!)
+  observer.observe(interSection2.value!)
 }
 onMounted(() => {
   createIntersectionObserver()
