@@ -6,7 +6,10 @@ import nanny from '@/static/carousel/nanny.jpg'
 
 const { push } = useRouter()
 
-const carouselData = [
+const carouselData: {
+  title: string
+  url: string
+}[] = [
   { title: 'woman', url: butt },
   { title: '千珏', url: kindred },
   { title: '荷花池', url: lotusPond },
@@ -15,12 +18,16 @@ const carouselData = [
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const btnList = [
+const btnList: {
+  title: string
+  url: string
+}[] = [
   { title: '扫雷', url: '/minesweeper' },
   { title: '梅花动画', url: '/canvas-plum' },
   { title: 'js小demo', url: '/js-demo' },
   { title: 'flip', url: '/flip/flip-one' },
   { title: 'fileUpload', url: '/fileUpload' },
+  { title: '数字雨', url: '/digitalRain' },
 ]
 const pageJump = (url: string) => {
   push(url)

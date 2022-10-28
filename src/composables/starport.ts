@@ -82,8 +82,6 @@ export function createStarport<T extends Component>(component: T, options: Float
       })
 
       onBeforeUnmount(() => {
-        console.log('起飞')
-
         liftOff()
       })
 
