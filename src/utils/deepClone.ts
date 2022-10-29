@@ -1,6 +1,4 @@
-import { cloneDeep } from 'lodash-es'
-
-export function deepClone<T>(obj: T, newObj: T extends object ? T: any = {}): T {
+export function deepClone<T = any>(obj: T, newObj: any = {}): T {
   if (typeof obj !== 'object' || obj === null)
     return obj
   if (Array.isArray(obj))
@@ -12,4 +10,18 @@ export function deepClone<T>(obj: T, newObj: T extends object ? T: any = {}): T 
   return newObj
 }
 
-cloneDeep
+export function cloneDeep(source: any): any {
+  if (!source || typeof source !== 'object')
+    return source
+  if (Array.isArray(source))
+    return source.map(item => cloneDeep(item))
+
+  const newObj: any = {}
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      const element = source[key]
+      newObj[key] = cloneDeep(element)
+    }
+  }
+  return newObj
+}
