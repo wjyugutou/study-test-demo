@@ -1,8 +1,14 @@
-<script lang='ts' setup>
+<script lang="ts">
 import { TheImageProxy } from '@/composables/image'
+export default {
+  name: 'FlipTwo',
+}
+</script>
+
+<script lang='ts' setup>
 const router = useRouter()
 
-const size = $(useSessionStorage('size', 100))
+const size = useSessionStorage('size', 100)
 </script>
 
 <template>

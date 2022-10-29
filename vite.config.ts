@@ -15,12 +15,12 @@ export default defineConfig({
     },
   },
   plugins: [
-    Vue({
-      reactivityTransform: true,
-    }),
+    Vue(),
 
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages(),
+    Pages({
+      exclude: ['**/components', '**/*.d.ts'],
+    }),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({

@@ -1,7 +1,12 @@
-<script lang="ts" setup>
+<script lang="ts">
 import { TheImageProxy } from '@/composables/image'
+export default {
+  name: 'FlipOne',
+}
+</script>
 
-const scale = ref(0.25)
+<script lang="ts" setup>
+const scale = useStorage('size', 0.25)
 const style = computed(() => ({
   width: `${100 * scale.value}rem`,
   height: `${50 * scale.value}rem`,

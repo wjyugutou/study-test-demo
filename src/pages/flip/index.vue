@@ -1,3 +1,8 @@
+<script lang="ts">
+import { TheImageContainer } from '@/composables/image'
+export default { name: 'Flip' }
+</script>
+
 <script lang="ts" setup>
 const route = useRoute ()
 </script>
@@ -7,4 +12,5 @@ const route = useRoute ()
     {{ route.fullPath }}
   </div>
   <router-view />
+  <TheImageContainer />
 </template>
