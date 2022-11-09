@@ -15,10 +15,16 @@ const carouselData: {
   { title: '荷花池', url: lotusPond },
   { title: '奶妈', url: nanny },
 ]
+const demoChallengeGlob = import.meta.glob('./demoChallenge/*.vue', { eager: true }) as ImportGlob
+
+const demoChallengeRouteList = Object.entries(demoChallengeGlob).map(([path, module]) => ({
+  url: path.substring(3, path.length - 4),
+  title: module.default.label,
+}))
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const btnList: {
+const routeList: {
   title: string
   url: string
 }[] = [
@@ -27,8 +33,7 @@ const btnList: {
   { title: 'js小demo', url: '/js-demo' },
   { title: 'flip', url: '/flip/flip-one' },
   { title: 'fileUpload', url: '/fileUpload' },
-  { title: '数字雨', url: '/digitalRain' },
-]
+].concat(demoChallengeRouteList)
 const pageJump = (url: string) => {
   push(url)
 }
@@ -49,7 +54,7 @@ const pageJump = (url: string) => {
     </router-link>
   </div>
   <div flex gap-1 justify-center>
-    <template v-for="item in btnList" :key="item.url">
+    <template v-for="item in routeList" :key="item.url">
       <button bg-green-400 w-20 h-10 rounded-5 @click="pageJump(item.url)">
         {{ item.title }}
       </button>

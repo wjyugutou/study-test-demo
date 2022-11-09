@@ -1,10 +1,23 @@
+<script lang="ts">
+import { randomNum } from '@/utils/random'
+export default { label: '数字雨' }
+</script>
+
 <script lang='ts' setup>
+interface RainList {
+  index: number
+  length: number
+}
+
 const canvasEl = ref<HTMLCanvasElement>()
 
 const width = 1888
 const height = 600
 const fontSize = 16
 let canvas: CanvasRenderingContext2D
+const data = ref<RainList[]>([])
+const rowCount = Math.ceil(width / (fontSize * 0.8))
+const colCount = Math.ceil(height / fontSize)
 
 function overwhiteRect() {
   canvas.fillStyle = 'rgba(0, 0, 0, 0.1)'
@@ -15,7 +28,7 @@ function randomText(x: number, y: number) {
   const start = 1; const end = 9
   canvas.fillStyle = '#087b15'
   canvas.font = `${fontSize}px STheiti, SimHei`
-  const num = Math.floor(Math.random() * (end - start + 1) + start)
+  const num = randomNum(start, end)
 
   // if (num > 7)
   canvas.fillText(`${num}`, x, y)
@@ -25,30 +38,35 @@ function init() {
   canvas = canvasEl.value!.getContext('2d')!
   canvas.fillStyle = '#000'
   canvas.fillRect(0, 0, width, height)
-  draw()
 
-  // Array(width / fontSize).fill(1).forEach((_, index) => {
-  //   draw(24 * index, 24 * index - index)
-  // })
+  data.value = Array.from({ length: rowCount } as RainList[]).map(item => (item = ({ index: randomNum(0, 15), length: randomNum(15, colCount) })))
+
+  animate()
 }
+let i = 0
 
-function draw() {
+function animate() {
+  i++
+  if (i !== 0 && i < 20) {
+    requestAnimationFrame(animate)
+    return
+  }
+  i = 0
+
   canvas.beginPath()
   overwhiteRect()
 
-  Array(width / fontSize).fill(1).forEach((_, index) => {
-    randomText(12 * index, 24 + j)
+  data.value.forEach((item, index) => {
+    randomText(12 * index, 18 * item.index)
+    item.index++
+    if (item.index === item.length) {
+      item.index = 0
+      item.length = randomNum(15, colCount)
+    }
   })
-
   canvas.closePath()
 
-  requestAnimationFrame(draw)
-}
-
-function text(index = 0, count = 10) {
-  return () => {
-
-  }
+  requestAnimationFrame(animate)
 }
 
 onMounted(() => {
