@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { MyP } from '@/utils/promise'
+function asyncFunction() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1)
+    }, 2000)
+  })
+}
+
+await asyncFunction()
 
 const boxStyle = ref({
   bgColor: 'red',
@@ -22,10 +30,6 @@ function toggleStyle() {
 
 const count = ref(1)
 
-defineExpose({
-  count,
-})
-
 const a = {}
 
 function asd() {
@@ -45,7 +49,7 @@ asd()
   </button>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .box {
   background-color: v-bind('boxStyle.bgColor');
 }

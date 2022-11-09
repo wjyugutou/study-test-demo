@@ -17,10 +17,14 @@ const carouselData: {
 ]
 const demoChallengeGlob = import.meta.glob('./demoChallenge/*.vue', { eager: true }) as ImportGlob
 
-const demoChallengeRouteList = Object.entries(demoChallengeGlob).map(([path, module]) => ({
-  url: path.substring(3, path.length - 4),
-  title: module.default.label,
-}))
+const demoChallengeRouteList = Object.entries(demoChallengeGlob).map(([path, module]) => {
+  const url = path.substring(2, path.length - 4)
+
+  return {
+    url,
+    title: module.default?.label || url.split('/').at(-1),
+  }
+})
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
@@ -30,10 +34,10 @@ const routeList: {
 }[] = [
   { title: '扫雷', url: '/minesweeper' },
   { title: '梅花动画', url: '/canvas-plum' },
-  { title: 'js小demo', url: '/js-demo' },
   { title: 'flip', url: '/flip/flip-one' },
   { title: 'fileUpload', url: '/fileUpload' },
 ].concat(demoChallengeRouteList)
+
 const pageJump = (url: string) => {
   push(url)
 }
@@ -53,9 +57,9 @@ const pageJump = (url: string) => {
       前往
     </router-link>
   </div>
-  <div flex gap-1 justify-center>
+  <div flex gap-1 justify-center border p-5>
     <template v-for="item in routeList" :key="item.url">
-      <button bg-green-400 w-20 h-10 rounded-5 @click="pageJump(item.url)">
+      <button px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 @click="pageJump(item.url)">
         {{ item.title }}
       </button>
     </template>

@@ -1,14 +1,10 @@
 <script lang='ts' setup>
-import asdVue from './asd.vue'
 import { debounce, throttle } from '@/utils'
 
-// const asdVue = defineAsyncComponent(() => import('./asd.vue'))
-const colorChangeRef = $ref<HTMLDivElement>()
+const colorChangeRef = ref<HTMLDivElement>()
 const asd = ref(1)
 
 console.log('component asdVue')
-
-console.log(asdVue.count)
 
 function randomColor() {
   const r = Math.floor(Math.random() * 256)
@@ -96,10 +92,10 @@ watchEffect(() => {
     <template #fallback>
       loading
     </template>
-    <asdVue />
+    <AsyncComponent />
   </Suspense>
 </template>
 
-<style lang='less' scoped>
+<style  scoped>
 
 </style>

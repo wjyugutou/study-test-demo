@@ -14,10 +14,11 @@ const canvasEl = ref<HTMLCanvasElement>()
 const width = 1888
 const height = 600
 const fontSize = 16
-let canvas: CanvasRenderingContext2D
+const time = 15
 const data = ref<RainList[]>([])
 const rowCount = Math.ceil(width / (fontSize * 0.8))
 const colCount = Math.ceil(height / fontSize)
+let canvas: CanvasRenderingContext2D
 
 function overwhiteRect() {
   canvas.fillStyle = 'rgba(0, 0, 0, 0.1)'
@@ -47,7 +48,7 @@ let i = 0
 
 function animate() {
   i++
-  if (i !== 0 && i < 20) {
+  if (i !== 0 && i < time) {
     requestAnimationFrame(animate)
     return
   }

@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AsyncComponent: typeof import('./src/components/AsyncComponent.vue')['default']
     Carousel: typeof import('./src/components/Carousel/index.vue')['default']
     CarouselDot: typeof import('./src/components/Carousel/CarouselDot.vue')['default']
     CarouselItem: typeof import('./src/components/Carousel/CarouselItem.vue')['default']

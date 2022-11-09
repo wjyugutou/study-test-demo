@@ -5,6 +5,7 @@ specifiers:
   '@iconify-json/carbon': ^1.1.9
   '@types/canvas-confetti': ^1.4.3
   '@types/lodash-es': ^4.17.6
+  '@types/matter-js': ^0.18.2
   '@types/node': ^18.11.9
   '@unocss/reset': ^0.46.3
   '@unocss/transformer-directives': ^0.46.3
@@ -14,6 +15,7 @@ specifiers:
   canvas-confetti: ^1.6.0
   eslint: ^8.27.0
   jsdom: ^20.0.2
+  matter-js: ^0.18.0
   pnpm: ^7.14.2
   typescript: ^4.8.4
   unocss: ^0.46.3
@@ -30,6 +32,7 @@ specifiers:
 dependencies:
   '@vueuse/core': 9.4.0_vue@3.2.41
   canvas-confetti: 1.6.0
+  matter-js: 0.18.0
   vue: 3.2.41
   vue-router: 4.1.6_vue@3.2.41
   wj-project: 1.0.0
@@ -39,6 +42,7 @@ devDependencies:
   '@iconify-json/carbon': 1.1.9
   '@types/canvas-confetti': 1.4.3
   '@types/lodash-es': 4.17.6
+  '@types/matter-js': 0.18.2
   '@types/node': 18.11.9
   '@unocss/reset': 0.46.3
   '@unocss/transformer-directives': 0.46.3
@@ -397,6 +401,10 @@ packages:
 
   /@types/lodash/4.14.182:
     resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
+    dev: true
+
+  /@types/matter-js/0.18.2:
+    resolution: {integrity: sha512-W9UC9DOPNBRTUocqqPZmzX3cbHmlZBI9jLn6SuxZz0n5QrPk382Ig3hbBWHqYU8TRUmTCJJhuanXeyMTavF7Mg==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -2779,6 +2787,10 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
+
+  /matter-js/0.18.0:
+    resolution: {integrity: sha512-/ZVem4WygUnbmo/iE4oHZpZS97btfBtYy5Iwn1396vUZU7YhgVEN8J4UWwfZwY1ZqoTYlPgjvSw9WXauuXL0mg==}
+    dev: false
 
   /mdast-util-from-markdown/0.8.5:
     resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
