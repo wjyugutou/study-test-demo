@@ -20,6 +20,7 @@ export default defineConfig({
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
       exclude: ['**/components', '**/*.d.ts'],
+      importMode: 'async',
     }),
 
     // https://github.com/antfu/unplugin-auto-import
