@@ -25,3 +25,5 @@ export function cloneDeep(source: any): any {
   }
   return newObj
 }
+
+export default deepClone

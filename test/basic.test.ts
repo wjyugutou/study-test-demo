@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { randomNum } from '@/utils/random'
+import randomNum from '@/utils/randomNum'
 
 const a = () => {
   return 'a'

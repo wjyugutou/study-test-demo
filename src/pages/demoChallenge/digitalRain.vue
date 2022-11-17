@@ -1,5 +1,5 @@
 <script lang="ts">
-import { randomNum } from '@/utils/random'
+import randomNum from '@/utils/randomNum'
 export default { label: '数字雨' }
 </script>
 

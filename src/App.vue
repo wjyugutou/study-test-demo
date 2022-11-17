@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
 
-const footer = ref<Element>()
 const main = ref<HTMLAttributes>()
 
 const style = computed(() => {
   return {
-    height: footer.value ? `calc(100vh - ${footer.value?.clientHeight}px - 1px) ` : undefined,
+    height: 'calc(100vh - 52px)',
   }
 })
 </script>
@@ -16,7 +15,7 @@ const style = computed(() => {
     <router-view />
   </main>
 
-  <footer ref="footer" text-center>
+  <footer text-center h-52px>
     <Footer />
   </footer>
 </template>
