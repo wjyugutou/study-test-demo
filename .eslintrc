@@ -1,6 +1,5 @@
 {
-  "extends": "@antfu",
+  "extends": "@yugutou",
   "rules": {
-    "no-console": "off"
   }
 }

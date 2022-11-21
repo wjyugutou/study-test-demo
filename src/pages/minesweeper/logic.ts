@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import type { BlockState } from './type'
+
 interface StateBoard {
   board: BlockState[][]
   mineGenerate: boolean
