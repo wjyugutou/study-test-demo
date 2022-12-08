@@ -3,7 +3,7 @@ import { MyP } from '../src/utils/promise'
 
 describe('promise', () => {
   it('customPromise', () => {
-    expect(new MyP((resolve, reject) => {
+    expect(new MyP((resolve) => {
       setTimeout(() => {
         resolve('success')
       }, 1000)

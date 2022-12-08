@@ -8,6 +8,8 @@ const style = computed(() => {
     height: 'calc(100vh - 52px)',
   }
 })
+
+console.log(111)
 </script>
 
 <template>

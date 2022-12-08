@@ -4,7 +4,7 @@ import type { BlockState } from './type'
 interface StateBoard {
   board: BlockState[][]
   mineGenerate: boolean
-  gameState: 'play'|'won'|'lost'
+  gameState: 'play' | 'won' | 'lost'
   startTime: number
   endTime?: number
 }
