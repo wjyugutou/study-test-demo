@@ -10,9 +10,8 @@ interface RainList {
 }
 
 const canvasEl = ref<HTMLCanvasElement>()
-
-const width = 1888
-const height = 600
+const width = window.innerWidth - 32
+const height = window.innerHeight - 52 - 40 - 50
 const fontSize = 16
 const time = 15
 const data = ref<RainList[]>([])
@@ -26,12 +25,12 @@ function overwhiteRect() {
 }
 
 function randomText(x: number, y: number) {
-  const start = 1; const end = 9
+  const start = 1
+  const end = 9
   canvas.fillStyle = '#087b15'
   canvas.font = `${fontSize}px STheiti, SimHei`
   const num = randomNum(start, end)
 
-  // if (num > 7)
   canvas.fillText(`${num}`, x, y)
 }
 

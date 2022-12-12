@@ -1,4 +1,6 @@
 <script lang='ts' setup>
+import { renderToString } from 'vue/server-renderer'
+import digitalRain from './demoChallenge/index/digitalRain.vue'
 import butt from '@/static/carousel/butt.jpg'
 import kindred from '@/static/carousel/kindred.jpg'
 import lotusPond from '@/static/carousel/lotusPond.jpg'
@@ -15,16 +17,6 @@ const carouselData: {
   { title: '荷花池', url: lotusPond },
   { title: '奶妈', url: nanny },
 ]
-const demoChallengeGlob = import.meta.glob('./demoChallenge/*.vue', { eager: true }) as ImportGlob
-
-const demoChallengeRouteList = Object.entries(demoChallengeGlob).map(([path, module]) => {
-  const url = path.substring(2, path.length - 4)
-
-  return {
-    url,
-    title: module.default?.label || url.split('/').at(-1),
-  }
-})
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
@@ -36,7 +28,8 @@ const routeList: {
   { title: '梅花动画', url: '/canvas-plum' },
   { title: 'flip', url: '/flip/flip-one' },
   { title: 'fileUpload', url: '/fileUpload' },
-].concat(demoChallengeRouteList)
+  { title: 'demo', url: '/demoChallenge' },
+]
 
 const pageJump = (url: string) => {
   push(url)
@@ -53,16 +46,18 @@ const pageJump = (url: string) => {
     </template>
   </Carousel>
   <div my-2>
-    <input v-model="name" type="text" placeholder="该如何称呼您？" px-2 py-1 border-1> <router-link :to="`/hi/${name}`">
+    <input v-model="name" type="text" placeholder="该如何称呼您？" px-2 py-1 border-1>
+    <router-link :to="`/hi/${name}`">
       前往
     </router-link>
   </div>
-  <div flex gap-1 justify-center border p-5>
-    <template v-for="item in routeList" :key="item.url">
-      <button px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 @click="pageJump(item.url)">
+
+  <div flex gap-1 flex-col border w-fit min-h-100>
+    <div v-for="item in routeList" :key="item.url" px-5 py-1 hover:bg-pink hover:dark:bg-red>
+      <button class="basicBtn" @click="pageJump(item.url)">
         {{ item.title }}
       </button>
-    </template>
+    </div>
   </div>
 </template>
 

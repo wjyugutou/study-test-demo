@@ -8,17 +8,14 @@ const style = computed(() => {
     height: 'calc(100vh - 52px)',
   }
 })
-
-console.log(111)
 </script>
 
 <template>
-  <main :style="style" font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
+  <header text-center h-52px>
+    <Footer />
+  </header>
+  <main :style="style" font-sans p="x-4" relative text="center gray-700 dark:gray-200">
     <router-view />
   </main>
-
-  <footer text-center h-52px>
-    <Footer />
-  </footer>
 </template>
 
