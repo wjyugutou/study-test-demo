@@ -1,3 +1,9 @@
+<script lang='ts'>
+import { render } from 'vue'
+import Modal, { alert } from '@/components/Modal'
+export default { name: 'DemoChallenge' }
+</script>
+
 <script lang='ts' setup>
 const router = useRouter()
 
@@ -11,7 +17,7 @@ const allDemo = Object.entries(demoList).map(([path, module]) => {
 
 watchEffect(() => {
   if (router.currentRoute.value.fullPath === '/demoChallenge')
-    router.push(allDemo[0].path)
+    router.replace(allDemo[0].path)
 })
 
 const curIndex = computed(() => allDemo.findIndex(item => item.path === router.currentRoute.value.fullPath))
@@ -32,6 +38,14 @@ function pointerEnterHandle() {
 function pointerLeaveHandle() {
   footerEnter.value = false
 }
+
+function listClickHandle() {
+  alert({
+    title: 'title',
+  })
+}
+
+const visible = ref(true)
 </script>
 
 <template>
@@ -49,11 +63,15 @@ function pointerLeaveHandle() {
         </div>
       </template>
       <template v-else>
-        {{ allDemo[curIndex].label }}
+        {{ allDemo[curIndex]?.label }}
       </template>
     </div>
-    <div cursor-pointer>
+    <div cursor-pointer @click="listClickHandle">
       list
     </div>
+    <Modal v-model="visible" title="asd">
+      <h1>11111</h1>
+      <h2>222222</h2>
+    </Modal>
   </footer>
 </template>

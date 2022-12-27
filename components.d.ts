@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     Counter: typeof import('./src/components/Counter.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    Modal: typeof import('./src/components/Modal/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheImage: typeof import('./src/components/starPort/TheImage.vue')['default']

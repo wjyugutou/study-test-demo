@@ -19,7 +19,7 @@ const state = reactive({
 <template>
   <transition name="carousel">
     <div v-show="currentIndex === state.selfIndex" class="carouselItem" w-full h-full absolute origin-top-left>
-      <img w-full h-full :src="data.url" :alt="data?.title">
+      <img w-full h-full :src="data.url" :alt="data.title">
     </div>
   </transition>
 </template>
