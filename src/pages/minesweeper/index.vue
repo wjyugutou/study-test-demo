@@ -6,15 +6,15 @@ import Fireworks from '@/components/Fireworks.vue'
 
 const paly = new GamePlay(10, 10, 5)
 
-const now = $(useNow())
+const now = useNow()
 
 const timeMS = computed(() => {
   if (paly.state.value.endTime)
-    return Math.round(((+paly.state.value.endTime || +now) - paly.state.value.startTime) / 1000)
+    return Math.round(((+paly.state.value.endTime || +now.value) - paly.state.value.startTime) / 1000)
 
   if (!paly.state.value.mineGenerate)
     return 0
-  return Math.round((+now - (paly.state.value.startTime)) / 1000)
+  return Math.round((+now.value - (paly.state.value.startTime)) / 1000)
 })
 
 useStorage('vue-minesweeper', paly.state)

@@ -1,17 +1,12 @@
-<script lang='ts'>
-export default { name: '' }
-</script>
-
 <script lang='ts' setup>
 const router = useRouter()
-const route = useRoute()
 
-console.log(route)
+const footerEnter = ref(false)
 
 const demoList = import.meta.glob('./index/*.vue', { eager: true })
 const allDemo = Object.entries(demoList).map(([path, module]) => {
   const label = path.replace('./index/', '').replace('.vue', '')
-  return { path: `${router.currentRoute.value.fullPath}/${label}`, label }
+  return { path: `/demoChallenge/${label}`, label }
 })
 
 watchEffect(() => {
@@ -19,11 +14,11 @@ watchEffect(() => {
     router.push(allDemo[0].path)
 })
 
-const showDemoList = computed(() => {
-  const curIndex = allDemo.findIndex(item => item.path === router.currentRoute.value.fullPath)
-  const arr = [allDemo[curIndex - 1], allDemo[curIndex], allDemo[curIndex + 1]].filter(Boolean)
+const curIndex = computed(() => allDemo.findIndex(item => item.path === router.currentRoute.value.fullPath))
 
-  return arr
+const showDemoList = computed(() => {
+  const arr = [allDemo[curIndex.value - 1], allDemo[curIndex.value], allDemo[curIndex.value + 1]]
+  return arr.filter(Boolean)
 })
 
 function back() {
@@ -31,7 +26,11 @@ function back() {
 }
 
 function pointerEnterHandle() {
+  footerEnter.value = true
+}
 
+function pointerLeaveHandle() {
+  footerEnter.value = false
 }
 </script>
 
@@ -40,11 +39,21 @@ function pointerEnterHandle() {
     <div i-carbon-chevron-left hover:cursor-pointer text="hover:gray-200 gray-400" w-5 h-5 @click="back" />
   </header>
   <main><RouterView /></main>
-  <footer absolute bottom-0 min-w-20 h-50px @pointerenter="pointerEnterHandle">
-    <div v-for="item in showDemoList" :key="item.path">
-      <RouterLink :to="item.path">
-        {{ item.label }}
-      </RouterLink>
+  <footer fixed bottom-0 left-0 right-0 flex items-center justify-between text-left px-2>
+    <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
+      <template v-if="footerEnter">
+        <div v-for="item in showDemoList" :key="item.path">
+          <RouterLink :to="item.path">
+            {{ item.label }}
+          </RouterLink>
+        </div>
+      </template>
+      <template v-else>
+        {{ allDemo[curIndex].label }}
+      </template>
+    </div>
+    <div cursor-pointer>
+      list
     </div>
   </footer>
 </template>
