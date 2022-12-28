@@ -1,6 +1,5 @@
 <script lang='ts'>
-import { render } from 'vue'
-import Modal, { alert } from '@/components/Modal'
+import Modal from '@/components/Modal'
 export default { name: 'DemoChallenge' }
 </script>
 

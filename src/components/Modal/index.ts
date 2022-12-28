@@ -7,14 +7,15 @@ interface ModalOptions {
   title: string
 }
 
-const Modal = {
-  alert: (options: ModalOptions) => {
-    const ModalVNode = createVNode(ModalConstructor, options)
-    render(ModalVNode, document.body)
-  },
+type ModalType = typeof ModalConstructor & {
+  alert: (options: ModalOptions) => void
 }
 
-export default ModalConstructor
-export const {
-  alert,
-} = Modal
+const Modal = ModalConstructor
+
+Modal.alert = (options: ModalOptions) => {
+  const ModalVNode = createVNode(ModalConstructor, options)
+  render(ModalVNode, document.body)
+}
+
+export default Modal as ModalType
