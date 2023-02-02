@@ -1,5 +1,4 @@
 <script lang='ts'>
-import Modal from '@/components/Modal'
 export default { name: 'DemoChallenge' }
 </script>
 
@@ -8,15 +7,19 @@ const router = useRouter()
 
 const footerEnter = ref(false)
 
+const visible = ref(false)
+
+// demo文件列表
 const demoList = import.meta.glob('./index/*.vue', { eager: true })
 const allDemo = Object.entries(demoList).map(([path, module]) => {
   const label = path.replace('./index/', '').replace('.vue', '')
   return { path: `/demoChallenge/${label}`, label }
 })
 
-watchEffect(() => {
+const stop = watchEffect(() => {
   if (router.currentRoute.value.fullPath === '/demoChallenge')
     router.replace(allDemo[0].path)
+  visible.value = false
 })
 
 const curIndex = computed(() => allDemo.findIndex(item => item.path === router.currentRoute.value.fullPath))
@@ -39,12 +42,12 @@ function pointerLeaveHandle() {
 }
 
 function listClickHandle() {
-  alert({
-    title: 'title',
-  })
+  visible.value = true
 }
 
-const visible = ref(true)
+onUnmounted(() => {
+  stop()
+})
 </script>
 
 <template>
@@ -52,7 +55,7 @@ const visible = ref(true)
     <div i-carbon-chevron-left hover:cursor-pointer text="hover:gray-200 gray-400" w-5 h-5 @click="back" />
   </header>
   <main><RouterView /></main>
-  <footer fixed bottom-0 left-0 right-0 flex items-center justify-between text-left px-2>
+  <footer fixed bottom-0 left-0 right-0 flex items-center justify-between text-left px-2 text-26px>
     <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">
         <div v-for="item in showDemoList" :key="item.path">
@@ -68,9 +71,14 @@ const visible = ref(true)
     <div cursor-pointer @click="listClickHandle">
       list
     </div>
-    <Modal v-model="visible" title="asd">
-      <h1>11111</h1>
-      <h2>222222</h2>
-    </Modal>
   </footer>
+  <Modal v-model="visible" title="demoList">
+    <div>
+      <p v-for="item in allDemo" :key="item.path" hover:text="[var(--primary)]">
+        <RouterLink :to="item.path">
+          {{ item.label }}
+        </RouterLink>
+      </p>
+    </div>
+  </Modal>
 </template>

@@ -11,5 +11,9 @@ html.dark {
 }
 
 .basicBtn {
-  @apply w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600
+  @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600
+}
+
+:root {
+  --primary: #3399cc;
 }

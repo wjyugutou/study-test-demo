@@ -20,11 +20,11 @@ const props = defineProps({
   },
   width: {
     type: [String, Number],
-    default: 200,
+    default: 500,
   },
   height: {
     type: [String, Number],
-    default: 200,
+    default: 400,
   },
   content: Object as PropType<VNode | string>,
 })
@@ -42,13 +42,13 @@ const style = computed(() => ({
 }))
 
 function closeHandle() {
-  props.modelValue && emits('update:modelValue', false)
+  emits('update:modelValue', false)
 }
 </script>
 
 <template>
   <Teleport v-if="modelValue" :to="appendTo">
-    <div :style="style" absolute top="1/2" left="50%" translate-x="-50%" translate-y="-50%" bg-red>
+    <div :style="style" absolute top="1/2" left="50%" translate-x="-50%" translate-y="-50%" bg-white dark:bg-hex-121212>
       <div class="modal_title">
         {{ title }}
         <div class="modal_close" @click="closeHandle" />
@@ -68,7 +68,7 @@ function closeHandle() {
   @apply: absolute top-50% right-0 translate-y--50% i-carbon-close cursor-pointer text-26px
 }
 .modal_title {
-  @apply: px-10 text-7 relative
+  @apply: pl-4 pr-10 text-7 relative
 }
 .modal_content {
   @apply: p-4
