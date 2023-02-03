@@ -1,8 +1,8 @@
 <script lang='ts' setup>
 import { renderToString } from 'vue/server-renderer'
 import digitalRain from './demoChallenge/index/digitalRain.vue'
-import butt from '@/static/carousel/butt.jpg'
 import kindred from '@/static/carousel/kindred.jpg'
+import butt from '@/static/carousel/butt.jpg'
 import lotusPond from '@/static/carousel/lotusPond.jpg'
 import nanny from '@/static/carousel/nanny.jpg'
 
