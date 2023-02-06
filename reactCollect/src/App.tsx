@@ -16,10 +16,10 @@ const App: FC<Props> = () => {
         pathname: '/home',
       })
     }
-    console.log('App mount')
+    console.log('App mount', location)
 
     return () => { }
-  }, [])
+  }, [location])
 
   const Routes = useRoutes([
     {

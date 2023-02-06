@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
 import reactLogo from '@/assets/react.svg'
 import './index.css'
-import { useNavigate } from 'react-router-dom'
 
 const Home: FC = () => {
   const [count, setCount] = useState(0)
@@ -11,6 +11,10 @@ const Home: FC = () => {
   function goLoginHandle() {
     navigate('/login')
   }
+  function goAdminHandle() {
+    navigate('/admin')
+  }
+
   return (
     <div className="App">
       <div>
@@ -22,7 +26,8 @@ const Home: FC = () => {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <h1 onClick={goLoginHandle}>Go Login</h1>
+      <h1 onClick={goLoginHandle} className='text-red apply' >Go Login</h1>
+      <h1 onClick={goAdminHandle} className='text-pink'>Go Admin</h1>
       <div className="card">
         <button onClick={() => setCount(count => count + 1)}>
           count is {count}
