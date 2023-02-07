@@ -8,7 +8,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vue": "cd ./vueCollect && pnpm dev",
-    "react": "cd ./reactCollect && pnpm dev"
+    "vue": "pnpm  --filter ./packages/vueCollect dev",
+    "react": "pnpm  --filter ./packages/reactCollect dev",
+    "choreVue": "cd ./reactCollect && taze major -w",
+    "choreReact": "cd ./reactCollect && taze major -w",
+    "chore": "pnpm choreReact && pnpm choreVue"
+  },
+  "dependencies": {
+    "@types/node": "^18.13.0",
+    "@unocss/reset": "^0.49.4",
+    "eslint": "^8.33.0",
+    "typescript": "^4.9.5",
+    "unocss": "^0.49.4",
+    "vite": "^4.1.1"
   }
 }

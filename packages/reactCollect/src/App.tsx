@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useLocation, useNavigate, useRoutes } from 'react-router-dom'
 import Layout from './layout'
 import lazyComponent from '@/components/lazyComponent'
+
 interface Props {
 }
 

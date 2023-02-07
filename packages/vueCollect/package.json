@@ -1,4 +1,6 @@
 {
+  "name": "vue-collect",
+  "type": "module",
   "private": true,
   "packageManager": "pnpm@6.32.3",
   "scripts": {
@@ -12,6 +14,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.9.0",
+    "@yugutou/utils": "workspace:*",
     "canvas-confetti": "^1.6.0",
     "matter-js": "^0.18.0",
     "vue": "^3.2.45",
@@ -24,18 +27,10 @@
     "@types/lodash-es": "^4.17.6",
     "@types/matter-js": "^0.18.2",
     "@types/node": "^18.11.18",
-    "@unocss/reset": "^0.48.0",
-    "@unocss/transformer-directives": "^0.48.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/test-utils": "^2.2.6",
-    "@yugutou/eslint-config": "1.0.3",
-    "eslint": "^8.30.0",
-    "pnpm": "^7.20.0",
-    "typescript": "^4.9.4",
-    "unocss": "^0.48.0",
     "unplugin-auto-import": "^0.12.1",
     "unplugin-vue-components": "^0.22.12",
-    "vite": "^4.0.3",
     "vite-plugin-pages": "^0.28.0",
     "vitest": "^0.26.2",
     "vue-tsc": "^1.0.18"
