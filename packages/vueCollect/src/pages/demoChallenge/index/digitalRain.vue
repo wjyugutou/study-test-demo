@@ -86,7 +86,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvasEl" :width="width" :height="height" border="~ #000" />
+  <canvas ref="canvasEl" :width="width" :height="height" border="~ #000" bg="#000" />
 </template>
 
 <style lang='less' scoped>

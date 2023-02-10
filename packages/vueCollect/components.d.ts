@@ -8,7 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AsyncComponent: typeof import('./src/components/AsyncComponent.vue')['default']
-    Basic: typeof import('./src/components/ssrComponents/Basic.vue')['default']
+    AutoPosition: typeof import('./src/components/AutoPosition/index.vue')['default']
+    Basic: typeof import('./src/components/SsrComponents/Basic.vue')['default']
     Carousel: typeof import('./src/components/Carousel/index.vue')['default']
     CarouselDot: typeof import('./src/components/Carousel/CarouselDot.vue')['default']
     CarouselItem: typeof import('./src/components/Carousel/CarouselItem.vue')['default']
@@ -16,8 +17,9 @@ declare module '@vue/runtime-core' {
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Modal: typeof import('./src/components/Modal/index.vue')['default']
+    Popover: typeof import('./src/components/Popover/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheImage: typeof import('./src/components/starPort/TheImage.vue')['default']
+    TheImage: typeof import('./src/components/StarPort/TheImage.vue')['default']
   }
 }
