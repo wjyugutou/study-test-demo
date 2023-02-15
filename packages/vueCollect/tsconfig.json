@@ -18,7 +18,8 @@
       "node",
       "vite/client",
       "vite-plugin-pages/client",
-      "vitest/importMeta"
+      "vitest/importMeta",
+      "unplugin-vue-define-options/macros-global"
     ],
     "paths": {
       "@/*": ["src/*"]

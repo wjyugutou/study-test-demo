@@ -1,1 +1,1 @@
-export * from './autoPositionCom'
+export * from './getParentIdChild'

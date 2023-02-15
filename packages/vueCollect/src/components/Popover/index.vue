@@ -1,7 +1,7 @@
 <script lang='ts'>
-import { autoPosition } from '@yugutou/utils'
+import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
-import SlotRenderCom from '@/components/SlotRenderCom'
+import { getParentIdChild } from '@yugutou/utils'
 export default { name: 'Popover' }
 </script>
 
@@ -14,16 +14,49 @@ const props = withDefaults(defineProps<Props>(), {
   mode: 'enter',
 })
 
-const slots = useSlots()
-const defaultSlots = slots.default?.()[0]
-const contentSlots = slots.content?.()[0]
-
-const defaultRef = ref<HTMLElement>()
+const defaultRef = ref<Element>()
 const contentRef = ref<HTMLElement>()
+const arrowRef = ref<HTMLElement>()
 
 const visible = ref(false)
-const destroyObserve = shallowRef<() => void>()
-const contentPos = ref<CSSProperties>({ top: 0, left: 0 })
+const clickVisible = ref(false)
+
+const state = useFloating(defaultRef, contentRef, {
+  placement: 'left',
+  strategy: 'fixed',
+  middleware: [flip(), shift(), offset(10), arrow({ element: arrowRef })],
+  whileElementsMounted: autoUpdate,
+})
+
+const {
+  x, y, placement,
+  strategy,
+  middlewareData,
+  isPositioned,
+  update,
+} = toRefs(state)
+
+watch([x, y, placement,
+  strategy,
+  middlewareData,
+  isPositioned], () => {
+  console.log({
+    x,
+    y,
+    placement,
+    strategy,
+    middlewareData,
+    isPositioned,
+  })
+})
+
+const contentStyle = computed<CSSProperties>(() => ({
+  top: `${y.value || 0}px`,
+  left: `${x.value || 0}px`,
+  position: strategy.value,
+}))
+
+const arrowStyle = computed<CSSProperties>(() => ({ top: `${state.middlewareData.value.arrow?.y || -999}px`, left: `${state.middlewareData.value.arrow?.x}px` }))
 
 function enterHandle() {
   if (props.mode !== 'both' && props.mode !== 'enter')
@@ -34,60 +67,65 @@ function enterHandle() {
 function clickHandle() {
   if (props.mode !== 'both' && props.mode !== 'click')
     return
-  visible.value = !visible.value
+  const timer = setTimeout(() => {
+    clickVisible.value = !clickVisible.value
+    clearTimeout(timer)
+  }, 0)
 }
 
-function hidePopver() {
-  if (visible.value !== true)
-    visible.value = false
+function leaveHidePopver() {
+  visible.value = false
+}
+
+function clickHidePopver(e: MouseEvent) {
+  if (getParentIdChild('contentParent', (e.target as Element).parentElement))
+    return
+  visible.value = false
+  clickVisible.value = false
 }
 
 function sourceEleBindEvent() {
-  defaultRef.value?.addEventListener('pointerenter', enterHandle)
-  defaultRef.value?.addEventListener('pointerleave', hidePopver)
-  defaultRef.value?.addEventListener('pointerup', clickHandle)
+  if (props.mode === 'enter') {
+    defaultRef.value?.addEventListener('pointerenter', enterHandle)
+    defaultRef.value?.addEventListener('pointerleave', leaveHidePopver)
+  }
+  else if (props.mode === 'click') {
+    defaultRef.value?.addEventListener('pointerup', clickHandle)
+  }
+  else {
+    defaultRef.value?.addEventListener('pointerup', clickHandle)
+    defaultRef.value?.addEventListener('pointerenter', enterHandle)
+    defaultRef.value?.addEventListener('pointerleave', leaveHidePopver)
+  }
 }
 function sourceEleRemoveEvent() {
   defaultRef.value?.removeEventListener('pointerenter', enterHandle)
-  defaultRef.value?.addEventListener('pointerleave', hidePopver)
+  defaultRef.value?.addEventListener('pointerleave', leaveHidePopver)
   defaultRef.value?.removeEventListener('pointerup', clickHandle)
 }
 
-watch(visible, async () => {
-  if (!visible)
-    return
-  await nextTick(() => { })
-
-  const { style, destroy } = autoPosition(defaultRef.value!, contentRef.value!, {}, (style) => {
-    contentPos.value = style
-  })
-  contentPos.value = style
-
-  destroyObserve.value = destroy
-})
-
 onMounted(() => {
-  document.addEventListener('click', hidePopver)
+  document.documentElement.addEventListener('click', clickHidePopver)
   sourceEleBindEvent()
 })
 onUnmounted(() => {
-  destroyObserve.value?.()
   sourceEleRemoveEvent()
-  document.removeEventListener('click', hidePopver)
+  document.removeEventListener('click', clickHidePopver)
 })
 </script>
 
 <template>
-  <div absolute>
-    <SlotRenderCom :vnode="defaultSlots" @mounted="(el: HTMLElement) => defaultRef = el" />
-    <template v-if="contentSlots">
-      <div v-if="visible" absolute bg-white bg:dark="white" px-10px :style="contentPos">
-        <SlotRenderCom :vnode="contentSlots" @mounted="(el: HTMLElement) => contentRef = el" />
-      </div>
-    </template>
-    <template v-else>
-      {{ content }}
-    </template>
+  <div max-w-max>
+    <div ref="defaultRef">
+      <slot />
+    </div>
+    <div v-if="visible || clickVisible" id="contentParent" ref="contentRef" hover:bg-red bg-white bg:dark="white" px-10px :style="contentStyle">
+      <div ref="arrowRef" w-5 h-5 bg-red-400 absolute :style="arrowStyle" />
+
+      <slot name="content">
+        <span>{{ content }}</span>
+      </slot>
+    </div>
   </div>
 </template>
 
