@@ -1,17 +1,21 @@
-<script lang='ts'>
+<script lang='ts' setup>
+import type { MaybeReadonlyRef, Placement, Strategy } from '@floating-ui/vue'
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
 import { getParentIdChild } from '@yugutou/utils'
-export default { name: 'Popover' }
-</script>
-
-<script lang='ts' setup>
 interface Props {
   content?: string
   mode?: 'enter' | 'click' | 'both'
+  offset?: Parameters<typeof offset>[0]
+  flip?: Parameters<typeof flip>[0]
+  shift?: Parameters<typeof shift>[0]
+  arrow?: Parameters<typeof arrow>[0]
+  placement: MaybeReadonlyRef<Placement | undefined>
+  strategy: MaybeReadonlyRef<Strategy | undefined>
 }
 const props = withDefaults(defineProps<Props>(), {
   mode: 'enter',
+  offset: 10,
 })
 
 const defaultRef = ref<Element>()
@@ -21,10 +25,14 @@ const arrowRef = ref<HTMLElement>()
 const visible = ref(false)
 const clickVisible = ref(false)
 
+const middleware = ref([flip(props.flip), shift(props.shift), offset(props.offset), arrow(Object.assign({
+  element: arrowRef,
+}, props.arrow))])
+
 const state = useFloating(defaultRef, contentRef, {
-  placement: 'left',
-  strategy: 'fixed',
-  middleware: [flip(), shift(), offset(10), arrow({ element: arrowRef })],
+  placement: props.placement,
+  strategy: props.strategy,
+  middleware,
   whileElementsMounted: autoUpdate,
 })
 
@@ -56,7 +64,7 @@ const contentStyle = computed<CSSProperties>(() => ({
   position: strategy.value,
 }))
 
-const arrowStyle = computed<CSSProperties>(() => ({ top: `${state.middlewareData.value.arrow?.y || -999}px`, left: `${state.middlewareData.value.arrow?.x}px` }))
+const arrowStyle = computed<CSSProperties>(() => ({ top: `${state.middlewareData.value.arrow?.y || ''}px`, left: `${state.middlewareData.value.arrow?.x || ''}px` }))
 
 function enterHandle() {
   if (props.mode !== 'both' && props.mode !== 'enter')
@@ -119,7 +127,7 @@ onUnmounted(() => {
     <div ref="defaultRef">
       <slot />
     </div>
-    <div v-if="visible || clickVisible" id="contentParent" ref="contentRef" hover:bg-red bg-white bg:dark="white" px-10px :style="contentStyle">
+    <div v-if="visible || clickVisible" id="contentParent" ref="contentRef" px-10px :style="contentStyle">
       <div ref="arrowRef" w-5 h-5 bg-red-400 absolute :style="arrowStyle" />
 
       <slot name="content">

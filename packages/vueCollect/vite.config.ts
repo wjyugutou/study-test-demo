@@ -10,7 +10,6 @@ import Unocss from 'unocss/vite'
 import Inspector from 'unplugin-vue-inspector/vite'
 import DefineOptions from 'unplugin-vue-define-options/dist/vite'
 
-
 export default defineConfig({
   resolve: {
     alias: {
@@ -20,7 +19,7 @@ export default defineConfig({
   plugins: [
 
     Vue(),
-    DefineOptions(), 
+    DefineOptions(),
     Inspector(),
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
@@ -41,7 +40,6 @@ export default defineConfig({
 
     // https://github.com/antfu/vite-plugin-components
     Components({
-      dirs: './src/components',
       dts: true,
     }),
 

@@ -1,11 +1,12 @@
 <script lang='ts' setup>
+
 </script>
 
 <template>
   <div w-400px h-200px overflow-auto pl-200px>
     <div bg-pink w-800px h-500px>
       <div bg-blue-400 h-200px />
-      <Popover mode="click" content="String content">
+      <Popover placement="top" strategy="fixed" mode="click" content="String content">
         <template #default>
           <div w="200px" bg-yellow-400>
             children

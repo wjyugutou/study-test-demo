@@ -10,19 +10,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "vue": "pnpm  --filter ./packages/vueCollect dev",
     "react": "pnpm  --filter ./packages/reactCollect dev",
-    "choreVue": "cd ./reactCollect && taze major -w",
-    "choreReact": "cd ./reactCollect && taze major -w",
     "chore": "pnpm choreReact && pnpm choreVue"
   },
   "dependencies": {
     "@types/node": "^18.13.0",
-    "@unocss/reset": "^0.49.4",
+    "@unocss/reset": "^0.49.6",
     "eslint": "^8.34.0",
-    "typescript": "^4.9.5",
-    "unocss": "^0.49.4",
+    "unocss": "^0.49.6",
     "vite": "^4.1.1"
   },
   "devDependencies": {
-    "@yugutou/eslint-config": "^1.1.4"
+    "typescript": "^4.9.5",
+    "@yugutou/eslint-config": "^1.1.5"
   }
 }
