@@ -18,4 +18,3 @@ const style = computed(() => {
     <router-view />
   </main>
 </template>
-
