@@ -18,3 +18,12 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
   wujie: 'wujie'
 }
+
+
+interface IDBEventTarget{
+
+}
+
+interface EventTarget extends IDBEventTarget { result: IDBDatabase} 
+
+

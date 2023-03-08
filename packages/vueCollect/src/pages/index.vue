@@ -1,6 +1,4 @@
 <script lang='ts' setup>
-import { renderToString } from 'vue/server-renderer'
-import digitalRain from './demoChallenge/index/digitalRain.vue'
 import kindred from '@/static/carousel/kindred.jpg'
 import butt from '@/static/carousel/butt.jpg'
 import lotusPond from '@/static/carousel/lotusPond.jpg'
@@ -29,6 +27,7 @@ const routeList: {
   { title: 'flip', url: '/flip/flip-one' },
   { title: 'fileUpload', url: '/fileUpload' },
   { title: 'demo', url: '/demoChallenge' },
+  { title: 'Recorder录音', url: '/recorder ' },
 ]
 
 const pageJump = (url: string) => {

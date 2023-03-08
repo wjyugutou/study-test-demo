@@ -10,6 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "vue": "pnpm  --filter ./packages/vueCollect dev",
     "react": "pnpm  --filter ./packages/reactCollect dev",
+    "tazeReact": "cd ./packages/reactCollect && taze -w",
+    "tazeVue": "cd ./packages/vueCollect && taze -w",
     "chore": "pnpm choreReact && pnpm choreVue"
   },
   "dependencies": {
