@@ -42,7 +42,7 @@ export function createStarport<T extends Component>(component: T, options: Float
           transition: `all ${duration}ms ease-in-out`,
         }
 
-        if (landed)
+        if (landed.value)
           style.display = 'none'
 
         return style

@@ -1,6 +1,6 @@
 import { createStarport } from './starport'
 
-import TheImage from '@/components/starPort/TheImage.vue'
+import TheImage from '@/components/StarPort/TheImage.vue'
 
 const { container: TheImageContainer, proxy: TheImageProxy } = createStarport(TheImage)
 
