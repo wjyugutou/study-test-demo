@@ -7,6 +7,11 @@ import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import './styles/main.css'
 
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+const themeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+toggleDark(themeMedia.matches)
+
 const app = createApp(App)
 
 const router = createRouter({

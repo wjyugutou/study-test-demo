@@ -1,3 +1,6 @@
-:root {
+html {
+  --bg-color: #121212;
   --primary: #3399cc;
+  --model-header-bg: var(--bg-color);
+  --modal-content-bg: var(--bg-color)
 }

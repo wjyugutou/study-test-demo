@@ -73,7 +73,7 @@ onUnmounted(() => {
     </div>
   </footer>
   <Modal v-model="visible" title="demoList">
-    <div>
+    <div >
       <p v-for="item in allDemo" :key="item.path" hover:text="[var(--primary)]">
         <RouterLink :to="item.path">
           {{ item.label }}

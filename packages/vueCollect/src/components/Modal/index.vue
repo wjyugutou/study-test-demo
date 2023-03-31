@@ -1,6 +1,7 @@
 <script lang='ts'>
 import { isNumber } from '@vueuse/core'
-import type { PropType, VNode } from 'vue'
+import type { PropType, Ref, VNode } from 'vue'
+import { useDrag } from '@/composables'
 export default { name: 'Modal' }
 </script>
 
@@ -36,23 +37,35 @@ const emits = defineEmits<{
 const instance = getCurrentInstance()
 const slots = instance?.slots.default?.()
 
-const style = computed(() => ({
-  width: isNumber(props.width) ? `${props.width}px` : props.width,
-  height: isNumber(props.height) ? `${props.height}px` : props.height,
-}))
+const width = computed(() => isNumber(props.width) ? `${props.width}px` : props.width)
+const height = computed(() => isNumber(props.height) ? `${props.height}px` : props.height)
 
-function closeHandle() {
+const dragEle = ref() as Ref<HTMLElement>
+
+const { top, left } = useDrag(dragEle, {
+  top: `calc(50% - ${width.value}/2)`,
+  left: `calc(50% - ${height.value}/2)`,
+})
+
+const style = computed(() => {
+  return {
+    top: top.value,
+    left: left.value,
+  }
+})
+
+function closeHandle(e: Event) {
   emits('update:modelValue', false)
 }
 </script>
 
 <template>
   <Teleport v-if="modelValue" :to="appendTo">
-    <div :style="style" absolute top="1/2" left="50%" translate-x="-50%" translate-y="-50%" bg-white dark:bg-hex-121212>
-      <div class="modal_title">
+    <div :style="style" fixed class="modal_box">
+      <header ref="dragEle" class="modal_title" bg="[var(--modal-header-bg)]">
         {{ title }}
-        <div class="modal_close" @click="closeHandle" />
-      </div>
+        <div class="modal_close" @click="closeHandle" @mousedown="(e) => e.stopPropagation()" />
+      </header>
       <div class="modal_content">
         <slot v-if="slots" />
         <template v-else>
@@ -64,13 +77,16 @@ function closeHandle() {
 </template>
 
 <style scoped>
+.modal_box {
+  @apply: border-1 border-gray-400 border-rd-15px overflow-hidden
+}
+.modal_title {
+  @apply: pl-4 pr-10 text-7 border-b-1 border-gray-400 relative cursor-move bg-[var(--model-header-bg)]
+}
 .modal_close {
   @apply: absolute top-50% right-0 translate-y--50% i-carbon-close cursor-pointer text-26px
 }
-.modal_title {
-  @apply: pl-4 pr-10 text-7 relative
-}
 .modal_content {
-  @apply: p-4
+  @apply: p-4 bg-[var(--modal-content-bg)]
 }
 </style>

@@ -1,0 +1,5 @@
+html.dark {
+  --bg-color: #121212;
+  --primary: #23566f;
+  --model-header-bg: var(--bg-color);
+}
