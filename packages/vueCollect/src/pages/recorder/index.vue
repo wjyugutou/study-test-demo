@@ -33,7 +33,6 @@ async function recordBegin() {
   recorder.value.start()
   recorder.value.ondataavailable = (e) => {
     blobAudio.value.push(e.data)
-    console.log(blobAudio)
     const blob = new Blob(blobAudio.value, { type: 'audio/wav' }) // 此前只是把blob数据存储在数组中，必须把数组转化为blob对象才能生存url
 
     audioSrc.value = URL.createObjectURL(blob)
