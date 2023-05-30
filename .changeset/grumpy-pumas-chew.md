@@ -1,0 +1,5 @@
+---
+"vue-collect": major
+---
+
+style
