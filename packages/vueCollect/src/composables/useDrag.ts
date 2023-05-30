@@ -1,6 +1,8 @@
-import type { Ref } from 'vue'
+import type { MaybeRef } from 'vue'
+import { toValue } from 'vue'
 
-export function useDrag(eleRef: Ref<HTMLElement>, initialValue?: {
+/** 元素拖拽 */
+export function useDrag(eleRef: MaybeRef<HTMLElement>, initialValue?: {
   top: string
   left: string
 }) {
@@ -10,14 +12,6 @@ export function useDrag(eleRef: Ref<HTMLElement>, initialValue?: {
   const position = reactive({
     top: initialValue?.top || '0px',
     left: initialValue?.left || '0px',
-  })
-
-  watch(eleRef, () => {
-    if (!eleRef.value)
-      return
-    initTop.value = eleRef.value.getBoundingClientRect().top
-    initLeft.value = eleRef.value.getBoundingClientRect().left
-    eleRef.value.addEventListener('mousedown', mouseDownHandle)
   })
 
   function mouseDownHandle(e: MouseEvent) {
@@ -42,6 +36,17 @@ export function useDrag(eleRef: Ref<HTMLElement>, initialValue?: {
       document.removeEventListener('mouseup', mouseupHandle)
     }
   }
+
+  onMounted(() => {
+    const element = toValue(eleRef)
+
+    if (!(element instanceof HTMLElement))
+      return
+
+    initTop.value = element.getBoundingClientRect().top
+    initLeft.value = element.getBoundingClientRect().left
+    element.addEventListener('mousedown', mouseDownHandle)
+  })
 
   return toRefs(position)
 }

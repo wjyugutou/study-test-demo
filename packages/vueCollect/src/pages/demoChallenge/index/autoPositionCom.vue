@@ -1,5 +1,8 @@
 <script lang='ts' setup>
-
+defineOptions({
+  name: 'Popover',
+  label: 'tips demo',
+})
 </script>
 
 <template>

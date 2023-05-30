@@ -1,9 +1,10 @@
-<script lang="ts">
-import { TheImageContainer } from '@/composables/image'
-export default { name: 'Flip' }
-</script>
-
 <script lang="ts" setup>
+import { TheImageContainer } from '@/composables/image'
+
+defineOptions({
+  name: 'Flip',
+})
+
 const route = useRoute ()
 </script>
 

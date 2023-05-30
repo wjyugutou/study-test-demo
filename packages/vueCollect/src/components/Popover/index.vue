@@ -3,6 +3,7 @@ import type { MaybeReadonlyRef, Placement, Strategy } from '@floating-ui/vue'
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
 import { getParentIdChild } from '@yugutou/utils'
+
 interface Props {
   content?: string
   mode?: 'enter' | 'click' | 'both'
@@ -29,42 +30,28 @@ const middleware = ref([flip(props.flip), shift(props.shift), offset(props.offse
   element: arrowRef,
 }, props.arrow))])
 
-const state = useFloating(defaultRef, contentRef, {
-  placement: props.placement,
-  strategy: props.strategy,
-  middleware,
-  whileElementsMounted: autoUpdate,
-})
-
 const {
   x, y, placement,
   strategy,
   middlewareData,
   isPositioned,
   update,
-} = toRefs(state)
+} = useFloating(defaultRef, contentRef, {
+  placement: props.placement,
+  strategy: props.strategy,
+  middleware,
+  whileElementsMounted: autoUpdate,
+})
 
-watch([x, y, placement,
-  strategy,
-  middlewareData,
-  isPositioned], () => {
-  console.log({
-    x,
-    y,
-    placement,
-    strategy,
-    middlewareData,
-    isPositioned,
+const contentStyle = computed<CSSProperties>(() => {
+  return ({
+    top: `${y.value || 0}px`,
+    left: `${x.value || 0}px`,
+    position: strategy.value,
   })
 })
 
-const contentStyle = computed<CSSProperties>(() => ({
-  top: `${y.value || 0}px`,
-  left: `${x.value || 0}px`,
-  position: strategy.value,
-}))
-
-const arrowStyle = computed<CSSProperties>(() => ({ top: `${state.middlewareData.value.arrow?.y || ''}px`, left: `${state.middlewareData.value.arrow?.x || ''}px` }))
+const arrowStyle = computed<CSSProperties>(() => ({ top: `${middlewareData.value.arrow?.y || ''}px`, left: `${middlewareData.value.arrow?.x || ''}px` }))
 
 function enterHandle() {
   if (props.mode !== 'both' && props.mode !== 'enter')
@@ -81,11 +68,11 @@ function clickHandle() {
   }, 0)
 }
 
-function leaveHidePopver() {
+function leaveHidePopover() {
   visible.value = false
 }
 
-function clickHidePopver(e: MouseEvent) {
+function clickHidePopover(e: MouseEvent) {
   if (getParentIdChild('contentParent', (e.target as Element).parentElement))
     return
   visible.value = false
@@ -95,7 +82,7 @@ function clickHidePopver(e: MouseEvent) {
 function sourceEleBindEvent() {
   if (props.mode === 'enter') {
     defaultRef.value?.addEventListener('pointerenter', enterHandle)
-    defaultRef.value?.addEventListener('pointerleave', leaveHidePopver)
+    defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
   }
   else if (props.mode === 'click') {
     defaultRef.value?.addEventListener('pointerup', clickHandle)
@@ -103,22 +90,22 @@ function sourceEleBindEvent() {
   else {
     defaultRef.value?.addEventListener('pointerup', clickHandle)
     defaultRef.value?.addEventListener('pointerenter', enterHandle)
-    defaultRef.value?.addEventListener('pointerleave', leaveHidePopver)
+    defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
   }
 }
 function sourceEleRemoveEvent() {
   defaultRef.value?.removeEventListener('pointerenter', enterHandle)
-  defaultRef.value?.addEventListener('pointerleave', leaveHidePopver)
+  defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
   defaultRef.value?.removeEventListener('pointerup', clickHandle)
 }
 
 onMounted(() => {
-  document.documentElement.addEventListener('click', clickHidePopver)
+  document.documentElement.addEventListener('click', clickHidePopover)
   sourceEleBindEvent()
 })
 onUnmounted(() => {
   sourceEleRemoveEvent()
-  document.removeEventListener('click', clickHidePopver)
+  document.removeEventListener('click', clickHidePopover)
 })
 </script>
 

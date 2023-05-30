@@ -1,11 +1,8 @@
-<script lang='ts'>
+<script lang='ts' setup>
 import { isNumber } from '@vueuse/core'
 import type { PropType, Ref, VNode } from 'vue'
 import { useDrag } from '@/composables'
-export default { name: 'Modal' }
-</script>
 
-<script lang='ts' setup>
 const props = defineProps({
   modelValue: {
     required: true,
@@ -34,6 +31,10 @@ const emits = defineEmits<{
   (e: 'update:modelValue', visible: boolean): void
 }>()
 
+defineOptions({
+  name: 'Modal',
+})
+
 const instance = getCurrentInstance()
 const slots = instance?.slots.default?.()
 
@@ -47,12 +48,17 @@ const { top, left } = useDrag(dragEle, {
   left: `calc(50% - ${height.value}/2)`,
 })
 
-const style = computed(() => {
+const modalContainerStyle = computed(() => {
   return {
     top: top.value,
     left: left.value,
   }
 })
+
+const modalContentStyle = computed(() => ({
+  width: width.value,
+  height: height.value,
+}))
 
 function closeHandle(e: Event) {
   emits('update:modelValue', false)
@@ -61,12 +67,12 @@ function closeHandle(e: Event) {
 
 <template>
   <Teleport v-if="modelValue" :to="appendTo">
-    <div :style="style" fixed class="modal_box">
+    <div :style="modalContainerStyle" fixed class="modal_box">
       <header ref="dragEle" class="modal_title" bg="[var(--modal-header-bg)]">
-        {{ title }}
+        <span class="modal_title_text">{{ title }}</span>
         <div class="modal_close" @click="closeHandle" @mousedown="(e) => e.stopPropagation()" />
       </header>
-      <div class="modal_content">
+      <div class="modal_content" :style="modalContentStyle">
         <slot v-if="slots" />
         <template v-else>
           {{ content }}
@@ -82,6 +88,9 @@ function closeHandle(e: Event) {
 }
 .modal_title {
   @apply: pl-4 pr-10 text-7 border-b-1 border-gray-400 relative cursor-move bg-[var(--model-header-bg)]
+}
+.modal_title_text {
+  user-select: none;
 }
 .modal_close {
   @apply: absolute top-50% right-0 translate-y--50% i-carbon-close cursor-pointer text-26px

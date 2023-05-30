@@ -1,6 +1,6 @@
 html {
   --bg-color: #121212;
   --primary: #3399cc;
-  --model-header-bg: var(--bg-color);
-  --modal-content-bg: var(--bg-color)
+  --model-header-bg: #3b3b3b;
+  --modal-content-bg: #3b3b3b
 }

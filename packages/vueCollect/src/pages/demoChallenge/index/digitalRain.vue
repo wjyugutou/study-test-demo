@@ -1,5 +1,11 @@
 <script lang='ts' setup>
 import randomNum from '@/utils/randomNum'
+
+defineOptions({
+  name: 'DigitalRain',
+  label: '数字雨',
+})
+
 interface RainList {
   index: number
   length: number

@@ -24,7 +24,8 @@ const debounceHandle = debounce(() => {
 const interSection1 = ref<HTMLDivElement>()
 const interSection2 = ref<HTMLDivElement>()
 const interSectionParent = ref<HTMLDivElement>()
-const createIntersectionObserver = () => {
+
+function createIntersectionObserver() {
   const observer = new IntersectionObserver((entries) => {
     console.log(entries)
   }, {

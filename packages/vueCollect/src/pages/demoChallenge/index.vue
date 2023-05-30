@@ -1,25 +1,25 @@
-<script lang='ts'>
-export default { name: 'DemoChallenge' }
-</script>
-
 <script lang='ts' setup>
+defineOptions({
+  name: 'DemoChallenge',
+})
+
 const router = useRouter()
 
 const footerEnter = ref(false)
 
-const visible = ref(false)
+const visible = ref(true)
 
 // demo文件列表
-const demoList = import.meta.glob('./index/*.vue', { eager: true })
+const demoList = import.meta.glob<Record<string, any>>('./index/*.vue', { eager: true })
 const allDemo = Object.entries(demoList).map(([path, module]) => {
   const label = path.replace('./index/', '').replace('.vue', '')
-  return { path: `/demoChallenge/${label}`, label }
+  return { path: `/demoChallenge/${label}`, label: module?.default?.label || label }
 })
 
 const stop = watchEffect(() => {
   if (router.currentRoute.value.fullPath === '/demoChallenge')
     router.replace(allDemo[0].path)
-  visible.value = false
+  // visible.value = false
 })
 
 const curIndex = computed(() => allDemo.findIndex(item => item.path === router.currentRoute.value.fullPath))
@@ -73,7 +73,7 @@ onUnmounted(() => {
     </div>
   </footer>
   <Modal v-model="visible" title="demoList">
-    <div >
+    <div>
       <p v-for="item in allDemo" :key="item.path" hover:text="[var(--primary)]">
         <RouterLink :to="item.path">
           {{ item.label }}

@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 import MineBlock from './components/MineBlock.vue'
 import GamePlay from './logic'
-import { isDev, toggleDev } from '@/composables'
 import Fireworks from '@/components/Fireworks.vue'
 
 const paly = new GamePlay(10, 10, 5)
 
 const now = useNow()
+
+const isDev = ref(false)
+const toggleDev = useToggle(isDev)
 
 const timeMS = computed(() => {
   if (paly.state.value.endTime)
