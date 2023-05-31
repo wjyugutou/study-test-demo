@@ -1,5 +1,6 @@
 <script lang='ts' setup>
 import { currentIndexKey, dataLenKey } from '.'
+
 const dataLen = inject<number>(dataLenKey, 0)
 const currentIndex = inject(currentIndexKey, 0)
 </script>
@@ -16,7 +17,7 @@ const currentIndex = inject(currentIndexKey, 0)
   </ul>
 </template>
 
-<style scoped>
+<style>
 .dot {
   @apply: rounded-full bg-gray-100/50 w-10px h-10px;
 }

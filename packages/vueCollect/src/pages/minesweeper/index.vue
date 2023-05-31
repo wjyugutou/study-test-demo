@@ -100,6 +100,7 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
         <MineBlock
           v-for="block, x in row"
           :key="x"
+          :is-dev="isDev"
           :block="block"
           @click="paly.onClick(block)"
           @contextmenu.prevent="paly.onRightClick(block)"

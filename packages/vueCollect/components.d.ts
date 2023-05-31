@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     Fireworks: typeof import('./src/components/Fireworks.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Modal: typeof import('./src/components/Modal/index.vue')['default']
+    Overlayer: typeof import('./src/components/Overlayer/index.vue')['default']
     Popover: typeof import('./src/components/Popover/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

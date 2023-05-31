@@ -1,5 +1,5 @@
-const SlotRenderCom = defineComponent({
-  name: 'SlotRenderCom',
+const SlotRender = defineComponent({
+  name: 'SlotRender',
   props: ['vnode'],
   emits: {
     mounted(el: HTMLElement) {
@@ -14,4 +14,4 @@ const SlotRenderCom = defineComponent({
     return () => props.vnode
   },
 })
-export default SlotRenderCom
+export default SlotRender

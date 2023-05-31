@@ -1,52 +1,83 @@
-import type { MaybeRef } from 'vue'
+import type { MaybeRef, Ref } from 'vue'
 import { toValue } from 'vue'
 
+interface UseDragReturn {
+  x: Ref<number>
+  y: Ref<number>
+}
+
+interface Position {
+  x: number
+  y: number
+}
+
 /** 元素拖拽 */
-export function useDrag(eleRef: MaybeRef<HTMLElement>, initialValue?: {
-  top: string
-  left: string
-}) {
+export function useDrag(eleRef: MaybeRef<HTMLElement>, disabled?: boolean): UseDragReturn {
   const initTop = ref(0)
   const initLeft = ref(0)
 
-  const position = reactive({
-    top: initialValue?.top || '0px',
-    left: initialValue?.left || '0px',
+  const position = reactive<Partial<Position>>({
+    x: undefined,
+    y: undefined,
   })
+
+  const stop = useEventListener(eleRef, 'pointerdown', mouseDownHandle)
 
   function mouseDownHandle(e: MouseEvent) {
     const downTop = e.clientY
     const downLeft = e.clientX
 
-    document.addEventListener('mousemove', mousemoveHandle)
-
-    document.addEventListener('mouseup', mouseupHandle)
+    const stopMove = useEventListener(document, 'pointermove', mousemoveHandle)
+    const stopUp = useEventListener(document, 'pointerup', mouseupHandle)
 
     function mousemoveHandle(event: MouseEvent) {
       const moveX = event.clientX - downLeft
       const moveY = event.clientY - downTop
-      position.top = `${initTop.value + moveY}px`
-      position.left = `${initLeft.value + moveX}px`
+      position.y = initTop.value + moveY
+      position.x = initLeft.value + moveX
     }
 
     function mouseupHandle() {
-      initTop.value = parseInt(position.top)
-      initLeft.value = parseInt(position.left)
-      document.removeEventListener('mousemove', mousemoveHandle)
-      document.removeEventListener('mouseup', mouseupHandle)
+      initTop.value = (position.y!)
+      initLeft.value = (position.x!)
+      stopMove()
+      stopUp()
     }
   }
 
-  onMounted(() => {
+  watchEffect(() => {
     const element = toValue(eleRef)
 
-    if (!(element instanceof HTMLElement))
+    if (!(element instanceof HTMLElement) || disabled)
       return
 
-    initTop.value = element.getBoundingClientRect().top
-    initLeft.value = element.getBoundingClientRect().left
-    element.addEventListener('mousedown', mouseDownHandle)
+    const rect = element.getBoundingClientRect()
+
+    position.y = rect.top
+    position.x = rect.left
+
+    initTop.value = rect.top
+    initLeft.value = rect.left
   })
 
-  return toRefs(position)
+  watch(() => toValue(eleRef), (el) => {
+    stop()
+    if (!el || !(el instanceof HTMLElement))
+      return
+    const rect = el.getBoundingClientRect()
+
+    position.y = rect.top
+    position.x = rect.left
+
+    initTop.value = rect.top
+    initLeft.value = rect.left
+  })
+
+  watch(() => disabled, (v) => {
+    console.log('disables', v)
+    if (v)
+      stop()
+  })
+
+  return toRefs(position) as UseDragReturn
 }

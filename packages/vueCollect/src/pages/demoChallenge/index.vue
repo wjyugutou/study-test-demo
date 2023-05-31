@@ -45,6 +45,8 @@ function listClickHandle() {
   visible.value = true
 }
 
+const modalDrag = ref(false)
+
 onUnmounted(() => {
   stop()
 })
@@ -72,7 +74,7 @@ onUnmounted(() => {
       list
     </div>
   </footer>
-  <Modal v-model="visible" title="demoList">
+  <Modal v-model="visible" title="demoList" :drag="modalDrag">
     <div>
       <p v-for="item in allDemo" :key="item.path" hover:text="[var(--primary)]">
         <RouterLink :to="item.path">
@@ -80,5 +82,14 @@ onUnmounted(() => {
         </RouterLink>
       </p>
     </div>
+    <template #footer>
+      <button class="basicBtn" @click="modalDrag = !modalDrag">
+        切换拖拽 {{ modalDrag }}
+      </button>
+    </template>
   </Modal>
 </template>
+
+<style scoped>
+
+</style>

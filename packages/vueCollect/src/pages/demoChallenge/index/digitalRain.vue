@@ -15,7 +15,7 @@ const width = ref(0)
 const height = ref(0)
 const canvasEl = ref<HTMLCanvasElement>()
 const fontSize = 16
-const time = 15
+const time = 5
 
 function initial() {
   width.value = window.innerWidth - 32

@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-defineOptions({ name: 'drag' })
+defineOptions({ name: 'Drag' })
 </script>
 
 <template>
@@ -8,6 +8,6 @@ defineOptions({ name: 'drag' })
   </div>
 </template>
 
-<style scoped>
+<style>
 
 </style>

@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import path from 'path'
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -8,7 +8,6 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import Inspector from 'unplugin-vue-inspector/vite'
-import DefineOptions from 'unplugin-vue-define-options/dist/vite'
 
 export default defineConfig({
   resolve: {
@@ -19,7 +18,6 @@ export default defineConfig({
   plugins: [
 
     Vue(),
-    DefineOptions(),
     Inspector(),
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({

@@ -14,7 +14,7 @@ const style = computed(() => {
   <header text-center h-52px>
     <Footer />
   </header>
-  <main :style="style" font-sans p="x-4" relative text="center gray-700 dark:gray-200">
+  <main :style="style" font-sans p="x-4" relative text=" gray-700 dark:gray-200">
     <router-view />
   </main>
 </template>

@@ -1,6 +1,7 @@
 <script lang='ts' setup>
 import type { PropType } from 'vue'
 import { currentIndexKey } from '.'
+
 const props = defineProps({
   data: {
     type: Object as PropType<{
@@ -24,7 +25,7 @@ const state = reactive({
   </transition>
 </template>
 
-<style scoped>
+<style>
 .carousel-enter-active,
 .carousel-leave-active {
   transition: all 0.5s linear;

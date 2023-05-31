@@ -1,5 +1,7 @@
 html.dark {
   --bg-color: #121212;
   --primary: #23566f;
-  --model-header-bg: var(--bg-color);
+  --modal-header-bg: #181818;
+  --modal-content-bg: #3b3b3b;
+  --mask-bg-light: rgba(0,0,0,.5);
 }

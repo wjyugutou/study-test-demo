@@ -39,7 +39,7 @@ provide(dataLenKey, dataLen)
 
 let t: NodeJS.Timer
 
-const setIndex = (type: 'next' | 'prev') => {
+function setIndex(type: 'next' | 'prev') {
   switch (type) {
     case 'next':
       currentIndex.value++
@@ -56,17 +56,17 @@ const setIndex = (type: 'next' | 'prev') => {
   }
 }
 
-const autoPlay = () => {
+function autoPlay() {
   t = setInterval(() => {
     setIndex('next')
   }, props.duration)
 }
 
-const pointerover = () => {
+function pointerover() {
   clearInterval(t)
 }
 
-const pointerleave = () => {
+function pointerleave() {
   autoPlay()
 }
 
@@ -91,7 +91,3 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>
