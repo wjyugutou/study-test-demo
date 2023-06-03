@@ -1,7 +1,11 @@
 html {
   --bg-color: #fff;
   --primary: #3399cc;
+
   --modal-header-bg: #fff;
   --modal-content-bg: #fff;
+  --modal-footer-bg: #fff;
+
   --mask-bg-light: rgba(0,0,0,.5);
+
 }

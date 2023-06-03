@@ -1,34 +1,46 @@
 <script lang='ts' setup>
-import type { MaybeReadonlyRef, Placement, Strategy } from '@floating-ui/vue'
-import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
+import type { ArrowOptions, AutoPlacementOptions, FlipOptions, OffsetOptions, Placement, ShiftOptions, Strategy } from '@floating-ui/vue'
+import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
 import { getParentIdChild } from '@yugutou/utils'
+import { isBoolean } from '@vueuse/core'
 
 interface Props {
   content?: string
-  mode?: 'enter' | 'click' | 'both'
-  offset?: Parameters<typeof offset>[0]
-  flip?: Parameters<typeof flip>[0]
-  shift?: Parameters<typeof shift>[0]
-  arrow?: Parameters<typeof arrow>[0]
-  placement: MaybeReadonlyRef<Placement | undefined>
-  strategy: MaybeReadonlyRef<Strategy | undefined>
+  mode?: 'hover' | 'click' | 'both'
+  offset?: OffsetOptions
+  flip?: FlipOptions
+  shift?: ShiftOptions
+  arrow?: ArrowOptions
+  placement?: Placement
+  strategy?: Strategy
+  autoPlacement?: AutoPlacementOptions | boolean
 }
 const props = withDefaults(defineProps<Props>(), {
-  mode: 'enter',
-  offset: 10,
+  mode: 'hover',
+  offset: 15,
 })
 
-const defaultRef = ref<Element>()
+const defaultRef = ref<HTMLElement>()
 const contentRef = ref<HTMLElement>()
 const arrowRef = ref<HTMLElement>()
 
 const visible = ref(false)
 const clickVisible = ref(false)
 
-const middleware = ref([flip(props.flip), shift(props.shift), offset(props.offset), arrow(Object.assign({
-  element: arrowRef,
-}, props.arrow))])
+const middleware = computed(() => {
+  const list = [shift(props.shift), offset(props.offset), arrow(Object.assign({
+    element: arrowRef,
+  }, props.arrow))]
+
+  if (props.autoPlacement)
+    list.unshift(autoPlacement(isBoolean(props.autoPlacement) ? undefined : props.autoPlacement))
+
+  else
+    list.unshift(flip(props.flip))
+
+  return list
+})
 
 const {
   x, y, placement,
@@ -51,10 +63,38 @@ const contentStyle = computed<CSSProperties>(() => {
   })
 })
 
-const arrowStyle = computed<CSSProperties>(() => ({ top: `${middlewareData.value.arrow?.y || ''}px`, left: `${middlewareData.value.arrow?.x || ''}px` }))
+const arrowStyle = computed<CSSProperties>(() => ({
+  top: `${middlewareData.value.arrow?.y || ''}px`, left: `${middlewareData.value.arrow?.x || ''}px`,
+}))
+
+const popoverBound = useElementBounding(contentRef)
+const defaultBound = useElementBounding(defaultRef)
+const arrowPos = computed(() => {
+  switch (placement.value) {
+    case 'top':
+    case 'top-start':
+    case 'top-end':
+      return {}
+    case 'bottom':
+    case 'bottom-start':
+    case 'bottom-end':
+      return {}
+    case 'left':
+    case 'left-start':
+    case 'left-end':
+      return {}
+    case 'right':
+    case 'right-start':
+    case 'right-end':
+      return {}
+
+    default:
+      return undefined
+  }
+})
 
 function enterHandle() {
-  if (props.mode !== 'both' && props.mode !== 'enter')
+  if (props.mode !== 'both' && props.mode !== 'hover')
     return
   visible.value = !visible.value
 }
@@ -80,7 +120,7 @@ function clickHidePopover(e: MouseEvent) {
 }
 
 function sourceEleBindEvent() {
-  if (props.mode === 'enter') {
+  if (props.mode === 'hover') {
     defaultRef.value?.addEventListener('pointerenter', enterHandle)
     defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
   }
@@ -110,16 +150,30 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div max-w-max>
-    <div ref="defaultRef">
-      <slot />
-    </div>
-    <div v-if="visible || clickVisible" id="contentParent" ref="contentRef" px-10px :style="contentStyle">
-      <div ref="arrowRef" w-5 h-5 bg-red-400 absolute :style="arrowStyle" />
+  <div ref="defaultRef" w-fit>
+    <slot />
+  </div>
 
-      <slot name="content">
-        <span>{{ content }}</span>
+  <div v-if="visible || clickVisible" id="contentParent" ref="contentRef" px-10px :style="contentStyle" class="popover_container">
+    <slot name="content">
+      <span>{{ content }}</span>
+    </slot>
+
+    <div ref="arrowRef" absolute :style="arrowStyle">
+      <slot name="arrow">
+        <div class="popover_arrow" />
       </slot>
     </div>
   </div>
 </template>
+
+<style>
+.popover_container {
+  @apply: relative bg-[var(--popover-bg)] rounded-2;
+}
+
+.popover_arrow {
+  @apply: w-15px h-15px bg-red-400  bg-[var(--popover-bg)];
+  background-color: red;
+}
+</style>

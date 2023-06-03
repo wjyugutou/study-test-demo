@@ -30,7 +30,7 @@ const routeList: {
   { title: 'Recorder录音', url: '/recorder ' },
 ]
 
-const pageJump = (url: string) => {
+function pageJump(url: string) {
   push(url)
 }
 </script>
@@ -45,7 +45,7 @@ const pageJump = (url: string) => {
     </template>
   </Carousel>
   <div my-2>
-    <input v-model="name" type="text" placeholder="该如何称呼您？" px-2 py-1 border-1>
+    <input v-model="name" type="text" placeholder="该如何称呼您？" px-2 py-1 border-1 bg="transparent">
     <router-link :to="`/hi/${name}`">
       前往
     </router-link>

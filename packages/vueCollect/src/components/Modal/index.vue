@@ -89,7 +89,7 @@ function clickMaskHandle() {
   @apply: p-4 bg-[var(--modal-content-bg)]
 }
 .modal_footer {
-  @apply: p-4;
+  @apply: p-4  bg-[var(--modal-footer-bg)];
 }
 
 .modal_fade-enter-active {

@@ -7,7 +7,7 @@ const router = useRouter()
 
 const footerEnter = ref(false)
 
-const visible = ref(true)
+const visibleList = ref(false)
 
 // demo文件列表
 const demoList = import.meta.glob<Record<string, any>>('./index/*.vue', { eager: true })
@@ -42,7 +42,7 @@ function pointerLeaveHandle() {
 }
 
 function listClickHandle() {
-  visible.value = true
+  visibleList.value = true
 }
 
 const modalDrag = ref(false)
@@ -61,7 +61,7 @@ onUnmounted(() => {
     <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">
         <div v-for="item in showDemoList" :key="item.path">
-          <RouterLink :to="item.path">
+          <RouterLink :to="item.path" replace>
             {{ item.label }}
           </RouterLink>
         </div>
@@ -74,7 +74,7 @@ onUnmounted(() => {
       list
     </div>
   </footer>
-  <Modal v-model="visible" title="demoList" :drag="modalDrag">
+  <Modal v-model="visibleList" title="demoList" :drag="modalDrag">
     <div>
       <p v-for="item in allDemo" :key="item.path" hover:text="[var(--primary)]">
         <RouterLink :to="item.path">

@@ -1,4 +1,8 @@
 :root{
   --mask-z-index: 1999;
+  
   --modal-z-index: 2000;
+
+  --popover-bg: #3b3b3b
+
 }
