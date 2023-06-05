@@ -14,64 +14,25 @@ interface RainList {
 const width = ref(0)
 const height = ref(0)
 const canvasEl = ref<HTMLCanvasElement>()
-const fontSize = 16
+const fontSize = 24
 const time = 5
+width.value = window.innerWidth - 32
+height.value = window.innerHeight - 52 - 40 - 50
+
+const rowCount = Math.ceil(height.value / fontSize)
+const colCount = Math.ceil(width.value / (fontSize))
+const data: RainList[] = Array.from({ length: colCount })
+  .map(item => ({ index: randomNum(0, rowCount), length: randomNum(rowCount / 2, rowCount + 20) } as RainList))
+
+let canvas: CanvasRenderingContext2D
 
 function initial() {
-  width.value = window.innerWidth - 32
-  height.value = window.innerHeight - 52 - 40 - 50
-
-  const rowCount = computed(() => Math.ceil(height.value / fontSize))
-  const colCount = computed(() => Math.ceil(width.value / (fontSize * 0.7)))
-  const data = computed(() => Array.from({ length: colCount.value } as RainList[]).map(item => (item = ({ index: randomNum(0, 15), length: randomNum(15, rowCount.value) }))))
-  let canvas: CanvasRenderingContext2D
-
-  function overwhiteRect() {
-    canvas.fillStyle = 'rgba(0, 0, 0, 0.1)'
-    canvas.fillRect(0, 0, width.value, height.value)
-  }
-
-  function randomText(x: number, y: number) {
-    const start = 1
-    const end = 9
-    canvas.fillStyle = '#087b15'
-    canvas.font = `${fontSize}px STheiti, SimHei`
-    const num = randomNum(start, end)
-
-    canvas.fillText(`${num}`, x, y)
-  }
-
   function start() {
     canvas = canvasEl.value!.getContext('2d')!
     canvas.fillStyle = '#000'
     canvas.fillRect(0, 0, width.value, height.value)
 
     animate()
-  }
-  let i = 0
-
-  function animate() {
-    i++
-    if (i !== 0 && i < time) {
-      requestAnimationFrame(animate)
-      return
-    }
-    i = 0
-
-    canvas.beginPath()
-    overwhiteRect()
-
-    data.value.forEach((item, index) => {
-      randomText(12 * index, 18 * item.index)
-      item.index++
-      if (item.index === item.length) {
-        item.index = 0
-        item.length = randomNum(15, colCount.value)
-      }
-    })
-    canvas.closePath()
-
-    requestAnimationFrame(animate)
   }
 
   start()
@@ -82,9 +43,46 @@ function initial() {
   })
 }
 
-setInterval(() => {
-  console.log('digital:', 11)
-}, 1000)
+let i = 0
+function animate() {
+  i++
+  if (i !== 0 && i < time) {
+    requestAnimationFrame(animate)
+    return
+  }
+  i = 0
+
+  canvas.beginPath()
+
+  renderOverlayerRect()
+
+  data.forEach((item, index) => {
+    randomText(index * fontSize, item.index * fontSize)
+    item.index++
+    if (item.index >= item.length) {
+      item.index = 0
+      item.length = randomNum(0, rowCount)
+    }
+  })
+  canvas.closePath()
+
+  requestAnimationFrame(animate)
+}
+
+function renderOverlayerRect() {
+  canvas.fillStyle = 'rgba(0, 0, 0, 0.1)'
+  canvas.fillRect(0, 0, width.value, height.value)
+}
+
+function randomText(x: number, y: number) {
+  const start = 1
+  const end = 9
+  canvas.fillStyle = '#087b15'
+  canvas.font = `${fontSize}px STheiti, SimHei`
+  const num = randomNum(start, end)
+
+  canvas.fillText(`${num}`, x, y)
+}
 
 onMounted(() => {
   initial()
@@ -92,7 +90,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvasEl" :width="width" :height="height" border="~ #000" bg="#000" />
+  <div relative>
+    <canvas ref="canvasEl" :width="width" :height="height" bg="#000" />
+    <div absolute top-0 left-0 right-0 op-0 hover:op-100 transition-opacity>
+      <button class="basicBtn" @click="animate">
+        next
+      </button>
+      <button class="basicBtn" m-l-2 @click="animate">
+        reload
+      </button>
+    </div>
+  </div>
 </template>
 
 <style lang='less' scoped>
