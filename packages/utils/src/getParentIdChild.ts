@@ -1,4 +1,4 @@
-export function getParentIdChild(id: string, ele: Element | null): boolean {
+export function getParentIdChild(id: string, ele: Element | undefined | null): boolean {
   if (!ele)
     return false
   if (ele.id === id)

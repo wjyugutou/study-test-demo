@@ -1,7 +1,7 @@
-export default function debounce(fn: Function, wait = 1000, immediate = true): (this: any, ...args: any) => any {
+export function debounce(fn: Function, wait = 1000, immediate = true): (this: any, ...args: any) => any {
   let timer: NodeJS.Timer | null
   return function (...args: any) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    // eslint-disable-next-line @typescript-eslint/no-this-alias, @typescript-eslint/no-invalid-this
     const _this = this
 
     timer && clearTimeout(timer)

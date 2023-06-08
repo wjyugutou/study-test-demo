@@ -1,8 +1,10 @@
-export function deepClone<T = any>(obj: T, newObj: any = {}): T {
+export function deepClone<T>(obj: T, newObj: any = {}): T {
   if (typeof obj !== 'object' || obj === null)
     return obj
+
   if (Array.isArray(obj))
     return obj.map(item => deepClone(item))
+
   for (const key in obj) {
     if (Object.hasOwnProperty.call(obj, key))
       newObj[key] = deepClone(obj[key])
@@ -25,5 +27,3 @@ export function cloneDeep(source: any): any {
   }
   return newObj
 }
-
-export default deepClone

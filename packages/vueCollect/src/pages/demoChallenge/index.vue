@@ -47,6 +47,10 @@ function listClickHandle() {
 
 const modalDrag = ref(false)
 
+router.beforeEach(() => {
+  visibleList.value = false
+})
+
 onUnmounted(() => {
   stop()
 })
@@ -70,6 +74,7 @@ onUnmounted(() => {
         {{ allDemo[curIndex]?.label }}
       </template>
     </div>
+    <Counter />
     <div cursor-pointer @click="listClickHandle">
       list
     </div>

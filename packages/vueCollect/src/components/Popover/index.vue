@@ -113,6 +113,8 @@ function leaveHidePopover() {
 }
 
 function clickHidePopover(e: MouseEvent) {
+  console.log('clickHidePopover')
+
   if (getParentIdChild('contentParent', (e.target as Element).parentElement))
     return
   visible.value = false
@@ -139,13 +141,13 @@ function sourceEleRemoveEvent() {
   defaultRef.value?.removeEventListener('pointerup', clickHandle)
 }
 
+useEventListener(document.documentElement, 'click', clickHidePopover)
+
 onMounted(() => {
-  document.documentElement.addEventListener('click', clickHidePopover)
   sourceEleBindEvent()
 })
 onUnmounted(() => {
   sourceEleRemoveEvent()
-  document.removeEventListener('click', clickHidePopover)
 })
 </script>
 

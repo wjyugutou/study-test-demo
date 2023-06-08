@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import randomNum from '@/utils/randomNum'
+import { randomNum } from '@yugutou/utils'
 
 defineOptions({
   name: 'DigitalRain',
