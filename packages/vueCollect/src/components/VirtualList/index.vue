@@ -17,9 +17,9 @@ const itemMap = shallowReactive({
   itemHeight: {} as Record<any, number>,
 })
 
-const virtualContentHeight = ref(props.dataSource.length * (props.itemSize ?? 50))
+const virtualContainerPaddingTop = ref('0px')
 
-const containerPaddingTop = ref('0px')
+const virtualContentHeight = ref(props.dataSource.length * (props.itemSize ?? 50))
 
 const viewList: ComputedRef<(typeof props.dataSource)[number][]> = computed(() => {
   const endIndex = Math.min(props.dataSource.length - 1, startIndex.value + renderCount)
@@ -75,13 +75,13 @@ function scrollHandle(e: Event) {
 
   startIndex.value = getStartIndex(el.scrollTop)
 
-  containerPaddingTop.value = getPaddingTop(startIndex.value)
+  virtualContainerPaddingTop.value = getPaddingTop(startIndex.value)
 }
 </script>
 
 <template>
   <div ref="virtualList" class="virtualList" @scroll="scrollHandle">
-    <div ref="virtualContent" :style="{ height: `${virtualContentHeight}px`, paddingTop: containerPaddingTop }">
+    <div ref="virtualContent" :style="{ height: `${virtualContentHeight}px`, paddingTop: virtualContainerPaddingTop }">
       <VirtualListItem v-for="(item) of viewList" :key="item.index" :index="item.index" @sizeChange="childHeightChange">
         <slot :record="item.record" :index="item.index" />
       </VirtualListItem>
