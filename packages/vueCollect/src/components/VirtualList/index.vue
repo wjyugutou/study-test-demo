@@ -2,10 +2,9 @@
 import type { ComputedRef } from 'vue'
 import type { VirtualListProps } from '.'
 
-const props = withDefaults(defineProps<VirtualListProps>(), {
-  height: 200,
-  viewCount: 5,
-})
+const props = defineProps<VirtualListProps>()
+
+const renderCount = 10
 
 defineOptions({ name: 'VirtualList', label: '虚拟列表' })
 
@@ -23,19 +22,22 @@ const virtualContentHeight = ref(props.dataSource.length * (props.itemSize ?? 50
 const containerPaddingTop = ref('0px')
 
 const viewList: ComputedRef<(typeof props.dataSource)[number][]> = computed(() => {
-  const bufferTopIndex = Math.max(startIndex.value - 2, 0)
-  const endIndex = Math.min(props.dataSource.length - 1, startIndex.value + props.viewCount + 2)
+  const endIndex = Math.min(props.dataSource.length - 1, startIndex.value + renderCount)
 
-  return props.dataSource.slice(bufferTopIndex, endIndex + 1).map((item, index) => ({
+  return props.dataSource.slice(startIndex.value, endIndex + 1).map((item, index) => ({
     record: item,
-    index: index + bufferTopIndex,
+    index: index + startIndex.value,
   }))
 })
 
 function childHeightChange(node: HTMLElement, index: number) {
-  virtualContentHeight.value += (node.clientHeight - 50)
+  let height = props.dataSource.length * (props.itemSize ?? 50)
 
   itemMap.itemHeight[index] = node.clientHeight
+
+  for (const itemHeight in itemMap.itemHeight)
+    height += itemMap.itemHeight[itemHeight] - 50
+  virtualContentHeight.value = height
 }
 
 function getStartIndex(scrollTop: number): number {
@@ -44,15 +46,15 @@ function getStartIndex(scrollTop: number): number {
   let num = 0
   let i = 0
   for (let index = 0; index < props.dataSource.length; index++) {
-    num += itemMap.itemHeight[index]
-
+    num += (itemMap.itemHeight[index] || 50)
     i++
+
+    console.log(num, Math.max(i - 2, 0))
     if (num >= scrollTop)
       break
   }
-  console.log(i)
 
-  return i
+  return Math.max(i - 2, 0)
 }
 
 function getPaddingTop(index: number): string {
@@ -60,23 +62,20 @@ function getPaddingTop(index: number): string {
     return `${index * props.itemSize}px`
   let paddingTop = 0
 
-  for (let i = 0; i < index; i++) {
-    paddingTop += itemMap.itemHeight[i]
-    if (index >= i)
+  for (let i = 0; i < startIndex.value; i++) {
+    if (i > +startIndex.value)
       break
+    paddingTop += itemMap.itemHeight[i] || 50
   }
   return `${paddingTop}px`
 }
 
 function scrollHandle(e: Event) {
   const el = e.target as HTMLElement
-  console.log(el.scrollTop)
 
   startIndex.value = getStartIndex(el.scrollTop)
 
-  const bufferTopIndex = Math.max(startIndex.value - 2, 0)
-
-  // containerPaddingTop.value = getPaddingTop(bufferTopIndex)
+  containerPaddingTop.value = getPaddingTop(startIndex.value)
 }
 </script>
 
@@ -93,7 +92,7 @@ function scrollHandle(e: Event) {
 <style>
 .virtualList {
   position: relative;
-  height: 250px;
   overflow-y: auto;
+  height: 200px;
 }
 </style>

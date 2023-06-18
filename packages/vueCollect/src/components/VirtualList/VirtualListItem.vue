@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="div" h-fit>
+  <div ref="div" h-fit :index="index">
     <slot />
   </div>
 </template>
