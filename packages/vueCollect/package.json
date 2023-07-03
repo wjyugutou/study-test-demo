@@ -16,6 +16,7 @@
   "dependencies": {
     "@vueuse/core": "^10.2.0",
     "@yugutou/utils": "workspace:*",
+    "autoprefixer": "^10.4.14",
     "canvas-confetti": "^1.6.0",
     "matter-js": "^0.19.0",
     "vue": "^3.3.4",

@@ -8,8 +8,14 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import Inspector from 'unplugin-vue-inspector/vite'
+import autoprefixer from 'autoprefixer'
 
 export default defineConfig({
+  css: {
+    postcss: {
+      plugins: [autoprefixer],
+    },
+  },
   resolve: {
     alias: {
       '@/': `${path.resolve(__dirname, 'src')}/`,
