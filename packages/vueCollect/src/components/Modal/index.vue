@@ -1,8 +1,8 @@
 <script lang='ts' setup>
-import { isNumber } from '@vueuse/core'
 import type { CSSProperties, Ref } from 'vue'
 import { modalProps } from '.'
 import { useDrag } from '@/composables'
+import { isNumber } from '@/utils'
 
 const props = defineProps(modalProps)
 
