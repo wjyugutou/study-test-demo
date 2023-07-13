@@ -51,12 +51,15 @@ function pageJump(url: string) {
     </router-link>
   </div>
 
-  <div flex gap-1 flex-col border w-fit min-h-100>
-    <div v-for="item in routeList" :key="item.url" px-5 py-1 hover:bg-pink hover:dark:bg-red>
-      <button class="basicBtn" @click="pageJump(item.url)">
-        {{ item.title }}
-      </button>
+  <div flex>
+    <div flex gap-1 flex-col border w-fit min-h-100>
+      <div v-for="item in routeList" :key="item.url" px-5 py-1 hover:bg-pink hover:dark:bg-red>
+        <button class="basicBtn" @click="pageJump(item.url)">
+          {{ item.title }}
+        </button>
+      </div>
     </div>
+    <BgAttachment />
   </div>
 </template>
 
