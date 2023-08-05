@@ -25,5 +25,7 @@ declare module 'vue' {
     TheImage: typeof import('./src/components/starPort/TheImage.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./src/components/VirtualList/VirtualListItem.vue')['default']
+    WaterfallFlow: typeof import('./src/components/WaterfallFlow/index.vue')['default']
+    WaterfallFlowItem: typeof import('./src/components/WaterfallFlow/waterfallFlowItem.vue')['default']
   }
 }
