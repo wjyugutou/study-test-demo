@@ -1,17 +1,16 @@
-<script lang="ts">
-import { TheImageProxy } from '@/composables/image'
-export default {
-  name: 'FlipOne',
-}
-</script>
-
 <script lang="ts" setup>
+import { TheImageProxy } from '@/composables/image'
+
+defineOptions({
+  name: 'FlipOne',
+})
+
 const scale = useStorage('size', 0.25)
 const style = computed(() => ({
   width: `${100 * scale.value}rem`,
   height: `${50 * scale.value}rem`,
 }))
-const toggleHandle = () => {
+function toggleHandle() {
   scale.value = scale.value === 0.25 ? 0.125 : 0.25
 }
 </script>
