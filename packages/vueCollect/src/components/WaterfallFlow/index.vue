@@ -7,8 +7,6 @@ onMounted(() => {
     const row = Math.floor((item.clientHeight / 5) + 2);
 
     (item as HTMLElement).style.gridRowEnd = `span ${row}`
-
-    console.log({ item, row, style: item.style.gridRowEnd })
   })
 })
 </script>
