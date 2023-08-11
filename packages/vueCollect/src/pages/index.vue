@@ -45,7 +45,7 @@ function pageJump(url: string) {
     </template>
   </Carousel>
   <div my-2>
-    <input v-model="name" type="text" placeholder="该如何称呼您？" px-2 py-1 border-1 bg="transparent">
+    <InputAnimate v-model="name" placeholder="Input&nbsp;Your&nbsp;Name" />
     <router-link :to="`/hi/${name}`">
       前往
     </router-link>

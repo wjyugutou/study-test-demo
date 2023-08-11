@@ -17,6 +17,7 @@ declare module 'vue' {
     Drag: typeof import('./src/components/Drag/index.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks/index.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    InputAnimate: typeof import('./src/components/InputAnimate/index.vue')['default']
     Modal: typeof import('./src/components/Modal/index.vue')['default']
     Overlayer: typeof import('./src/components/Overlayer/index.vue')['default']
     Popover: typeof import('./src/components/Popover/index.vue')['default']
