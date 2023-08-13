@@ -3,7 +3,7 @@ import type { ArrowOptions, AutoPlacementOptions, FlipOptions, OffsetOptions, Pl
 import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
 import { getParentIdChild } from '@yugutou/utils'
-import { isBoolean } from '@vueuse/core'
+import { isBoolean } from 'lodash-es'
 
 interface Props {
   content?: string

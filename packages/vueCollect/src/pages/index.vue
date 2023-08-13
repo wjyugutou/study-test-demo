@@ -18,17 +18,23 @@ const carouselData: {
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const routeList: {
-  title: string
-  url: string
-}[] = [
-  { title: '扫雷', url: '/minesweeper' },
-  { title: '梅花动画', url: '/canvas-plum' },
-  { title: 'flip', url: '/flip/flip-one' },
-  { title: 'fileUpload', url: '/fileUpload' },
-  { title: 'demo', url: '/demoChallenge' },
-  { title: 'Recorder录音', url: '/recorder ' },
-]
+const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
+const routeList = Object.keys(demoChallengeFile).map((item) => {
+  const fileName = item.split('/').at(-1)
+  let name = fileName?.substring(0, fileName.length - 4)
+  if (item.includes('index.vue'))
+    name = item.split('/').at(-2)
+
+  return {
+    path: (item).replaceAll('.', '').replace('/index', '').replace('vue', ''),
+    name,
+  }
+})
+
+routeList.push({
+  name: 'starPort',
+  path: '/flip',
+})
 
 function pageJump(url: string) {
   push(url)
@@ -53,9 +59,9 @@ function pageJump(url: string) {
 
   <div flex>
     <div flex gap-1 flex-col border w-fit min-h-100>
-      <div v-for="item in routeList" :key="item.url" px-5 py-1 hover:bg-pink hover:dark:bg-red>
-        <button class="basicBtn" @click="pageJump(item.url)">
-          {{ item.title }}
+      <div v-for="item in routeList" :key="item.path" px-5 py-1 hover:bg-pink hover:dark:bg-red>
+        <button class="basicBtn" @click="pageJump(item.path)">
+          {{ item.name }}
         </button>
       </div>
     </div>

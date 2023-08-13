@@ -1,16 +1,16 @@
-<script lang='ts'>
-import type { CSSProperties } from 'vue'
-
-export default {
-  label: '可视窗-clip-path',
-}
-</script>
-
 <script lang='ts' setup>
-const box = ref<HTMLDivElement>()
+import type { CSSProperties } from 'vue'
+import { useDrag } from '@/composables'
+
+defineOptions({
+  name: '可视窗ClipPath',
+})
+
+const box = ref() as Ref<HTMLDivElement>
 const dragStyle = reactive<CSSProperties>({
   top: '0px',
   left: '0px',
+  transform: 'translateZ(0px)',
 })
 const contentStyle = reactive<CSSProperties>({
   top: '0px',
@@ -20,7 +20,13 @@ const contentStyle = reactive<CSSProperties>({
 function pointerdown(de: PointerEvent) {
   let initX = de.x
   let initY = de.y
-  const stopMove = useEventListener(box, 'pointermove', (e: PointerEvent) => {
+  const maxX = window.innerWidth - box.value!.clientWidth
+  const maxY = parent.innerHeight - box.value!.clientHeight;
+
+  (de.target as Element).setPointerCapture(de.pointerId)
+
+  const stopMove = useEventListener(box, 'mousemove', (e: MouseEvent) => {
+    e.preventDefault()
     const curX = e.x
     const curY = e.y
     const disX = curX - initX
@@ -29,34 +35,36 @@ function pointerdown(de: PointerEvent) {
     initY = e.y
     const dragTop = parseInt(`${dragStyle.top!}`) + disY
     const dragLeft = parseInt(`${dragStyle.left!}`) + disX
-    const parent = box.value!.parentElement!
-    const maxX = parent.clientWidth - box.value!.clientWidth
-    const maxY = parent.clientHeight - box.value!.clientHeight
-    if (dragTop < 0 || dragLeft < 0 || dragTop > maxY || dragLeft > maxX)
+
+    if (dragLeft < 0 || dragLeft > maxX || dragTop < 0 || dragTop > maxY) {
+      console.log(11)
+
       return
+    }
     dragStyle.top = `${dragTop}px`
     dragStyle.left = `${dragLeft}px`
     contentStyle.top = `${parseInt(`${contentStyle.top!}`) - disY}px`
     contentStyle.left = `${parseInt(`${contentStyle.left!}`) - disX}px`
   })
 
-  const stopUp = useEventListener(box, 'pointerup', (e: PointerEvent) => {
+  const stopLeave = useEventListener(box, 'pointerleave', (e: MouseEvent) => {
     stopMove()
-    stopUp()
-    stopLeave()
+    stopLeave();
+    (de.target as Element).releasePointerCapture(de.pointerId)
   })
-
-  const stopLeave = useEventListener(box, 'pointerleave', (e: PointerEvent) => {
+  const stopUp = useEventListener(box, 'pointerup', (e: MouseEvent) => {
     stopMove()
-    stopUp()
-    stopLeave()
+    stopUp();
+    (de.target as Element).releasePointerCapture(de.pointerId)
   })
 }
+
+useDrag(box)
 </script>
 
 <template>
-  <div ref="box" w-100 h-100 fixed overflow-hidden select-none :style="dragStyle" @pointerdown="pointerdown">
-    <div class="inner absolute p-10" h-1080px w-1920px :style="contentStyle">
+  <div ref="box" w-100 h-100 absolute overflow-hidden select-none :style="dragStyle" @pointerdown="pointerdown">
+    <div class="inner" relative p-10 h-1080px w-1920px :style="contentStyle">
       <h3 class="font-bold mt-4 mb-2">
         The standard Lorem Ipsum passage, used since the 1500s
       </h3><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p><h3 class="font-bold mt-4 mb-2">
@@ -74,37 +82,43 @@ function pointerdown(de: PointerEvent) {
 </template>
 
 <style scoped>
-    .clip {
-      width: 100%;
-      height: 100%;
-      border: 2px solid;
-      border-image-source: linear-gradient(45deg, rgb(184, 159, 218), rgb(15, 48, 194));
-      border-image-slice: 1;
-      clip-path: inset(0 90% 0 0);
-      animation: clipBorder 2s infinite;
-      animation-timing-function: linear;
-    }
+.inner  {
+  pointer-events: none;
+}
+.clip {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid;
+  border-image-source: linear-gradient(45deg, rgb(184, 159, 218), rgb(15, 48, 194));
+  border-image-slice: 1;
+  clip-path: inset(0 90% 0 0);
+  animation: clipBorder 2s infinite;
+  animation-timing-function: linear;
+}
 
-    @keyframes clipBorder {
+@keyframes clipBorder {
 
-      0%,
-      100% {
-        clip-path: inset(90% 0 0 0);
-        filter: hue-rotate(0deg);
-      }
+  0%,
+  100% {
+    clip-path: inset(90% 0 0 0);
+    filter: hue-rotate(0deg);
+  }
 
-      25% {
-        clip-path: inset(0 90% 0 0);
-      }
+  25% {
+    clip-path: inset(0 90% 0 0);
+  }
 
-      50% {
-        clip-path: inset(0 0 90% 0);
-        filter: hue-rotate(360deg);
-      }
+  50% {
+    clip-path: inset(0 0 90% 0);
+    filter: hue-rotate(360deg);
+  }
 
-      75% {
-        clip-path: inset(0 0 0 90%);
-      }
+  75% {
+    clip-path: inset(0 0 0 90%);
+  }
 
-    }
+}
 </style>

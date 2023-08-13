@@ -23,8 +23,6 @@ function inputFocus() {
 function inputBlur() {}
 
 onMounted(() => {
-  console.log(props.modelValue.length)
-
   if (props.modelValue.length > 0)
     input.value!.focus()
 })

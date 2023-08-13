@@ -57,11 +57,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header mb-5>
-    <div i-carbon-chevron-left hover:cursor-pointer text="hover:gray-200 gray-400" w-5 h-5 @click="back" />
+  <header mb-5 py-2>
+    <div i-carbon-chevron-left hover:cursor-pointer text="hover:gray-200 gray-400" inline-30px h-30px @click="back" />
   </header>
   <main><RouterView /></main>
-  <footer fixed bottom-0 left-0 right-0 flex items-center justify-between text-left px-2 text-26px>
+  <footer absolute bottom-0 left-0 right-0 flex items-center justify-between text-left px-2 text-26px>
     <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">
         <div v-for="item in showDemoList" :key="item.path">
