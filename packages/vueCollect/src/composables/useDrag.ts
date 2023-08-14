@@ -1,5 +1,4 @@
-import type { MaybeRef, Ref } from 'vue'
-import { toValue } from 'vue'
+import type { Ref } from 'vue'
 
 interface UseDragReturn {
   x: Ref<number>
@@ -12,58 +11,47 @@ interface Position {
 }
 
 /** 元素拖拽 */
-export function useDrag(eleRef: MaybeRef<HTMLElement>, disabled?: boolean): UseDragReturn {
-  const initTop = ref(0)
-  const initLeft = ref(0)
+export function useDrag(eleRef: Ref<HTMLElement>): UseDragReturn {
+  let prevTop = 0
+  let prevLeft = 0
 
   const position = reactive<Partial<Position>>({
-    x: undefined,
-    y: undefined,
+    x: 0,
+    y: 0,
   })
 
-  const stop = useEventListener(eleRef, 'pointerdown', mouseDownHandle)
+  const stop = useEventListener(eleRef, 'pointerdown', pointerDownHandle)
 
-  function mouseDownHandle(e: MouseEvent) {
-    const downTop = e.clientY
-    const downLeft = e.clientX
+  function pointerDownHandle(e: PointerEvent) {
+    console.log(1)
 
-    let prevTop = initTop.value
-    let prevLeft = initLeft.value
+    toValue(eleRef).setPointerCapture(e.pointerId)
+    const downTop = e.y
+    const downLeft = e.x
 
-    const stopMove = useEventListener(document, 'pointermove', mousemoveHandle)
-    const stopUp = useEventListener(document, 'pointerup', mouseupHandle)
+    const stopMove = useEventListener(document, 'pointermove', pointermoveHandle)
+    const stopUp = useEventListener(document, 'pointerup', pointerupHandle)
 
-    function mousemoveHandle(event: MouseEvent) {
-      const moveX = event.clientX - downLeft
-      const moveY = event.clientY - downTop
+    function pointermoveHandle(event: PointerEvent) {
+      console.log(2)
+
+      const moveX = event.x - downLeft
+      const moveY = event.y - downTop
+
       position.y = prevTop + moveY
       position.x = prevLeft + moveX
     }
 
-    function mouseupHandle() {
+    function pointerupHandle() {
       prevTop = (position.y!)
       prevLeft = (position.x!)
       stopMove()
       stopUp()
+
+      toValue(eleRef).releasePointerCapture(e.pointerId)
     }
   }
 
-  watch(() => toValue(eleRef), (el) => {
-    if (!el || !(el instanceof HTMLElement))
-      return
-    const rect = el.getBoundingClientRect()
-
-    position.y = rect.top
-    position.x = rect.left
-
-    initTop.value = rect.top
-    initLeft.value = rect.left
-  })
-
-  watch(() => disabled, (v) => {
-    if (v)
-      stop()
-  })
-
+  onUnmounted(stop)
   return toRefs(position) as UseDragReturn
 }

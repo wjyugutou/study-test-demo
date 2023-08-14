@@ -45,7 +45,7 @@ function listClickHandle() {
   visibleList.value = true
 }
 
-const modalDrag = ref(false)
+const modalDrag = ref(true)
 
 router.beforeEach(() => {
   visibleList.value = false
@@ -57,10 +57,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header mb-5 py-2>
+  <header h-46px mb-8px py-2>
     <div i-carbon-chevron-left hover:cursor-pointer text="hover:gray-200 gray-400" inline-30px h-30px @click="back" />
   </header>
-  <main><RouterView /></main>
+  <main h="[calc(100%-52px-39px)]">
+    <RouterView />
+  </main>
   <footer absolute bottom-0 left-0 right-0 flex items-center justify-between text-left px-2 text-26px>
     <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">

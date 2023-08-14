@@ -18,7 +18,7 @@ const dragEle = ref() as Ref<HTMLElement>
 
 const width = computed(() => isNumber(props.width) ? `${props.width}px` : props.width)
 
-const { x, y } = useDrag(dragEle, !props.drag)
+const { x, y } = useDrag(dragEle)
 
 const modalContainerStyle = computed<CSSProperties | undefined>(() => {
   return Object.assign({}, props.style, { transform: props.drag && `translate(${x.value}px, ${y.value}px)` })
@@ -40,8 +40,8 @@ function clickMaskHandle() {
 <template>
   <Teleport :to="appendTo" :disabled="!appendTo">
     <Transition name="modal_fade">
-      <Overlayer v-show="modelValue" :mask="showMask" :mask-class="maskClass" @click="clickMaskHandle">
-        <div :style="modalContainerStyle" class="modal_container" :class="props.class">
+      <Overlayer v-if="modelValue" :mask="showMask" :mask-class="maskClass" @click="clickMaskHandle">
+        <div :x="x" :y="y" :style="modalContainerStyle" class="modal_container" :class="props.class">
           <header ref="dragEle" class="modal_header" :style="{ cursor: drag ? 'move' : 'default' }">
             <template v-if="$slots.header">
               <slot name="header" />
@@ -49,7 +49,9 @@ function clickMaskHandle() {
             <template v-else>
               <span class="modal_title_text">{{ title }}</span>
             </template>
-            <div class="modal_close" @click="closeHandle" @mousedown="(e) => e.stopPropagation()" />
+            <div
+              class="modal_close" @click="closeHandle" @pointerdown.stop="(e) => {}"
+            />
           </header>
           <div class="modal_content" :style="modalContentStyle">
             <slot v-if="$slots.default" />
@@ -74,7 +76,7 @@ function clickMaskHandle() {
 
 <style>
 .modal_container {
-  @apply:  w-fit border-1 border-gray-400 border-rd-10px overflow-hidden z-[var(--modal-z-index)] mx-auto mt-15vh;
+  @apply: min-w-400px w-fit border-1 border-gray-400 border-rd-10px overflow-hidden z-[var(--modal-z-index)] mx-auto mt-15vh;
 }
 .modal_header {
   @apply: pl-2 pr-10 text-7 border-b-1 border-gray-400 relative  bg-[var(--modal-header-bg)];
@@ -83,7 +85,7 @@ function clickMaskHandle() {
   user-select: none;
 }
 .modal_close {
-  @apply: absolute top-50% right-2 translate-y--50% i-carbon-close cursor-pointer text-26px;
+  @apply: absolute top-50% right-2 translate-y--50% i-carbon-close hover:text-#fff cursor-pointer text-26px;
 }
 .modal_content {
   @apply: p-4 bg-[var(--modal-content-bg)]
