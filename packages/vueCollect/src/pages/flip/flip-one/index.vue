@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TheImageProxy } from '@/composables/image'
+import { imgs } from '../data'
 
 defineOptions({
   name: 'FlipOne',
@@ -20,10 +20,16 @@ function toggleHandle() {
     <button btn @click="toggleHandle">
       ToggleSize
     </button>
-    <router-link btn to="/flip/flip-two">
-      Navigate
-    </router-link>
   </div>
 
-  <TheImageProxy :style="style" />
+  <router-link
+    v-for="item in imgs"
+    :key="item.id" :to="`/flip/flip-two/${item.id}`"
+  >
+    <div pb-2>
+      <Starport :port-id="item.id" :style="style">
+        <TheImage :img="item.img" />
+      </Starport>
+    </div>
+  </router-link>
 </template>

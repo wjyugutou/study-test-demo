@@ -8,7 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AsyncComponent: typeof import('./src/components/AsyncComponent.vue')['default']
-    Basic: typeof import('./src/components/ssrComponents/Basic.vue')['default']
+    Basic: typeof import('./src/components/ssrComponents/basic.vue')['default']
     BgAttachment: typeof import('./src/components/bgAttachment/index.vue')['default']
     Carousel: typeof import('./src/components/Carousel/index.vue')['default']
     CarouselDot: typeof import('./src/components/Carousel/CarouselDot.vue')['default']
@@ -23,7 +23,12 @@ declare module 'vue' {
     Popover: typeof import('./src/components/Popover/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheImage: typeof import('./src/components/starPort/TheImage.vue')['default']
+    Starport: typeof import('./src/components/Starport/starport.vue')['default']
+    StarportCarrier: typeof import('./src/components/Starport/starportCarrier.vue')['default']
+    StarPortCarrier: typeof import('./src/components/StarPort/starPortCarrier.vue')['default']
+    StarportCraft: typeof import('./src/components/Starport/starportCraft.vue')['default']
+    StartPortCarrier: typeof import('./src/components/StarPort/startPortCarrier.vue')['default']
+    TheImage: typeof import('./src/components/Starport/TheImage.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./src/components/VirtualList/VirtualListItem.vue')['default']
     WaterfallFlow: typeof import('./src/components/WaterfallFlow/index.vue')['default']

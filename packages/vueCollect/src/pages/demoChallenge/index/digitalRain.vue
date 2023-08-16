@@ -103,6 +103,6 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang='less' scoped>
+<style  scoped>
 
 </style>

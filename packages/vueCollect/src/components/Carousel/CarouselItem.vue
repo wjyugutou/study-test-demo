@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import type { PropType } from 'vue'
-import { currentIndexKey } from '.'
+import { CarouselCurrentIndexKey } from './constans'
 
 const props = defineProps({
   data: {
@@ -11,7 +11,7 @@ const props = defineProps({
     required: true,
   },
 })
-const currentIndex = inject(currentIndexKey)
+const currentIndex = inject(CarouselCurrentIndexKey)
 const state = reactive({
   selfIndex: getCurrentInstance()?.vnode.key,
 })
@@ -41,3 +41,4 @@ const state = reactive({
   transform: translateX(-100%);
 }
 </style>
+./constance

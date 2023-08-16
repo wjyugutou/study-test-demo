@@ -16,12 +16,6 @@ function inputChange(e: Event) {
   emits('update:modelValue', (e.target as any).value)
 }
 
-function inputFocus() {
-  console.log(11)
-}
-
-function inputBlur() {}
-
 onMounted(() => {
   if (props.modelValue.length > 0)
     input.value!.focus()
@@ -30,7 +24,7 @@ onMounted(() => {
 
 <template>
   <div class="inputBox">
-    <input ref="input" :value="modelValue" required @change="inputChange" @focus="inputFocus" @blur="inputBlur">
+    <input ref="input" :value="modelValue" required @change="inputChange">
     <label>
       <span
         v-for="v, i in placeholder.length" :key="i" :style="{

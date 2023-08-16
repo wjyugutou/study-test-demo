@@ -1,8 +1,11 @@
 <script lang='ts' setup>
-import { currentIndexKey, dataLenKey } from '.'
+import {
+  CarouselCurrentIndexKey,
+  CarouselDataLenKey,
+} from './constans'
 
-const dataLen = inject<number>(dataLenKey, 0)
-const currentIndex = inject(currentIndexKey, 0)
+const dataLen = inject(CarouselDataLenKey, 0)
+const currentIndex = inject(CarouselCurrentIndexKey, 0)
 </script>
 
 <template>
@@ -25,3 +28,4 @@ const currentIndex = inject(currentIndexKey, 0)
   @apply: bg-gray-700;
 }
 </style>
+./constance

@@ -112,6 +112,6 @@ onMounted(() => {
   <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" mx-auto border="~ #000" />
 </template>
 
-<style lang='less' scoped>
+<style  scoped>
 
 </style>

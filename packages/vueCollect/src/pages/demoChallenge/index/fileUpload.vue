@@ -20,6 +20,6 @@ function onSubmit(e: Event) {
   </form>
 </template>
 
-<style lang='less' scoped>
+<style  scoped>
 
 </style>

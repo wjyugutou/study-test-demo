@@ -32,8 +32,8 @@ const routeList = Object.keys(demoChallengeFile).map((item) => {
 })
 
 routeList.push({
-  name: 'starPort',
-  path: '/flip',
+  name: 'starport',
+  path: '/flip/flip-one',
 })
 
 function pageJump(url: string) {
@@ -69,6 +69,6 @@ function pageJump(url: string) {
   </div>
 </template>
 
-<style lang='less' scoped>
+<style scoped>
 
 </style>

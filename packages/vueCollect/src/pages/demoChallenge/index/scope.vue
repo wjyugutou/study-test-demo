@@ -36,11 +36,9 @@ function pointerdown(de: PointerEvent) {
     const dragTop = parseInt(`${dragStyle.top!}`) + disY
     const dragLeft = parseInt(`${dragStyle.left!}`) + disX
 
-    if (dragLeft < 0 || dragLeft > maxX || dragTop < 0 || dragTop > maxY) {
-      console.log(11)
-
+    if (dragLeft < 0 || dragLeft > maxX || dragTop < 0 || dragTop > maxY)
       return
-    }
+
     dragStyle.top = `${dragTop}px`
     dragStyle.left = `${dragLeft}px`
     contentStyle.top = `${parseInt(`${contentStyle.top!}`) - disY}px`
