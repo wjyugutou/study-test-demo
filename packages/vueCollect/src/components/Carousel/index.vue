@@ -1,12 +1,6 @@
-<script lang="ts">
-import { currentIndexKey, dataLenKey } from '.'
-
-export default {
-  name: 'Carousel',
-}
-</script>
-
 <script lang='ts' setup>
+import { CarouselCurrentIndexKey, CarouselDataLenKey } from './constans'
+
 const props = defineProps({
   autoplay: {
     type: Boolean,
@@ -30,12 +24,14 @@ const props = defineProps({
   },
 })
 
+defineOptions({ name: 'Carousel' })
+
 const instance = getCurrentInstance()
 
 const currentIndex = ref(props.initial)
 const dataLen = computed(() => instance?.slots.default?.()[0].children?.length as number ?? 0)
-provide(currentIndexKey, currentIndex)
-provide(dataLenKey, dataLen)
+provide(CarouselCurrentIndexKey, currentIndex.value)
+provide(CarouselDataLenKey, dataLen.value)
 
 let t: NodeJS.Timer
 
