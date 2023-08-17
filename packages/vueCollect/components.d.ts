@@ -25,13 +25,10 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Starport: typeof import('./src/components/Starport/starport.vue')['default']
     StarportCarrier: typeof import('./src/components/Starport/starportCarrier.vue')['default']
-    StarPortCarrier: typeof import('./src/components/StarPort/starPortCarrier.vue')['default']
     StarportCraft: typeof import('./src/components/Starport/starportCraft.vue')['default']
-    StartPortCarrier: typeof import('./src/components/StarPort/startPortCarrier.vue')['default']
     TheImage: typeof import('./src/components/Starport/TheImage.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./src/components/VirtualList/VirtualListItem.vue')['default']
     WaterfallFlow: typeof import('./src/components/WaterfallFlow/index.vue')['default']
-    WaterfallFlowItem: typeof import('./src/components/WaterfallFlow/waterfallFlowItem.vue')['default']
   }
 }
