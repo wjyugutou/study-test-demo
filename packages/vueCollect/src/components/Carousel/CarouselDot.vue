@@ -4,7 +4,7 @@ import {
   CarouselDataLenKey,
 } from './constans'
 
-const dataLen = inject(CarouselDataLenKey, 0)
+const dataLen = inject(CarouselDataLenKey, 0) as Ref<number>
 const currentIndex = inject(CarouselCurrentIndexKey, 0)
 </script>
 
@@ -28,4 +28,3 @@ const currentIndex = inject(CarouselCurrentIndexKey, 0)
   @apply: bg-gray-700;
 }
 </style>
-./constance

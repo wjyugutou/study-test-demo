@@ -11,7 +11,7 @@ interface Position {
 }
 
 /** 元素拖拽 */
-export function useDrag(eleRef: Ref<HTMLElement>): UseDragReturn {
+export function useDrag(eleRef: Ref<HTMLElement | undefined>): UseDragReturn {
   let prevTop = 0
   let prevLeft = 0
 
@@ -25,7 +25,7 @@ export function useDrag(eleRef: Ref<HTMLElement>): UseDragReturn {
   function pointerDownHandle(e: PointerEvent) {
     console.log(1)
 
-    toValue(eleRef).setPointerCapture(e.pointerId)
+    toValue(eleRef)!.setPointerCapture(e.pointerId)
     const downTop = e.y
     const downLeft = e.x
 
@@ -48,7 +48,7 @@ export function useDrag(eleRef: Ref<HTMLElement>): UseDragReturn {
       stopMove()
       stopUp()
 
-      toValue(eleRef).releasePointerCapture(e.pointerId)
+      toValue(eleRef)!.releasePointerCapture(e.pointerId)
     }
   }
 

@@ -1,10 +1,12 @@
 <script lang='ts' setup>
-import type { BlockState } from '../type'
+import type { BlockState } from './type'
 
 defineProps<{
   block: BlockState
   isDev: boolean
 }>()
+
+defineOptions({ name: 'MineBlock' })
 
 const numberColors = [
   'text-trans',

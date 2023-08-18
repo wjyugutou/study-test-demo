@@ -1,10 +1,7 @@
 <script lang='ts' setup>
 import { randomNum } from '@yugutou/utils'
 
-defineOptions({
-  name: 'DigitalRain',
-  label: '数字雨',
-})
+defineOptions({ name: 'DigitalRain' })
 
 interface RainList {
   index: number

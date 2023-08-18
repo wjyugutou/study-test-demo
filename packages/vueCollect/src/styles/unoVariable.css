@@ -1,3 +1,30 @@
 .basicBtn {
-  @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500
+  @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500;
+}
+
+
+.btnMask {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    &::after {
+    opacity: 0.2;
+    }
+  }
+
+  &[active="true"]::after {
+    opacity: 0.2;
+  }
+
+  &::after {
+    position: absolute;
+    background-color: #fff;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+  }
 }

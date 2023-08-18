@@ -41,4 +41,3 @@ const state = reactive({
   transform: translateX(-100%);
 }
 </style>
-./constance

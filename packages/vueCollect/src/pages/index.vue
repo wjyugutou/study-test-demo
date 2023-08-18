@@ -19,6 +19,7 @@ const carouselData: {
 const name = useSessionStorage('hi-name', '鱼骨头')
 
 const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
+
 const routeList = Object.keys(demoChallengeFile).map((item) => {
   const fileName = item.split('/').at(-1)
   let name = fileName?.substring(0, fileName.length - 4)
@@ -26,14 +27,15 @@ const routeList = Object.keys(demoChallengeFile).map((item) => {
     name = item.split('/').at(-2)
 
   return {
-    path: (item).replaceAll('.', '').replace('/index', '').replace('vue', ''),
+    path: item.replaceAll('.', '').replace(/(\/index)?(vue)?/g, ''),
     name,
   }
 })
+console.log(routeList)
 
 routeList.push({
   name: 'starport',
-  path: '/flip/flip-one',
+  path: '/flip/flipOne',
 })
 
 function pageJump(url: string) {
@@ -59,13 +61,12 @@ function pageJump(url: string) {
 
   <div flex>
     <div flex gap-1 flex-col border w-fit min-h-100>
-      <div v-for="item in routeList" :key="item.path" px-5 py-1 hover:bg-pink hover:dark:bg-red>
+      <div v-for="item in routeList" :key="item.path" px-5 py-1 hover:bg-gray-400 hover:dark:bg-gray-400>
         <button class="basicBtn" @click="pageJump(item.path)">
           {{ item.name }}
         </button>
       </div>
     </div>
-    <BgAttachment />
   </div>
 </template>
 

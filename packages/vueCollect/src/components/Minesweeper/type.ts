@@ -1,4 +1,4 @@
-declare export interface BlockState {
+export interface BlockState {
   x: number
   y: number
   /* 是否掀开 */

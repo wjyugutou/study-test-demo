@@ -30,8 +30,8 @@ const instance = getCurrentInstance()
 
 const currentIndex = ref(props.initial)
 const dataLen = computed(() => instance?.slots.default?.()[0].children?.length as number ?? 0)
-provide(CarouselCurrentIndexKey, currentIndex.value)
-provide(CarouselDataLenKey, dataLen.value)
+provide(CarouselCurrentIndexKey, currentIndex)
+provide(CarouselDataLenKey, dataLen)
 
 let t: NodeJS.Timer
 
@@ -87,4 +87,3 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
-./constance

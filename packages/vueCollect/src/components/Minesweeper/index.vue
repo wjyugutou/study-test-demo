@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import MineBlock from './components/MineBlock.vue'
 import GamePlay from './logic'
+
+defineOptions({ name: 'Minesweeper' })
 
 const paly = new GamePlay(10, 10, 5)
 

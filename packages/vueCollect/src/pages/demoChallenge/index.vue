@@ -11,6 +11,7 @@ const visibleList = ref(false)
 
 // demo文件列表
 const demoList = import.meta.glob<Record<string, any>>('./index/*.vue', { eager: true })
+
 const allDemo = Object.entries(demoList).map(([path, module]) => {
   const label = path.replace('./index/', '').replace('.vue', '')
   return { path: `/demoChallenge/${label}`, label: module?.default?.label || label }
@@ -19,7 +20,6 @@ const allDemo = Object.entries(demoList).map(([path, module]) => {
 const stop = watchEffect(() => {
   if (router.currentRoute.value.fullPath === '/demoChallenge')
     router.replace(allDemo[0].path)
-  // visible.value = false
 })
 
 const curIndex = computed(() => allDemo.findIndex(item => item.path === router.currentRoute.value.fullPath))

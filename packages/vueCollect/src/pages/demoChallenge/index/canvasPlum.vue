@@ -43,7 +43,7 @@ function initPlum() {
       theta: -Math.PI * getRandomArbitrary(1 / 3, 1 / 6),
     },
   ]
-  ctx.value.strokeStyle = '#000'
+  ctx.value.strokeStyle = 'rgb(156,163,175)'
   vertex.forEach((branch) => {
     step(branch)
   })
@@ -109,7 +109,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" mx-auto border="~ #000" />
+  <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" mx-auto border="~ gray-400" />
 </template>
 
 <style  scoped>
