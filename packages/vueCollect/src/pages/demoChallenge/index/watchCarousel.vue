@@ -20,6 +20,7 @@ function initial() {
   items.value.forEach((li, index) => {
     const angel = theta * index
 
+    // 先rotate translateZ的位移方向会变化从而实现效果
     li.style.transform = `rotateX(${-angel}deg) translateZ(${radius}px)`
   })
   rotateFunc()
