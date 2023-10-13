@@ -60,7 +60,7 @@ function pageJump(url: string) {
   </div>
 
   <div flex>
-    <div flex gap-1 flex-col border w-fit min-h-100>
+    <div flex gap-1 flex-col border w-fit min-h-100 max-h-880px overflow-auto class="hideScrollbar">
       <div v-for="item in routeList" :key="item.path" px-5 py-1 hover:bg-gray-400 hover:dark:bg-gray-400>
         <button class="basicBtn" @click="pageJump(item.path)">
           {{ item.name }}

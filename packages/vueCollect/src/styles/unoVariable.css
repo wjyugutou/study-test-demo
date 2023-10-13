@@ -28,3 +28,7 @@
     opacity: 0;
   }
 }
+
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+}

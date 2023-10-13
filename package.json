@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "vue": "pnpm  --filter ./packages/vueCollect dev",
     "react": "pnpm  --filter ./packages/reactCollect dev",
-    "tazeReact": "cd ./packages/reactCollect && taze -w",
+    "tazeReact": "cd ./packages/reactCollect && taze major -w",
     "tazeVue": "cd ./packages/vueCollect && taze major -w",
     "chore": "pnpm choreReact && pnpm choreVue",
     "buildVue": "cd ./packages/vueCollect && vite build"
@@ -19,16 +19,16 @@
     "packages/*"
   ],
   "dependencies": {
-    "@types/node": "^20.5.0",
-    "@unocss/reset": "^0.55.1",
-    "eslint": "^8.47.0",
+    "@types/node": "^20.8.5",
+    "@unocss/reset": "^0.56.5",
+    "eslint": "^8.51.0",
     "lodash-es": "^4.17.21",
-    "unocss": "^0.55.1",
-    "vite": "^4.4.9"
+    "unocss": "^0.56.5",
+    "vite": "^4.4.11"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@yugutou/eslint-config": "^1.2.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   }
 }
