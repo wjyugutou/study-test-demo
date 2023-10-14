@@ -31,7 +31,6 @@ const routeList = Object.keys(demoChallengeFile).map((item) => {
     name,
   }
 })
-console.log(routeList)
 
 routeList.push({
   name: 'starport',
@@ -45,7 +44,6 @@ function pageJump(url: string) {
 
 <template>
   <div flex items-center justify-between>
-    <Clock />
     <Carousel
       w-100 h-50 autoplay dot director
       :duration="3000" :initial="2"
