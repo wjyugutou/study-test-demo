@@ -33,7 +33,7 @@ const dataLen = computed(() => instance?.slots.default?.()[0].children?.length a
 provide(CarouselCurrentIndexKey, currentIndex)
 provide(CarouselDataLenKey, dataLen)
 
-let t: NodeJS.Timer
+let t: NodeJS.Timeout
 
 function setIndex(type: 'next' | 'prev') {
   switch (type) {
@@ -77,7 +77,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="carousel" mx-auto my-0>
+  <div class="carousel">
     <div
       class="inner" w-full h-full relative overflow-hidden
       @pointerenter="pointerover" @pointerleave="pointerleave"

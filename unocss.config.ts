@@ -10,7 +10,12 @@ import {
 
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetUno({
+      dark: {
+        light: 'html[theme=\'light\']',
+        dark: 'html[theme=\'dark\']',
+      },
+    }),
     presetAttributify(),
     presetIcons({
       scale: 1.2,

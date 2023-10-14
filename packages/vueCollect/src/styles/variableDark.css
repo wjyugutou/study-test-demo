@@ -1,4 +1,4 @@
-html.dark {
+html[theme='dark'] {
   --bg-color: #121212;
   --primary: #23566f;
   
@@ -6,5 +6,6 @@ html.dark {
   --modal-header-bg: #181818;
   --modal-footer-bg: #181818;
   --mask-bg-light: rgba(0,0,0,.5);
-
 }
+
+

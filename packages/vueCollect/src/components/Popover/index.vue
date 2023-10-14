@@ -2,7 +2,7 @@
 import type { ArrowOptions, AutoPlacementOptions, FlipOptions, OffsetOptions, Placement, ShiftOptions, Strategy } from '@floating-ui/vue'
 import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
-import { getParentIdChild } from '@yugutou/utils'
+import { eleIsIdNodeChild } from '@yugutou/utils'
 import { isBoolean } from 'lodash-es'
 
 interface Props {
@@ -113,9 +113,7 @@ function leaveHidePopover() {
 }
 
 function clickHidePopover(e: MouseEvent) {
-  console.log('clickHidePopover')
-
-  if (getParentIdChild('contentParent', (e.target as Element).parentElement))
+  if (eleIsIdNodeChild('contentParent', (e.target as Element).parentElement))
     return
   visible.value = false
   clickVisible.value = false

@@ -44,14 +44,17 @@ function pageJump(url: string) {
 </script>
 
 <template>
-  <Carousel
-    w-100 h-50 autoplay dot director
-    :duration="3000" :initial="2"
-  >
-    <template v-for="item, index of carouselData" :key="index">
-      <carousel-item :data="item" />
-    </template>
-  </Carousel>
+  <div flex items-center justify-between>
+    <Clock />
+    <Carousel
+      w-100 h-50 autoplay dot director
+      :duration="3000" :initial="2"
+    >
+      <template v-for="item, index of carouselData" :key="index">
+        <carousel-item :data="item" />
+      </template>
+    </Carousel>
+  </div>
   <div my-2>
     <InputAnimate v-model="name" placeholder="Input&nbsp;Your&nbsp;Name" />
     <router-link :to="`/hi/${name}`">

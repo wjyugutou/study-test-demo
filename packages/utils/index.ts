@@ -1,2 +1,2 @@
-export * from './src/getParentIdChild'
+export * from './src/eleIsIdNodeChild'
 export * from './src/randomNum'

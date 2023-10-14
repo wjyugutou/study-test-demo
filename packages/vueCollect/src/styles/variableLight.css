@@ -1,4 +1,4 @@
-html {
+html[theme='light']  {
   --bg-color: #fff;
   --primary: #3399cc;
 
@@ -9,3 +9,5 @@ html {
   --mask-bg-light: rgba(0,0,0,.5);
 
 }
+
+
