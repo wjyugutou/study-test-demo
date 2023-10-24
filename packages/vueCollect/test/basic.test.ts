@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import randomNum from '@/utils/randomNum'
+import random from '@/utils/random'
 
-const a = () => {
+function a() {
   return 'a'
 }
 
@@ -11,6 +11,6 @@ describe('Hi', () => {
   })
 
   it('random', () => {
-    expect(randomNum(1, 9)).toMatchInlineSnapshot('9')
+    expect(random(1, 9)).toMatchInlineSnapshot('9')
   })
 })

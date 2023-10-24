@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { randomNum } from '@yugutou/utils'
+import { random } from 'lodash-es'
 
 defineOptions({ name: 'DigitalRain' })
 
@@ -19,7 +19,7 @@ height.value = window.innerHeight - 52 - 40 - 50
 const rowCount = Math.ceil(height.value / fontSize)
 const colCount = Math.ceil(width.value / (fontSize))
 const data: RainList[] = Array.from({ length: colCount })
-  .map(item => ({ index: randomNum(0, rowCount), length: randomNum(rowCount / 2, rowCount + 20) } as RainList))
+  .map(item => ({ index: random(0, rowCount), length: random(rowCount / 2, rowCount + 20) } as RainList))
 
 let canvas: CanvasRenderingContext2D
 
@@ -58,7 +58,7 @@ function animate() {
     item.index++
     if (item.index >= item.length) {
       item.index = 0
-      item.length = randomNum(0, rowCount)
+      item.length = random(0, rowCount)
     }
   })
   canvas.closePath()
@@ -76,7 +76,7 @@ function randomText(x: number, y: number) {
   const end = 9
   canvas.fillStyle = '#087b15'
   canvas.font = `${fontSize}px STheiti, SimHei`
-  const num = randomNum(start, end)
+  const num = random(start, end)
 
   canvas.fillText(`${num}`, x, y)
 }

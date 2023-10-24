@@ -1,2 +1,3 @@
 export * from './src/eleIsIdNodeChild'
-export * from './src/randomNum'
+export * from './src/random'
+export * from './src/randomColor'
