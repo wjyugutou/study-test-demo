@@ -5,23 +5,27 @@ import img1 from '@/static/images/1.jpg'
 const carousel = ref() as Ref<HTMLDivElement>
 const items = ref() as Ref<HTMLDivElement[]>
 
-const count = ref(23)
-
-const radius = Math.round((500 / 1.8) / (Math.tan(Math.PI / count.value)))
+const count = ref(22)
+// 半径
+const radius = ref(0)
+// 每个子元素角度
 const theta = 360 / count.value
 
 const index = ref(0)
 function rotateFunc() {
   const angel = theta * index.value * -1
-  carousel.value.style.transform = `translateZ(${-radius}px) rotateX(${-angel}deg)`
+
+  carousel.value.style.transform = `translateZ(${-radius.value}px) rotateX(${-Math.round(angel)}deg)`
 }
 
 function initial() {
+  radius.value = Math.round((carousel.value.parentElement!.clientWidth / 1.8) / (Math.tan(Math.PI / count.value * 2)))
+
   items.value.forEach((li, index) => {
     const angel = theta * index
 
     // 先rotate translateZ的位移方向会变化从而实现效果
-    li.style.transform = `rotateX(${-angel}deg) translateZ(${radius}px)`
+    li.style.transform = `rotateX(${-Math.round(angel)}deg) translateZ(${radius.value}px)`
   })
   rotateFunc()
 }
@@ -39,9 +43,9 @@ onMounted(initial)
 </script>
 
 <template>
-  <div relative w-500px flex items-center justify-center m-auto top="40%" bg-red>
-    <div relative w-500px h-500px pt-150px transition="~ 1s" perspective-300px>
-      <ol ref="carousel" absolute w-full h-210px preserve-3d>
+  <div relative w-500px flex items-center justify-center m-auto :style="{ height: `${radius}px` }">
+    <div relative w-500px h-500px transition="~ 1s" perspective-300px>
+      <ol ref="carousel" absolute w-full h-210px preserve-3d transition="~">
         <template v-for="i in count" :key="i">
           <li ref="items" absolute w-500px h-200px b-rd-4 border="~ 2px gray-400" op-70 overflow-hidden>
             <img w-full pointer-events-none translate-y--10px :src="i % 2 === 0 ? img : img1" alt="">

@@ -4,8 +4,6 @@ import butt from '@/static/carousel/butt.jpg'
 import lotusPond from '@/static/carousel/lotusPond.jpg'
 import nanny from '@/static/carousel/nanny.jpg'
 
-const { push } = useRouter()
-
 const carouselData: {
   title: string
   url: string
@@ -20,7 +18,7 @@ const name = useSessionStorage('hi-name', '鱼骨头')
 
 const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
 
-const routeList = Object.keys(demoChallengeFile).map((item) => {
+const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
   const fileName = item.split('/').at(-1)
   let name = fileName?.substring(0, fileName.length - 4)
   if (item.includes('index.vue'))
@@ -32,14 +30,10 @@ const routeList = Object.keys(demoChallengeFile).map((item) => {
   }
 })
 
-routeList.push({
+demochallengeList.push({
   name: 'starport',
   path: '/flip/flipOne',
 })
-
-function pageJump(url: string) {
-  push(url)
-}
 </script>
 
 <template>
@@ -59,16 +53,14 @@ function pageJump(url: string) {
       前往
     </router-link>
   </div>
-
-  <div flex>
-    <div flex gap-1 flex-col border w-fit min-h-100 max-h-880px overflow-auto class="hideScrollbar">
-      <div v-for="item in routeList" :key="item.path" px-5 py-1 hover:bg-gray-400 hover:dark:bg-gray-400>
-        <button class="basicBtn" @click="pageJump(item.path)">
-          {{ item.name }}
-        </button>
-      </div>
+  <DemochallengeList :list="demochallengeList" />
+  <!-- <div flex gap-1 flex-col border w-fit min-h-100 max-h-880px overflow-auto class="hideScrollbar ">
+    <div v-for="item in demochallengeList" :key="item.path" px-5 py-1 hover:bg-gray-400 hover:dark:bg-gray-400>
+      <button class="basicBtn" @click="pageJump(item.path)">
+        {{ item.name }}
+      </button>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>

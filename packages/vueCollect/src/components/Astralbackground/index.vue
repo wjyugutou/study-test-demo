@@ -6,8 +6,8 @@ defineOptions({ name: 'Astralbackground' })
 
 interface Star { x: number;y: number; z: number }
 
-const canvas = ref<HTMLCanvasElement>()
-const ctx = ref() as Ref<CanvasRenderingContext2D>
+const canvas = shallowRef<HTMLCanvasElement>()
+const ctx = shallowRef() as Ref<CanvasRenderingContext2D>
 
 // 定义星星的颜色
 const STAR_COLOR = computed(() => isDark ? '#fff' : '#000')
@@ -29,8 +29,6 @@ const stars: Star[] = []
 const velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 }
 // 定义溢出阈值
 const OVERFLOW_THRESHOLD = 50
-// 定义触摸输入标志
-const touchInput = false
 // 定义缩放比例
 const scale = 1
 // 鼠标位置
@@ -65,10 +63,10 @@ function resize() {
 
 // 更新星星的位置和速度
 function update() {
-  // 缓动速度
-  velocity.tx *= 0.96
-  velocity.ty *= 0.96
-  // 更新速度
+  // // 缓动速度
+  velocity.tx *= 0.95
+  velocity.ty *= 0.95
+  // // 更新速度
   velocity.x += (velocity.tx - velocity.x) * 0.8
   velocity.y += (velocity.ty - velocity.y) * 0.8
   // 遍历所有星星
@@ -168,6 +166,7 @@ function render() {
     // 绘制星星的尾巴
     ctx.value.lineTo(star.x + tailX, star.y + tailY)
     ctx.value.stroke()
+    ctx.value.closePath()
   })
 }
 
@@ -193,11 +192,12 @@ function init() {
 
 watch(mousePos, () => {
   if (typeof pointerX === 'number' && typeof pointerY === 'number') {
+    // x轴位移
     const ox = mousePos.x - pointerX
     const oy = mousePos.y - pointerY
 
-    velocity.tx = velocity.tx + (ox / 8) * scale * (touchInput ? 1 : -1)
-    velocity.ty = velocity.ty + (oy / 8) * scale * (touchInput ? 1 : -1)
+    velocity.tx = velocity.tx + (ox / 8) * scale * -1
+    velocity.ty = velocity.ty + (oy / 8) * scale * -1
   }
   // 更新鼠标指针的位置
   pointerX = mousePos.x
