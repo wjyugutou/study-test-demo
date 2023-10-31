@@ -1,5 +1,4 @@
 <script lang='ts' setup>
-import { throttle } from 'lodash-es'
 import type { CSSProperties } from 'vue'
 
 defineOptions({ name: 'DemochallengeList' })
@@ -39,7 +38,7 @@ function wheel(e: WheelEvent) {
 <template>
   <div
     ref="scrollRef"
-    border w-full py-200px overflow-hidden
+    w-full overflow-hidden border py-200px
     class="box"
     @wheel="wheel"
   >
@@ -47,7 +46,7 @@ function wheel(e: WheelEvent) {
       <template v-for="item, i in list" :key="item.path">
         <div
           class="item" :class="i === activeIndex && 'active'"
-          transition="~ 500" shrink-0 bg-red flex items-center justify-center select-none
+          transition="~ 500" flex shrink-0 select-none items-center justify-center bg-red
           :style="{
             transform: `perspective(${1000}px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
           }"
@@ -67,25 +66,16 @@ function wheel(e: WheelEvent) {
   transform-style: preserve-3d;
   perspective: 1000px;
 }
+
 .item {
   position: relative;
-  cursor: pointer;
+  margin: 0 20px;
   width: 130px;
   height: 210px;
-  margin: 0 20px;
   word-break: break-all;
+  cursor: pointer;
   transform-style: preserve-3d;
 }
-
-.item:hover,
-.active {
-    box-shadow: 0 0 10px #e5e7eb;
-
-    & .left,
-    & .right {
-      box-shadow: 0 0 10px #e5e7eb;
-    }
-  }
 
 .left,
 .right {
@@ -95,16 +85,27 @@ function wheel(e: WheelEvent) {
   height: 210px;
   background-color: aquamarine;
   backface-visibility: hidden;
-
 }
+
 .left {
   left: -30px;
   transform:  rotateY(-90deg);
   transform-origin: right;
 }
+
 .right {
   right: -30px;
   transform:  rotateY(90deg);
   transform-origin: left;
+}
+
+.active,
+.item:hover {
+  box-shadow: 0 0 10px #e5e7eb;
+
+  & .left,
+  & .right {
+    box-shadow: 0 0 10px #e5e7eb;
+  }
 }
 </style>
