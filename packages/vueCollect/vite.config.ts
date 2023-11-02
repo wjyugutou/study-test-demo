@@ -50,8 +50,16 @@ export default defineConfig({
     // see unocss.config.ts for config
     Unocss(),
   ],
+  base: '/study-test-demo',
   build: {
     outDir: `${path.resolve(__dirname, '../../docs')}/`,
-    assetsDir: '.',
+    assetsDir: 'assets/',
+    emptyOutDir: false,
+    rollupOptions: {
+      output: {
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+        chunkFileNames: 'static/js/[name]-[hash].js',
+      },
+    },
   },
 })
