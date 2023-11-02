@@ -46,12 +46,12 @@ function canvasEraserChange(e: Event) {
       <input id="lineWidth" :value="state.config.lineWidth" type="range" step="1" min="1" max="50" @click="toolChange">
     </div>
     <div class="toolitem ">
-      <button id="clear" class="btnMask" p-5px b-rd-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="clearCanvas">
+      <button id="clear" class="btn-mask" p-5px b-rd-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="clearCanvas">
         清空画布
       </button>
     </div>
     <div class="toolitem ">
-      <button id="clear" class="btnMask" :active.attr="!!state.eraser.enabled" p-5px b-rd-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="state.setEraser(!state.eraser.enabled)">
+      <button id="clear" class="btn-mask" :active.attr="!!state.eraser.enabled" p-5px b-rd-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="state.setEraser(!state.eraser.enabled)">
         橡皮擦
       </button>&nbsp;
       <input id="eraserSize" :value="state.eraser.size" type="range" step="1" min="10" max="50" @change="canvasEraserChange">

@@ -101,7 +101,7 @@ onUnmounted(() => {
       </p>
     </div>
     <template #footer>
-      <button class="basicBtn" @click="modalDrag = !modalDrag">
+      <button class="basic-btn" @click="modalDrag = !modalDrag">
         切换拖拽 {{ modalDrag }}
       </button>
     </template>

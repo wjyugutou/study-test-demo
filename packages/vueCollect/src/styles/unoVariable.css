@@ -1,22 +1,10 @@
-.basicBtn {
+.basic-btn {
   @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500;
-}
+} 
 
-
-
-.btnMask {
+.btn-mask {
   overflow: hidden;
   position: relative;
-
-  &:hover {
-    &::after {
-    opacity: 0.2;
-    }
-  }
-
-  &[active="true"]::after {
-    opacity: 0.2;
-  }
 
   &::after {
     position: absolute;
@@ -25,8 +13,18 @@
     opacity: 0;
     content: '';
   }
+
+  &:hover {
+    &::after {
+      opacity: 0.2;
+    }
+  }
+
+  &[active="true"]::after {
+    opacity: 0.2;
+  }
 }
 
-.hideScrollbar::-webkit-scrollbar {
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

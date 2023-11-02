@@ -20,7 +20,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@unocss/reset": "^0.57.1",
     "lodash-es": "^4.17.21",
     "vite": "^4.5.0"
@@ -29,7 +29,7 @@
     "@changesets/cli": "^2.26.2",
     "@unocss/eslint-config": "^0.57.1",
     "@yugutou/eslint-config": "^1.2.3",
-    "@yugutou/stylelint-config": "^1.1.1",
+    "@yugutou/stylelint-config": "^1.1.2",
     "eslint": "^8.52.0",
     "stylelint": "^15.11.0",
     "typescript": "^5.2.2",

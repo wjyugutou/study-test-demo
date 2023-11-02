@@ -60,10 +60,10 @@ onUnmounted(() => {
 
 <template>
   <h1>recorder 录音</h1>
-  <button class="basicBtn" @mousedown="recordBegin" @mouseup="recordEnd">
+  <button class="basic-btn" @mousedown="recordBegin" @mouseup="recordEnd">
     {{ !recording ? '开始' : '结束' }}录音
   </button>
-  <button class="basicBtn" @click="playAudio">
+  <button class="basic-btn" @click="playAudio">
     播放录音
   </button>
   <audio ref="audio" :src="audioSrc" preload="auto" />
