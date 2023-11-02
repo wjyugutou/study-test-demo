@@ -60,7 +60,3 @@ function addData() {
     获取数据
   </button>
 </template>
-
-<style scoped>
-
-</style>

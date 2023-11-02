@@ -60,21 +60,21 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header h-46px mb-8px py-2 flex justify-center items-center>
+  <header mb-8px h-46px flex items-center justify-center py-5px>
     <div
-      i-carbon-chevron-left hover:cursor-pointer
-      text="hover:gray-200 gray-400" inline-30px h-30px
-      absolute left-0
+
+      text="hover:gray-200 gray-400"
+      i-carbon-chevron-left absolute left-0 h-30px inline-30px hover:cursor-pointer
       @click="back"
     />
-    <div font-bold text-20px>
+    <div text-20px font-bold>
       {{ title }}
     </div>
   </header>
-  <main min-h="[calc(100%-52px-39px)]">
+  <main min-h="[calc(100vh-64px-52px)]" pb-39px>
     <RouterView />
   </main>
-  <footer absolute bottom-0 left-0 right-0 flex items-center justify-between text-left px-2 text-26px>
+  <footer absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 text-left text-26px>
     <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">
         <div v-for="item in showDemoList" :key="item.path">
@@ -107,7 +107,3 @@ onUnmounted(() => {
     </template>
   </Modal>
 </template>
-
-<style scoped>
-
-</style>

@@ -1,4 +1,4 @@
-:is(html[theme='light'])  {
+:is(html)[theme='light']   {
   --bg-color: #fff;
   --primary: #39c;
   --modal-header-bg: #fff;

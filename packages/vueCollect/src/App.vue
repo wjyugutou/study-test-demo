@@ -5,10 +5,10 @@
 <template>
   <StarportCarrier>
     <Astralbackground>
-      <main min-h="[calc(100vh-52px)]" font-sans p="x-4" relative text="gray-700 dark:gray-200">
+      <main p="x-4" relative font-sans text="gray-700 dark:gray-200">
         <router-view />
       </main>
-      <footer text-center h-52px>
+      <footer h-52px text-center>
         <Footer />
       </footer>
     </Astralbackground>

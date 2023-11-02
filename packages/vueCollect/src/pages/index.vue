@@ -25,7 +25,7 @@ const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
     name = item.split('/').at(-2)
 
   return {
-    path: item.replaceAll('.', '').replace(/(\/index)?(vue)?/g, ''),
+    path: item.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
     name,
   }
 })
@@ -39,7 +39,7 @@ demochallengeList.push({
 <template>
   <div flex items-center justify-between>
     <Carousel
-      w-100 h-50 autoplay dot director
+      autoplay dot director h-50 w-100
       :duration="3000" :initial="2"
     >
       <template v-for="item, index of carouselData" :key="index">
