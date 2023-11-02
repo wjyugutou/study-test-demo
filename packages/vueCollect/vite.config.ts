@@ -52,5 +52,7 @@ export default defineConfig({
   ],
   build: {
     outDir: `${path.resolve(__dirname, '../../docs')}/`,
+    assetsDir: 'study-test-demo/assets',
+    emptyOutDir: false,
   },
 })
