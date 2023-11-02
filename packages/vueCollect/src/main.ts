@@ -10,7 +10,7 @@ import './styles/main.css'
 const app = createApp(App)
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: (import.meta.env.DEV ? createWebHistory : createWebHashHistory)(import.meta.env.BASE_URL),
   routes,
 })
 app.use(router)

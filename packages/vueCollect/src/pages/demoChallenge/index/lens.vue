@@ -37,7 +37,7 @@ const style = computed(() => ({
     background-size: 100% 100%;
 
     &:nth-child(1) {
-      filter: blur(4px);
+      filter: blur(7px);
     }
 
     &:nth-child(2) {
