@@ -8,13 +8,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vue": "pnpm  --filter 'vue-collect' dev",
-    "react": "pnpm  --filter 'react-collect' dev",
+    "vue": "pnpm --filter=vue-collect dev",
+    "react": "pnpm  --filter=react-collect dev",
     "tazeReact": "cd ./packages/reactCollect && taze major -w",
     "tazeVue": "cd ./packages/vueCollect && taze major -w",
     "updateDep": "taze major -w && pnpm tazeReact && pnpm tazeVue && pnpm i",
     "chore": "pnpm choreReact && pnpm choreVue",
-    "buildVue": "pnpm --filter 'vue-collect' build"
+    "buildVue": "pnpm --filter=vue-collect build"
   },
   "workspaces": [
     "packages/*"

@@ -5,8 +5,8 @@
 
 
 .btnMask {
-  position: relative;
   overflow: hidden;
+  position: relative;
 
   &:hover {
     &::after {
@@ -20,13 +20,10 @@
 
   &::after {
     position: absolute;
+    inset: 0;
     background-color: #fff;
-    content: '';
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     opacity: 0;
+    content: '';
   }
 }
 

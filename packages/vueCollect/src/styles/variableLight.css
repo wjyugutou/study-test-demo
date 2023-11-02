@@ -1,13 +1,11 @@
-html[theme='light']  {
+:is(html[theme='light'])  {
   --bg-color: #fff;
-  --primary: #3399cc;
-
+  --primary: #39c;
   --modal-header-bg: #fff;
   --modal-content-bg: #fff;
   --modal-footer-bg: #fff;
+  --mask-bg-light: rgb(0 0 0 / 50%);
 
-  --mask-bg-light: rgba(0,0,0,.5);
-
-}
+} 
 
 
