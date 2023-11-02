@@ -50,5 +50,7 @@ export default defineConfig({
     // see unocss.config.ts for config
     Unocss(),
   ],
-
+  build: {
+    outDir: `${path.resolve(__dirname, '../../docs')}/`,
+  },
 })

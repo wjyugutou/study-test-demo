@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import MineBlock from './components/MineBlock.vue'
 import GamePlay from './logic'
-import Fireworks from '@/components/Fireworks.vue'
 
 const paly = new GamePlay(10, 10, 5)
 
@@ -66,31 +64,31 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
     </div>
 
     <div flex items-center justify-center>
-      <div p-3 flex items-center justify-center text-2xl>
+      <div flex items-center justify-center p-3 text-2xl>
         <div i-carbon-timer />
         {{ timeMS }}
       </div>
 
-      <div p-3 flex items-center justify-center text-2xl>
+      <div flex items-center justify-center p-3 text-2xl>
         <div i-carbon-switch-layer-3 />
         {{ mineRest }}
       </div>
     </div>
 
     <div flex="~ gap-1" justify-center>
-      <button bg-green-500 p-1 rounded text-black @click="toggleDev()">
+      <button rounded bg-green-500 p-1 text-black @click="toggleDev()">
         {{ isDev ? 'DEV' : 'NORMAL' }}
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="paly.reset()">
+      <button rounded bg-green-500 p-1 text-black @click="paly.reset()">
         NEW GAME
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="newGame('easy')">
+      <button rounded bg-green-500 p-1 text-black @click="newGame('easy')">
         easy
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="newGame('normal')">
+      <button rounded bg-green-500 p-1 text-black @click="newGame('normal')">
         normal
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="newGame('hard')">
+      <button rounded bg-green-500 p-1 text-black @click="newGame('hard')">
         hard
       </button>
     </div>

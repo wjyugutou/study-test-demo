@@ -29,9 +29,5 @@ watch(() => props.passed, (val) => {
 </script>
 
 <template>
-  <canvas id="fireworks" class="z--1 fixed top-0 w-100vw h-100vh" />
+  <canvas id="fireworks" class="fixed top-0 z--1 h-100vh w-100vw" />
 </template>
-
-<style  scoped>
-
-</style>
