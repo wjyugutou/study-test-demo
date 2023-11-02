@@ -14,7 +14,7 @@
     "tazeVue": "cd ./packages/vueCollect && taze major -w",
     "updateDep": "taze major -w && pnpm tazeReact && pnpm tazeVue && pnpm i",
     "chore": "pnpm choreReact && pnpm choreVue",
-    "buildVue": "pnpm --filter=vue-collect build"
+    "buildVue": "rd /s /q docs && pnpm --filter=vue-collect build"
   },
   "workspaces": [
     "packages/*"

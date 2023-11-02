@@ -54,15 +54,4 @@ demochallengeList.push({
     </router-link>
   </div>
   <DemochallengeList :list="demochallengeList" />
-  <!-- <div flex gap-1 flex-col border w-fit min-h-100 max-h-880px overflow-auto class="hide-scrollbar ">
-    <div v-for="item in demochallengeList" :key="item.path" px-5 py-1 hover:bg-gray-400 hover:dark:bg-gray-400>
-      <button class="basic-btn" @click="pageJump(item.path)">
-        {{ item.name }}
-      </button>
-    </div>
-  </div> -->
 </template>
-
-<style scoped>
-
-</style>
