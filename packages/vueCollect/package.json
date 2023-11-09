@@ -26,7 +26,6 @@
     "@floating-ui/vue": "^1.0.2",
     "@iconify-json/carbon": "^1.1.21",
     "@types/canvas-confetti": "^1.6.2",
-    "@types/lodash-es": "^4.17.10",
     "@types/matter-js": "^0.19.2",
     "@types/node": "^20.8.10",
     "@vitejs/plugin-vue": "^4.4.0",

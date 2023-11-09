@@ -1,9 +1,9 @@
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
+
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
 
 interface ImportGlob {
   [key: string]: { default: Record<string, any> }
@@ -18,11 +18,8 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-
-interface IDBEventTarget{
+interface IDBEventTarget {
 
 }
 
-interface EventTarget extends IDBEventTarget { result: IDBDatabase} 
-
-
+interface EventTarget extends IDBEventTarget { result: IDBDatabase}

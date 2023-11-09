@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh" theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
   </head>
-  <body>
+  <body class="font-sans dark:text-white dark:bg-#000">
     <div id="root"></div>
+    <script>
+      ;(function () {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        const setting = JSON.parse(localStorage.getItem('app'))?.state?.theme || 'auto'
+        if (setting === 'dark' || (prefersDark && setting !== 'light')) document.documentElement.setAttribute('theme', 'dark')
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
