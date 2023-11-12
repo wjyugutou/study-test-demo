@@ -19,7 +19,7 @@ export default [
 
       return {
         code: 200,
-        data: body.username === 'admin' ? [101, 102, 103, 104, 105] : data,
+        data,
       }
     },
   }),

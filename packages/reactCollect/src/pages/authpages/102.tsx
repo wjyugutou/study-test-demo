@@ -5,7 +5,7 @@ interface Props {
 }
 
 const App: FC<Props> = () => {
-  return <>auth 102</>
+  return <div>auth 102</div>
 }
 
 export default App

@@ -1,77 +1,90 @@
-import type { CSSProperties, DetailedHTMLProps, HTMLInputTypeAttribute, MouseEvent, ReactNode } from 'react'
-import type { FieldValues, RegisterOptions } from 'react-hook-form'
-import { formContext } from '.'
+import type { ChangeEvent, ChangeEventHandler, DetailedHTMLProps, FocusEvent, FocusEventHandler, HTMLInputTypeAttribute, MouseEvent, ReactNode, Ref } from 'react'
+import type { RefCallBack } from 'react-hook-form'
 
 interface Props extends DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   children?: ReactNode
   type?: HTMLInputTypeAttribute
-  label?: string
-  labelWidth?: number
-  labelPos?: 'top' | 'left'
-  field: string
-  rules?: RegisterOptions<FieldValues, string>
+  labelForId?: string
+  _ref?: RefCallBack
+  _onChange?: ChangeEventHandler<HTMLInputElement>
+  _onBlur?: FocusEventHandler<HTMLInputElement>
+  _onFocus?: FocusEventHandler<HTMLInputElement>
 }
 
-function Input(props: Props) {
+function Input(props: Props, ref: Ref<any>) {
   const {
     type = 'text',
-    label,
-    labelWidth = 85,
-    labelPos = 'left',
-    field,
-    rules,
-    className,
+    name,
+    value = '',
     style,
-    value,
+    _ref,
+    className,
+    labelForId,
+    placeholder,
     onChange,
     onBlur,
     onFocus,
+    _onChange,
+    _onBlur,
+    _onFocus,
   } = props
 
-  const register = useContext(formContext)?.register
-
   const [showPassword, setShowPassword] = useState(false)
+  const inputEle = useRef()
 
   function toggleShowPwd(e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) {
-    console.log(1)
-
     e.preventDefault()
     e.stopPropagation()
     setShowPassword(!showPassword)
   }
 
-  const id = useId()
+  const _className = useMemo(() => `input inline-block border border-black w-full h-full px-4px hover:border-blue-600
+   focus:border-blue-600 bg-transparent outline-none ${className ?? ''}
+  `,
+  [className])
 
-  const _style: CSSProperties = useMemo(() => (Object.assign(style || {}, {
-    width: `calc(100% - ${(!label || labelPos === 'top') ? 0 : labelWidth}px)`,
-  })), [style])
+  function refFn(ele: HTMLInputElement) {
+    _ref?.(ele)
+    if (ref)
+      typeof ref === 'function' ? ref(ele) : (ref = { current: ele })
+  }
 
-  const labelStyle = useMemo(() => ({
-    width: labelWidth,
-    display: labelPos === 'left' ? 'inline-block' : 'block',
-  }), [label, labelPos])
+  function onBlurHandle(e: FocusEvent<HTMLInputElement>) {
+    _onBlur?.(e)
+    onBlur?.(e)
+  }
 
-  const _className = useMemo(() => `${className} relative inline-block input border border-black hover:border-blue-600 bg-transparent outline-none w-full h-32px`, [className])
+  function onFocusHandle(e: FocusEvent<HTMLInputElement>) {
+    _onFocus?.(e)
+    onFocus?.(e)
+  }
 
-  return <div className='input-wrapper mb-14px w-full'>
-    <div className='block w-full' >
-      {label && <label className='label' style={labelStyle} htmlFor={id}>{rules?.required && <span className='text-red'>*</span>} {label}</label>}
+  function onChangeHandle(e: ChangeEvent<HTMLInputElement>) {
+    _onChange?.(e)
+    onChange?.(e)
+  }
 
-      <div className={_className} style={_style}>
-        <input id={id} className='h-full w-full px-4px' autoComplete='off'
-          type={showPassword ? 'text' : type}
-          {...register?.(field, rules)}
-          value={register ? undefined : value}
-          onChange={onChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
-        />
-        {type === 'password' && (showPassword
-          ? <div className='i-carbon-view-off absolute right-4px top-50% transform-translate-y--50% cursor-pointer text-black' onClick={toggleShowPwd}></div>
-          : <div className='i-carbon-view absolute right-4px top-50% transform-translate-y--50% cursor-pointer text-black' onClick={toggleShowPwd}> </div>)}
-      </div>
-    </div>
+  useImperativeHandle(ref, () => inputEle.current, [])
+
+  return <div className='input-wrapper relative h-32px w-full'>
+    <input
+      style={style} className={_className} autoComplete='off'
+      ref={refFn}
+      name={name}
+      value={value}
+      id={labelForId}
+      placeholder={placeholder}
+      type={showPassword ? 'text' : type}
+      onBlur={onBlurHandle}
+      onFocus={onFocusHandle}
+      onChange={onChangeHandle}
+    />
+    {type === 'password' && (showPassword
+      ? <div className='i-carbon-view-off absolute right-4px top-50% transform-translate-y--50% cursor-pointer text-black' onClick={toggleShowPwd}></div>
+      : <div className='i-carbon-view absolute right-4px top-50% transform-translate-y--50% cursor-pointer text-black' onClick={toggleShowPwd}> </div>)}
   </div>
 }
 
-export default Input
+const ForwardInput = forwardRef(Input)
+
+export default ForwardInput
