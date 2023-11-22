@@ -4,8 +4,8 @@ const router = useRouter()
 </script>
 
 <template>
-  <div absolute top="50%" left="50%" translate-x="-50%" translate-y="-50%">
-    <div i-carbon-pedestrian text-4xl inline-block />
+  <div>
+    <div i-carbon-pedestrian inline-block text-4xl />
     <p>
       Hi, {{ props.name }}
     </p>
@@ -15,7 +15,7 @@ const router = useRouter()
 
     <div>
       <button
-        class="basic-btn" m-3 text-sm mt-8
+        class="basic-btn" m-3 mt-8 text-sm
         @click="router.back()"
       >
         Back

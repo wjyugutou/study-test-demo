@@ -5,7 +5,7 @@ import routes from '~pages'
 
 import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
-import './styles/main.css'
+import './styles/global.css'
 
 const app = createApp(App)
 
