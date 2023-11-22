@@ -1,8 +1,0 @@
-:is(html)[theme='dark'] {
-  --bg-color: #121212;
-  --primary: #23566f;
-  --modal-content-bg: #3b3b3b;
-  --modal-header-bg: #181818;
-  --modal-footer-bg: #181818;
-  --mask-bg-light: rgb(0 0 0 / 50%);
-}
