@@ -37,14 +37,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div w-full h-full relative pt-50px>
+  <div relative h-full w-full pt-50px>
     <CanvasTool />
-    <div w-full h-full relative overflow-hidden>
-      <canvas ref="canvas" w-full h-full border="~ gray-400" />
+    <div relative h-full w-full overflow-hidden>
+      <canvas ref="canvas" h-full w-full border="~ gray-400" />
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

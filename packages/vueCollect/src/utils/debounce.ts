@@ -1,5 +1,5 @@
-export function debounce(fn: Function, wait = 1000, immediate = true): (this: any, ...args: any) => any {
-  let timer: NodeJS.Timer | null
+export function debounce(fn: () => void, wait = 1000, immediate = true): (this: any, ...args: any) => any {
+  let timer: NodeJS.Timeout | undefined
   return function (...args: any) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias, @typescript-eslint/no-invalid-this
     const _this = this
@@ -9,10 +9,8 @@ export function debounce(fn: Function, wait = 1000, immediate = true): (this: an
       const callNow = !timer
 
       timer = setTimeout(() => {
-        timer = null
+        timer = undefined
       }, wait)
-      console.log(this === _this)
-
       callNow && fn.apply(_this, args)
     }
     else {
@@ -22,15 +20,3 @@ export function debounce(fn: Function, wait = 1000, immediate = true): (this: an
     }
   }
 }
-
-// if (import.meta.vitest) {
-//   const { it, expect } = import.meta.vitest
-
-//   it('debounce', () => {
-//     const fn = () => {
-//       console.log('debounce')
-//     }
-//     const debounced = debounce(fn, 1000)
-//     debounced()
-//   })
-// }

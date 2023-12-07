@@ -27,38 +27,38 @@ function clearCanvas() {
 }
 
 function canvasEraserChange(e: Event) {
-  state.setEraser(parseInt((e.target as HTMLInputElement).value))
+  state.setEraser(Number.parseInt((e.target as HTMLInputElement).value))
 }
 </script>
 
 <template>
-  <div absolute top-0 flex items-center gap-x-5px w-full h-50px p-5px border="~ gray-400" border-b="0" z-1>
-    <div class="toolitem ">
+  <div border="~ gray-400" border-b="0" absolute top-0 z-1 h-50px w-full flex items-center gap-x-5px p-5px>
+    <div class="toolitem">
       <label for="strokeStyle" gap-5px>
         线条颜色:&nbsp;
       </label>
       <input id="strokeStyle" :value="state.config.strokeStyle" type="color" @change="toolChange">
     </div>
-    <div class="toolitem ">
+    <div class="toolitem">
       <label for="lineWidth" gap-5px>
         线条宽度:&nbsp;
       </label>
       <input id="lineWidth" :value="state.config.lineWidth" type="range" step="1" min="1" max="50" @click="toolChange">
     </div>
-    <div class="toolitem ">
-      <button id="clear" class="btn-mask" p-5px b-rd-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="clearCanvas">
+    <div class="toolitem">
+      <button id="clear" class="btn-mask" b-rd-5px p-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="clearCanvas">
         清空画布
       </button>
     </div>
-    <div class="toolitem ">
-      <button id="clear" class="btn-mask" :active.attr="!!state.eraser.enabled" p-5px b-rd-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="state.setEraser(!state.eraser.enabled)">
+    <div class="toolitem">
+      <button id="clear" class="btn-mask" :active.attr="!!state.eraser.enabled" b-rd-5px p-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="state.setEraser(!state.eraser.enabled)">
         橡皮擦
       </button>&nbsp;
       <input id="eraserSize" :value="state.eraser.size" type="range" step="1" min="10" max="50" @change="canvasEraserChange">
     </div>
 
     <teleport v-if="state.eraser.enabled" :to="state.ctx?.canvas.parentElement || 'body'">
-      <div ref="eraser" absolute top-0 pointer-events-none :style="eraserStyle" z-10 w-20px h-20px border="~ #fff" />
+      <div ref="eraser" :style="eraserStyle" pointer-events-none absolute top-0 z-10 h-20px w-20px border="~ #fff" />
     </teleport>
   </div>
 </template>
