@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "incremental": false,
+    "target": "ES2022",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "types": [
+      "node"
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": false,
+    "skipLibCheck": true
+  },
+  "exclude": ["dist", "node_modules"]
+}
