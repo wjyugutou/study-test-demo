@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang='ts' setup>
 import type { IChamferableBodyDefinition, World } from 'matter-js'
 import {
   Bodies,
@@ -12,10 +12,8 @@ import {
 } from 'matter-js'
 import { isDark } from '@/composables'
 
-export default { label: 'matter.js' }
-</script>
+defineOptions({ name: 'matter.js', label: '烟花' })
 
-<script lang='ts' setup>
 const canvas = ref<HTMLCanvasElement>()
 const engine = shallowRef<Engine>()
 const render = shallowRef<Render>()
@@ -106,11 +104,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div flex justify-center items-center>
+  <div flex items-center justify-center>
     <canvas ref="canvas" border="~ gray-400" />
   </div>
 </template>
-
-<style  scoped>
-
-</style>

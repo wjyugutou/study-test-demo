@@ -16,6 +16,7 @@ declare module 'vue' {
     CarouselDot: typeof import('./src/components/Carousel/CarouselDot.vue')['default']
     CarouselItem: typeof import('./src/components/Carousel/CarouselItem.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
+    CssVirtualList: typeof import('./src/components/VirtualList/CssVirtualList.vue')['default']
     DemochallengeList: typeof import('./src/components/DemochallengeList/index.vue')['default']
     Drag: typeof import('./src/components/Drag/index.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks/index.vue')['default']

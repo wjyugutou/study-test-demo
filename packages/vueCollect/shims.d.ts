@@ -5,6 +5,11 @@ declare module '*.vue' {
   export default component
 }
 
+declare module '*.svg?view'
+declare module '*.svg?use' {
+  export default any
+}
+
 interface ImportGlob {
   [key: string]: { default: Record<string, any> }
 }

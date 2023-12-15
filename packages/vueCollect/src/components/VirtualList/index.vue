@@ -2,11 +2,11 @@
 import type { ComputedRef } from 'vue'
 import type { VirtualListProps } from '.'
 
+defineOptions({ name: '虚拟列表', label: '虚拟列表' })
+
 const props = defineProps<VirtualListProps>()
 
 const renderCount = 10
-
-defineOptions({ name: 'VirtualList', label: '虚拟列表' })
 
 const virtualList = ref<HTMLDivElement>()
 const virtualContent = ref<HTMLDivElement>()
@@ -91,8 +91,8 @@ function scrollHandle(e: Event) {
 
 <style>
 .virtualList {
-  position: relative;
   overflow-y: auto;
+  position: relative;
   height: 200px;
 }
 </style>
