@@ -2,12 +2,11 @@
 import type { StyleValue } from 'vue'
 import { StarportKey } from './constants'
 
+defineOptions({ name: 'StarportCraft' })
 const props = defineProps<{
   portId: string
   component: Component
 }>()
-defineOptions({ name: 'StarportCraft' })
-
 const injectState = inject(StarportKey)!
 
 const portIns = computed(() => injectState.getPortIns(props.portId, props.component))

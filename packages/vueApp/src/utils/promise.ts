@@ -40,10 +40,14 @@ export class MyP {
 
   then = (onFulfilled: Fulfilled, onRejected?: Rejected) => {
     const fulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value: any) => value
-    const rejected = typeof onRejected === 'function' ? onRejected : (reason: any) => { throw reason }
+    const rejected = typeof onRejected === 'function'
+      ? onRejected
+      : (reason: any) => {
+          throw reason
+        }
 
     const thenPromise = new MyP((resolve, reject) => {
-      const handleCallback = (cb: Function) => {
+      const handleCallback = (cb: (...args: any) => void | MyP) => {
         try {
           const res = cb(this.value)
           if (res === thenPromise)
@@ -67,8 +71,12 @@ export class MyP {
         }
       }
 
-      if (this.status === 'fulfilled') { handleCallback(fulfilled) }
-      else if (this.status === 'rejected') { rejected(this.reason) }
+      if (this.status === 'fulfilled') {
+        handleCallback(fulfilled)
+      }
+      else if (this.status === 'rejected') {
+        rejected(this.reason)
+      }
       else {
         // 如果状态为待定状态，暂时保存两个回调
         this.onFulfilledCallbacks.push(handleCallback.bind(this, fulfilled))
@@ -80,9 +88,12 @@ export class MyP {
   }
 
   catch = (onRejected: Rejected) => {
-    onRejected = typeof onRejected === 'function' ? onRejected : (reason: any) => { throw reason }
+    onRejected = typeof onRejected === 'function'
+      ? onRejected
+      : (reason: any) => {
+          throw reason
+        }
     if (this.status === 'rejected')
-      onRejected(this.promiseResult)
+      onRejected(this.status)
   }
 }
-

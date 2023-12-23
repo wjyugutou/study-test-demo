@@ -3,7 +3,7 @@ export function deepClone<T>(obj: T, newObj: any = {}): T {
     return obj
 
   if (Array.isArray(obj))
-    return obj.map(item => deepClone(item))
+    return obj.map(item => deepClone(item)) as T
 
   for (const key in obj) {
     if (Object.hasOwnProperty.call(obj, key))
