@@ -48,7 +48,3 @@ function transitionEnd() {
     </ClientOnly>
   </div>
 </template>
-
-<style scoped>
-
-</style>

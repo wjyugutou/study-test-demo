@@ -1,7 +1,6 @@
 <script lang='ts' setup>
 import type { Ref, ShallowRef } from 'vue'
 
-defineOptions({ name: 'Recorder' })
 const recording = ref(false)
 const recorder = shallowRef() as ShallowRef<MediaRecorder>
 const mediasStream = shallowRef() as ShallowRef<MediaStream>
@@ -68,7 +67,3 @@ onUnmounted(() => {
   </button>
   <audio ref="audio" :src="audioSrc" preload="auto" />
 </template>
-
-<style scoped>
-
-</style>

@@ -4,7 +4,3 @@
 <template>
   <Minesweeper />
 </template>
-
-<style scoped>
-
-</style>

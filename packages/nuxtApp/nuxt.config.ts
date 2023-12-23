@@ -12,6 +12,24 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       ],
+      script: [
+        {
+          children: `
+        ;(function () {
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          const setting = localStorage.getItem('color-schema') || 'auto'
+          if (setting === 'dark' || (prefersDark && setting !== 'light')) document.documentElement.classList.toggle('dark', true)
+        })()`,
+        },
+      ],
+      noscript: [
+        { children: 'JavaScript is required' },
+      ],
+    },
+  },
+  build: {
+    analyze: {
+      enabled: true,
     },
   },
   css: [
@@ -24,6 +42,14 @@ export default defineNuxtConfig({
       '~/components',
     ],
   },
+  postcss: {
+    plugins: {
+      autoprefixer: [
+        'last 2 versions',
+      ],
+    },
+  },
+  // experimental: { emitRouteChunkError: false },
   modules: ['@vueuse/nuxt', '@unocss/nuxt'],
   vite: {
     plugins: [createSvgIconsPlugin({

@@ -15,7 +15,3 @@ provide(StarportKey, state)
     <StarportCraft :port-id="id" :component="port.component" />
   </template>
 </template>
-
-<style scoped>
-
-</style>

@@ -11,6 +11,7 @@ const props = defineProps<{
 
 const activeIndex = ref(7)
 const scrollRef = ref<HTMLDivElement>()
+const searchName = ref()
 
 async function pageJump(url: string) {
   await navigateTo(url)
@@ -32,15 +33,26 @@ function wheel(e: WheelEvent) {
   else
     activeIndex.value = activeIndex.value + 1 > props.list.length - 1 ? 0 : activeIndex.value + 1
 }
+
+watch(searchName, (newValue, oldValue) => {
+  const index = props.list.map(item => item.name?.toLocaleLowerCase()).findIndex(item => item?.includes(`${newValue}`.toLocaleLowerCase()))
+
+  if (index !== -1)
+    activeIndex.value = index
+}, { deep: true })
 </script>
 
 <template>
   <div
     ref="scrollRef"
-    w-full overflow-hidden border py-200px
+
+    relative w-full overflow-hidden border py-200px
     class="box"
     @wheel="wheel"
   >
+    <div absolute left-0 top-0 pt-15px>
+      <InputAnimate v-model="searchName" placeholder="search" />
+    </div>
     <div flex transition="~ 500" :style="boxStyle">
       <template v-for="item, i in list" :key="item.path">
         <div

@@ -47,7 +47,3 @@ onBeforeUnmount(() => {
 <template>
   <div :id="id" ref="el" overflow-hidden />
 </template>
-
-<style scoped>
-
-</style>

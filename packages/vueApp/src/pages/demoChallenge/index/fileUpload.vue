@@ -20,6 +20,4 @@ function onSubmit(e: Event) {
   </form>
 </template>
 
-<style  scoped>
 
-</style>

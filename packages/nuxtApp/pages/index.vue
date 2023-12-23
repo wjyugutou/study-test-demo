@@ -16,7 +16,7 @@ const carouselData: {
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
+const demoChallengeFile = import.meta.glob(['./demoChallenge/*.vue'], { eager: true })
 
 const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
   const fileName = item.split('/').at(-1)
@@ -25,10 +25,11 @@ const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
     name = item.split('/').at(-2)
 
   return {
-    path: item.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
+    path: item.replaceAll('.', '').replace('', '').replace(/(index\/)?(vue)?/g, ''),
     name,
   }
 })
+console.log(demochallengeList)
 
 demochallengeList.push({
   name: 'starport',
@@ -37,21 +38,35 @@ demochallengeList.push({
 </script>
 
 <template>
-  <div flex items-center justify-between>
-    <Carousel
-      autoplay dot director h-50 w-100
-      :duration="3000" :initial="2"
-    >
-      <template v-for="item, index of carouselData" :key="index">
-        <carousel-item :data="item" />
-      </template>
-    </Carousel>
-  </div>
-  <div my-2>
-    <InputAnimate v-model="name" placeholder="Input&nbsp;Your&nbsp;Name" />
-    <NuxtLink :to="`/hi/${name}`">
-      前往
+  <div>
+    <NuxtLink to="/demoChallenge/matter">
+      matter
     </NuxtLink>
+    <NuxtLink to="/demoChallenge/lens">
+      lens
+    </NuxtLink>
+    <NuxtLink to="/demoChallenge/digitalRain">
+      digitalRain
+    </NuxtLink>
+    <NuxtLink to="/demoChallenge/indexedDB">
+      indexedDB
+    </NuxtLink>
+    <div flex items-center justify-between>
+      <Carousel
+        autoplay dot director h-50 w-100
+        :duration="3000" :initial="2"
+      >
+        <template v-for="item, index of carouselData" :key="index">
+          <carousel-item :data="item" />
+        </template>
+      </Carousel>
+    </div>
+    <div my-2>
+      <InputAnimate v-model="name" placeholder="Input&nbsp;Your&nbsp;Name" />
+      <NuxtLink :to="`/hi/${name}`">
+        前往
+      </NuxtLink>
+    </div>
+    <DemochallengeList :list="demochallengeList" />
   </div>
-  <DemochallengeList :list="demochallengeList" />
 </template>

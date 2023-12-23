@@ -64,6 +64,4 @@ onMounted(initial)
   </div>
 </template>
 
-<style scoped>
 
-</style>

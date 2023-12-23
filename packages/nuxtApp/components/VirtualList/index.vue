@@ -2,7 +2,7 @@
 import type { ComputedRef } from 'vue'
 import type { VirtualListProps } from './constants'
 
-defineOptions({ name: '虚拟列表', label: '虚拟列表' })
+defineOptions({ name: 'VirtualList', label: '虚拟列表' })
 
 const props = defineProps<VirtualListProps>()
 

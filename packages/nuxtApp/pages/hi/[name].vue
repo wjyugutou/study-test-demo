@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const props = defineProps<{ name: string }>()
 const router = useRouter()
 const route = useRoute()
 console.log(route.params.name)

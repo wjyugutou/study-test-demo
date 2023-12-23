@@ -5,7 +5,7 @@ defineOptions({
   name: 'FlipOne',
 })
 
-const scale = useStorage('size', 0.25)
+const scale = useSessionStorage('size', 0.25)
 const style = computed(() => ({
   width: `${100 * scale.value}rem`,
   height: `${50 * scale.value}rem`,
@@ -16,7 +16,7 @@ function toggleHandle() {
 </script>
 
 <template>
-  <div gap-2 flex justify-center>
+  <div flex justify-center gap-2>
     <button btn @click="toggleHandle">
       ToggleSize
     </button>

@@ -18,11 +18,11 @@ const state = reactive({
 </script>
 
 <template>
-  <transition name="carousel">
-    <div v-show="currentIndex === state.selfIndex" class="carouselItem" w-full h-full absolute origin-top-left>
-      <img w-full h-full :src="data.url" :alt="data.title">
+  <Transition name="carousel">
+    <div v-show="currentIndex === state.selfIndex" class="carouselItem" absolute h-full w-full origin-top-left>
+      <img h-full w-full :src="data.url" :alt="data.title">
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <style>
@@ -34,9 +34,11 @@ const state = reactive({
 .carousel-enter-active {
   transform: translateX(100%);
 }
+
 .carousel-enter-to {
   transform: translateX(0);
 }
+
 .carousel-leave-active {
   transform: translateX(-100%);
 }

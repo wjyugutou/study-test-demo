@@ -69,6 +69,4 @@ onUnmounted(() => {
   <audio ref="audio" :src="audioSrc" preload="auto" />
 </template>
 
-<style scoped>
 
-</style>

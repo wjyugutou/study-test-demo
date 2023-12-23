@@ -17,7 +17,7 @@ const timeMS = computed(() => {
   return Math.round((+now.value - (paly.state.value.startTime)) / 1000)
 })
 
-useStorage('vue-minesweeper', paly.state)
+useSessionStorage('vue-minesweeper', paly.state)
 const state = computed(() => paly.board)
 
 const mineRest = computed(() => paly.blocks.reduce((pre, cur) => {

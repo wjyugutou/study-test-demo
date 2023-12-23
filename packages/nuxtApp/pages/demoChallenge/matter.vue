@@ -11,8 +11,6 @@ import {
   Runner,
 } from 'matter-js'
 
-defineOptions({ name: 'matter.js', label: '烟花' })
-
 const canvas = ref<HTMLCanvasElement>()
 const engine = shallowRef<Engine>()
 const render = shallowRef<Render>()

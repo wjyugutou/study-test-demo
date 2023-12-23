@@ -1,8 +1,6 @@
 <script lang='ts' setup>
 import { random } from 'lodash-es'
 
-defineOptions({ name: 'VirtualScroll' })
-
 const data = Array.from({ length: 1000 }).map((item, index) => ({ content: `但是价格法大师傅--${index}`, index, src: '', height: random(20, 165) }))
 </script>
 
@@ -23,8 +21,8 @@ const data = Array.from({ length: 1000 }).map((item, index) => ({ content: `但�
 
 <style>
 .virtualList {
+  overflow-y: auto;
   position: relative;
   height: 300px;
-  overflow-y: auto;
 }
 </style>

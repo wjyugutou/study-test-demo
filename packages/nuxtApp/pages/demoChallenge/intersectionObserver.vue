@@ -62,16 +62,16 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="colorChangeRef" w-50 h-70 bg-red-500 />
-  <button bg-blue-500 rounded-6 text-white p-3 @click="debounceHandle">
+  <div ref="colorChangeRef" h-70 w-50 bg-red-500 />
+  <button rounded-6 bg-blue-500 p-3 text-white @click="debounceHandle">
     debounce
   </button>
 
-  <div ref="interSectionParent" h-300px w-500px bg-pink-500 relative overflow-auto>
+  <div ref="interSectionParent" relative h-300px w-500px overflow-auto bg-pink-500>
     <div h-200px w-full bg-purple />
     <div>
-      <div ref="interSection1" p-10 bg-green-500 />
-      <div ref="interSection2" ml-10 p-10 bg-green />
+      <div ref="interSection1" bg-green-500 p-10 />
+      <div ref="interSection2" ml-10 bg-green p-10 />
     </div>
   </div>
 
@@ -96,7 +96,3 @@ watchEffect(() => {
     <AsyncComponent />
   </Suspense>
 </template>
-
-<style  scoped>
-
-</style>

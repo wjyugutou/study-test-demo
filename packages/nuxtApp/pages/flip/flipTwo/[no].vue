@@ -26,7 +26,7 @@ const Comp = defineComponent({
 
 <template>
   <div>
-    <div flex gap-4 justify-center>
+    <div flex justify-center gap-4>
       <button btn @click="router.back">
         back
       </button>
@@ -39,7 +39,7 @@ const Comp = defineComponent({
         reset
       </button>
     </div>
-    <div mx-auto mt-50 flex="! col sm:row gap-4" items-center w-200>
+    <div flex="! col sm:row gap-4" mx-auto mt-50 w-200 items-center>
       <Starport :port-id="1" :style="{ width: `${size}px`, height: `${size}px` }" rounded-50>
         <TheImage :img="img" />
       </Starport>
@@ -60,7 +60,3 @@ const Comp = defineComponent({
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

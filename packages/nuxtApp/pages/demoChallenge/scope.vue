@@ -1,10 +1,6 @@
 <script lang='ts' setup>
 import type { CSSProperties } from 'vue'
 
-defineOptions({
-  name: '可视窗ClipPath',
-})
-
 const box = ref() as Ref<HTMLDivElement>
 const dragStyle = reactive<CSSProperties>({
   top: '0px',
@@ -92,12 +88,12 @@ useDrag(box)
   border-image-slice: 1;
   width: 100%;
   height: 100%;
-  animation: clipBorder 2s infinite;
+  animation: clip-border 2s infinite;
   animation-timing-function: linear;
   clip-path: inset(0 90% 0 0);
 }
 
-@keyframes clipBorder {
+@keyframes clip-border {
   0%,
   100% {
     clip-path: inset(90% 0 0 0);

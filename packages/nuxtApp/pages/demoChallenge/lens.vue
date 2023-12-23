@@ -1,8 +1,6 @@
 <script lang='ts' setup>
 import type { CSSProperties } from 'vue'
 
-defineOptions({ name: 'Lens' })
-
 const lens = ref()
 const { x, y } = useDrag(lens)
 
