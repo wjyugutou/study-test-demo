@@ -1,5 +1,5 @@
 ---
-"vue-collect": major
+"vue-app": major
 ---
 
 style

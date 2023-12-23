@@ -1,7 +1,7 @@
 ---
-"react-collect": major
+"react-app": major
 "@yugutou/utils": major
-"vue-collect": major
+"vue-app": major
 ---
 
 changeset use test
