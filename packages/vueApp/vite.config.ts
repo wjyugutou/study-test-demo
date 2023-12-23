@@ -18,7 +18,7 @@ import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
   css: {
     postcss: {
-      plugins: [autoprefixer()],
+      plugins: [autoprefixer() as any],
     },
   },
   resolve: {
