@@ -9,10 +9,10 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import Inspector from 'unplugin-vue-inspector/vite'
 import autoprefixer from 'autoprefixer'
-import webfontDownload from 'vite-plugin-webfont-dl'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 
+// import webfontDownload from 'vite-plugin-webfont-dl'
 // import resolve from 'vite-plugin-resolve'
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
@@ -85,9 +85,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
     }),
 
     // https://github.com/antfu/vite-plugin-components
-    Components({
-      dts: true,
-    }),
+    Components({ dts: true }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config

@@ -1,5 +1,5 @@
-<script>
-console.log(import.meta)
+<script setup lang="ts">
+useRuntimeConfig()
 </script>
 
 <template>

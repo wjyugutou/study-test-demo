@@ -1,5 +1,0 @@
----
-"vue-app": major
----
-
-style

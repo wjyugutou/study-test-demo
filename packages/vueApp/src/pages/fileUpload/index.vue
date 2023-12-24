@@ -19,7 +19,3 @@ function onSubmit(e: Event) {
     </button>
   </form>
 </template>
-
-<style  scoped>
-
-</style>

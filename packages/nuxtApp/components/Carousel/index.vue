@@ -1,4 +1,4 @@
-<script lang='ts' setup generic="T extends {url: string}[]">
+<script lang='ts' setup>
 import { CarouselCurrentIndexKey, CarouselDataLenKey } from './constans'
 
 const props = withDefaults(defineProps<{
@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
   duration?: number
   initial?: number
   dot?: boolean
-  list: T
+  list: any
 }>(), { autoPlay: true, duration: 1000, initial: 0, dot: true })
 
 const instance = getCurrentInstance()

@@ -19,8 +19,8 @@ const state = reactive({
 
 <template>
   <Transition name="carousel">
-    <div v-show="currentIndex === state.selfIndex" class="carouselItem" absolute h-full w-full origin-top-left>
-      <img :src="data.url" :alt="data.title" loading="lazy" preload h-full w-full select-none />
+    <div v-show="currentIndex === state.selfIndex" draggable="false" class="carouselItem" absolute h-full w-full origin-top-left>
+      <img draggable="false" :src="data.url" :alt="data.title" loading="lazy" preload h-full w-full select-none>
     </div>
   </Transition>
 </template>
