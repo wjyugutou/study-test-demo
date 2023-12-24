@@ -5,8 +5,6 @@ const lens = ref()
 const { x, y } = useDrag(lens)
 
 const style = computed(() => ({
-  // top: `${y}px`,
-  // left: `${x}px`,
   transform: `translate(${x.value}px, ${y.value}px)`,
   backgroundPosition: `${-x.value}px ${-y.value}px`,
 } as CSSProperties))
@@ -28,7 +26,7 @@ const style = computed(() => ({
   & > div {
     position: absolute;
     inset: 0;
-    background-image: url('../../../static/images/mio.jpg');
+    background-image: url('assets/images/mio.jpg');
     background-repeat:  no-repeat ;
     background-position: center;
     background-size: 100% 100%;

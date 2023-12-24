@@ -1,7 +1,6 @@
 <script lang='ts' setup>
 import type { Position } from '@vueuse/core'
 import { CanvasConfigKey } from './canstans'
-import { ClientOnly } from '#build/components'
 
 const state = inject(CanvasConfigKey)!
 const eraser = ref<HTMLDivElement>()

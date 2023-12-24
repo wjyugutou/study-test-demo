@@ -1,7 +1,6 @@
 <script lang='ts' setup>
 import type { CSSProperties, Ref } from 'vue'
 import { modalProps } from './constants'
-import { ClientOnly } from '#build/components'
 
 const props = defineProps(modalProps)
 

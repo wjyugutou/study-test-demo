@@ -1,9 +1,6 @@
 <script lang='ts' setup>
 import { StarportKey } from './constants'
 import { createStarportState } from './state'
-import StarportCraft from './starportCraft.vue'
-
-defineOptions({ name: 'StarportCarrier' })
 
 const state = createStarportState()
 provide(StarportKey, state)

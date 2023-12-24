@@ -1,5 +1,3 @@
-import path from 'node:path'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineNuxtConfig } from 'nuxt/config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -37,11 +35,13 @@ export default defineNuxtConfig({
     'virtual:uno.css',
     '@/styles/global.css',
   ],
-  components: {
-    dirs: [
-      '~/components',
-    ],
-  },
+  components: [
+    {
+      path: '@/components',
+      extensions: ['.vue'],
+      pathPrefix: false,
+    },
+  ],
   postcss: {
     plugins: {
       autoprefixer: [
@@ -49,21 +49,9 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // experimental: { emitRouteChunkError: false },
-  modules: ['@vueuse/nuxt', '@unocss/nuxt'],
-  vite: {
-    plugins: [createSvgIconsPlugin({
-      iconDirs: [path.resolve(__dirname, 'src/assets/svg')],
-      symbolId: 'icon-[name]',
-    }) as any],
-  },
-  runtimeConfig: {
-    // 只在服务器端可用的私有键
-    // apiSecret: '123',
-    // public中的键也可以在客户端使用
-    // public: {
-    //   apiBase: '/api',
-    // },
+  modules: ['@vueuse/nuxt', '@unocss/nuxt', 'nuxt-svgo', '@nuxt/image'],
+  svgo: {
+    autoImportPath: 'assets/svg/',
   },
 
 })

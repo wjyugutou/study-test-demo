@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-// definePageMeta({ layout: 'custom' })
+definePageMeta({ layout: 'custom' })
 
 const router = useRouter()
 
@@ -8,11 +8,11 @@ const footerEnter = ref(false)
 const visibleList = ref(false)
 
 // demo文件列表
-const demoList = import.meta.glob<Record<string, any>>('./demoChallenge/*.vue', { eager: true })
+const demoList = import.meta.glob<Record<string, any>>('./demoChallenge/*.vue')
 
-const allDemo = Object.entries(demoList).map(([pathStr, module]) => {
+const allDemo = Object.entries(demoList).map(([pathStr]) => {
   const path = pathStr.replace('./demoChallenge/', '').replace('.vue', '')
-  return { path: `/demoChallenge/${path}`, label: module?.default?.label || path }
+  return { path: `/demoChallenge/${path}`, label: path }
 })
 
 const stop = watchEffect(() => {
@@ -91,12 +91,12 @@ onUnmounted(() => {
       </div>
     </footer>
 
-    <Modal v-model="visibleList" title="demoList" :drag="modalDrag">
+    <LazyModal v-model="visibleList" title="demoList" :drag="modalDrag">
       <div>
         <p v-for="item in allDemo" :key="item.path" hover:text="[var(--primary)]">
-          <RouterLink :to="item.path">
+          <NuxtLink :to="item.path">
             {{ item.label }}
-          </RouterLink>
+          </NuxtLink>
         </p>
       </div>
       <template #footer>
@@ -104,6 +104,6 @@ onUnmounted(() => {
           切换拖拽 {{ modalDrag }}
         </button>
       </template>
-    </Modal>
+    </LazyModal>
   </div>
 </template>

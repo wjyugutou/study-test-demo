@@ -1,8 +1,8 @@
 <script lang='ts' setup>
-import kindred from '@/assets/carousel/kindred.jpg'
-import butt from '@/assets/carousel/butt.jpg'
-import lotusPond from '@/assets/carousel/lotusPond.jpg'
-import nanny from '@/assets/carousel/nanny.jpg'
+import kindred from 'assets/carousel/kindred.jpg'
+import butt from 'assets/carousel/butt.jpg'
+import lotusPond from 'assets/carousel/lotusPond.jpg'
+import nanny from 'assets/carousel/nanny.jpg'
 
 const carouselData: {
   title: string
@@ -16,7 +16,7 @@ const carouselData: {
 
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const demoChallengeFile = import.meta.glob(['./demoChallenge/*.vue'], { eager: true })
+const demoChallengeFile = import.meta.glob(['./demoChallenge/*.vue'])
 
 const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
   const fileName = item.split('/').at(-1)
@@ -29,7 +29,6 @@ const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
     name,
   }
 })
-console.log(demochallengeList)
 
 demochallengeList.push({
   name: 'starport',
@@ -39,25 +38,13 @@ demochallengeList.push({
 
 <template>
   <div>
-    <NuxtLink to="/demoChallenge/matter">
-      matter
-    </NuxtLink>
-    <NuxtLink to="/demoChallenge/lens">
-      lens
-    </NuxtLink>
-    <NuxtLink to="/demoChallenge/digitalRain">
-      digitalRain
-    </NuxtLink>
-    <NuxtLink to="/demoChallenge/indexedDB">
-      indexedDB
-    </NuxtLink>
     <div flex items-center justify-between>
       <Carousel
         autoplay dot director h-50 w-100
         :duration="3000" :initial="2"
       >
         <template v-for="item, index of carouselData" :key="index">
-          <carousel-item :data="item" />
+          <CarouselItem :data="item" />
         </template>
       </Carousel>
     </div>

@@ -9,11 +9,11 @@ import img5 from '@/static/images/5.jpg'
 <template>
   <div class="carousel">
     <div h-full w-full flex gap-10px overflow-x-scroll>
-      <img :src="img1" alt="">
-      <img :src="img2" alt="">
-      <img :src="img3" alt="">
-      <img :src="img4" alt="">
-      <img :src="img5" alt="">
+      <NuxtImg :src="img1" alt="" />
+      <NuxtImg :src="img2" alt="" />
+      <NuxtImg :src="img3" alt="" />
+      <NuxtImg :src="img4" alt="" />
+      <NuxtImg :src="img5" alt="" />
     </div>
   </div>
   <div class="bg" />

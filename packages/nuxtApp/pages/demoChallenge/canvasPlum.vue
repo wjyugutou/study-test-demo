@@ -111,5 +111,3 @@ onMounted(() => {
 <template>
   <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" mx-auto border="~ gray-400" />
 </template>
-
-

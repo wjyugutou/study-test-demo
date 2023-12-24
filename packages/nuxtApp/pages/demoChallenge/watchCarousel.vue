@@ -43,25 +43,23 @@ onMounted(initial)
 </script>
 
 <template>
-  <div relative w-500px flex items-center justify-center m-auto :style="{ height: `${radius}px` }">
-    <div relative w-500px h-500px transition="~ 1s" perspective-300px>
-      <ol ref="carousel" absolute w-full h-210px preserve-3d transition="~">
+  <div relative m-auto w-500px flex items-center justify-center :style="{ height: `${radius}px` }">
+    <div transition="~ 1s" relative h-500px w-500px perspective-300px>
+      <ol ref="carousel" absolute h-210px w-full preserve-3d transition="~">
         <template v-for="i in count" :key="i">
-          <li ref="items" absolute w-500px h-200px b-rd-4 border="~ 2px gray-400" op-70 overflow-hidden>
-            <img w-full pointer-events-none translate-y--10px :src="i % 2 === 0 ? img : img1" alt="">
+          <li ref="items" border="~ 2px gray-400" absolute h-200px w-500px overflow-hidden b-rd-4 op-70>
+            <NuxtImg pointer-events-none w-full translate-y--10px :src="i % 2 === 0 ? img : img1" alt="" />
           </li>
         </template>
       </ol>
     </div>
     <div class="arrows" absolute top="50%" right-10px translate-y="-50%" flex flex-col gap-5>
-      <button transform-rotate-180deg border="~ gray-400" hover:bg-gray-400 bg="gray-400/50" transition @click="changeActiveUp">
-        <div text-8 i-carbon-caret-down />
+      <button border="~ gray-400" bg="gray-400/50" transform-rotate-180deg transition hover:bg-gray-400 @click="changeActiveUp">
+        <div i-carbon-caret-down text-8 />
       </button>
-      <button border="~ gray-400" hover:bg-gray-400 bg="gray-400/50" transition @click="changeActiveDown">
-        <div text-8 i-carbon-caret-down />
+      <button border="~ gray-400" bg="gray-400/50" transition hover:bg-gray-400 @click="changeActiveDown">
+        <div i-carbon-caret-down text-8 />
       </button>
     </div>
   </div>
 </template>
-
-

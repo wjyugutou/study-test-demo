@@ -24,8 +24,6 @@ const props = defineProps({
   },
 })
 
-defineOptions({ name: 'Carousel' })
-
 const instance = getCurrentInstance()
 
 const currentIndex = ref(props.initial)
@@ -79,7 +77,7 @@ onUnmounted(() => {
 <template>
   <div class="carousel">
     <div
-      class="inner" w-full h-full relative overflow-hidden
+      class="inner" relative h-full w-full overflow-hidden
       @pointerenter="pointerover" @pointerleave="pointerleave"
     >
       <slot />

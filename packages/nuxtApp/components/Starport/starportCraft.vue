@@ -1,7 +1,6 @@
 <script lang='ts' setup>
 import type { StyleValue } from 'vue'
 import { StarportKey } from './constants'
-import { ClientOnly } from '#build/components'
 
 const props = defineProps<{
   portId: string

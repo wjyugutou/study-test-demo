@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@8.10.5",
+  "packageManager": "pnpm@8.12.1",
   "scripts": {
     "build": "vite build",
     "dev": "vite --port 3333",
@@ -11,30 +11,31 @@
     "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest -w",
-    "t": "pnpm test"
+    "t": "pnpm test",
+    "taze": "taze major -w && pnpm i"
   },
   "dependencies": {
-    "@vueuse/core": "^10.6.1",
+    "@vueuse/core": "^10.7.0",
     "@yugutou/utils": "workspace:*",
     "autoprefixer": "^10.4.16",
-    "canvas-confetti": "^1.9.1",
+    "canvas-confetti": "^1.9.2",
     "matter-js": "^0.19.0",
-    "vue": "^3.3.8",
+    "vue": "^3.3.13",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@floating-ui/vue": "^1.0.2",
-    "@iconify-json/carbon": "^1.1.21",
-    "@types/canvas-confetti": "^1.6.3",
+    "@iconify-json/carbon": "^1.1.27",
+    "@types/canvas-confetti": "^1.6.4",
     "@types/matter-js": "^0.19.5",
-    "@types/node": "^20.9.4",
-    "@vitejs/plugin-vue": "^4.5.0",
-    "@vue/test-utils": "^2.4.2",
-    "unplugin-auto-import": "^0.16.7",
-    "unplugin-vue-components": "^0.25.2",
-    "unplugin-vue-inspector": "^1.0.0",
-    "vite-plugin-pages": "^0.31.0",
-    "vitest": "^0.34.6",
-    "vue-tsc": "^1.8.22"
+    "@types/node": "^20.10.5",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "@vue/test-utils": "^2.4.3",
+    "unplugin-auto-import": "^0.17.2",
+    "unplugin-vue-components": "^0.26.0",
+    "unplugin-vue-inspector": "^1.0.2",
+    "vite-plugin-pages": "^0.32.0",
+    "vitest": "^1.1.0",
+    "vue-tsc": "^1.8.26"
   }
 }

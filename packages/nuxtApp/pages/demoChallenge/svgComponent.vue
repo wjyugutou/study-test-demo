@@ -2,8 +2,8 @@
 </script>
 
 <template>
-  <SvgIcon name="icon-1" style="width: 100px;height: 100px;" />
-  <SvgIcon name="icon-2" />
-  <SvgIcon name="icon-3" />
-  <SvgIcon name="icon-4" color="blue" />
+  <svgo-1 style="width: 100px;height: 100px;" />
+  <svgo-2 style="width: 100px;height: 100px;" />
+  <svgo-3 style="width: 100px;height: 100px;" />
+  <svgo-4 class="color-blue" style="width: 100px;height: 100px;" />
 </template>

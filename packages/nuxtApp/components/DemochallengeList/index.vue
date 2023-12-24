@@ -57,15 +57,15 @@ watch(searchName, (newValue, oldValue) => {
       <template v-for="item, i in list" :key="item.path">
         <div
           class="item" :class="i === activeIndex && 'active'"
-          transition="~ 500" flex shrink-0 select-none items-center justify-center bg-red
+          transition="~ 500" flex shrink-0 select-none items-center justify-center bg-hex-993366
           :style="{
             transform: `perspective(${1000}px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
           }"
           @click="pageJump(item.path)"
         >
           {{ item.name }}
-          <div class="left" />
-          <div class="right" />
+          <div class="left" transition="~ 500" />
+          <div class="right" transition="~ 500" />
         </div>
       </template>
     </div>
@@ -94,7 +94,7 @@ watch(searchName, (newValue, oldValue) => {
   top: 0;
   width: 30px;
   height: 210px;
-  background-color: aquamarine;
+  background-color: #639;
   backface-visibility: hidden;
 }
 
