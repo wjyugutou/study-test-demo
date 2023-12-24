@@ -20,7 +20,7 @@ const state = reactive({
 <template>
   <Transition name="carousel">
     <div v-show="currentIndex === state.selfIndex" class="carouselItem" absolute h-full w-full origin-top-left>
-      <NuxtImg :src="data.url" :alt="data.title" loading="lazy" preload h-full w-full />
+      <img :src="data.url" :alt="data.title" loading="lazy" preload h-full w-full select-none />
     </div>
   </Transition>
 </template>

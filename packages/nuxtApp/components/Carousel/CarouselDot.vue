@@ -22,8 +22,9 @@ const currentIndex = inject(CarouselCurrentIndexKey, 0)
 
 <style>
 .dot {
-  @apply: rounded-full bg-gray-100/50 w-10px h-10px;
+  @apply: rounded-full bg-gray-100/50 w-10px h-10px cursor-pointer;
 }
+
 .dot-active {
   @apply: bg-gray-700;
 }
