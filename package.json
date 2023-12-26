@@ -30,7 +30,7 @@
     "@types/node": "^20.10.5",
     "@unocss/eslint-config": "^0.58.0",
     "@yugutou/eslint-config": "^1.2.3",
-    "@yugutou/stylelint-config": "^1.1.5",
+    "@yugutou/stylelint-config": "latest",
     "eslint": "^8.56.0",
     "stylelint": "^16.0.2",
     "typescript": "5.3.3",

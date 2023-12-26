@@ -1,6 +1,7 @@
 @import url('./commonvariable.css');
 @import url('./unoVariable.css');
 @import url('./variable.css');
+@import url('./transition.css');
 
 html,
 body,
@@ -22,25 +23,3 @@ label {
   user-select: none;
 }
 
-/* Color Mode transition */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 2147483646;
-}
-
-.dark::view-transition-old(root) {
-  z-index: 2147483646;
-}
-
-.dark::view-transition-new(root) {
-  z-index: 1;
-}

@@ -1,4 +1,10 @@
 <script lang='ts' setup>
+import type { AnyFn } from '@vueuse/core'
+
+defineOptions({
+  description: '随机生成梅花树枝',
+})
+
 const canvas = ref<HTMLCanvasElement>()
 const ctx = computed(() => canvas.value!.getContext('2d')!)
 const WIDTH = 600
@@ -48,7 +54,7 @@ function initPlum() {
     step(branch)
   })
 }
-const tasksPending: Function[] = []
+const tasksPending: AnyFn[] = []
 function step(b: Branch, depth = 0) {
   const end = getEndpoint(b)
   drawBranch(b)
@@ -111,5 +117,3 @@ onMounted(() => {
 <template>
   <canvas ref="canvas" :width="WIDTH" :height="HEIGHT" mx-auto border="~ gray-400" />
 </template>
-
-

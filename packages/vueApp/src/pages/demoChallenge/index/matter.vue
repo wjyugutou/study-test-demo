@@ -12,7 +12,7 @@ import {
 } from 'matter-js'
 import { isDark } from '@/composables'
 
-defineOptions({ name: 'matter.js', label: '烟花' })
+defineOptions({ description: '物理引擎库 2d' })
 
 const canvas = ref<HTMLCanvasElement>()
 const engine = shallowRef<Engine>()

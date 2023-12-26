@@ -1,4 +1,7 @@
 <script lang='ts' setup>
+defineOptions({
+  description: '简单画板',
+})
 </script>
 
 <template>

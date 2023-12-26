@@ -1,9 +1,6 @@
 <script lang='ts' setup>
-defineOptions({
-  name: 'DemoChallenge',
-})
-
 const router = useRouter()
+const route = useRoute()
 
 const footerEnter = ref(false)
 
@@ -51,8 +48,7 @@ router.beforeEach(() => {
   visibleList.value = false
 })
 
-const r = useRoute()
-const title = r.fullPath.split('/').at(-1)
+const title = computed(() => route.fullPath.split('/').at(-1))
 
 onUnmounted(() => {
   stop()
@@ -71,8 +67,14 @@ onUnmounted(() => {
       {{ title }}
     </div>
   </header>
-  <main min-h="[calc(100vh-64px-52px)]" pb-39px>
-    <RouterView />
+  <main min-h="[calc(100vh-64px-52px)]" relative overflow-hidden pb-39px>
+    <RouterView v-slot="{ Component }">
+      <Transition name="demo-page">
+        <div :key="route.path">
+          <component :is="Component" />
+        </div>
+      </Transition>
+    </RouterView>
   </main>
   <footer absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 text-left text-26px>
     <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">

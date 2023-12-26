@@ -1,17 +1,20 @@
-<script lang='ts' setup>
+<script lang='ts' setup generic="T extends {
+  path: string;
+  name?: string;
+  description?: string;
+}"
+>
 import type { CSSProperties } from 'vue'
 
 defineOptions({ name: 'DemochallengeList' })
 const props = defineProps<{
-  list: {
-    path: string
-    name: string | undefined
-  }[]
+  list: T[]
 }>()
 const { push } = useRouter()
 
 const activeIndex = ref(7)
 const scrollRef = ref<HTMLDivElement>()
+const searchName = ref()
 
 function pageJump(url: string) {
   push(url)
@@ -33,26 +36,45 @@ function wheel(e: WheelEvent) {
   else
     activeIndex.value = activeIndex.value + 1 > props.list.length - 1 ? 0 : activeIndex.value + 1
 }
+
+watch(searchName, (newValue, oldValue) => {
+  const index = props.list.map(item => item.name?.toLocaleLowerCase()).findIndex(item => item?.includes(`${newValue}`.toLocaleLowerCase()))
+  console.log(111)
+
+  if (index !== -1)
+    activeIndex.value = index
+})
 </script>
 
 <template>
   <div
-    ref="scrollRef"
+    ref="scrollRef" relative
     w-full overflow-hidden border py-200px
     class="box"
     @wheel="wheel"
   >
+    <div absolute left-0 top-0 pt-15px>
+      <InputAnimate v-model="searchName" placeholder="search" />
+    </div>
     <div flex transition="~ 500" :style="boxStyle">
       <template v-for="item, i in list" :key="item.path">
         <div
           class="item" :class="i === activeIndex && 'active'"
-          transition="~ 500" flex shrink-0 select-none items-center justify-center bg-red
+          transition="~ 500" shrink-0 select-none bg-red pt-10px
+          :title="item.name"
           :style="{
             transform: `perspective(${1000}px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
           }"
           @click="pageJump(item.path)"
         >
-          {{ item.name }}
+          <div h-full w-full overflow-hidden>
+            <h1 text-center font-bold>
+              {{ item.name }}
+            </h1>
+            <p mt-15px px-4px text-14px>
+              {{ item.description }}
+            </p>
+          </div>
           <div class="left" />
           <div class="right" />
         </div>

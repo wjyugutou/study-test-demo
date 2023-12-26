@@ -1,4 +1,8 @@
 <script lang='ts' setup>
+defineOptions({
+  description: '文件上传',
+})
+
 const file = ref<HTMLInputElement>()
 
 function onChange(e: Event) {
@@ -19,5 +23,3 @@ function onSubmit(e: Event) {
     </button>
   </form>
 </template>
-
-

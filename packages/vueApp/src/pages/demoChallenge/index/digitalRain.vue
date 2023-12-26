@@ -1,8 +1,9 @@
 <script lang='ts' setup>
 import { random } from 'lodash-es'
 
-defineOptions({ name: 'DigitalRain' })
-
+defineOptions({
+  description: '数字雨',
+})
 interface RainList {
   index: number
   length: number
@@ -89,7 +90,7 @@ onMounted(() => {
 <template>
   <div relative>
     <canvas ref="canvasEl" :width="width" :height="height" bg="#000" />
-    <div absolute top-0 left-0 right-0 op-0 hover:op-100 transition-opacity>
+    <div absolute left-0 right-0 top-0 op-0 transition-opacity hover:op-100>
       <button class="basic-btn" @click="animate">
         next
       </button>
@@ -99,7 +100,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style  scoped>
-
-</style>

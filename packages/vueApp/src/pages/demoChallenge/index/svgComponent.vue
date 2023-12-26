@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-defineOptions({ name: 'SvgComponent' })
+defineOptions({ description: 'svg组件' })
 </script>
 
 <template>

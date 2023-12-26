@@ -3,21 +3,25 @@ const name = useSessionStorage('hi-name', '鱼骨头')
 
 const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
 
-const demochallengeList = Object.keys(demoChallengeFile).map((item) => {
-  const fileName = item.split('/').at(-1)
+const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) => {
+  const fileName = key.split('/').at(-1)
   let name = fileName?.substring(0, fileName.length - 4)
-  if (item.includes('index.vue'))
-    name = item.split('/').at(-2)
+  if (key.includes('index.vue'))
+    name = key.split('/').at(-2)
+  console.log({ key, module })
 
   return {
-    path: item.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
+    path: key.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
     name,
+    description: (module as any).default.description as string,
   }
 })
+console.log(demochallengeList)
 
 demochallengeList.push({
   name: 'starport',
   path: '/flip/flipOne',
+  description: '',
 })
 </script>
 

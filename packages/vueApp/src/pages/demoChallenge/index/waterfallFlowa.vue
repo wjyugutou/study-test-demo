@@ -1,8 +1,10 @@
 <script lang='ts' setup>
 import { random } from 'lodash-es'
 
+defineOptions({ description: '瀑布流' })
+
 const arr = [77, 50, 20, 15, 83, 85, 87]
-const a = ref(new Array(20).fill(''))
+const a = ref(Array.from({ length: 20 }).fill(''))
 </script>
 
 <template>

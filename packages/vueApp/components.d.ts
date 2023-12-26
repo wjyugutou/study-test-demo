@@ -9,7 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Astralbackground: typeof import('./src/components/Astralbackground/index.vue')['default']
     AsyncComponent: typeof import('./src/components/AsyncComponent.vue')['default']
-    Basic: typeof import('./src/components/ssrComponents/basic.vue')['default']
+    Basic: typeof import('./src/components/ssrComponents/Basic.vue')['default']
     CanvasDraw: typeof import('./src/components/CanvasDraw/index.vue')['default']
     CanvasTool: typeof import('./src/components/CanvasDraw/CanvasTool.vue')['default']
     Carousel: typeof import('./src/components/Carousel/index.vue')['default']

@@ -3,6 +3,10 @@ import { renderToString } from 'vue/server-renderer'
 import { createSSRApp } from 'vue'
 import Basic from '@/components/ssrComponents/Basic.vue'
 
+defineOptions({
+  description: 'vue: createSSRApp,renderToString 方法',
+})
+
 const divRef = ref<HTMLDivElement>()
 const app = createSSRApp(Basic)
 
@@ -22,7 +26,3 @@ onMounted(() => {
   <div ref="divRef" />
   <Basic />
 </template>
-
-<style scoped>
-
-</style>

@@ -9,10 +9,18 @@ const props = withDefaults(defineProps<{
 })
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string): void
+  (e: 'input', ev: Event): void
+  (e: 'change', ev: Event): void
+
 }>()
 const input = ref<HTMLInputElement>()
 function inputChange(e: Event) {
+  emits('change', e)
+}
+
+function inputInput(e: Event) {
   emits('update:modelValue', (e.target as any).value)
+  emits('input', e)
 }
 
 onMounted(() => {
@@ -23,8 +31,8 @@ onMounted(() => {
 
 <template>
   <div class="inputBox">
-    <input ref="input" :value="modelValue" required @change="inputChange">
-    <label text-gray-500>
+    <input ref="input" :value="modelValue" required @change="inputChange" @input="inputInput">
+    <label>
       <span
         v-for="v, i in placeholder.length" :key="i" :style="{
           transitionDelay: `${i * 30}ms`,
@@ -49,6 +57,8 @@ onMounted(() => {
     left: 0;
     padding: 0 10px;
     pointer-events: none;
+
+    @apply: text-gray-500;
 
     & span {
       display: inline-block;
