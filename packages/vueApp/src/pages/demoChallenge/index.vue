@@ -7,11 +7,11 @@ const footerEnter = ref(false)
 const visibleList = ref(false)
 
 // demo文件列表
-const demoList = import.meta.glob<Record<string, any>>('./index/*.vue', { eager: true })
+const demoList = import.meta.glob<Record<string, any>>('./index/*.vue')
 
 const allDemo = Object.entries(demoList).map(([path, module]) => {
-  const label = path.replace('./index/', '').replace('.vue', '')
-  return { path: `/demoChallenge/${label}`, label: module?.default?.label || label }
+  const name = path.replace('./index/', '').replace('.vue', '')
+  return { path: `/demoChallenge/${name}`, label: name }
 })
 
 const stop = watchEffect(() => {
@@ -67,10 +67,10 @@ onUnmounted(() => {
       {{ title }}
     </div>
   </header>
-  <main min-h="[calc(100vh-64px-52px)]" relative overflow-hidden pb-39px>
+  <main relative h-1181px overflow-hidden pb-39px>
     <RouterView v-slot="{ Component }">
       <Transition name="demo-page">
-        <div :key="route.path">
+        <div :key="route.path" h-full w-full>
           <component :is="Component" />
         </div>
       </Transition>

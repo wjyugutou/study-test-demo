@@ -1,4 +1,5 @@
 <script lang='ts' setup>
+defineOptions({ name: 'VirtualListItem' })
 const { index } = defineProps<{
   index: number
 }>()
@@ -18,7 +19,3 @@ onMounted(() => {
     <slot />
   </div>
 </template>
-
-<style scoped>
-
-</style>

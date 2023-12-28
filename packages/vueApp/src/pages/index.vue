@@ -8,7 +8,6 @@ const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) 
   let name = fileName?.substring(0, fileName.length - 4)
   if (key.includes('index.vue'))
     name = key.split('/').at(-2)
-  console.log({ key, module })
 
   return {
     path: key.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
@@ -16,7 +15,6 @@ const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) 
     description: (module as any).default.description as string,
   }
 })
-console.log(demochallengeList)
 
 demochallengeList.push({
   name: 'starport',

@@ -16,6 +16,9 @@ interface Props {
   strategy?: Strategy
   autoPlacement?: AutoPlacementOptions | boolean
 }
+
+defineOptions({ name: 'Popover' })
+
 const props = withDefaults(defineProps<Props>(), {
   mode: 'hover',
   offset: 15,
@@ -174,6 +177,7 @@ onUnmounted(() => {
 
 .popover_arrow {
   @apply: w-15px h-15px bg-red-400  bg-[var(--popover-bg)];
+
   background-color: red;
 }
 </style>

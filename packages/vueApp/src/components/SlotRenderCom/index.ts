@@ -1,17 +1,21 @@
+import { type Component, type PropType, isVNode } from 'vue'
+
 const SlotRender = defineComponent({
   name: 'SlotRender',
+  abstract: true,
   props: ['vnode'],
   emits: {
-    mounted(el: HTMLElement) {
-      return el
+    mounted() {
+      return true
     },
   },
-  setup(props, { emit }) {
-    const instance = getCurrentInstance()
+  setup(props, { emit, slots }) {
     onMounted(() => {
-      emit('mounted', instance?.proxy?.$el)
+      emit('mounted')
     })
-    return () => props.vnode
+    console.log(isVNode(props.vnode))
+
+    return () => slots.default?.()
   },
 })
 export default SlotRender

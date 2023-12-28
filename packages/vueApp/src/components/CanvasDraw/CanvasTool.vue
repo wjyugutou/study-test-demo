@@ -2,6 +2,7 @@
 import type { Position } from '@vueuse/core'
 import { CanvasConfigKey } from './canstans'
 
+defineOptions({ name: 'CanvasTool' })
 const state = inject(CanvasConfigKey)!
 const eraser = ref<HTMLDivElement>()
 

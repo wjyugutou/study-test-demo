@@ -1,18 +1,34 @@
 <script lang='ts' setup>
-import type { CSSProperties, Ref } from 'vue'
-import { modalProps } from '.'
+import type { CSSProperties, Ref, VNode } from 'vue'
+
 import { useDrag } from '@/composables'
 import { isNumber } from '@/utils'
 
-const props = defineProps(modalProps)
+defineOptions({ name: 'Modal' })
+
+const props = withDefaults(defineProps<{
+  modelValue: boolean
+  appendTo?: string | Element
+  title: string
+  width?: number
+  showMask?: boolean
+  drag?: boolean
+  maskClass?: string
+  clickMaskClose?: boolean
+  footerClass?: string
+  class?: string
+  style?: CSSProperties
+  content?: string | number
+}>(), {
+  width: 500,
+  showMask: true,
+  drag: true,
+  clickMaskClose: true,
+})
 
 const emits = defineEmits<{
   (e: 'update:modelValue', visible: boolean): void
 }>()
-
-defineOptions({
-  name: 'Modal',
-})
 
 const dragEle = ref() as Ref<HTMLElement>
 
@@ -78,18 +94,23 @@ function clickMaskHandle() {
 .modal_container {
   @apply: min-w-400px w-fit border-1 border-gray-400 border-rd-10px overflow-hidden z-[var(--modal-z-index)] mx-auto mt-15vh;
 }
+
 .modal_header {
   @apply: pl-2 pr-10 text-7 border-b-1 border-gray-400 relative  bg-[var(--modal-header-bg)];
 }
+
 .modal_title_text {
   user-select: none;
 }
+
 .modal_close {
   @apply: absolute top-50% right-2 translate-y--50% i-carbon-close hover:text-#fff cursor-pointer text-26px;
 }
+
 .modal_content {
   @apply: p-4 bg-[var(--modal-content-bg)]
 }
+
 .modal_footer {
   @apply: p-4  bg-[var(--modal-footer-bg)];
 }
@@ -104,13 +125,13 @@ function clickMaskHandle() {
 
 @keyframes modal-enter {
   0% {
-    transform: translate(0, -20px);
     opacity: 0;
+    transform: translate(0, -20px);
   }
 
   100% {
-    transform: translate(0, 0);
     opacity: 1;
+    transform: translate(0, 0);
   }
 }
 </style>

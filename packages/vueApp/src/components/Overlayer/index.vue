@@ -1,6 +1,8 @@
 <script lang='ts' setup>
 import type { PropType } from 'vue'
 
+defineOptions({ name: 'Overlayer' })
+
 defineProps({
   mask: {
     required: true,
@@ -13,8 +15,6 @@ defineProps({
 const emits = defineEmits<{
   click: [e: Event]
 }>()
-
-defineOptions({ name: 'Overlayer' })
 
 function clickHandle(e: Event) {
   emits('click', e)

@@ -15,11 +15,13 @@
     "taze": "taze major -w && pnpm i"
   },
   "dependencies": {
+    "@tsparticles/vue3": "^3.0.0",
     "@vueuse/core": "^10.7.0",
     "@yugutou/utils": "workspace:*",
     "autoprefixer": "^10.4.16",
     "canvas-confetti": "^1.9.2",
     "matter-js": "^0.19.0",
+    "tsparticles": "^3.0.2",
     "vue": "^3.3.13",
     "vue-router": "^4.2.5"
   },

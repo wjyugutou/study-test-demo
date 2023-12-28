@@ -60,7 +60,6 @@ watch(searchName, (newValue, oldValue) => {
       <template v-for="item, i in list" :key="item.path">
         <div
           class="item" :class="i === activeIndex && 'active'"
-          transition="~ 500" shrink-0 select-none bg-red pt-10px
           :title="item.name"
           :style="{
             transform: `perspective(${1000}px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
@@ -75,8 +74,8 @@ watch(searchName, (newValue, oldValue) => {
               {{ item.description }}
             </p>
           </div>
-          <div class="left" />
-          <div class="right" />
+          <div class="left" transition="~ 500" />
+          <div class="right" transition="~ 500" />
         </div>
       </template>
     </div>
@@ -92,11 +91,18 @@ watch(searchName, (newValue, oldValue) => {
 .item {
   position: relative;
   margin: 0 20px;
+  padding-top: 10px;
   width: 130px;
   height: 210px;
   word-break: break-all;
+  background-color: #56585D;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  transition-property: box-shadow;
   cursor: pointer;
+  user-select: none;
   transform-style: preserve-3d;
+  flex-shrink:0;
 }
 
 .left,
@@ -105,7 +111,10 @@ watch(searchName, (newValue, oldValue) => {
   top: 0;
   width: 30px;
   height: 210px;
-  background-color: aquamarine;
+  background-color: #64a68d;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  transition-property: box-shadow;
   backface-visibility: hidden;
 }
 

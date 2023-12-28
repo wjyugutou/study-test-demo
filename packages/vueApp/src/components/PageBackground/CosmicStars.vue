@@ -2,8 +2,6 @@
 import { randomColor } from '@yugutou/utils'
 import { isDark } from '@/composables'
 
-defineOptions({ name: 'Astralbackground' })
-
 interface Star { x: number;y: number; z: number }
 
 const canvas = shallowRef<HTMLCanvasElement>()

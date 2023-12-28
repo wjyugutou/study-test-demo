@@ -1,6 +1,8 @@
 <script lang='ts' setup>
 import confetti from 'canvas-confetti'
 
+defineOptions({ name: 'Fireworks' })
+
 const props = defineProps<{
   passed: boolean
 }>()

@@ -1,6 +1,8 @@
 <script lang='ts' setup>
 import { StarportKey } from './constants'
 
+defineOptions({ name: 'Starport' })
+
 const props = withDefaults(defineProps<{
   portId: string | number
   duration?: number
@@ -8,8 +10,6 @@ const props = withDefaults(defineProps<{
 }>(), {
   duration: 1800, timingfunc: 'cubic-bezier(0.6, 0.3, 0.5, 0.6)',
 })
-
-defineOptions({ name: 'StarportProxy' })
 
 const attrs = useAttrs()
 
@@ -47,5 +47,3 @@ onBeforeUnmount(() => {
 <template>
   <div :id="id" ref="el" overflow-hidden />
 </template>
-
-

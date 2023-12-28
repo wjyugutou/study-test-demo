@@ -16,15 +16,15 @@ function toggleHandle() {
 </script>
 
 <template>
-  <div gap-2 flex justify-center>
-    <button btn @click="toggleHandle">
+  <div flex justify-center gap-2>
+    <button class="basic-btn" @click="toggleHandle">
       ToggleSize
     </button>
   </div>
 
   <router-link
     v-for="item in imgs"
-    :key="item.id" :to="`/flip/flip-two/${item.id}`"
+    :key="item.id" :to="`/flip/flipTwo/${item.id}`"
   >
     <div pb-2>
       <Starport :port-id="item.id" :style="style">

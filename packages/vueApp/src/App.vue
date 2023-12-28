@@ -3,13 +3,13 @@
 
 <template>
   <StarportCarrier>
-    <Astralbackground>
+    <PageBackground>
       <main p="x-4" relative font-sans text="gray-700 dark:gray-200">
         <router-view />
       </main>
       <footer h-52px text-center>
         <Footer />
       </footer>
-    </Astralbackground>
+    </PageBackground>
   </StarportCarrier>
 </template>
