@@ -26,6 +26,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
       '@/': `${path.resolve(__dirname, './src')}/`,
     },
   },
+
   plugins: [
 
     Vue(),

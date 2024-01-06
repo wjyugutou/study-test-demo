@@ -9,6 +9,10 @@ const router = useRouter()
     <button class="icon-btn !outline-none" @click="router.push('/')">
       <div i-carbon-home />
     </button>
+    <button class="icon-btn !outline-none" @click="router.push('/blog')">
+      <div v-if="isDark" i-carbon-doc />
+      <div v-else i-carbon-sun />
+    </button>
     <button class="icon-btn !outline-none" @click="toggleDark">
       <div v-if="isDark" i-carbon-moon />
       <div v-else i-carbon-sun />

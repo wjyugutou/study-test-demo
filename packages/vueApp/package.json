@@ -21,6 +21,7 @@
     "autoprefixer": "^10.4.16",
     "canvas-confetti": "^1.9.2",
     "matter-js": "^0.19.0",
+    "prismjs": "^1.29.0",
     "tsparticles": "^3.0.2",
     "vue": "^3.3.13",
     "vue-router": "^4.2.5"
@@ -28,15 +29,18 @@
   "devDependencies": {
     "@floating-ui/vue": "^1.0.2",
     "@iconify-json/carbon": "^1.1.27",
+    "@iconify-json/material-symbols": "^1.1.69",
     "@types/canvas-confetti": "^1.6.4",
     "@types/matter-js": "^0.19.5",
     "@types/node": "^20.10.5",
+    "@types/prismjs": "^1.26.3",
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/test-utils": "^2.4.3",
     "unplugin-auto-import": "^0.17.2",
     "unplugin-vue-components": "^0.26.0",
     "unplugin-vue-inspector": "^1.0.2",
     "vite-plugin-pages": "^0.32.0",
+    "vite-plugin-prismjs": "^0.0.8",
     "vitest": "^1.1.0",
     "vue-tsc": "^1.8.26"
   }

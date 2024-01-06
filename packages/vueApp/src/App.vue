@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+onErrorCaptured((err, instance, info) => {
+  console.log({ err, instance, info })
+})
 </script>
 
 <template>

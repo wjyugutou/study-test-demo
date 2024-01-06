@@ -13,7 +13,7 @@ const options = {
   interactivity: {
     events: {
       onClick: {
-        enable: true,
+        enable: false,
         mode: 'push',
         load: () => {
           console.log(11111)

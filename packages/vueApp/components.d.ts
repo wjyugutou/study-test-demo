@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ArrowIcon: typeof import('./src/components/ArrowIcon.vue')['default']
     Astralbackground: typeof import('./src/components/Astralbackground/index.vue')['default']
     AsyncComponent: typeof import('./src/components/AsyncComponent.vue')['default']
     Basic: typeof import('./src/components/ssrComponents/Basic.vue')['default']
@@ -15,6 +16,7 @@ declare module 'vue' {
     Carousel: typeof import('./src/components/Carousel/index.vue')['default']
     CarouselDot: typeof import('./src/components/Carousel/CarouselDot.vue')['default']
     CarouselItem: typeof import('./src/components/Carousel/CarouselItem.vue')['default']
+    CodeLine: typeof import('./src/components/CodeLine.vue')['default']
     CosmicStars: typeof import('./src/components/PageBackground/CosmicStars.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     CssVirtualList: typeof import('./src/components/VirtualList/CssVirtualList.vue')['default']
@@ -35,6 +37,9 @@ declare module 'vue' {
     StarportCarrier: typeof import('./src/components/Starport/StarportCarrier.vue')['default']
     StarportCraft: typeof import('./src/components/Starport/StarportCraft.vue')['default']
     TheImage: typeof import('./src/components/TheImage.vue')['default']
+    Treelist: typeof import('./src/components/Treelist/index.vue')['default']
+    TreeList: typeof import('./src/components/TreeList/index.vue')['default']
+    TreeListItem: typeof import('./src/components/Treelist/TreeListItem.vue')['default']
     Tsparticles: typeof import('./src/components/PageBackground/Tsparticles.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./src/components/VirtualList/VirtualListItem.vue')['default']
