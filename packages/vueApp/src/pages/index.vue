@@ -31,4 +31,5 @@ demochallengeList.push({
     </router-link>
   </div>
   <DemochallengeList :list="demochallengeList" />
+  <TextFallenStreet />
 </template>
