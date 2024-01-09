@@ -4,10 +4,10 @@ const name = useSessionStorage('hi-name', '鱼骨头')
 const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
 
 const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) => {
-  const fileName = key.split('/').at(-1)
-  let name = fileName?.substring(0, fileName.length - 4)
+  const fileName = key.split('/').at(-1)!
+  let name = fileName.substring(0, fileName.length - 4)
   if (key.includes('index.vue'))
-    name = key.split('/').at(-2)
+    name = key.split('/').at(-2)!
 
   return {
     path: key.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
@@ -31,5 +31,4 @@ demochallengeList.push({
     </router-link>
   </div>
   <DemochallengeList :list="demochallengeList" />
-  <TextFallenStreet />
 </template>

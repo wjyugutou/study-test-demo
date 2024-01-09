@@ -7,8 +7,8 @@ onErrorCaptured((err, instance, info) => {
 <template>
   <StarportCarrier>
     <PageBackground>
-      <main p="x-4" relative font-sans text="gray-700 dark:gray-200">
-        <router-view />
+      <main class="relative max-h-[calc(100vh-52px)] overflow-auto px-4 text-gray-700 font-sans dark:text-gray-200">
+        <RouterView />
       </main>
       <footer h-52px text-center>
         <Footer />
