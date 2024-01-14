@@ -10,7 +10,6 @@ import {
   Render,
   Runner,
 } from 'matter-js'
-import { isDark } from '@/composables'
 
 defineOptions({ description: '物理引擎库 2d' })
 

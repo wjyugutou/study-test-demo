@@ -1,7 +1,6 @@
 <script lang='ts' setup>
 import type { CSSProperties, Ref, VNode } from 'vue'
 
-import { useDrag } from '@/composables'
 import { isNumber } from '@/utils'
 
 defineOptions({ name: 'Modal' })

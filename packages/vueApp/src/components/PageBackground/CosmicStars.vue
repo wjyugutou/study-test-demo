@@ -1,6 +1,5 @@
 <script lang='ts' setup>
 import { randomColor } from '@yugutou/utils'
-import { isDark } from '@/composables'
 
 interface Star { x: number;y: number; z: number }
 

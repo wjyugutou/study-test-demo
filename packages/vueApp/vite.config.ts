@@ -82,6 +82,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
         'vue-router',
         '@vueuse/core',
       ],
+      dirs: ['./src/composables'],
       dts: true,
     }),
 

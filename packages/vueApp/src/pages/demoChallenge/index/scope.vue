@@ -1,6 +1,5 @@
 <script lang='ts' setup>
 import type { CSSProperties } from 'vue'
-import { useDrag } from '@/composables'
 
 defineOptions({
   description: '炫彩边框 动画',

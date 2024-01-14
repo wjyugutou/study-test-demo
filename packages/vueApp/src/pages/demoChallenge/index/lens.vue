@@ -1,6 +1,5 @@
 <script lang='ts' setup>
 import type { CSSProperties } from 'vue'
-import { useDrag } from '@/composables'
 
 defineOptions({ description: '模糊图片 鼠标在哪里哪里清晰' })
 
