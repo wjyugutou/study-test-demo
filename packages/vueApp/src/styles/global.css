@@ -1,15 +1,7 @@
-@import url('./commonvariable.css');
+@import url('./componentsVariable.css');
 @import url('./unoVariable.css');
 @import url('./variable.css');
 @import url('./transition.css');
-
-html,
-body,
-#app {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
 
 html {
   background: var(--bg-color);
@@ -23,3 +15,6 @@ label {
   user-select: none;
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
