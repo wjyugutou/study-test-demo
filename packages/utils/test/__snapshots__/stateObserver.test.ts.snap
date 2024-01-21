@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`stateObserver updateFn 1`] = `undefined`;
+
+exports[`stateObserver updateFn 2`] = `1`;

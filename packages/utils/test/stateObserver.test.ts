@@ -5,13 +5,24 @@ const so = stateObserver({ name: 'stateObserver', age: 14 })
 so.on('nameUpdate', () => {})
 
 function ageUpdate(oldValue: number, newValue: number) {
-  console.log('ageUpdate', { oldValue, newValue })
+  console.log('ageUpdateFn', { oldValue, newValue })
 }
+
 so.on('ageUpdate', ageUpdate)
 
+so.on('ageUpdate', () => {
+  console.log('ageUpdate 222')
+})
+
 test('stateObserver updateFn', () => {
-  const spy = vi.spyOn(so, 'on')
+  const spyF = vi.fn(ageUpdate)
+
   so.state.age = 111
+  so.state.age = 222
+  so.state.age = 333
+  console.log('getMockName', spyF.getMockName())
+
+  expect(spyF).toHaveBeenCalled()
+
   // expect(so.state.age = 20).toMatchSnapshot()
-  expect(spy).toHaveBeenCalled()
 })

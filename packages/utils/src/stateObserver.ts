@@ -15,6 +15,7 @@ export function stateObserver<T>(state: T extends object ? T : never) {
     set(target, p, newValue, receiver) {
       const oldValue = Reflect.get(target, p)
       const handler = Reflect.get(handlers, `${p as string}Update`)
+
       if (Array.isArray(handler)) {
         handler.forEach((cb) => {
           cb(oldValue as T[string & keyof T], newValue)
@@ -30,12 +31,13 @@ export function stateObserver<T>(state: T extends object ? T : never) {
   return {
     state: stateProxy,
     on: (changeName: HandlersType<T>['0'], cb: HandlersType<T>['1']) => {
-      const handler = Reflect.get(handlers, `${changeName}Update`)
+      const handler = Reflect.get(handlers, `${changeName}`)
+
       if (Array.isArray(handler))
         handler.push(cb)
 
       else
-        Reflect.set(handlers, `${changeName}Update`, [cb])
+        Reflect.set(handlers, `${changeName}`, [cb])
     },
   } as StateObserver<T>
 }
