@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`stateObserver 1`] = `10`;
+
+exports[`stateObserver 2`] = `20`;

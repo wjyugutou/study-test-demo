@@ -7,7 +7,7 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "testUtil": "pnpm --filter=@yugutou/utils test",
     "vue": "pnpm --filter=vue-app dev",
     "react": "pnpm  --filter=react-app dev",
     "nuxt": "pnpm --filter=nuxt-app dev",
