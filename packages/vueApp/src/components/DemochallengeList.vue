@@ -94,7 +94,6 @@ watch(searchName, (newValue, oldValue) => {
   background-color: #56585D;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
-  transition-property: box-shadow;
   cursor: pointer;
   user-select: none;
   transform-style: preserve-3d;
