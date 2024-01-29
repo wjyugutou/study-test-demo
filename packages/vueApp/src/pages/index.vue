@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'], { eager: true })
+const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'])
 
 const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) => {
   const fileName = key.split('/').at(-1)!
@@ -12,14 +12,14 @@ const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) 
   return {
     path: key.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
     name,
-    description: (module as any).default.description as string,
+    // description: (module as any).default.description as string,
   }
 })
 
 demochallengeList.push({
   name: 'starport',
   path: '/flip/flipOne',
-  description: '',
+  // description: '',
 })
 </script>
 

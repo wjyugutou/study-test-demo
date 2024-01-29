@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import type { BlockState } from '../type'
+import type { BlockState } from './type'
 
 defineProps<{
   block: BlockState
@@ -26,11 +26,9 @@ function getBlockClass(block: BlockState) {
 
 <template>
   <button
-    flex
-    items-center
-    justify-center
+
     m="0.5"
-    w-10 h-10 border
+    h-10 w-10 flex items-center justify-center border
     :class="getBlockClass(block)"
   >
     <template v-if="block.flagged">
