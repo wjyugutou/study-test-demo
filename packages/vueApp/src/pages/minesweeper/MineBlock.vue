@@ -7,7 +7,7 @@ defineProps<{
 }>()
 
 const numberColors = [
-  'text-trans',
+  'text-transparent',
   'text-red-500',
   'text-blue-500',
   'text-yellow-500',
@@ -26,7 +26,6 @@ function getBlockClass(block: BlockState) {
 
 <template>
   <button
-
     m="0.5"
     h-10 w-10 flex items-center justify-center border
     :class="getBlockClass(block)"
