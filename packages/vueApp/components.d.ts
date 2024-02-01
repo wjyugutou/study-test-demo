@@ -38,7 +38,6 @@ declare module 'vue' {
     Tsparticles: typeof import('./src/components/PageBackground/Tsparticles.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./src/components/VirtualList/VirtualListItem.vue')['default']
-    VkScroll: typeof import('./src/components/vkScroll.vue')['default']
     WaterfallFlow: typeof import('./src/components/WaterfallFlow/index.vue')['default']
   }
 }
