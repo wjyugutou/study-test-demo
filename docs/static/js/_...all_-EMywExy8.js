@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper-x3n3nnut.js";import{o as e,a as _}from"../../assets/index-Jf8bmGHu.js";const r={};function t(c,n){return e(),_("div",null," Not Found ")}const l=o(r,[["render",t]]);export{l as default};
