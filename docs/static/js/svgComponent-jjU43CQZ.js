@@ -1,1 +1,0 @@
-import{d as o,r as t,o as a,a as c,h as n,F as s}from"../../assets/index-Jf8bmGHu.js";const l=o({description:"svg组件",__name:"svgComponent",setup(r){return(m,p)=>{const e=t("SvgIcon");return a(),c(s,null,[n(e,{name:"icon-1",style:{width:"100px",height:"100px"}}),n(e,{name:"icon-2"}),n(e,{name:"icon-3"}),n(e,{name:"icon-4",color:"blue"})],64)}}});export{l as default};

@@ -1,0 +1,1 @@
+import{d as e,i as o,D as s,o as t,a}from"../../assets/index-05tj2T3Y.js";const n={id:"video",class:"vjs-big-play-centered",src:""},p=e({description:"videojs demo",__name:"videojsPlayRemp",setup(c){return o(),s(()=>{}),(d,i)=>(t(),a("video",n))}});export{p as default};

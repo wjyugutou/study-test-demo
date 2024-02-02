@@ -4,8 +4,8 @@ defineOptions({ name: 'PageBackground' })
 
 <template>
   <CosmicStars>
-    <Tsparticles>
-      <slot />
-    </Tsparticles>
+    <!-- <Tsparticles> -->
+    <slot />
+    <!-- </Tsparticles> -->
   </CosmicStars>
 </template>

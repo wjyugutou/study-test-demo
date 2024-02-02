@@ -5,7 +5,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <nav h-full flex items-center justify-center gap-2 text-xl>
+  <nav class="footer h-full flex items-center justify-center gap-2 text-xl">
     <button class="icon-btn !outline-none" @click="router.push('/')">
       <div i-carbon-home />
     </button>
@@ -27,3 +27,11 @@ const router = useRouter()
     /> -->
   </nav>
 </template>
+
+<style scoped>
+.footer {
+  & > button {
+    pointer-events: auto;
+  }
+}
+</style>

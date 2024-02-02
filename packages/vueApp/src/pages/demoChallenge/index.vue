@@ -56,18 +56,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header mb-8px h-46px flex items-center justify-center py-5px>
+  <header class="mb-8px h-46px flex items-center justify-center py-5px">
     <div
-
       text="hover:gray-200 gray-400"
-      i-carbon-chevron-left absolute left-0 h-30px inline-30px hover:cursor-pointer
+      class="absolute left-0 h-30px inline-30px hover:cursor-pointer"
+      i-carbon-chevron-left
       @click="back"
     />
-    <div text-20px font-bold>
+    <div class="text-20px font-bold">
       {{ title }}
     </div>
   </header>
-  <main relative h-1181px overflow-hidden pb-39px>
+  <main class="relative overflow-hidden">
     <RouterView v-slot="{ Component }">
       <Transition name="demo-page">
         <div :key="route.path" h-full w-full>
@@ -76,8 +76,8 @@ onUnmounted(() => {
       </Transition>
     </RouterView>
   </main>
-  <footer absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 text-left text-26px>
-    <div cursor-pointer @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
+  <footer class="fixed bottom-0 left-0 right-0 flex items-center justify-between px-2 text-left text-26px">
+    <div class="z-2 cursor-pointer" @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">
         <div v-for="item in showDemoList" :key="item.path">
           <RouterLink :to="item.path" replace>
@@ -89,8 +89,7 @@ onUnmounted(() => {
         {{ allDemo[curIndex]?.label }}
       </template>
     </div>
-    <Counter />
-    <div cursor-pointer @click="listClickHandle">
+    <div class="z-2 cursor-pointer" @click="listClickHandle">
       list
     </div>
   </footer>
