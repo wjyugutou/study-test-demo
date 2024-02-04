@@ -27,16 +27,16 @@ import 'prismjs/plugins/match-braces/prism-match-braces.min.css'
 defineOptions({ name: 'CodeLine' })
 
 const props = withDefaults(defineProps<{
-  type?: typeof languagelist[number]
+  lang?: typeof languagelist[number]
   code: string
-}>(), { type: 'typescript' })
+}>(), { lang: 'typescript' })
 
 // 手动决定颜色显示时机 设为true
 Prism.manual = true
 // fix plugin inline-color 无效bug
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-Prism.languages.css.color = /(#[a-zA-Z]{3,6})|(rgba?)/
+Prism.languages.css.color = /(#[a-zA-Z]{3,6})|(rgba?)|([a-zA-Z]{3,6})/
 
 const languagelist = [
   'javascript', 'typescript', 'css', 'plaintext', 'html',
@@ -44,11 +44,6 @@ const languagelist = [
 
 const [collapse, setCollapse] = useToggle(false)
 const preEle = ref()
-const initheight = ref(0)
-
-const preHeight = computed(() => initheight.value === 0
-  ? undefined
-  : collapse.value ? '30px' : `${initheight.value}px`)
 
 watch(() => props.code, async (value) => {
   await nextTick()
@@ -60,13 +55,13 @@ function copyCode() {
 }
 
 onMounted(() => {
-  initheight.value = preEle.value.clientHeight
+  console.log(Prism)
 })
 </script>
 
 <template>
-  <div :class="`language-${type}`">
-    <pre ref="preEle" class="line-numbers match-braces" :class="`language-${type}`" :style="{ height: preHeight }">
+  <div :class="`language-${lang}`">
+    <pre ref="preEle" class="line-numbers match-braces" :class="`language-${lang}`" :style="{ height: collapse ? '30px' : undefined }">
       <div class="toolbar" :class="collapse ? 'important-border-b-none' : ''">
         <ArrowIcon class="important-text-24px" duration="0.3s" :rotate="collapse" @click="setCollapse()" />
 

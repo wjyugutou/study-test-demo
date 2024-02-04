@@ -1,8 +1,6 @@
 <script lang='ts' setup>
 import type { CSSProperties } from 'vue'
 
-defineOptions({ name: '' })
-
 const props = withDefaults(defineProps<{
   direction?: 'down' | 'up' | 'left' | 'right'
   toDirection?: 'down' | 'up' | 'left' | 'right'

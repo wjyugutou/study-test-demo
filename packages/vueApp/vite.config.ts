@@ -16,6 +16,20 @@ import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 // import resolve from 'vite-plugin-resolve'
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
+  build: {
+    esbuild: {
+      drop: mode === 'production' ? ['console', 'debugger'] : [],
+    },
+    outDir: `${path.resolve(__dirname, '../../docs')}/`,
+    assetsDir: 'assets/',
+    emptyOutDir: false,
+    rollupOptions: {
+      output: {
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+        chunkFileNames: 'static/js/[name]-[hash].js',
+      },
+    },
+  },
   css: {
     postcss: {
       plugins: [autoprefixer() as any],
@@ -94,15 +108,5 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
     Unocss(),
   ],
   base: command === 'serve' ? '/' : '/study-test-demo',
-  build: {
-    outDir: `${path.resolve(__dirname, '../../docs')}/`,
-    assetsDir: 'assets/',
-    emptyOutDir: false,
-    rollupOptions: {
-      output: {
-        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-        chunkFileNames: 'static/js/[name]-[hash].js',
-      },
-    },
-  },
+
 }))
