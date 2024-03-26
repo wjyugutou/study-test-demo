@@ -54,13 +54,13 @@ function addData() {
   <h1 text-12>
     {{ successOpenDatabase ? '数据库打开成功' : '数据库打开失败' }}
   </h1>
-  <button class="basic-btn" @click="openDatabase">
+  <button class="basicBtn" @click="openDatabase">
     打开数据库
   </button>
-  <button class="basic-btn" @click="addData">
+  <button class="basicBtn" @click="addData">
     添加一个数据
   </button>
-  <button class="basic-btn">
+  <button class="basicBtn">
     获取数据
   </button>
 </template>

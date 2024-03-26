@@ -15,7 +15,7 @@ export default [
     response: ({ query, body }) => {
       console.log(JSON.stringify({ query, body }))
 
-      const data = Array.from({ length: random(0, 5) }).map(item => random(101, 105))
+      const data = [101, 102, 103, 104, 105] // Array.from({ length: random(0, 5) }).map(item => random(101, 105))
 
       return {
         code: 200,

@@ -27,15 +27,15 @@ const Comp = defineComponent({
 <template>
   <div>
     <div flex justify-center gap-4>
-      <button class="basic-btn" @click="router.back">
+      <button class="basicBtn" @click="router.back">
         back
       </button>
 
-      <button class="basic-btn" @click="size += 20">
+      <button class="basicBtn" @click="size += 20">
         enlarge
       </button>
 
-      <button class="basic-btn" @click="size = 100">
+      <button class="basicBtn" @click="size = 100">
         reset
       </button>
     </div>

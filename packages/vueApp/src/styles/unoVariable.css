@@ -1,4 +1,4 @@
-.basic-btn {
+.basicBtn {
   @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500;
 } 
 

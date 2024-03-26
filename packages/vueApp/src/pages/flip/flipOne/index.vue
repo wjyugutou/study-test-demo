@@ -17,12 +17,12 @@ function toggleHandle() {
 
 <template>
   <div flex justify-center gap-2>
-    <button class="basic-btn" @click="toggleHandle">
+    <button class="basicBtn" @click="toggleHandle">
       ToggleSize
     </button>
   </div>
 
-  <router-link
+  <RouterLink
     v-for="item in imgs"
     :key="item.id" :to="`/flip/flipTwo/${item.id}`"
   >
@@ -31,5 +31,5 @@ function toggleHandle() {
         <TheImage :img="item.img" />
       </Starport>
     </div>
-  </router-link>
+  </RouterLink>
 </template>

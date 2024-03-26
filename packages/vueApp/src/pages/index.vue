@@ -38,12 +38,15 @@ const code = computed(() =>
 <template>
   <div py-2>
     <InputAnimate v-model="name" placeholder="Input&nbsp;Your&nbsp;Name" />
-    <router-link :to="`/hi/${name}`">
+    <RouterLink :to="`/hi/${name}`">
       前往
-    </router-link>
+    </RouterLink>
   </div>
   <div class="p-y-10">
     <CodeLine lang="css" :code="code" />
   </div>
   <DemochallengeList :list="demochallengeList" />
+  <RouterLink class="basicBtn" to="/keepAlive">
+    KeepAlive
+  </RouterLink>
 </template>

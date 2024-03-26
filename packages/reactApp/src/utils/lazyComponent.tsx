@@ -10,7 +10,9 @@ const Loading: FC = () => {
 }
 
 function LazyComponent(path: string) {
-  const Component = loadable(() => import(/* @vite-ignore */ path.replace('@', '..')))
+  const Component = loadable(() => import(/* @vite-ignore */ path.replace('@', '..')), {
+
+  })
   return <Component />
 }
 

@@ -91,10 +91,10 @@ onMounted(() => {
   <div relative>
     <canvas ref="canvasEl" :width="width" :height="height" bg="#000" />
     <div absolute left-0 right-0 top-0 op-0 transition-opacity hover:op-100>
-      <button class="basic-btn" @click="animate">
+      <button class="basicBtn" @click="animate">
         next
       </button>
-      <button class="basic-btn" m-l-2 @click="animate">
+      <button class="basicBtn" m-l-2 @click="animate">
         reload
       </button>
     </div>

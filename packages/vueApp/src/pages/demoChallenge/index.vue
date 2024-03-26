@@ -71,7 +71,9 @@ onUnmounted(() => {
     <RouterView v-slot="{ Component }">
       <Transition name="demo-page">
         <div :key="route.path" h-full w-full>
-          <component :is="Component" />
+          <AliveKeep>
+            <component :is="Component" />
+          </AliveKeep>
         </div>
       </Transition>
     </RouterView>
@@ -102,7 +104,7 @@ onUnmounted(() => {
       </p>
     </div>
     <template #footer>
-      <button class="basic-btn" @click="modalDrag = !modalDrag">
+      <button class="basicBtn" @click="modalDrag = !modalDrag">
         切换拖拽 {{ modalDrag }}
       </button>
     </template>

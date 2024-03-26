@@ -7,13 +7,16 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AliveKeep: typeof import('./src/components/AliveKeep.vue')['default']
     ArrowIcon: typeof import('./src/components/ArrowIcon.vue')['default']
     AsyncComponent: typeof import('./src/components/AsyncComponent.vue')['default']
     CanvasDraw: typeof import('./src/components/CanvasDraw/index.vue')['default']
     CanvasTool: typeof import('./src/components/CanvasDraw/CanvasTool.vue')['default']
     CodeLine: typeof import('./src/components/CodeLine.vue')['default']
+    copy: typeof import('./src/components/Counter copy.vue')['default']
     CosmicStars: typeof import('./src/components/PageBackground/CosmicStars.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
+    Counter2: typeof import('./src/components/Counter2.vue')['default']
     CssVirtualList: typeof import('./src/components/VirtualList/CssVirtualList.vue')['default']
     DemochallengeList: typeof import('./src/components/DemochallengeList.vue')['default']
     Fireworks: typeof import('./src/components/Fireworks/index.vue')['default']
@@ -27,9 +30,9 @@ declare module 'vue' {
     Popover: typeof import('./src/components/Popover/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Starport: typeof import('./src/components/Starport/starport.vue')['default']
-    StarportCarrier: typeof import('./src/components/Starport/starportCarrier.vue')['default']
-    StarportCraft: typeof import('./src/components/Starport/starportCraft.vue')['default']
+    Starport: typeof import('./src/components/Starport/Starport.vue')['default']
+    StarportCarrier: typeof import('./src/components/Starport/StarportCarrier.vue')['default']
+    StarportCraft: typeof import('./src/components/Starport/StarportCraft.vue')['default']
     TextFallenStreet: typeof import('./src/components/TextFallenStreet.vue')['default']
     'TextFallenStreet-Undetermined': typeof import('./src/components/TextFallenStreet--undetermined.vue')['default']
     TheImage: typeof import('./src/components/TheImage.vue')['default']
@@ -38,6 +41,6 @@ declare module 'vue' {
     Tsparticles: typeof import('./src/components/PageBackground/Tsparticles.vue')['default']
     VirtualList: typeof import('./src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./src/components/VirtualList/VirtualListItem.vue')['default']
-    WaterfallFlow: typeof import('./src/components/WaterfallFlow/index.vue')['default']
+    WaterfallFlow: typeof import('./src/components/WaterfallFlow.vue')['default']
   }
 }
