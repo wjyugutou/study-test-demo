@@ -2,18 +2,18 @@
   "compilerOptions": {
     "incremental": false,
     "target": "ES2022",
-    "lib": ["DOM", "ESNext"],
     "jsx": "preserve",
+    "lib": ["DOM", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "types": ["@webgpu/types", "node"],
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": false,
-    "skipLibCheck": true,
-    "types": ["@webgpu/types", "node"]
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "exclude": ["dist", "node_modules"]
 }
