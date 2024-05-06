@@ -30,9 +30,9 @@ const bg_img_3 = `linear-gradient(to top,#000 0%,#000 50%,transparent 50%,transp
   linear-gradient(to right,transparent 0%,transparent 25%,#000 50%,#000 100%)`
 
 const code = computed(() =>
-`.a {
-  color: red;
-}`)
+`${bg_img_1}
+${bg_img_2}
+${bg_img_3}`)
 </script>
 
 <template>
@@ -46,7 +46,4 @@ const code = computed(() =>
     <CodeLine lang="css" :code="code" />
   </div>
   <DemochallengeList :list="demochallengeList" />
-  <RouterLink class="basicBtn" to="/keepAlive">
-    KeepAlive
-  </RouterLink>
 </template>
