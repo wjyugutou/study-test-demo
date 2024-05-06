@@ -12,7 +12,7 @@ import './styles/global.css'
 
 const app = createApp(App)
 
-app.component(SvgIcon.name, SvgIcon)
+app.component(SvgIcon.name as string, SvgIcon)
 
 const router = createRouter({
   history: (import.meta.env.DEV ? createWebHistory : createWebHashHistory)(import.meta.env.BASE_URL),

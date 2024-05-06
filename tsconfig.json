@@ -6,14 +6,14 @@
     "jsx": "preserve",
     "module": "ESNext",
     "moduleResolution": "node",
-    "types": ["node"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["@webgpu/types", "node"]
   },
   "exclude": ["dist", "node_modules"]
 }
