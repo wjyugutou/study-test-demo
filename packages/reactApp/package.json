@@ -7,24 +7,23 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "taze": "taze latest -w && pnpm i"
+    "taze": "taze latest -w"
   },
   "dependencies": {
-    "@loadable/component": "^5.16.3",
-    "@yugutou/RT": "workspace:*",
+    "@loadable/component": "^5.16.4",
     "@yugutou/utils": "workspace:*",
-    "ahooks": "^3.7.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.51.1",
-    "react-router-dom": "^6.22.3",
+    "ahooks": "^3.7.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.51.4",
+    "react-router-dom": "^6.23.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@iconify-json/carbon": "^1.1.31",
+    "@iconify-json/carbon": "^1.1.32",
     "@types/loadable__component": "^5.13.9",
     "@types/react": "^18.2.70",
-    "@types/react-dom": "^18.2.22",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.6.8",
     "mockjs": "^1.1.0",
