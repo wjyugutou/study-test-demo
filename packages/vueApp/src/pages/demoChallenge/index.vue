@@ -9,7 +9,7 @@ const visibleList = ref(false)
 // demo文件列表
 const demoList = import.meta.glob<Record<string, any>>('./index/*.vue')
 
-const allDemo = Object.entries(demoList).map(([path, module]) => {
+const allDemo = Object.entries(demoList).map(([path, _module]) => {
   const name = path.replace('./index/', '').replace('.vue', '')
   return { path: `/demoChallenge/${name}`, label: name }
 })

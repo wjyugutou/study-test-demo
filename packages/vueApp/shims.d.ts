@@ -1,6 +1,7 @@
+import Prism from 'prismjs'
+
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
-  import type { defineOptions } from 'vue'
 
   const component: DefineComponent<{}, {}, any>
   export default component
@@ -23,4 +24,6 @@ interface IDBEventTarget {
 
 }
 
-interface EventTarget extends IDBEventTarget { result: IDBDatabase}
+interface EventTarget extends IDBEventTarget { result: IDBDatabase }
+
+globalThis.Prism = Prism

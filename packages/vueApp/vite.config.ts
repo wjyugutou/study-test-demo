@@ -14,8 +14,8 @@ import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 
 // import webfontDownload from 'vite-plugin-webfont-dl'
 // import resolve from 'vite-plugin-resolve'
-
-export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
+// isSsrBuild, isPreview
+export default defineConfig(({ command, mode }) => ({
   build: {
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
@@ -50,6 +50,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
     UnpluginSvgComponent({
       iconDir: './src/static/svg',
       dts: true,
+      dtsDir: './types/',
       prefix: 'icon',
       treeShaking: true,
       componentStyle: 'width: 50px; height: 50px;',
@@ -91,17 +92,20 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
+      eslintrc: {
+        enabled: true, // <-- this
+      },
       imports: [
         'vue',
         'vue-router',
         '@vueuse/core',
       ],
       dirs: ['./src/composables'],
-      dts: true,
+      dts: './types/auto-import.d.ts',
     }),
 
     // https://github.com/antfu/vite-plugin-components
-    Components({ dts: true }),
+    Components({ dts: './types/components.d.ts' }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config

@@ -17,7 +17,16 @@ Prism.languages.css.color = /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})|(\#000 
 // /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})/
 
 const languagelist = [
-  'javascript', 'typescript', 'css', 'plaintext', 'html', 'markdown', 'jsx', 'tsx', 'xml', 'json',
+  'javascript',
+  'typescript',
+  'css',
+  'plaintext',
+  'html',
+  'markdown',
+  'jsx',
+  'tsx',
+  'xml',
+  'json',
 ] as const
 
 const [collapse, setCollapse] = useToggle(!!props.isCollapse)
