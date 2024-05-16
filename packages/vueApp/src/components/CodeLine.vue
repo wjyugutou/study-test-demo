@@ -13,7 +13,7 @@ window.Prism.manual = true
 
 // fix plugin inline-color 无效bug
 // @ts-expect-error color
-Prism.languages.css.color = /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})|(\#000 0\%) | transparent/
+Prism.languages.css.color = /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})| transparent/
 // /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})/
 
 const languagelist = [
@@ -32,7 +32,7 @@ const languagelist = [
 const [collapse, setCollapse] = useToggle(!!props.isCollapse)
 const preEle = ref()
 
-watch(() => props.code, (value, old) => {
+watch(() => props.code, (_value, _old) => {
   preEle.value && window.Prism.highlightElement(preEle.value)
 }, { immediate: true })
 
