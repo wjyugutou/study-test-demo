@@ -13,6 +13,8 @@ declare module 'vue' {
     CanvasDraw: typeof import('./../src/components/CanvasDraw/index.vue')['default']
     CanvasTool: typeof import('./../src/components/CanvasDraw/CanvasTool.vue')['default']
     CodeLine: typeof import('./../src/components/CodeLine.vue')['default']
+    'CodeLine copy': typeof import('./../src/components/CodeLine copy.vue')['default']
+    copy: typeof import('./../src/components/CodeLine copy.vue')['default']
     CosmicStars: typeof import('./../src/components/PageBackground/CosmicStars.vue')['default']
     Counter: typeof import('./../src/components/Counter.vue')['default']
     Counter2: typeof import('./../src/components/Counter2.vue')['default']

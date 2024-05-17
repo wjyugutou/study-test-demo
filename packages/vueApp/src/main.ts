@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router/auto'
 import Particles from '@tsparticles/vue3'
 import { loadFull } from 'tsparticles'
+import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
-import routes from '~pages'
 import SvgIcon from '~virtual/svg-component'
 
 import '@unocss/reset/tailwind.css'
@@ -16,6 +16,7 @@ app.component(SvgIcon.name as string, SvgIcon)
 
 const router = createRouter({
   history: (import.meta.env.DEV ? createWebHistory : createWebHashHistory)(import.meta.env.BASE_URL),
+  // @ts-expect-error no check
   routes,
 })
 app.use(router).use(Particles, {

@@ -8,7 +8,7 @@ defineOptions({
 })
 
 const Basic = defineComponent({
-  setup(props) {
+  setup() {
     const text = ref('111')
 
     return () => h('div', {

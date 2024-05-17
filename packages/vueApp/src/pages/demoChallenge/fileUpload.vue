@@ -5,7 +5,7 @@ defineOptions({
 
 const file = ref<HTMLInputElement>()
 
-function onChange(e: Event) {
+function onChange(_e: Event) {
   console.log(file.value?.files)
 }
 

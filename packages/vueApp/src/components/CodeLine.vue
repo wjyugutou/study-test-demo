@@ -1,20 +1,12 @@
 <script lang='ts' setup>
-import '/public/prism.min.js'
+import { codeToHtml } from 'shiki'
 
 const props = withDefaults(defineProps<{
   lang?: typeof languagelist[number]
   code: string
   title?: string
   isCollapse?: boolean
-}>(), { lang: 'typescript', isCollapse: true })
-
-// 手动决定颜色显示时机 设为true
-window.Prism.manual = true
-
-// fix plugin inline-color 无效bug
-// @ts-expect-error color
-Prism.languages.css.color = /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})| transparent/
-// /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})/
+}>(), { lang: 'typescript', isCollapse: true, code: '' })
 
 const languagelist = [
   'javascript',
@@ -29,54 +21,56 @@ const languagelist = [
   'json',
 ] as const
 
-const [collapse, setCollapse] = useToggle(!!props.isCollapse)
-const preEle = ref()
-
-watch(() => props.code, (_value, _old) => {
-  preEle.value && window.Prism.highlightElement(preEle.value)
-}, { immediate: true })
+const [collapse, setCollapse] = useToggle(!props.isCollapse)
 
 function copyCode() {
   navigator.clipboard.writeText(props.code)
 }
 
-onMounted(() => {
-  window.Prism.highlightElement(preEle.value)
+const Html = defineComponent({
+  async setup() {
+    const refDiv = ref<HTMLDivElement>()
+
+    const maxHeight = computed(() => collapse.value ? 0 : `${refDiv.value?.children?.[0].clientHeight}px`)
+    watch(maxHeight, () => {
+      console.log(refDiv)
+
+      console.log({ maxHeight: maxHeight.value })
+    })
+    const str = await codeToHtml(props.code, {
+      lang: props.lang,
+      theme: 'ayu-dark',
+    })
+
+    return () => h('div', { innerHTML: str, ref: refDiv, class: `language-${props.lang} transition-all overflow-hidden`, style: { maxHeight: maxHeight.value } })
+  },
 })
 </script>
 
 <template>
-  <div :class="`language-${lang}`">
-    <pre class="line-numbers match-braces" data-line :class="`language-${lang}`" :style="{ height: collapse ? '30px' : undefined }">
-      <div class="toolbar" :class="collapse ? 'important-border-b-none' : ''">
-        <ArrowIcon class="absolute left-0 important-text-24px" duration="0.3s" :rotate="collapse" @click="setCollapse()" />
-        <p>{{ title }}</p>
-        <span @click="copyCode">复制代码</span>
-      </div>
-      <code ref="preEle" v-text="code" />
-    </pre>
+  <div :class="`language-${lang}`" class="code-line">
+    <div class="toolbar" :class="collapse ? 'important-border-b-none' : ''">
+      <ArrowIcon class="absolute left-0 important-text-24px" duration="0.3s" :rotate="collapse" @click="setCollapse()" />
+      <p>{{ title }}</p>
+      <span @click="copyCode">复制代码</span>
+    </div>
+    <Suspense>
+      <template #fallback>
+        loading..
+      </template>
+      <template #default>
+        <Html />
+      </template>
+    </Suspense>
   </div>
 </template>
 
 <style>
-@import url('/public/prism-tomorrow-night.css');
-
-pre[class*="language-"].line-numbers {
-  padding-left: 0;
-
-  & > code {
-    display: inline-block;
-  }
-}
-
-pre[class*="language-"] {
-  overflow: hidden;
+.code-line {
   position: relative;
-  margin: 0;
-  border-radius: 14px;
-  padding-bottom: 0;
+  border-radius: 10px;
 
-  & > .toolbar {
+  & .toolbar {
     display: flex;
     position: absolute;
     top: 0;
@@ -103,9 +97,9 @@ pre[class*="language-"] {
       }
     }
   }
-}
 
-pre[class*="language-"]:hover > .toolbar {
-  opacity: 1;
+  & .shiki {
+    padding: 40px;
+  }
 }
 </style>

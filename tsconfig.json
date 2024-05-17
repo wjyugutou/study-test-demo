@@ -5,7 +5,7 @@
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "types": ["@webgpu/types", "node"],
     "strict": true,
@@ -17,3 +17,9 @@
   },
   "exclude": ["dist", "node_modules"]
 }
+/**
+There are types at 'd:/DEV/DEMO/study-test-demo/packages/vueApp/node_modules/vue-router/vue-router-auto.d.ts',
+ but this result could not be resolved under your current 'moduleResolution' setting. Consider updating to 'node16', 'nodenext',
+  or 'bundler'
+
+ */

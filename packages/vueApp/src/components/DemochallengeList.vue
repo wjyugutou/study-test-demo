@@ -32,7 +32,7 @@ function wheel(e: WheelEvent) {
     activeIndex.value = activeIndex.value + 1 > props.list.length - 1 ? 0 : activeIndex.value + 1
 }
 
-watch(searchName, (newValue, oldValue) => {
+watch(searchName, (newValue) => {
   const index = props.list.map(item => item.name?.toLocaleLowerCase()).findIndex(item => item?.includes(`${newValue}`.toLocaleLowerCase()))
   console.log(111)
 

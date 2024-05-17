@@ -20,7 +20,7 @@ height.value = window.innerHeight - 52 - 40 - 50
 const rowCount = Math.ceil(height.value / fontSize)
 const colCount = Math.ceil(width.value / (fontSize))
 const data: RainList[] = Array.from({ length: colCount })
-  .map(item => ({ index: random(0, rowCount), length: random(rowCount / 2, rowCount + 20) } as RainList))
+  .map(_item => ({ index: random(0, rowCount), length: random(rowCount / 2, rowCount + 20) } as RainList))
 
 let canvas: CanvasRenderingContext2D
 
