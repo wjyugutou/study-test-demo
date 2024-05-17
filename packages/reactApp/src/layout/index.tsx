@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme'
 import Button from '@/components/Button'
 
 interface Props {
-  children: ReactNode
+  children?: ReactNode
 }
 
 const Layout: FC<Props> = ({ children }) => {

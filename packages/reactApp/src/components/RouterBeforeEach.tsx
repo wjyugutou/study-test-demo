@@ -1,12 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom'
 import { Suspense } from 'react'
 import Layout from '@/layout'
 import { useAuthStore } from '@/store'
 import pages from '~react-pages'
+import lazyComponent from '@/utils/lazyComponent'
 
 export function RouterBeforeEach() {
-  const navigator = useNavigate()
-  const location = useLocation()
   const authlist = useAuthStore(state => state.authlist)
 
   const [isPending, startTransition] = useTransition()
@@ -23,7 +21,7 @@ export function RouterBeforeEach() {
     element: lazyComponent(`@/pages/authpages/${item}`),
   }))
 
-  function getRoutes(...args) {
+  function getRoutes(...args: undefined[]) {
     console.log('getRoutes', args)
 
     return [
@@ -32,7 +30,7 @@ export function RouterBeforeEach() {
         element: lazyComponent('@/pages/login'),
       }, {
         path: '/',
-        element: <Layout/>,
+        element: <Layout />,
         children: [
           {
             path: 'home/:id?',
