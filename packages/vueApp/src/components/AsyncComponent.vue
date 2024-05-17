@@ -1,6 +1,6 @@
 <script setup lang="ts">
 function asyncFunction() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     setTimeout(() => {
       resolve(1)
     }, 2000)
@@ -27,8 +27,6 @@ function toggleStyle() {
 // }).then((val: any) => {
 //   console.log(`${val}lll`)
 // })
-
-const count = ref(1)
 
 const a = {}
 

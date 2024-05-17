@@ -3,7 +3,6 @@
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
@@ -11,11 +10,13 @@ import Inspector from 'unplugin-vue-inspector/vite'
 import autoprefixer from 'autoprefixer'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
-
+import VueRouter from 'unplugin-vue-router/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 // import webfontDownload from 'vite-plugin-webfont-dl'
 // import resolve from 'vite-plugin-resolve'
 
-export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
+// isSsrBuild, isPreview
+export default defineConfig(({ command, mode }) => ({
   build: {
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
@@ -50,6 +51,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
     UnpluginSvgComponent({
       iconDir: './src/static/svg',
       dts: true,
+      dtsDir: './types/',
       prefix: 'icon',
       treeShaking: true,
       componentStyle: 'width: 50px; height: 50px;',
@@ -83,25 +85,29 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => ({
     // https://github.com/webfansplz/vite-plugin-vue-inspector
     Inspector(),
 
-    // https://github.com/hannoeru/vite-plugin-pages
-    Pages({
+    // https://github.com/posva/unplugin-vue-router
+    VueRouter({
       exclude: ['**/components', '**/*.d.ts'],
       importMode: 'async',
+      dts: './types/vue-router.d.ts',
     }),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
+      eslintrc: {
+        enabled: true, // <-- this
+      },
       imports: [
         'vue',
-        'vue-router',
         '@vueuse/core',
+        VueRouterAutoImports,
       ],
       dirs: ['./src/composables'],
-      dts: true,
+      dts: './types/auto-import.d.ts',
     }),
 
     // https://github.com/antfu/vite-plugin-components
-    Components({ dts: true }),
+    Components({ dts: './types/components.d.ts' }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config

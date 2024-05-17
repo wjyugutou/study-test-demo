@@ -1,20 +1,16 @@
 <script lang='ts' setup>
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const demoChallengeFile = import.meta.glob(['./demoChallenge/index/**/*.vue', '!**/components/*'])
+const router = useRouter()
 
-const demochallengeList = Object.entries(demoChallengeFile).map(([key, module]) => {
-  const fileName = key.split('/').at(-1)!
-  let name = fileName.substring(0, fileName.length - 4)
-  if (key.includes('index.vue'))
-    name = key.split('/').at(-2)!
-
-  return {
-    path: key.replaceAll('.', '').replace(/(index\/)?(vue)?/g, ''),
-    name,
-    // description: (module as any).default.description as string,
-  }
-})
+const demochallengeList = router.options.routes.find(item => item.path === '/demoChallenge')!.children!.map(({ name, path }) => ({
+  name,
+  path,
+})) as {
+  path: string
+  name?: string | undefined
+  description?: string | undefined
+}[]
 
 demochallengeList.push({
   name: 'starport',
@@ -30,9 +26,9 @@ const bg_img_3 = `linear-gradient(to top,#000 0%,#000 50%,transparent 50%,transp
   linear-gradient(to right,transparent 0%,transparent 25%,#000 50%,#000 100%)`
 
 const code = computed(() =>
-`.a {
-  color: red;
-}`)
+`${bg_img_1}
+${bg_img_2}
+${bg_img_3}`)
 </script>
 
 <template>
@@ -46,7 +42,4 @@ const code = computed(() =>
     <CodeLine lang="css" :code="code" />
   </div>
   <DemochallengeList :list="demochallengeList" />
-  <RouterLink class="basicBtn" to="/keepAlive">
-    KeepAlive
-  </RouterLink>
 </template>

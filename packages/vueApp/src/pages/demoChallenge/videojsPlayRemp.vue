@@ -1,8 +1,6 @@
 <script lang='ts' setup>
 defineOptions({ description: 'videojs demo' })
 
-const player = ref()
-
 function initVideoPlayer() {
 
 }

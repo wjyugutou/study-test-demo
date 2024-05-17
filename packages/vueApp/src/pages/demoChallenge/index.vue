@@ -6,13 +6,10 @@ const footerEnter = ref(false)
 
 const visibleList = ref(false)
 
-// demo文件列表
-const demoList = import.meta.glob<Record<string, any>>('./index/*.vue')
-
-const allDemo = Object.entries(demoList).map(([path, module]) => {
-  const name = path.replace('./index/', '').replace('.vue', '')
-  return { path: `/demoChallenge/${name}`, label: name }
-})
+const allDemo = router.options.routes.find(item => item.path === '/demoChallenge')!.children!.map(({ name, path }) => ({
+  path,
+  label: name,
+}))
 
 const stop = watchEffect(() => {
   if (router.currentRoute.value.fullPath === '/demoChallenge')

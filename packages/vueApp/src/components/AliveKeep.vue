@@ -1,7 +1,9 @@
 <!-- 缓存不销毁 -->
+<!-- eslint-disable -->
+<!-- @ts-nocheck -->
 <script lang="ts">
-import { cloneVNode, isVNode, type ConcreteComponent } from 'vue'
-
+import type { ConcreteComponent } from 'vue'
+// 
 enum ShapeFlags {
   ELEMENT = 1,
   FUNCTIONAL_COMPONENT = 1 << 1,
@@ -28,14 +30,12 @@ export default defineComponent({
 
     const sharedContext = instance.ctx
 
-
     let pendingCacheKey: CacheKey | null = null
 
     const cacheSubtree = () => {
-      if (pendingCacheKey != null) {
+      if (pendingCacheKey != null)
 
         cache.set(pendingCacheKey, instance.subTree)
-      }
     }
 
     const {
@@ -49,13 +49,11 @@ export default defineComponent({
     const storageContainer = createElement('div')
 
     sharedContext.activate = () => {
-      console.log('sharedContext.activate',);
-      
+      console.log('sharedContext.activate')
     }
 
     sharedContext.deactivate = (vnode: VNode) => {
-      console.log('sharedContext.deactivate',);
-      
+      console.log('sharedContext.deactivate')
     }
 
     onMounted(cacheSubtree)
@@ -64,20 +62,14 @@ export default defineComponent({
     let current: VNode | null = null
 
     return () => {
-
-      if (!slots.default) {
-        return null;
-      }
-
-
-      
+      if (!slots.default)
+        return null
 
       const children = slots.default!()
 
-      console.log({children});
-      
+      console.log({ children })
 
-      let vnode = children[0]
+      const vnode = children[0]
 
       const comp = vnode.type
       const name = comp.name || comp.__name
@@ -90,19 +82,17 @@ export default defineComponent({
       //   vnode = cloneVNode(vnode);
       // }
 
-
       pendingCacheKey = key
 
-
       if (cachedVNode) {
-
         vnode.el = cachedVNode.el
         vnode.component = cachedVNode.component
         // 避免 vnode 节点作为新节点被挂载
-        vnode.shapeFlag |= 512; /* COMPONENT_KEPT_ALIVE */
+        vnode.shapeFlag |= 512 /* COMPONENT_KEPT_ALIVE */
         keys.delete(key)
         keys.add(key)
-      } else {
+      }
+      else {
         keys.add(key)
         pruneCacheEntry(keys.values().next().value)
       }
@@ -121,7 +111,7 @@ export default defineComponent({
         // keys.delete(key)
       }
 
-      console.log({vnode});
+      console.log({ vnode })
 
       vnode.shapeFlag |= ShapeFlags.COMPONENT_SHOULD_KEEP_ALIVE
 
