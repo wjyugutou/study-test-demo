@@ -16,17 +16,18 @@ export function useTheme() {
   const isDark = useRef(document.documentElement.className.includes('dark'))
   const [theme, setTheme] = useState(!isDark.current ? 'light' : 'dark')
 
-  useEffect(() => {
+  function themeChange() {
     document.documentElement.classList.toggle('dark')
     isDark.current = !isDark.current
     localStorage.setItem('theme', theme)
-  }, [theme])
+  }
 
   return {
     theme,
     toggleTheme(event: MouseEvent) {
       if (!isAppearanceTransition || !event) {
         setTheme(isDark.current ? 'light' : 'dark')
+        themeChange()
         return
       }
 
@@ -39,6 +40,7 @@ export function useTheme() {
 
       const transition = document.startViewTransition(() => {
         setTheme(isDark.current ? 'light' : 'dark')
+        themeChange()
       })
 
       transition.ready.then(() => {

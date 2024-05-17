@@ -11,10 +11,11 @@
     <script>
       ;(function () {
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        const setting = JSON.parse(localStorage.getItem('theme')) || 'auto'
+        const setting = localStorage.getItem('theme') || 'auto'
         if (setting === 'dark' || (prefersDark && setting !== 'light')) document.documentElement.classList.toggle('dark')
       })()
     </script>
     <script type="module" src="/src/main.tsx"></script>
+    <div class="tipRoot"></div>
   </body>
 </html>

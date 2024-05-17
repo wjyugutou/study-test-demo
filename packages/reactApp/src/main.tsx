@@ -7,9 +7,8 @@ import 'uno.css'
 import '@/style/global.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </StrictMode>,
+  ,
 )

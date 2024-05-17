@@ -1,14 +1,36 @@
 import type { FC } from 'react'
 import { useState } from 'react'
-
-import { useNavigate } from 'react-router-dom'
+import { createRoot } from 'react-dom/client'
 import reactLogo from '@/assets/react.svg'
 import './index.css'
 import Button from '@/components/Button'
 import { useAuthStore } from '@/store'
 
-const Home: FC = () => {
+function Tip({ msg }: { msg: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  return <div ref={ref}>{msg}</div>
+}
+
+Tip.show = function (msg: string) {
+  const tipRoot = document.createElement('div')
+  document.querySelector('.tipRoot')!.appendChild(tipRoot)
+  createRoot(tipRoot).render(<Tip msg={msg} />)
+}
+
+const Test = forwardRef((props, ref) => {
   const [count, setCount] = useState(0)
+  console.log('Test render')
+
+  useImperativeHandle(ref, () => ({ setCount: () => setCount(count + 1) }), [count])
+
+  return <div className="card">
+  <button >count is {count}</button>
+</div>
+})
+
+function Buttons() {
+  console.log('Buttons render')
   const navigate = useNavigate()
 
   const setAuthlist = useAuthStore(state => state.setAuthlist)
@@ -21,6 +43,30 @@ const Home: FC = () => {
     navigate('/admin')
   }
 
+  return <>
+    <Button>
+      <h1 onClick={goLoginHandle} className="apply">
+        Go Login
+      </h1>
+    </Button>
+    <Button>
+      <h1 onClick={goAdminHandle} className="">
+        Go Admin
+      </h1>
+    </Button>
+  </>
+}
+
+const Home: FC = (props) => {
+  console.log('Home render')
+
+  const countComp = useRef()
+
+  useEffect(() => {
+    // Tip.show('nihao')
+  }, [])
+  console.log(countComp)
+
   return (
     <div className="App">
       <div>
@@ -31,19 +77,13 @@ const Home: FC = () => {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <Button>
-        <h1 onClick={goLoginHandle} className="apply">
-          Go Login
-        </h1>
-      </Button>
-      <Button>
-        <h1 onClick={goAdminHandle} className="">
-          Go Admin
-        </h1>
-      </Button>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
+
+      <Buttons/>
+
+      <div>
+      <Button onClick={() => countComp.current?.setCount()}>++</Button>
       </div>
+      <Test ref={countComp}></Test>
     </div>
   )
 }

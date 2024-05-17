@@ -20,7 +20,7 @@ function button(props: Props) {
     return `${modeClassName[mode]} ${roundedClassName} ${className}`.replaceAll('undefined', '')
   }, [className])
 
-  return <button type={type} className={_className} style={style}>{children}</button>
+  return <button {...props}>{children}</button>
 }
 
 export default button
