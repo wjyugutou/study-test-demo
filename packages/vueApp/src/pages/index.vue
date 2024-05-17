@@ -18,17 +18,37 @@ demochallengeList.push({
   // description: '',
 })
 
-const bg_img_1 = `linear-gradient(to top,#000 0%,#000 50%,transparent 50%,transparent 100%),
-  linear-gradient(to right,transparent 0%,transparent 55%,#000 50%,#000 100%)`
-const bg_img_2 = `linear-gradient(to right,red 0%,red 50%,#000 50%,#000 100%),
-  linear-gradient(to top,#000 0%,#000 50%,transparent 50%,transparent 100%)`
-const bg_img_3 = `linear-gradient(to top,#000 0%,#000 50%,transparent 50%,transparent 100%),
-  linear-gradient(to right,transparent 0%,transparent 25%,#000 50%,#000 100%)`
+const code = `<script setup>
+import { ref } from 'vue'
 
-const code = computed(() =>
-`${bg_img_1}
-${bg_img_2}
-${bg_img_3}`)
+const message = ref('Hello World!')
+
+function reverseMessage() {
+  // Access/mutate the value of a ref via
+  // its .value property.
+  message.value = message.value.split('').reverse().join('')
+}
+
+function notify() {
+  alert('navigation was prevented.')
+}
+<\/script>
+
+<template>
+  <h1>{{ message }}</h1>
+  <button @click="reverseMessage">Reverse Message</button>
+  <button @click="message += '!'">Append "!"</button>
+  <a href="https://vuejs.org" @click.prevent="notify">
+    A link with e.preventDefault()
+  </a>
+</template>
+
+<style>
+button, a {
+  display: block;
+  margin-bottom: 1em;
+}
+</style>`
 </script>
 
 <template>
@@ -39,7 +59,7 @@ ${bg_img_3}`)
     </RouterLink>
   </div>
   <div class="p-y-10">
-    <CodeLine lang="css" :code="code" />
+    <CodeEditor lang="vue" :code="code" />
   </div>
   <DemochallengeList :list="demochallengeList" />
 </template>

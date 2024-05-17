@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
@@ -33,7 +31,7 @@ export default defineConfig(({ command, mode }) => ({
   },
   css: {
     postcss: {
-      plugins: [autoprefixer() as any],
+      plugins: [autoprefixer()],
     },
   },
   resolve: {
