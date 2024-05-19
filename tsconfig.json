@@ -7,7 +7,6 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "types": ["@webgpu/types", "node"],
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": false,

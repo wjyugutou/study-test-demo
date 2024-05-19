@@ -23,6 +23,7 @@ declare module 'vue' {
     Fireworks: typeof import('./../src/components/Fireworks/index.vue')['default']
     Footer: typeof import('./../src/components/Footer.vue')['default']
     InputAnimate: typeof import('./../src/components/InputAnimate/index.vue')['default']
+    Loading: typeof import('./../src/components/Loading.vue')['default']
     MineBlock: typeof import('./../src/components/Minesweeper/MineBlock.vue')['default']
     Minesweeper: typeof import('./../src/components/Minesweeper/index.vue')['default']
     Modal: typeof import('./../src/components/Modal/index.vue')['default']

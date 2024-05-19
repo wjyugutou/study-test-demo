@@ -7,9 +7,9 @@
     },
     "types": [
       "vite/client",
-      "vite-plugin-pages/client",
       "vitest/importMeta",
-      "unplugin-vue-router/client"
+      "unplugin-vue-router/client",
+      "@webgpu/types", "node"
     ]
   },
   "references": [{ "path": "./tsconfig.node.json" }]

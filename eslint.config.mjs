@@ -6,7 +6,8 @@ export default antfu({
   vue: true,
 }, {
   rules: {
-    'no-console': 0,
-    'unused-imports/no-unused-vars': 0,
+    'no-console': 'off',
+    'unused-imports/no-unused-vars': 'off',
+    'antfu/consistent-list-newline': 'off',
   },
 })

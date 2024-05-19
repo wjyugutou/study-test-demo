@@ -5,7 +5,10 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client", "vite-plugin-pages/client-react", "./auto-imports.d.ts"]
+    "types": ["@webgpu/types", "node",
+      "vite/client", "vite-plugin-pages/client-react",
+      "./auto-imports.d.ts"
+    ]
   },
   "references": [{ "path": "./tsconfig.node.json" }]
 }
