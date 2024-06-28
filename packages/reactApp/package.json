@@ -12,22 +12,22 @@
   "dependencies": {
     "@loadable/component": "^5.16.4",
     "@yugutou/utils": "workspace:*",
-    "ahooks": "^3.7.11",
+    "ahooks": "^3.8.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.51.4",
-    "vite-plugin-pages": "^0.32.0",
-    "zustand": "^4.5.2"
+    "react-hook-form": "^7.52.0",
+    "vite-plugin-pages": "^0.32.3",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@iconify-json/carbon": "^1.1.32",
+    "@iconify-json/carbon": "^1.1.36",
     "@types/loadable__component": "^5.13.9",
-    "@types/react": "^18.2.70",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "axios": "^1.6.8",
+    "@vitejs/plugin-react": "^4.3.1",
+    "axios": "^1.7.2",
     "mockjs": "^1.1.0",
-    "unplugin-auto-import": "^0.17.5",
+    "unplugin-auto-import": "^0.17.6",
     "vite-plugin-mock": "2.9.6"
   }
 }
