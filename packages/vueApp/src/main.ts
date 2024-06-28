@@ -16,7 +16,6 @@ app.component(SvgIcon.name as string, SvgIcon)
 
 const router = createRouter({
   history: (import.meta.env.DEV ? createWebHistory : createWebHashHistory)(import.meta.env.BASE_URL),
-  // @ts-expect-error no check
   routes,
 })
 app.use(router).use(Particles, {

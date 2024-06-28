@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+const route = useRoute()
+
+const starBg = computed(() => route.meta.starBg !== false)
+const partBg = computed(() => !!route.meta.partBg)
 onErrorCaptured((err, instance, info) => {
   console.log({ err, instance, info })
 })
@@ -6,7 +10,7 @@ onErrorCaptured((err, instance, info) => {
 
 <template>
   <StarportCarrier>
-    <PageBackground>
+    <PageBackground :star-bg="starBg" :part-bg="partBg">
       <main class="relative h-[calc(100vh-52px)] overflow-auto px-4 text-gray-700 font-sans dark:text-gray-200">
         <Suspense>
           <template #fallback>

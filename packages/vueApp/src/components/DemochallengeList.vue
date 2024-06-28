@@ -43,9 +43,8 @@ watch(searchName, (newValue) => {
 
 <template>
   <div
-    ref="scrollRef" relative
-    w-full overflow-hidden border py-200px
-    class="box"
+    ref="scrollRef"
+    class="box relative w-full overflow-hidden border p-y-35"
     @wheel="wheel"
   >
     <div absolute left-0 top-0 pt-15px>
@@ -57,7 +56,7 @@ watch(searchName, (newValue) => {
           class="item" :class="i === activeIndex && 'active'"
           :title="item.name"
           :style="{
-            transform: `perspective(${1000}px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
+            transform: `perspective(1000px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
           }"
           :to="item.path"
         >
