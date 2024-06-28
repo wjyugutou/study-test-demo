@@ -59,7 +59,7 @@ button, a {
     </RouterLink>
   </div>
   <div class="p-y-10">
-    <CodeEditor lang="vue" :code="code" />
+    <CodeEditor v-model="code" lang="vue" />
   </div>
   <div class="b b-gray-400 m-y-10 p-2">
     <RouterLink to="/webGL">
