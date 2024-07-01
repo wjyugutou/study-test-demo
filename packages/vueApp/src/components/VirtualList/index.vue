@@ -82,7 +82,7 @@ function scrollHandle(e: Event) {
 <template>
   <div ref="virtualList" class="virtualList" @scroll="scrollHandle">
     <div ref="virtualContent" :style="{ height: `${virtualContentHeight}px`, paddingTop: virtualContainerPaddingTop }">
-      <VirtualListItem v-for="(item) of viewList" :key="item.index" :index="item.index" @sizeChange="childHeightChange">
+      <VirtualListItem v-for="(item) of viewList" :key="item.index" :index="item.index" @size-change="childHeightChange">
         <slot :record="item.record" :index="item.index" />
       </VirtualListItem>
     </div>

@@ -1,36 +1,34 @@
 <script lang='ts' setup>
-import type { BundledLanguage, BundledLanguageInfo, BundledTheme, BundledThemeInfo } from 'shiki'
+import type { BundledLanguage, BundledTheme } from 'shiki'
 
-import { bundledLanguages, bundledLanguagesInfo } from 'shiki/langs'
-
-import { bundledThemesInfo } from 'shiki/themes'
+import { bundledLanguagesInfo, bundledThemesInfo } from 'shiki'
 
 const props = withDefaults(defineProps<{
   isEdit?: boolean
   collapse?: boolean
 }>(), { lang: 'typescript', collapse: true, isEdit: false, theme: 'vitesse-dark' })
 const code = defineModel<string>({ required: true })
-const theme = defineModel<string>('theme', { default: '' })
-const lang = defineModel<string>('lang', { default: '' })
+const lang = defineModel<BundledLanguage>('lang', { required: true, default: 'vue' })
+const theme = defineModel<BundledTheme>('theme', { required: true, default: 'vitesse-dark' })
 
-const langs = ref([])
+const langs = ref<BundledLanguage[]>([lang.value!])
 
-const themes = shallowRef<BundledThemeInfo[]>()
+const themes = ref<BundledTheme[]>([theme.value!])
 
 const [collapse, setCollapse] = useToggle(props.collapse)
-
-// javascript typescript text xml
 
 function copyCode() {
   navigator.clipboard.writeText(code.value)
 }
 
 function handleLangChange(e: Event) {
-  const value: BundledLanguage = (<HTMLInputElement>e.target).value as BundledLanguage
-  bundledLanguages[value]().then(res => {
-    console.log(res.default); 
-    langs.value.concat(res.default)
-  })
+  const value: BundledLanguage = (e.target as HTMLInputElement).value as BundledLanguage
+  langs.value.push(value)
+}
+
+function handleThemeChange(e: Event) {
+  const value: BundledTheme = (e.target as HTMLInputElement).value as BundledTheme
+  themes.value.push(value)
 }
 </script>
 
@@ -48,18 +46,18 @@ function handleLangChange(e: Event) {
               {{ lang.name }}
             </option>
           </select>
-          <!-- <select v-model="theme">
-            <option v-for="theme in themes" :key="theme" :value="theme">
-              {{ theme }}
+          <select v-model="theme" @change="handleThemeChange">
+            <option v-for="theme in bundledThemesInfo" :key="theme.id" :value="theme.displayName">
+              {{ theme.displayName }}
             </option>
-          </select> -->
+          </select>
         </div>
         <div @click="copyCode">
           复制代码
         </div>
       </div>
 
-      <!-- <CodeEditorContent v-model="code" :langs="langs" :lang="lang" :theme="theme" /> -->
+      <CodeEditorContent v-if="!collapse" v-model="code" :langs="langs" :lang="lang" :themes="themes" :theme="theme" :is-edit="isEdit" />
     </div>
   </Suspense>
 </template>
@@ -69,13 +67,16 @@ function handleLangChange(e: Event) {
   overflow: hidden;
   border-radius: 10px;
 
+  @apply  border b-gray-400;
+
   .editor-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     padding: 0 10px;
-    background-color: red;
+
+    @apply b-solid border-b b-gray-400;
 
     .tool-arrow {
       position: absolute;
@@ -85,6 +86,7 @@ function handleLangChange(e: Event) {
 
     .tool-select {
       margin-left: 50px;
+      outline: none;
     }
   }
 

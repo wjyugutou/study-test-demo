@@ -1,3 +1,3 @@
 export function isNumber(data: unknown) {
-  return typeof data === 'number' && !isFinite(data)
+  return typeof data === 'number' && !Number.isFinite(data)
 }

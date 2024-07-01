@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import { randomColor } from '@yugutou/utils'
 
-interface Star { x: number;y: number; z: number }
+interface Star { x: number, y: number, z: number }
 
 const canvas = shallowRef<HTMLCanvasElement>()
 const ctx = shallowRef() as Ref<CanvasRenderingContext2D>
@@ -79,11 +79,12 @@ function update() {
     // 如果星星超出屏幕范围，则重新放置到屏幕上
     if (
       star.x < -OVERFLOW_THRESHOLD
-                || star.x > width + OVERFLOW_THRESHOLD
-                || star.y < -OVERFLOW_THRESHOLD
-                || star.y > height + OVERFLOW_THRESHOLD
-    )
+      || star.x > width + OVERFLOW_THRESHOLD
+      || star.y < -OVERFLOW_THRESHOLD
+      || star.y > height + OVERFLOW_THRESHOLD
+    ) {
       recycleStar(star)
+    }
   })
 }
 // 回收星星并重新放置到新的位置

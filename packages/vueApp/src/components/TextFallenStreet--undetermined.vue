@@ -40,7 +40,7 @@ currentcolor 84.6154%, currentcolor 92.2077%, currentcolor 92.3077%, currentcolo
     }
 
     str += `currentColor ${(i) / length * 100}%${i === length ? '' : ', '}`
-     + `currentColor ${(i + 1) / length * 100 - 0.1}%${i === length - 1 ? '' : ', '}`
+    + `currentColor ${(i + 1) / length * 100 - 0.1}%${i === length - 1 ? '' : ', '}`
   }
 
   return `

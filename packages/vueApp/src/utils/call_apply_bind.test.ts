@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { _apply, _bind, _call } from './call_apply_bind'
+import { _apply, _bind } from './call_apply_bind'
 
 function a(this: any) {
   console.log(this)

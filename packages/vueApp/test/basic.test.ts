@@ -4,7 +4,7 @@ function a() {
   return 'a'
 }
 
-describe('Hi', () => {
+describe('hi', () => {
   it('should works', () => {
     expect(a()).toEqual('a')
   })

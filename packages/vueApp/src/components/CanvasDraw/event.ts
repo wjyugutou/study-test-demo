@@ -6,7 +6,7 @@ export function initDrawFn(canvas: Ref<HTMLCanvasElement>, context: CanvasRender
 
   const PI = Math.PI
   const canvasState = {
-    initPos: {} as { x: number; y: number },
+    initPos: {} as { x: number, y: number },
   }
 
   function drawCircle(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean | undefined) {

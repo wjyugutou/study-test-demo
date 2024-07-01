@@ -2,7 +2,7 @@
 import { randomColor } from '@yugutou/utils'
 
 const props = defineProps<{
-  list: { title: string; [key: string]: any }[]
+  list: { title: string, [key: string]: any }[]
 }>()
 
 const _list = computed(() => {

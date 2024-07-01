@@ -1,4 +1,4 @@
-import { type Component, type PropType, isVNode } from 'vue'
+import { isVNode } from 'vue'
 
 const SlotRender = defineComponent({
   name: 'SlotRender',

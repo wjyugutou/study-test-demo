@@ -19,7 +19,7 @@ const DB = ref() as Ref<IDBDatabase>
 function openDatabase() {
   return new Promise((resolve, reject) => {
     if (successOpenDatabase.value)
-      return reject(Error('数据库已打开'))
+      return reject(new Error('数据库已打开'))
     const request = indexedDB.open(databaseName)
     request.onerror = (err) => {
       console.error(err)

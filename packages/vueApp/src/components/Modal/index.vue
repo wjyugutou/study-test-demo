@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import type { CSSProperties, Ref, VNode } from 'vue'
+import type { CSSProperties, Ref } from 'vue'
 
 import { isNumber } from '@/utils'
 

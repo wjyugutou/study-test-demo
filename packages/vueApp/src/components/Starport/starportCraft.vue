@@ -46,5 +46,3 @@ function transitionEnd() {
     </Teleport>
   </div>
 </template>
-
-

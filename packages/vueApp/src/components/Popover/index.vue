@@ -46,11 +46,9 @@ const middleware = computed(() => {
 })
 
 const {
-  x, y, placement,
+  x, y,
   strategy,
   middlewareData,
-  isPositioned,
-  update,
 } = useFloating(defaultRef, contentRef, {
   placement: props.placement,
   strategy: props.strategy,
@@ -69,32 +67,6 @@ const contentStyle = computed<CSSProperties>(() => {
 const arrowStyle = computed<CSSProperties>(() => ({
   top: `${middlewareData.value.arrow?.y || ''}px`, left: `${middlewareData.value.arrow?.x || ''}px`,
 }))
-
-const popoverBound = useElementBounding(contentRef)
-const defaultBound = useElementBounding(defaultRef)
-const arrowPos = computed(() => {
-  switch (placement.value) {
-    case 'top':
-    case 'top-start':
-    case 'top-end':
-      return {}
-    case 'bottom':
-    case 'bottom-start':
-    case 'bottom-end':
-      return {}
-    case 'left':
-    case 'left-start':
-    case 'left-end':
-      return {}
-    case 'right':
-    case 'right-start':
-    case 'right-end':
-      return {}
-
-    default:
-      return undefined
-  }
-})
 
 function enterHandle() {
   if (props.mode !== 'both' && props.mode !== 'hover')

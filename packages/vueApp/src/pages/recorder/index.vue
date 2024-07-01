@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import type { Ref, ShallowRef } from 'vue'
 
-defineOptions({ name: 'recorder' })
+defineOptions({ name: 'Recorder' })
 const recording = ref(false)
 const recorder = shallowRef() as ShallowRef<MediaRecorder>
 const mediasStream = shallowRef() as ShallowRef<MediaStream>

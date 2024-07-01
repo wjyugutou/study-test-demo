@@ -49,4 +49,3 @@ export function _bind(this: any, that: any, args: any[]) {
     return result
   }
 }
-

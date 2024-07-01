@@ -1,9 +1,9 @@
 import type { Position } from '@vueuse/core'
 
 type Keys = 'strokeStyle'
-| 'fillStyle'
-| 'lineWidth'
-| 'lineCap'
+  | 'fillStyle'
+  | 'lineWidth'
+  | 'lineCap'
 
 type Config = Pick<CanvasRenderingContext2D, Keys>
 

@@ -1,40 +1,83 @@
 <script lang='ts' setup>
-import type { BundledLanguage, BundledLanguageInfo, BundledTheme, BundledThemeInfo, LanguageRegistration, StringLiteralUnion } from 'shiki'
-import { codeToHtml, codeToTokens, createHighlighter } from 'shiki'
+import type { BundledLanguage, BundledTheme, DynamicImportLanguageRegistration, DynamicImportThemeRegistration } from 'shiki'
+import { bundledLanguages, bundledThemes, createHighlighter } from 'shiki'
 
 const props = defineProps<{
   lang: string
   theme: string
   isEdit: boolean
-  collapse: boolean
-  themes: StringLiteralUnion<BundledLanguage, string>[]
-  langs: LanguageRegistration[]
+  themes: BundledTheme[]
+  langs: BundledLanguage[]
 }>()
 
 const code = defineModel<string>({ required: true })
 
 const textarea = ref<HTMLTextAreaElement>()
-const codeParent = ref<HTMLSpanElement>()
 const html = ref('')
-const backgroundColor = ref('')
-
-const langs = computed(() => props.langs.map(item => item.name))
 
 const highlighter = await createHighlighter({
-  langs: langs.value,
-  themes: props.themes,
+  langs: [],
+  themes: [],
 })
 
-highlighter.codeToHtml(code.value, {
-  lang: props.lang,
-  theme: props.theme,
+watch(props.langs, (value) => {
+  value.forEach((lang) => {
+    const loadedLangs = highlighter.getLoadedLanguages()
+    if (!loadedLangs.includes(lang)) {
+      loadLang(bundledLanguages[lang])
+    }
+  })
+}, { immediate: true })
+
+watch(props.themes, (value) => {
+  value.forEach((theme) => {
+    const loadedThemes = highlighter.getLoadedLanguages()
+    if (!loadedThemes.includes(theme)) {
+      loadTheme(bundledThemes[theme])
+    }
+  })
+}, { immediate: true })
+
+watch(code, () => {
+  render()
 })
+
+async function loadLang(loadFn: DynamicImportLanguageRegistration) {
+  try {
+    const langInfo = (await loadFn()).default
+    await highlighter.loadLanguage(langInfo)
+    render()
+  }
+  catch (error) {
+
+  }
+}
+
+async function loadTheme(loadFn: DynamicImportThemeRegistration) {
+  try {
+    const langInfo = (await loadFn()).default
+    await highlighter.loadTheme(langInfo)
+    render()
+  }
+  catch (error) {
+
+  }
+}
+
+function render() {
+  html.value = highlighter.codeToHtml(code.value, {
+    lang: props.lang,
+    theme: props.theme,
+  })
+
+  console.log(html)
+}
 </script>
 
 <template>
-  <div class="editor-content" :style="{ maxHeight: collapse ? 0 : `${codeParent?.parentElement?.clientHeight}px` }">
+  <div class="editor-content">
     <div>
-      <span ref="codeParent" v-html="html" />
+      <div v-html="html" />
       <textarea
         ref="textarea"
         v-model="code"
@@ -49,8 +92,6 @@ highlighter.codeToHtml(code.value, {
 <style>
 .editor-content {
     position: relative;
-    height: fit-content;
-    transition: 0.3s;
 
     & .shiki {
       padding: 14px 16px;

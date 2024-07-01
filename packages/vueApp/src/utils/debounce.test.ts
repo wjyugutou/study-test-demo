@@ -1,4 +1,4 @@
-import { expect, it } from 'vitest'
+import { it } from 'vitest'
 import { debounce } from './debounce'
 
 it('debounce', () => {

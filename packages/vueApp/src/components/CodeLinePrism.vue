@@ -1,12 +1,6 @@
 <script lang='ts' setup>
 import '/public/prism.min.js'
 
-// 手动决定颜色显示时机 设为true
-window.Prism.manual = true
-
-// fix plugin inline-color 无效bug
-// @ts-expect-error color
-Prism.languages.css.color = /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})| transparent/
 // /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})/
 
 const props = withDefaults(defineProps<{
@@ -16,8 +10,12 @@ const props = withDefaults(defineProps<{
   isCollapse?: boolean
 }>(), { lang: 'typescript', isCollapse: true })
 
+// 手动决定颜色显示时机 设为true
+window.Prism.manual = true
 
-
+// fix plugin inline-color 无效bug
+// @ts-expect-error color
+Prism.languages.css.color = /(#[a-zA-Z0-9]{3,6})|(rgba?)|([a-zA-Z]{3,6})| transparent/
 const languagelist = [
   'javascript',
   'typescript',

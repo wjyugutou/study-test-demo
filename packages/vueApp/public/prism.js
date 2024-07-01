@@ -552,7 +552,6 @@ const Prism = (function (_self) {
      * @public
      */
     highlightElement(element, async, callback) {
-
       // Find language
       const language = _.util.getLanguage(element)
       const grammar = _.languages[language]
@@ -1245,7 +1244,7 @@ Prism.languages.markup = {
     greedy: true,
     inside: {
       'internal-subset': {
-        pattern: /(^[^\[]*\[)[\s\S]+(?=\]>$)/,
+        pattern: /(^[^[]*\[)[\s\S]+(?=\]>$)/,
         lookbehind: true,
         greedy: true,
         inside: null, // see below
@@ -1264,14 +1263,14 @@ Prism.languages.markup = {
     greedy: true,
   },
   tag: {
-    pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
+    pattern: /<\/?(?!\d)[^\s>/=$<%]+(?:\s(?:\s*[^\s>/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
     greedy: true,
     inside: {
       'tag': {
-        pattern: /^<\/?[^\s>\/]+/,
+        pattern: /^<\/?[^\s>/]+/,
         inside: {
           punctuation: /^<\/?/,
-          namespace: /^[^\s>\/:]+:/,
+          namespace: /^[^\s>/:]+:/,
         },
       },
       'special-attr': [],
@@ -1292,9 +1291,9 @@ Prism.languages.markup = {
       },
       'punctuation': /\/?>/,
       'attr-name': {
-        pattern: /[^\s>\/]+/,
+        pattern: /[^\s>/]+/,
         inside: {
-          namespace: /^[^\s>\/:]+:/,
+          namespace: /^[^\s>/:]+:/,
         },
       },
 
@@ -1506,7 +1505,7 @@ Prism.languages.clike = {
   'boolean': /\b(?:false|true)\b/,
   'function': /\b\w+(?=\()/,
   'number': /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
-  'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
+  'operator': /[<>]=?|[!=]={0,2}|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
   'punctuation': /[{}[\];(),.:]/,
 }
 
@@ -1524,7 +1523,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
       lookbehind: true,
     },
     {
-      pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
+      pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|[($\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
       lookbehind: true,
     },
   ],
@@ -1572,12 +1571,12 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 			// There are 2 regex patterns here. The RegExp set notation proposal added support for nested character
 			// classes if the `v` flag is present. Unfortunately, nested CCs are both context-free and incompatible
 			// with the only syntax, so we have to define 2 different regex patterns.
-			+ /\//.source
+      + /\//.source
 			 }(?:${
-			 /(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}/.source
+			 /(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\[\r\n])+\/[dgimyus]{0,7}/.source
 			 }|${
 			   // `v` flag syntax. This supports 3 levels of nested character classes.
-			 /(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/.source
+			 /(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/.source
 			 })${
 			   // lookahead
 			 /(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/.source}`,
@@ -1617,7 +1616,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
       inside: Prism.languages.javascript,
     },
     {
-      pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
+      pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
       lookbehind: true,
       inside: Prism.languages.javascript,
     },
@@ -1663,7 +1662,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 
 Prism.languages.insertBefore('javascript', 'operator', {
   'literal-property': {
-    pattern: /((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,
+    pattern: /((?:^|[,{])[ \t]*)(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/im,
     lookbehind: true,
     alias: 'property',
   },
@@ -1739,7 +1738,7 @@ Prism.languages.js = Prism.languages.javascript;
           lookbehind: true,
         },
       ],
-      'combinator': />|\+|~|\|\|/,
+      'combinator': /[>+~]|\|\|/,
 
       // the `tag` token has been existed and removed.
       // because we can't find a perfect tokenize to match it.
@@ -1770,7 +1769,7 @@ Prism.languages.js = Prism.languages.javascript;
 
   Prism.languages.insertBefore('css', 'function', {
     operator: {
-      pattern: /(\s)[+\-*\/](?=\s)/,
+      pattern: /(\s)[+\-*/](?=\s)/,
       lookbehind: true,
     },
     // CAREFUL!
@@ -1839,7 +1838,7 @@ Prism.languages.webmanifest = Prism.languages.json;
         greedy: true,
       },
       {
-        pattern: /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/,
+        pattern: /(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/i,
         alias: 'unquoted',
       },
     ],
@@ -1856,7 +1855,7 @@ Prism.languages.jsonp = Prism.languages.extend('json', {
 })
 
 Prism.languages.insertBefore('jsonp', 'punctuation', {
-  function: /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/,
+  function: /(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/i,
 });
 
 (function (Prism) {
@@ -1879,7 +1878,7 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
   }
 
   const tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source
-  const tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, () => { return tableCell })
+  const tableRow = /\|?__(?:\|__)+\|?(?:\n|\r\n?|$)/.source.replace(/__/g, () => { return tableCell })
   const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source
 
   Prism.languages.markdown = Prism.languages.extend('markup', {})
@@ -1969,10 +1968,10 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
 
         // title 2
         // -------
-        pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
+        pattern: /\S.*(?:\n|\r\n?)(?:={2,}|-{2,})(?=[ \t]*$)/m,
         alias: 'important',
         inside: {
-          punctuation: /==+$|--+$/,
+          punctuation: /={2,}$|-{2,}$/,
         },
       },
       {
@@ -2016,7 +2015,7 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
           lookbehind: true,
         },
         string: /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
-        punctuation: /^[\[\]!:]|[<>]/,
+        punctuation: /^[[\]!:]|[<>]/,
       },
       alias: 'url',
     },
@@ -2149,8 +2148,8 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
         const codeBlock = token.content[3]
 
         if (codeLang && codeBlock
-					&& codeLang.type === 'code-language' && codeBlock.type === 'code-block'
-					&& typeof codeLang.content === 'string') {
+          && codeLang.type === 'code-language' && codeBlock.type === 'code-block'
+          && typeof codeLang.content === 'string') {
           // this might be a language that Prism does not support
 
           // do some replacements to support C++, C#, and F#
@@ -2290,7 +2289,7 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
     /<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source,
   )
 
-  Prism.languages.jsx.tag.inside.tag.pattern = /^<\/?[^\s>\/]*/
+  Prism.languages.jsx.tag.inside.tag.pattern = /^<\/?[^\s>/]*/
   Prism.languages.jsx.tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/
   Prism.languages.jsx.tag.inside.tag.inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/
   Prism.languages.jsx.tag.inside.comment = javascript.comment
@@ -2424,7 +2423,7 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
     // keywords that have to be followed by an identifier
     /\b(?:asserts|infer|interface|module|namespace|type)\b(?=\s*(?:[{_$a-zA-Z\xA0-\uFFFF]|$))/,
     // This is for `import type *, {}`
-    /\btype\b(?=\s*(?:[\{*]|$))/,
+    /\btype\b(?=\s*(?:[{*]|$))/,
   )
 
   // doesn't work with TS because TS is too complex
@@ -2450,10 +2449,10 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
     },
     'generic-function': {
       // e.g. foo<T extends "bar" | "baz">( ...
-      pattern: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>(?=\s*\()/,
+      pattern: /#?(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>(?=\s*\()/i,
       greedy: true,
       inside: {
-        function: /^#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/,
+        function: /^#?(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/i,
         generic: {
           pattern: /<[\s\S]+/, // everything after the first <
           alias: 'class-name',
@@ -2562,9 +2561,9 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
     }
 
     return child.offsetTop
-			+ pxToNumber(childStyle.borderTopWidth)
-			+ pxToNumber(childStyle.paddingTop)
-			- pxToNumber(parentStyle.paddingTop)
+      + pxToNumber(childStyle.borderTopWidth)
+      + pxToNumber(childStyle.paddingTop)
+      - pxToNumber(parentStyle.paddingTop)
   }
 
   /**
@@ -3061,10 +3060,10 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
     return
 
   // Copied from the markup language definition
-  const HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g
+  const HTML_TAG = /<\/?(?!\d)[^\s>/=$<%]+(?:\s(?:\s*[^\s>/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g
 
   // a regex to validate hexadecimal colors
-  const HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i
+  const HEX_COLOR = /^#?([\da-f]{3,4}|(?:[\da-f]{2}){3,4})$/i
 
   /**
    * Parses the given hexadecimal representation and returns the parsed RGBA color.
@@ -3298,7 +3297,7 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
       }()),
       tokens: {
         gradient: {
-          pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
+          pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^)])+\)/gi,
           inside: {
             function: /[\w-]+(?=\()/,
             punctuation: /[(),]/,
@@ -3372,8 +3371,8 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
           return true
         }, '*', function () {
           this._elt.innerHTML = '<svg viewBox="0 0 64 64">'
-						+ '<circle r="16" cy="32" cx="32"></circle>'
-						+ '</svg>'
+          + '<circle r="16" cy="32" cx="32"></circle>'
+          + '</svg>'
         })
       },
       tokens: {
@@ -3499,20 +3498,20 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
           return false
         }, '*', function () {
           this._elt.innerHTML = '<svg viewBox="-20 -20 140 140" width="100" height="100">'
-						+ '<defs>'
-						+ '<marker id="prism-previewer-easing-marker" viewBox="0 0 4 4" refX="2" refY="2" markerUnits="strokeWidth">'
-						+ '<circle cx="2" cy="2" r="1.5" />'
-						+ '</marker>'
-						+ '</defs>'
-						+ '<path d="M0,100 C20,50, 40,30, 100,0" />'
-						+ '<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />'
-						+ '<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />'
-						+ '</svg>'
+          + '<defs>'
+          + '<marker id="prism-previewer-easing-marker" viewBox="0 0 4 4" refX="2" refY="2" markerUnits="strokeWidth">'
+          + '<circle cx="2" cy="2" r="1.5" />'
+          + '</marker>'
+          + '</defs>'
+          + '<path d="M0,100 C20,50, 40,30, 100,0" />'
+          + '<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />'
+          + '<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />'
+          + '</svg>'
         })
       },
       tokens: {
         easing: {
-          pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=\s|[;}]|$)/i,
+          pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=[\s;}]|$)/i,
           inside: {
             function: /[\w-]+(?=\()/,
             punctuation: /[(),]/,
@@ -3566,8 +3565,8 @@ Prism.languages.insertBefore('jsonp', 'punctuation', {
           return true
         }, '*', function () {
           this._elt.innerHTML = '<svg viewBox="0 0 64 64">'
-						+ '<circle r="16" cy="32" cx="32"></circle>'
-						+ '</svg>'
+          + '<circle r="16" cy="32" cx="32"></circle>'
+          + '</svg>'
         })
       },
       tokens: {
