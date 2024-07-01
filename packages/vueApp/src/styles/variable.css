@@ -5,7 +5,7 @@
   --modal-content-bg: #fff;
   --modal-footer-bg: #fff;
   --mask-bg-light: rgb(0 0 0 / 50%);
-
+  --footer-height: 52px;
 } 
 
 .dark {

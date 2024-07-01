@@ -108,7 +108,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class=" h-full max-w-full max-h-full">
+  <div class="h-[calc(100vh-var(--footer-height))] max-w-full max-h-full">
     <canvas ref="canvas" :width="width" :height="height" />
   </div>
 </template>
