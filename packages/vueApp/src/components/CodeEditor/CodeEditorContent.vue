@@ -20,25 +20,27 @@ const highlighter = await createHighlighter({
   themes: [],
 })
 
+await initial()
+
 watch(() => props.lang, (value) => {
   const loadedLangs = highlighter.getLoadedLanguages()
   if (!loadedLangs.includes(value)) {
-    loadLang(bundledLanguages[value])
+    loadLang(bundledLanguages[value]).then(render)
   }
   else {
     render()
   }
-}, { immediate: true })
+})
 
 watch(() => props.theme, (value) => {
   const loadedThemes = highlighter.getLoadedLanguages()
   if (!loadedThemes.includes(value)) {
-    loadTheme(bundledThemes[value])
+    loadTheme(bundledThemes[value]).then(render)
   }
   else {
     render()
   }
-}, { immediate: true })
+})
 
 watch(code, () => {
   render()
@@ -48,7 +50,6 @@ async function loadLang(loadFn: DynamicImportLanguageRegistration) {
   try {
     const langInfo = (await loadFn()).default
     await highlighter.loadLanguage(langInfo)
-    render()
   }
   catch (error) {
 
@@ -59,7 +60,6 @@ async function loadTheme(loadFn: DynamicImportThemeRegistration) {
   try {
     const langInfo = (await loadFn()).default
     await highlighter.loadTheme(langInfo)
-    render()
   }
   catch (error) {
 
@@ -73,6 +73,11 @@ function render() {
   })
 
   console.log(html)
+}
+
+async function initial() {
+  await Promise.all([loadLang(bundledLanguages[props.lang]), loadTheme(bundledThemes[props.theme])])
+  render()
 }
 </script>
 

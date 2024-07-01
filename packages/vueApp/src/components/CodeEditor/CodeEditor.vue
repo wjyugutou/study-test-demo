@@ -31,33 +31,36 @@ function copyCode() {
 </script>
 
 <template>
-  <Suspense>
-    <div class="code-editor" :class="theme">
-      <div
-        class="editor-toolbar" :class="collapse ? 'important-border-b-none' : ''"
-      >
-        <ArrowIcon class="tool-arrow" :rotate="collapse" @click="setCollapse()" />
-        <!-- <p>{{ title }}</p> -->
-        <div class="tool-select">
-          <select v-model="lang" @change="handleLangChange">
-            <option v-for="lang in bundledLanguagesInfo" :key="lang.id" :value="lang.id">
-              {{ lang.name }}
-            </option>
-          </select>
-          <select v-model="theme" @change="handleThemeChange">
-            <option v-for="theme in bundledThemesInfo" :key="theme.id" :value="theme.id">
-              {{ theme.displayName }}
-            </option>
-          </select>
-        </div>
-        <div @click="copyCode">
-          复制代码
-        </div>
+  <div class="code-editor" :class="theme">
+    <div
+      class="editor-toolbar" :class="collapse ? 'important-border-b-none' : ''"
+    >
+      <ArrowIcon class="tool-arrow" :rotate="collapse" @click="setCollapse()" />
+      <!-- <p>{{ title }}</p> -->
+      <div class="tool-select">
+        <select v-model="lang" @change="handleLangChange">
+          <option v-for="lang in bundledLanguagesInfo" :key="lang.id" :value="lang.id">
+            {{ lang.name }}
+          </option>
+        </select>
+        <select v-model="theme" @change="handleThemeChange">
+          <option v-for="theme in bundledThemesInfo" :key="theme.id" :value="theme.id">
+            {{ theme.displayName }}
+          </option>
+        </select>
       </div>
-
-      <CodeEditorContent v-if="!collapse" v-model="code" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
+      <div @click="copyCode">
+        复制代码
+      </div>
     </div>
-  </Suspense>
+
+    <Suspense>
+      <template #fallback>
+        <Loading />
+      </template>
+      <CodeEditorContent v-model="code" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
+    </Suspense>
+  </div>
 </template>
 
 <style>
