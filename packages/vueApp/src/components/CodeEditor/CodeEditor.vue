@@ -6,29 +6,27 @@ import { bundledLanguagesInfo, bundledThemesInfo } from 'shiki'
 const props = withDefaults(defineProps<{
   isEdit?: boolean
   collapse?: boolean
-}>(), { lang: 'typescript', collapse: true, isEdit: false, theme: 'vitesse-dark' })
+}>(), { lang: 'typescript', collapse: true, isEdit: false })
 const code = defineModel<string>({ required: true })
-const lang = defineModel<BundledLanguage>('lang', { required: true, default: 'vue' })
-const theme = defineModel<BundledTheme>('theme', { required: true, default: 'vitesse-dark' })
-
-const langs = ref<BundledLanguage[]>([lang.value!])
-
-const themes = ref<BundledTheme[]>([theme.value!])
+const lang = defineModel<BundledLanguage>('lang', { default: 'vue' })
+const theme = defineModel<BundledTheme>('theme', { default: 'vitesse-dark' })
 
 const [collapse, setCollapse] = useToggle(props.collapse)
 
-function copyCode() {
-  navigator.clipboard.writeText(code.value)
-}
-
+const langs = ref<BundledLanguage[]>([lang.value!])
 function handleLangChange(e: Event) {
   const value: BundledLanguage = (e.target as HTMLInputElement).value as BundledLanguage
   langs.value.push(value)
 }
 
+const themes = ref<BundledTheme[]>([theme.value!])
 function handleThemeChange(e: Event) {
   const value: BundledTheme = (e.target as HTMLInputElement).value as BundledTheme
   themes.value.push(value)
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(code.value)
 }
 </script>
 
@@ -42,12 +40,12 @@ function handleThemeChange(e: Event) {
         <!-- <p>{{ title }}</p> -->
         <div class="tool-select">
           <select v-model="lang" @change="handleLangChange">
-            <option v-for="lang in bundledLanguagesInfo" :key="lang.id" :value="lang.name.toLocaleLowerCase()">
+            <option v-for="lang in bundledLanguagesInfo" :key="lang.id" :value="lang.id">
               {{ lang.name }}
             </option>
           </select>
           <select v-model="theme" @change="handleThemeChange">
-            <option v-for="theme in bundledThemesInfo" :key="theme.id" :value="theme.displayName">
+            <option v-for="theme in bundledThemesInfo" :key="theme.id" :value="theme.id">
               {{ theme.displayName }}
             </option>
           </select>
@@ -57,7 +55,7 @@ function handleThemeChange(e: Event) {
         </div>
       </div>
 
-      <CodeEditorContent v-if="!collapse" v-model="code" :langs="langs" :lang="lang" :themes="themes" :theme="theme" :is-edit="isEdit" />
+      <CodeEditorContent v-if="!collapse" v-model="code" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
     </div>
   </Suspense>
 </template>

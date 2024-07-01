@@ -80,7 +80,9 @@ export default defineConfig(({ command, mode }) => ({
     }),
 
     // https://github.com/antfu/vite-plugin-components
-    Components({ dts: './types/components.d.ts' }),
+    Components({
+      dts: './types/components.d.ts',
+    }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config

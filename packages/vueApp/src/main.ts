@@ -18,9 +18,11 @@ const router = createRouter({
   history: (import.meta.env.DEV ? createWebHistory : createWebHashHistory)(import.meta.env.BASE_URL),
   routes,
 })
-app.use(router).use(Particles, {
-  init: async (engine) => {
-    await loadFull(engine) // you can load the full tsParticles library from "tsparticles" if you need it
-  },
-})
+app
+  .use(router)
+  .use(Particles, {
+    init: async (engine) => {
+      await loadFull(engine) // you can load the full tsParticles library from "tsparticles" if you need it
+    },
+  })
 app.mount('#app')

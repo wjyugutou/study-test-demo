@@ -3,8 +3,8 @@ import type { BundledLanguage, BundledTheme, DynamicImportLanguageRegistration, 
 import { bundledLanguages, bundledThemes, createHighlighter } from 'shiki'
 
 const props = defineProps<{
-  lang: string
-  theme: string
+  lang: BundledLanguage
+  theme: BundledTheme
   isEdit: boolean
   themes: BundledTheme[]
   langs: BundledLanguage[]
@@ -20,22 +20,24 @@ const highlighter = await createHighlighter({
   themes: [],
 })
 
-watch(props.langs, (value) => {
-  value.forEach((lang) => {
-    const loadedLangs = highlighter.getLoadedLanguages()
-    if (!loadedLangs.includes(lang)) {
-      loadLang(bundledLanguages[lang])
-    }
-  })
+watch(() => props.lang, (value) => {
+  const loadedLangs = highlighter.getLoadedLanguages()
+  if (!loadedLangs.includes(value)) {
+    loadLang(bundledLanguages[value])
+  }
+  else {
+    render()
+  }
 }, { immediate: true })
 
-watch(props.themes, (value) => {
-  value.forEach((theme) => {
-    const loadedThemes = highlighter.getLoadedLanguages()
-    if (!loadedThemes.includes(theme)) {
-      loadTheme(bundledThemes[theme])
-    }
-  })
+watch(() => props.theme, (value) => {
+  const loadedThemes = highlighter.getLoadedLanguages()
+  if (!loadedThemes.includes(value)) {
+    loadTheme(bundledThemes[value])
+  }
+  else {
+    render()
+  }
 }, { immediate: true })
 
 watch(code, () => {
