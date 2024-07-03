@@ -71,8 +71,6 @@ function render() {
     lang: props.lang,
     theme: props.theme,
   })
-
-  console.log(html)
 }
 
 async function initial() {

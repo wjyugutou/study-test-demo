@@ -3,8 +3,9 @@ const route = useRoute()
 
 const starBg = computed(() => route.meta.starBg !== false)
 const partBg = computed(() => !!route.meta.partBg)
+
 onErrorCaptured((err, instance, info) => {
-  console.log({ err, instance, info })
+  console.error({ err, instance, info })
 })
 </script>
 

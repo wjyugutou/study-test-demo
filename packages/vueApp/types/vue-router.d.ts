@@ -49,6 +49,6 @@ declare module 'vue-router/auto-routes' {
     '/keepAlive': RouteRecordInfo<'/keepAlive', '/keepAlive', Record<never, never>, Record<never, never>>,
     '/recorder/': RouteRecordInfo<'/recorder/', '/recorder', Record<never, never>, Record<never, never>>,
     '/webGL/': RouteRecordInfo<'/webGL/', '/webGL', Record<never, never>, Record<never, never>>,
-    '/webGPU/_index': RouteRecordInfo<'/webGPU/_index', '/webGPU/_index', Record<never, never>, Record<never, never>>,
+    '/webGPU/': RouteRecordInfo<'/webGPU/', '/webGPU', Record<never, never>, Record<never, never>>,
   }
 }

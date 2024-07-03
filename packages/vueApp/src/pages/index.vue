@@ -1,4 +1,9 @@
 <script lang='ts' setup>
+definePage({
+  beforeEnter(to, form) {
+    console.log({ to, form })
+  },
+})
 const name = useSessionStorage('hi-name', '鱼骨头')
 
 const router = useRouter()
@@ -9,13 +14,11 @@ const demochallengeList = router.options.routes.find(item => item.path === '/dem
 })) as {
   path: string
   name?: string | undefined
-  description?: string | undefined
 }[]
 
 demochallengeList.push({
   name: 'starport',
   path: '/flip/flipOne',
-  // description: '',
 })
 
 const code = `<script setup>
@@ -58,13 +61,18 @@ button, a {
       前往
     </RouterLink>
   </div>
-  <div class="p-y-10">
-    <CodeEditor v-model="code" lang="vue" />
-  </div>
+
   <div class="b b-gray-400 m-y-10 p-2">
     <RouterLink to="/webGL">
       webGL
     </RouterLink>
+
+    <RouterLink to="/webGPU">
+      webGPU
+    </RouterLink>
   </div>
   <DemochallengeList :list="demochallengeList" />
+  <div class="p-y-10">
+    <CodeEditor v-model="code" lang="vue" />
+  </div>
 </template>

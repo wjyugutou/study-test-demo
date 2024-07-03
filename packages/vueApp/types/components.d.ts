@@ -26,13 +26,11 @@ declare module 'vue' {
     MineBlock: typeof import('./../src/components/Minesweeper/MineBlock.vue')['default']
     Minesweeper: typeof import('./../src/components/Minesweeper/index.vue')['default']
     Modal: typeof import('./../src/components/Modal/index.vue')['default']
-    Option: typeof import('./../src/components/Select/Option.vue')['default']
     Overlayer: typeof import('./../src/components/Overlayer/index.vue')['default']
     PageBackground: typeof import('./../src/components/PageBackground/index.vue')['default']
     Popover: typeof import('./../src/components/Popover/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Select: typeof import('./../src/components/Select/index.vue')['default']
     Starport: typeof import('./../src/components/Starport/starport.vue')['default']
     StarportCarrier: typeof import('./../src/components/Starport/starportCarrier.vue')['default']
     StarportCraft: typeof import('./../src/components/Starport/starportCraft.vue')['default']
@@ -44,7 +42,6 @@ declare module 'vue' {
     Tsparticles: typeof import('./../src/components/PageBackground/Tsparticles.vue')['default']
     VirtualList: typeof import('./../src/components/VirtualList/index.vue')['default']
     VirtualListItem: typeof import('./../src/components/VirtualList/VirtualListItem.vue')['default']
-    VSelect: typeof import('vuetify/components')['VSelect']
     WaterfallFlow: typeof import('./../src/components/WaterfallFlow.vue')['default']
   }
 }

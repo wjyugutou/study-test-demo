@@ -1,8 +1,6 @@
 <script lang='ts' setup>
 import type { CSSProperties, Ref } from 'vue'
 
-import { isNumber } from '@/utils'
-
 defineOptions({ name: 'Modal' })
 
 const props = withDefaults(defineProps<{

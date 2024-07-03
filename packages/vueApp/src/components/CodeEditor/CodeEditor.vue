@@ -6,7 +6,7 @@ import { bundledLanguagesInfo, bundledThemesInfo } from 'shiki'
 const props = withDefaults(defineProps<{
   isEdit?: boolean
   collapse?: boolean
-}>(), { lang: 'typescript', collapse: true, isEdit: false })
+}>(), { lang: 'typescript', collapse: false, isEdit: false })
 const code = defineModel<string>({ required: true })
 const lang = defineModel<BundledLanguage>('lang', { default: 'vue' })
 const theme = defineModel<BundledTheme>('theme', { default: 'vitesse-dark' })
@@ -58,7 +58,7 @@ function copyCode() {
       <template #fallback>
         <Loading />
       </template>
-      <CodeEditorContent v-model="code" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
+      <CodeEditorContent v-show="!collapse" v-model="code" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
     </Suspense>
   </div>
 </template>

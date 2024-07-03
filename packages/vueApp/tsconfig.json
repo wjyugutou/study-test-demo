@@ -9,7 +9,8 @@
       "vite/client",
       "vitest/importMeta",
       "unplugin-vue-router/client",
-      "@webgpu/types", "node"
+      "@webgpu/types",
+      "node"
     ]
   },
   "references": [{ "path": "./tsconfig.node.json" }]
