@@ -61,7 +61,7 @@ export default function renderTriangle(data: WebGPUContext) {
       // 该渲染通道renderPass输出的像素数据会存储到Canvas画布对应的颜色缓冲区(纹理视图对象)
       view: canvasContext.getCurrentTexture().createView(),
       storeOp: 'store', // 像素数据写入颜色缓冲区
-      clearValue: { r: 0.5, g: 0.5, b: 0.5, a: 1.0 }, // 背景颜色
+      clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 0.1 }, // 背景颜色
       loadOp: 'clear',
     }],
   })
