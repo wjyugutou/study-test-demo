@@ -19,6 +19,7 @@
     "@yugutou/utils": "workspace:*",
     "autoprefixer": "^10.4.19",
     "canvas-confetti": "^1.9.3",
+    "gl-matrix": "^3.4.3",
     "matter-js": "^0.20.0",
     "tsparticles": "^3.4.0",
     "vue": "^3.4.31",

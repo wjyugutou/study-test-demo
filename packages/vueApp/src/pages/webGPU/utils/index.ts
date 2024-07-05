@@ -7,29 +7,15 @@ export interface WebGPUContext {
 }
 
 export async function initWebGPU() {
-  let adapter: GPUAdapter | null = null
-  let device: GPUDevice | null = null
-  let format: GPUTextureFormat | null = null
-  let isError = false
-  try {
-    format = navigator.gpu.getPreferredCanvasFormat()
+  const format = navigator.gpu.getPreferredCanvasFormat()
 
-    adapter = (await navigator.gpu.requestAdapter())!
+  const adapter = (await navigator.gpu.requestAdapter())!
 
-    device = await adapter.requestDevice()
-    isError = false
-  }
-  catch (error) {
-    console.error(error)
-    isError = true
-    // eslint-disable-next-line no-alert
-    alert('不支持WebGPU')
-  }
+  const device = await adapter.requestDevice()
 
   return {
     adapter,
     device,
     format,
-    isError,
   }
 }
