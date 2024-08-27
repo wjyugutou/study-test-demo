@@ -70,6 +70,10 @@ button, a {
     <RouterLink to="/webGPU">
       webGPU
     </RouterLink>
+
+    <RouterLink to="/three">
+      three
+    </RouterLink>
   </div>
   <DemochallengeList :list="demochallengeList" />
   <div class="p-y-10">

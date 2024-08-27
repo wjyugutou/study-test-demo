@@ -16,7 +16,8 @@
     "tazeVue": "pnpm --filter=vue-app taze",
     "updateDep": "taze latest -w && pnpm tazeVue && pnpm tazeReact && pnpm i",
     "chore": "pnpm choreReact && pnpm choreVue",
-    "buildVue": "rd /s /q docs && pnpm --filter=vue-app build"
+    "buildVue": "rd /s /q docs && pnpm --filter=vue-app build",
+    "preinstall": "npx only-allow pnpm"
   },
   "workspaces": [
     "packages/*"
