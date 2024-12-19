@@ -1,24 +1,25 @@
 {
   "compilerOptions": {
-    "incremental": false,
     "target": "ES2022",
-    "jsx": "preserve",
+    "jsx": "preserve", 
     "lib": ["DOM", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "resolveJsonModule": true,
+    "types": [
+      "vite/client",
+      "vitest/importMeta", 
+      "unplugin-vue-router/client",
+      "@webgpu/types",
+      "node"
+    ],
     "strict": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": false,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
+  "include": ["src/**/*", "types/**/*"],
   "exclude": ["dist", "node_modules"]
 }
-/**
-There are types at 'd:/DEV/DEMO/study-test-demo/packages/vueApp/node_modules/vue-router/vue-router-auto.d.ts',
- but this result could not be resolved under your current 'moduleResolution' setting. Consider updating to 'node16', 'nodenext',
-  or 'bundler'
-
- */
