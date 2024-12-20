@@ -22,6 +22,7 @@ declare module 'vue-router/auto-routes' {
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
     '/blog/': RouteRecordInfo<'/blog/', '/blog', Record<never, never>, Record<never, never>>,
     '/demoChallenge/': RouteRecordInfo<'/demoChallenge/', '/demoChallenge', Record<never, never>, Record<never, never>>,
+    '/demoChallenge/autoNavBar': RouteRecordInfo<'/demoChallenge/autoNavBar', '/demoChallenge/autoNavBar', Record<never, never>, Record<never, never>>,
     '/demoChallenge/canvasDrawPage': RouteRecordInfo<'/demoChallenge/canvasDrawPage', '/demoChallenge/canvasDrawPage', Record<never, never>, Record<never, never>>,
     '/demoChallenge/canvasPlum': RouteRecordInfo<'/demoChallenge/canvasPlum', '/demoChallenge/canvasPlum', Record<never, never>, Record<never, never>>,
     '/demoChallenge/digitalRain': RouteRecordInfo<'/demoChallenge/digitalRain', '/demoChallenge/digitalRain', Record<never, never>, Record<never, never>>,

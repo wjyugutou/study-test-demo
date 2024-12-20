@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import type { ArrowOptions, AutoPlacementOptions, FlipOptions, OffsetOptions, Placement, ShiftOptions, Strategy } from '@floating-ui/vue'
-import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import type { CSSProperties } from 'vue'
+import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { isBoolean } from 'lodash-es'
 
 interface Props {
@@ -23,17 +23,25 @@ const props = withDefaults(defineProps<Props>(), {
   offset: 15,
 })
 
-const defaultRef = ref<HTMLElement>()
-const contentRef = ref<HTMLElement>()
-const arrowRef = ref<HTMLElement>()
+// 容器
+const wrapperRef = useTemplateRef('wrapperDom')
+// 触发器
+const triggerRef = ref<HTMLElement | null>(null)
+// 内容
+const contentRef = useTemplateRef('contentDom')
+// 箭头
+const arrowRef = useTemplateRef('arrowDom')
 
-const visible = ref(false)
-const clickVisible = ref(false)
+// 是否显示
+const showPopover = ref(false)
+// 离开定时器
+const closeTimer = ref<NodeJS.Timeout | null>(null)
 
+// 计算 floating-ui 中间件配置
 const middleware = computed(() => {
   const list = [shift(props.shift), offset(props.offset), arrow(Object.assign({
     element: arrowRef,
-  }, props.arrow))]
+  }, props.arrow || {}))]
 
   if (props.autoPlacement)
     list.unshift(autoPlacement(isBoolean(props.autoPlacement) ? undefined : props.autoPlacement))
@@ -44,11 +52,12 @@ const middleware = computed(() => {
   return list
 })
 
+// floating-ui 核心功能配置
 const {
   x, y,
   strategy,
   middlewareData,
-} = useFloating(defaultRef, contentRef, {
+} = useFloating(wrapperRef, contentRef, {
   placement: props.placement,
   strategy: props.strategy,
   middleware,
@@ -67,73 +76,74 @@ const arrowStyle = computed<CSSProperties>(() => ({
   top: `${middlewareData.value.arrow?.y || ''}px`, left: `${middlewareData.value.arrow?.x || ''}px`,
 }))
 
-function enterHandle() {
+// 鼠标进入事件
+function enterHandle(e: MouseEvent) {
+  console.log('enterHandle', e.target)
+
+  closeTimer.value = null
   if (props.mode !== 'both' && props.mode !== 'hover')
     return
-  visible.value = !visible.value
+
+  showPopover.value = true
 }
 
+// 鼠标点击事件
 function clickHandle() {
   if (props.mode !== 'both' && props.mode !== 'click')
     return
-  const timer = setTimeout(() => {
-    clickVisible.value = !clickVisible.value
-    clearTimeout(timer)
-  }, 0)
+  // const timer = setTimeout(() => {
+  showPopover.value = !showPopover.value
+  // clearTimeout(timer)
+  // }, 0)
 }
 
+// 鼠标离开事件
 function leaveHidePopover() {
-  visible.value = false
+  console.log('leaveHidePopover')
+  closeTimer.value = setTimeout(() => {
+    showPopover.value = false
+    closeTimer.value && clearTimeout(closeTimer.value)
+  }, 1000)
 }
 
+// 点击trigger以外的事件 隐藏popover
 function clickHidePopover(e: MouseEvent) {
   if (eleIsIdNodeChild('contentParent', (e.target as Element).parentElement))
     return
-  visible.value = false
-  clickVisible.value = false
+  showPopover.value = false
 }
 
-function sourceEleBindEvent() {
-  if (props.mode === 'hover') {
-    defaultRef.value?.addEventListener('pointerenter', enterHandle)
-    defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
-  }
-  else if (props.mode === 'click') {
-    defaultRef.value?.addEventListener('pointerup', clickHandle)
-  }
-  else {
-    defaultRef.value?.addEventListener('pointerup', clickHandle)
-    defaultRef.value?.addEventListener('pointerenter', enterHandle)
-    defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
-  }
-}
-function sourceEleRemoveEvent() {
-  defaultRef.value?.removeEventListener('pointerenter', enterHandle)
-  defaultRef.value?.addEventListener('pointerleave', leaveHidePopover)
-  defaultRef.value?.removeEventListener('pointerup', clickHandle)
-}
+// 鼠标点击trigger元素
+useEventListener(triggerRef, 'click', clickHandle)
+// 鼠标进入trigger元素
+useEventListener(triggerRef, 'mouseenter', enterHandle)
+// 鼠标离开trigger元素
+useEventListener(triggerRef, 'mouseleave', leaveHidePopover)
 
+// 点击 trigger 之外 隐藏popover
 useEventListener(document.documentElement, 'click', clickHidePopover)
 
+// 鼠标进入内容元素
+useEventListener(contentRef, 'mouseenter', enterHandle)
+// 鼠标离开内容元素
+useEventListener(contentRef, 'mouseleave', leaveHidePopover)
+
 onMounted(() => {
-  sourceEleBindEvent()
-})
-onUnmounted(() => {
-  sourceEleRemoveEvent()
+  triggerRef.value = wrapperRef.value?.children[0] as HTMLElement
 })
 </script>
 
 <template>
-  <div ref="defaultRef" w-fit>
+  <div ref="wrapperDom" class="inline-block w-fit">
     <slot />
   </div>
 
-  <div v-if="visible || clickVisible" id="contentParent" ref="contentRef" px-10px :style="contentStyle" class="popover_container">
+  <div v-if="showPopover" id="contentParent" ref="contentDom" :style="contentStyle" class="popover-container px-10px">
     <slot name="content">
       <span>{{ content }}</span>
     </slot>
 
-    <div ref="arrowRef" absolute :style="arrowStyle">
+    <div ref="arrowDom" class="absolute" :style="arrowStyle">
       <slot name="arrow">
         <div class="popover_arrow" />
       </slot>
@@ -142,7 +152,7 @@ onUnmounted(() => {
 </template>
 
 <style>
-.popover_container {
+.popover-container {
   @apply: relative bg-[var(--popover-bg)] rounded-2;
 }
 

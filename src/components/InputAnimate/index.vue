@@ -9,23 +9,26 @@ const props = withDefaults(defineProps<{
 })
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string): void
-  (e: 'input', ev: Event): void
-  (e: 'change', ev: Event): void
+  (e: 'input', ev: string): void
+  (e: 'change', ev: string): void
 
 }>()
-const input = ref<HTMLInputElement>()
+const inputRef = useTemplateRef<HTMLInputElement>('input')
+
 function inputChange(e: Event) {
-  emits('change', e)
+  const target: HTMLInputElement = e.target as HTMLInputElement
+  emits('change', target.value)
 }
 
 function inputInput(e: Event) {
-  emits('update:modelValue', (e.target as any).value)
-  emits('input', e)
+  const target: HTMLInputElement = e.target as HTMLInputElement
+  emits('update:modelValue', target.value)
+  emits('input', target.value)
 }
 
 onMounted(() => {
   if (props.modelValue.length > 0)
-    input.value!.focus()
+    inputRef.value!.focus()
 })
 </script>
 

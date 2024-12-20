@@ -8,17 +8,17 @@ const name = useSessionStorage('hi-name', '鱼骨头')
 
 const router = useRouter()
 
-const demochallengeList = router.options.routes.find(item => item.path === '/demoChallenge')!.children!.map(({ name, path }) => ({
-  name,
-  path,
-})) as {
-  path: string
-  name?: string | undefined
-}[]
+const demochallengeList = router.options.routes.find(item => item.path === '/demoChallenge')!.children!.map(item => ({
+  name: item.name as string,
+  path: item.path as string,
+  // @ts-expect-error description
+  description: item.description as string | undefined,
+}))
 
 demochallengeList.push({
   name: 'starport',
   path: '/flip/flipOne',
+  description: '这是一个starport demo',
 })
 
 const code = `<script setup>
@@ -62,7 +62,7 @@ button, a {
     </RouterLink>
   </div>
 
-  <div class="b b-gray-400 m-y-10 p-2">
+  <div class="m-y-10 b b-gray-400 p-2">
     <RouterLink to="/webGL">
       webGL
     </RouterLink>

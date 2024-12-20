@@ -1,19 +1,24 @@
 <script lang='ts' setup generic="T extends {
   path: string;
-  name?: string;
+  name: string;
   description?: string;
 }"
 >
 import type { CSSProperties } from 'vue'
 
-defineOptions({ name: 'DemochallengeList' })
 const props = defineProps<{
   list: T[]
 }>()
 
 const activeIndex = ref(7)
 const scrollRef = ref<HTMLDivElement>()
-const searchName = ref()
+const searchName = ref('')
+
+const searchResult = computed(() => {
+  return props.list.filter((item) => {
+    return item.name?.toLocaleLowerCase()?.includes(`${searchName.value}`.toLocaleLowerCase())
+  })
+})
 
 const boxStyle = computed<CSSProperties>(() => {
   const displacement = (40 + 130) * (activeIndex.value - 4)
@@ -31,14 +36,6 @@ function wheel(e: WheelEvent) {
   else
     activeIndex.value = activeIndex.value + 1 > props.list.length - 1 ? 0 : activeIndex.value + 1
 }
-
-watch(searchName, (newValue) => {
-  const index = props.list.map(item => item.name?.toLocaleLowerCase()).findIndex(item => item?.includes(`${newValue}`.toLocaleLowerCase()))
-  console.log(111)
-
-  if (index !== -1)
-    activeIndex.value = index
-})
 </script>
 
 <template>
@@ -49,16 +46,17 @@ watch(searchName, (newValue) => {
   >
     <div absolute left-0 top-0 pt-15px>
       <InputAnimate v-model="searchName" placeholder="search" />
+      <span v-if="searchResult.length === 0">No Result</span>
     </div>
     <div flex transition="~ 500" :style="boxStyle">
-      <template v-for="item, i in list" :key="item.path">
+      <template v-for="item, i in searchResult" :key="item.path">
         <RouterLink
           class="item" :class="i === activeIndex && 'active'"
           :title="item.name"
           :style="{
             transform: `perspective(1000px) rotateY(${i === activeIndex ? 0 : i < activeIndex ? 45 : -45}deg)`,
           }"
-          :to="item.path"
+          :to="`/demoChallenge/${item.path}`"
         >
           <div h-full w-full overflow-hidden>
             <h1 text-center font-bold>

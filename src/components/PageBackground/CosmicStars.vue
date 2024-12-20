@@ -1,5 +1,4 @@
 <script lang='ts' setup>
-
 interface Star { x: number, y: number, z: number }
 
 const canvas = shallowRef<HTMLCanvasElement>()
@@ -209,6 +208,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" class="dark:bg-[var(--bg-color)]" fixed bottom-0 left-0 right-0 top-0 z--1 />
+  <canvas ref="canvas" class="fixed bottom-0 left-0 right-0 top-0 z--1 dark:bg-[var(--bg-color)]" />
   <slot />
 </template>
