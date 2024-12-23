@@ -1,4 +1,15 @@
 <script lang='ts' setup>
+definePage({
+  beforeEnter(to, form, next) {
+    if (to.path === '/demoChallenge') {
+      return next({ path: '/demoChallenge/autoNavBar', replace: true })
+    }
+    else {
+      return next()
+    }
+  },
+})
+
 const router = useRouter()
 const route = useRoute()
 

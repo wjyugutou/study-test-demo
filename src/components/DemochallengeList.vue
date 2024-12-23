@@ -20,13 +20,6 @@ const searchResult = computed(() => {
   })
 })
 
-const boxStyle = computed<CSSProperties>(() => {
-  const displacement = (40 + 130) * (activeIndex.value - 4)
-  return {
-    transform: `translate3d(${-displacement}px, 0, 0)`,
-  }
-})
-
 function wheel(e: WheelEvent) {
   e.preventDefault()
 
@@ -44,11 +37,11 @@ function wheel(e: WheelEvent) {
     class="box relative w-full overflow-hidden border p-y-35"
     @wheel="wheel"
   >
-    <div absolute left-0 top-0 pt-15px>
+    <div class="absolute left-0 top-0 pt-15px">
       <InputAnimate v-model="searchName" placeholder="search" />
-      <span v-if="searchResult.length === 0">No Result</span>
+      <span v-if="searchResult.length === 0" class="text-white">No Result</span>
     </div>
-    <div flex transition="~ 500" :style="boxStyle">
+    <div class="w-fit flex transition-(500)">
       <template v-for="item, i in searchResult" :key="item.path">
         <RouterLink
           class="item" :class="i === activeIndex && 'active'"
@@ -58,16 +51,16 @@ function wheel(e: WheelEvent) {
           }"
           :to="`/demoChallenge/${item.path}`"
         >
-          <div h-full w-full overflow-hidden>
-            <h1 text-center font-bold>
+          <div class="h-full w-full overflow-hidden">
+            <h1 class="text-center font-bold">
               {{ item.name }}
             </h1>
-            <p mt-15px px-4px text-14px>
+            <p class="mt-15px px-4px text-14px">
               {{ item.description }}
             </p>
           </div>
-          <div class="left" transition="~ 500" />
-          <div class="right" transition="~ 500" />
+          <div class="left transition transition-(500)" />
+          <div class="right transition transition-(500)" />
         </RouterLink>
       </template>
     </div>

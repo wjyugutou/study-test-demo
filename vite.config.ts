@@ -1,17 +1,19 @@
 import path from 'node:path'
-import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
-import Unocss from 'unocss/vite'
 // import Inspector from 'unplugin-vue-inspector/vite'
 import autoprefixer from 'autoprefixer'
+import Unocss from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
-import VueRouter from 'unplugin-vue-router/vite'
+import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
+import { defineConfig } from 'vite'
 
 // isSsrBuild, isPreview
 export default defineConfig(({ command, mode }) => ({
+  base: command === 'serve' ? '/' : '/study-test-demo',
+
   build: {
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
@@ -87,6 +89,12 @@ export default defineConfig(({ command, mode }) => ({
     // see unocss.config.ts for config
     Unocss(),
   ],
-  base: command === 'serve' ? '/' : '/study-test-demo',
-
+  optimizeDeps: {
+    include: [
+      'vue',
+      '@vueuse/core',
+      'unplugin-vue-router',
+      'shiki',
+    ],
+  },
 }))
