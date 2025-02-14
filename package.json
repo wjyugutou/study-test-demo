@@ -12,6 +12,7 @@
     "test": "vitest -w"
   },
   "dependencies": {
+    "vue-cropper@next": "latest",
     "@tsparticles/vue3": "^3.0.1",
     "@unocss/reset": "^65.4.3",
     "@vueuse/core": "^12.6.1",
