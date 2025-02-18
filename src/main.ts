@@ -1,9 +1,9 @@
-import { createApp } from 'vue'
 import Particles from '@tsparticles/vue3'
 import { loadFull } from 'tsparticles'
+import { createApp } from 'vue'
+import SvgIcon from '~virtual/svg-component'
 import App from './App.vue'
 import router from './router'
-import SvgIcon from '~virtual/svg-component'
 
 import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'

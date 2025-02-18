@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 definePage({
   beforeEnter(to, form) {
-    console.log({ to, form })
+    console.log('index', { to, form })
   },
 })
 const name = useSessionStorage('hi-name', '鱼骨头')

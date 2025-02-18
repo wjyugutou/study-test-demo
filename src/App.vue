@@ -12,7 +12,7 @@ onErrorCaptured((err, instance, info) => {
 <template>
   <StarportCarrier>
     <PageBackground :star-bg="starBg" :part-bg="partBg">
-      <main class="relative min-h-[calc(100vh-var(--footer-height))] p-b-[var(--footer-height)] px-4 text-gray-700 font-sans dark:text-gray-200">
+      <main class="relative min-h-[calc(100vh-var(--footer-height))] px-4 p-b-[var(--footer-height)] text-gray-700 font-sans dark:text-gray-200">
         <Suspense>
           <template #fallback>
             <Loading />

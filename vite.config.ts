@@ -40,6 +40,12 @@ export default defineConfig(({ command, mode }) => ({
   },
 
   plugins: [
+    // https://github.com/posva/unplugin-vue-router
+    VueRouter({
+      exclude: ['**/*/components', '**/*.d.ts'],
+      importMode: 'async',
+      dts: './types/vue-router.d.ts',
+    }),
 
     Vue(),
 
@@ -62,13 +68,6 @@ export default defineConfig(({ command, mode }) => ({
     // https://github.com/webfansplz/vite-plugin-vue-inspector
     // Inspector(),
 
-    // https://github.com/posva/unplugin-vue-router
-    VueRouter({
-      exclude: ['**/*/components', '**/*.d.ts'],
-      importMode: 'async',
-      dts: './types/vue-router.d.ts',
-    }),
-
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
@@ -76,7 +75,7 @@ export default defineConfig(({ command, mode }) => ({
         '@vueuse/core',
         VueRouterAutoImports,
       ],
-      dirs: ['./src/composables', './src/utils'],
+      dirs: ['./src/hooks', './src/utils'],
       dts: './types/auto-import.d.ts',
     }),
 
