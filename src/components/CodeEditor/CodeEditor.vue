@@ -32,14 +32,12 @@ function copyCode() {
 
 <template>
   <div class="code-editor" :class="theme">
-    <div
-      class="editor-toolbar" :class="collapse ? 'important-border-b-none' : ''"
-    >
+    <div class="editor-toolbar" :class="collapse ? 'important-border-b-none' : ''">
       <ArrowIcon class="tool-arrow" :rotate="collapse" @click="setCollapse()" />
       <!-- <p>{{ title }}</p> -->
       <div class="tool-select">
-        <select v-model="lang" @change="handleLangChange">
-          <option v-for="lang in bundledLanguagesInfo" :key="lang.id" :value="lang.id">
+        <select v-model="lang" style="scrollbar-width: thin;" @change="handleLangChange">
+          <option v-for="lang in bundledLanguagesInfo" :key="lang.id" :value="lang.id" style="scrollbar-width: thin;">
             {{ lang.name }}
           </option>
         </select>
@@ -58,7 +56,7 @@ function copyCode() {
       <template #fallback>
         <Loading />
       </template>
-      <CodeEditorContent v-show="!collapse" v-model="code" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
+      <CodeEditorContent v-model="code" :collapse="!collapse" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
     </Suspense>
   </div>
 </template>

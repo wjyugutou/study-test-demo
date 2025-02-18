@@ -3,6 +3,11 @@
 @import url('./variable.css');
 @import url('./transition.css');
 
+:root{
+  /* 开启插值过渡 */
+  /* interpolate-size: allow-keywords; */
+}
+
 html {
   background: var(--bg-color);
 }
@@ -15,6 +20,8 @@ label {
   user-select: none;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+* {
+  scrollbar-width: thin;
+  /* 第一个是滚动调颜色，第二个是滚动轨道颜色 */
+  /* scrollbar-color: rebeccapurple green; */
 }
