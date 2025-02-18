@@ -100,6 +100,8 @@ async function initial() {
   position: relative;
   transition: all .3s ease-in-out;
   height: calc-size(auto);
+  /* 兼容性 */
+  height: auto;
   /* 开启插值过渡 使auto也能有过渡效果 */
   interpolate-size: allow-keywords;
 
