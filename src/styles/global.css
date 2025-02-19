@@ -1,11 +1,10 @@
 @import url('./componentsVariable.css');
-@import url('./unoVariable.css');
 @import url('./variable.css');
 @import url('./transition.css');
 
 :root{
   /* 开启插值过渡 */
-  /* interpolate-size: allow-keywords; */
+  interpolate-size: allow-keywords;
 }
 
 html {
@@ -25,3 +24,34 @@ label {
   /* 第一个是滚动调颜色，第二个是滚动轨道颜色 */
   /* scrollbar-color: rebeccapurple green; */
 }
+
+
+
+.basicBtn {
+  @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500;
+} 
+
+.btn-mask {
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background-color: #fff;
+    opacity: 0;
+    content: '';
+  }
+
+  &:hover {
+    &::after {
+      opacity: 0.2;
+    }
+  }
+
+  &[active="true"]::after {
+    opacity: 0.2;
+  }
+}
+
+

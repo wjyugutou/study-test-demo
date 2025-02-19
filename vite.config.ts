@@ -52,7 +52,7 @@ export default defineConfig(({ command, mode }) => ({
     // svg作为组件加载
     // https://github.com/Jevon617/unplugin-svg-component
     UnpluginSvgComponent({
-      iconDir: './src/static/svg',
+      iconDir: './src/assets/svg',
       dts: true,
       dtsDir: './types/',
       prefix: 'icon',

@@ -1,6 +1,6 @@
 <script lang='ts' setup>
-import img from '@/static/images/mio.jpg'
-import img1 from '@/static/images/1.jpg'
+import img1 from '@/assets/images/1.jpg'
+import img from '@/assets/images/mio.jpg'
 
 defineOptions({ description: '手表型轮播图' })
 
