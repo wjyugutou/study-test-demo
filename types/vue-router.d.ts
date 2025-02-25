@@ -44,6 +44,7 @@ declare module 'vue-router/auto-routes' {
     '/demoChallenge/virtualScroll': RouteRecordInfo<'/demoChallenge/virtualScroll', '/demoChallenge/virtualScroll', Record<never, never>, Record<never, never>>,
     '/demoChallenge/watchCarousel': RouteRecordInfo<'/demoChallenge/watchCarousel', '/demoChallenge/watchCarousel', Record<never, never>, Record<never, never>>,
     '/demoChallenge/waterfallFlowa': RouteRecordInfo<'/demoChallenge/waterfallFlowa', '/demoChallenge/waterfallFlowa', Record<never, never>, Record<never, never>>,
+    '/demoChallenge/webrtc': RouteRecordInfo<'/demoChallenge/webrtc', '/demoChallenge/webrtc', Record<never, never>, Record<never, never>>,
     '/fileUpload/': RouteRecordInfo<'/fileUpload/', '/fileUpload', Record<never, never>, Record<never, never>>,
     '/flip/flipOne/': RouteRecordInfo<'/flip/flipOne/', '/flip/flipOne', Record<never, never>, Record<never, never>>,
     '/flip/flipTwo/[no]': RouteRecordInfo<'/flip/flipTwo/[no]', '/flip/flipTwo/:no', { no: ParamValue<true> }, { no: ParamValue<false> }>,
