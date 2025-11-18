@@ -30,7 +30,7 @@ const style = computed(() => ({
   & > div {
     position: absolute;
     inset: 0;
-    background-image: url('../../../assets/images/mio.jpg');
+    background-image: url('@/assets/images/mio.jpg');
     background-repeat:  no-repeat ;
     background-position: center;
     background-size: 100% 100%;

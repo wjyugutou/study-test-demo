@@ -1,5 +1,6 @@
 <script lang='ts' setup>
-import { type WebGPUContext, initWebGPU } from './utils'
+import type { WebGPUContext } from './utils'
+import { initWebGPU } from './utils'
 
 const pathMap: Record<string, { default: (data: WebGPUContext) => void }> = import.meta.glob('./utils/render/*.ts', { eager: true })
 const nameMap = Object.values(pathMap).reduce((pre, cur) => {
@@ -78,11 +79,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-[calc(100vh-42px-var(--footer-height))] max-w-full max-h-full relative">
-    <div class="absolute top-10 right-10">
+  <div class="h-[calc(100vh-42px-var(--footer-height))] max-h-full max-w-full relative">
+    <div class="right-10 top-10 absolute">
       {{ fps }}
     </div>
-    <div class="h-42px flex gap-20px">
+    <div class="flex gap-20px h-42px">
       <div
         v-for="item, index in nameMap" :key="index"
         class="cursor-pointer hover:text-blue" :class="index === active && 'text-blue'" @click="handleClick(index)"
@@ -90,7 +91,7 @@ onMounted(() => {
         {{ index }}
       </div>
     </div>
-    <div class="h-[calc(100vh-var(--footer-height))] max-w-full max-h-full">
+    <div class="h-[calc(100vh-var(--footer-height))] max-h-full max-w-full">
       <canvas ref="canvas" :width="width" :height="height" />
     </div>
   </div>

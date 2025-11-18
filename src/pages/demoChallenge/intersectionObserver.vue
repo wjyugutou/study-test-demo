@@ -1,6 +1,4 @@
 <script lang='ts' setup>
-import { debounce, throttle } from '@/utils'
-
 defineOptions({
   description: 'IntersectionObserver 提供了一种异步观察目标元素与其祖先元素或顶级文档视口（viewport）交叉状态的方法',
 })
@@ -51,16 +49,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="colorChangeRef" h-70 w-50 bg-red-500 />
-  <button rounded-6 bg-blue-500 p-3 text-white @click="debounceHandle">
+  <div ref="colorChangeRef" bg-red-500 h-70 w-50 />
+  <button text-white p-3 rounded-6 bg-blue-500 @click="debounceHandle">
     debounce
   </button>
 
-  <div ref="interSectionParent" relative h-300px w-500px overflow-auto bg-pink-500>
-    <div h-200px w-full bg-purple />
+  <div ref="interSectionParent" bg-pink-500 h-300px w-500px relative overflow-auto>
+    <div bg-purple h-200px w-full />
     <div>
-      <div ref="interSection1" bg-green-500 p-10 />
-      <div ref="interSection2" ml-10 bg-green p-10 />
+      <div ref="interSection1" p-10 bg-green-500 />
+      <div ref="interSection2" ml-10 p-10 bg-green />
     </div>
   </div>
 

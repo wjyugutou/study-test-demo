@@ -21,7 +21,7 @@ demochallengeList.push({
   description: '这是一个starport demo',
 })
 
-const code = `<script setup>
+const code = ref(`<script setup>
 import { ref } from 'vue'
 
 const message = ref('Hello World!')
@@ -51,7 +51,7 @@ button, a {
   display: block;
   margin-bottom: 1em;
 }
-</style>`
+</style>`)
 </script>
 
 <template>
@@ -62,7 +62,7 @@ button, a {
     </RouterLink>
   </div>
 
-  <div class="m-y-10 b b-gray-400 p-2">
+  <div class="m-y-10 p-2 b b-gray-400">
     <RouterLink to="/webGL">
       webGL
     </RouterLink>
