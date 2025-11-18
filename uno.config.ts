@@ -1,8 +1,8 @@
 import {
   defineConfig,
   presetIcons,
-  presetUno,
-  transformerDirectives,
+  presetWind4,
+  transformerDirectives, // --at-apply: 代替@apply 避免警告信息
   transformerVariantGroup,
 } from 'unocss'
 
@@ -11,7 +11,11 @@ export default defineConfig({
     'flex-center': 'flex items-center justify-center',
   },
   presets: [
-    presetUno(),
+    presetWind4({
+       preflights: {
+        reset: true,
+      },
+    }),
     presetIcons({
       scale: 1.2,
       warn: true,
