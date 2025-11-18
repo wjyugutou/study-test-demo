@@ -18,7 +18,7 @@ export default defineConfig(({ command, mode }) => ({
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
     },
-    outDir: 'dist',
+    outDir: 'docs',
     assetsDir: 'assets/',
     emptyOutDir: false,
     rollupOptions: {

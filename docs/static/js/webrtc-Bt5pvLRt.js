@@ -1,0 +1,1 @@
+import{d as a,w as o,c as s,o as c}from"../../assets/index-DOi-xgW3.js";const r={class:"h-full w-full"},d=a({__name:"webrtc",async setup(n){let e,t;return[e,t]=o(()=>navigator.mediaDevices.getUserMedia({video:!0,audio:!0})),e=await e,t(),(_,i)=>(c(),s("div",r," webRtc "))}});export{d as default};
