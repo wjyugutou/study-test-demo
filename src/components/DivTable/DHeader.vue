@@ -198,7 +198,7 @@ function getThClass(column: _Column) {
 
 <style>
 .d-header {
-  --at-apply: bg-gray-200;
+  --at-apply: bg-gray-200 font-700;
 
   display: grid;
 }
