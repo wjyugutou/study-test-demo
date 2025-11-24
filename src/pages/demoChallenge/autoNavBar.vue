@@ -77,7 +77,7 @@ onMounted(() => {
       </template>
     </div>
     <div class="whitespace-nowrap">
-      <template v-for="item, index in displayList" :key="item.name">
+      <template v-for="item, in displayList" :key="item.name">
         <button v-if="item.id !== 0" class="navbar-tag" type="button">
           {{ item.name }}
         </button>
@@ -98,11 +98,6 @@ onMounted(() => {
       </template>
     </div>
   </div>
-  <!-- <div class="h-10 w-50% overflow-hidden overflow-x-auto">
-    <button v-for="item in menuOriginData" :key="item.name" class="navbar-tag" type="button">
-      {{ item.name }}
-    </button>
-  </div> -->
 </template>
 
 <style scoped>

@@ -12,18 +12,11 @@ const columns = [
           { label: 'City', prop: 'city' },
           { label: 'Address', prop: 'address' },
           {
-            label: 'Zip', prop: 'zip',
+            label: 'Zip Info', prop: 'zip',
             children: [
-              { label: 'Name', prop: 'name' },
-              {
-                label: 'Address Info', prop: 'age',
-                children: [
-                  { label: 'State', prop: 'state' },
-                  { label: 'City', prop: 'city' },
-                  { label: 'Address', prop: 'address' },
-                  { label: 'Zip', prop: 'zip' },
-                ],
-              },
+              { label: 'Zip Name', prop: 'zip-name' },
+              { label: 'Zip Code', prop: 'zip-code' },
+              { label: 'Zip Size', prop: 'zip-size' },
             ],
           },
         ],
@@ -31,10 +24,46 @@ const columns = [
     ],
   },
 ]
+
+const data = [
+  {
+    'date': '2016-05-02',
+    'name': '王小虎',
+    'state': '上海',
+    'city': '普陀区',
+    'address': '上海市普陀区金沙江路 1518 弄',
+    'zip': 200333,
+    'zip-name': '上海',
+    'zip-code': 200333,
+    'zip-size': 200333,
+  },
+  {
+    'date': '2016-05-04',
+    'name': '王小虎',
+    'state': '上海',
+    'city': '普陀区',
+    'address': '上海市普陀区金沙江路 1517 弄',
+    'zip': 333,
+    'zip-name': '上海',
+    'zip-code': 2055,
+    'zip-size': 36489,
+  },
+  {
+    'date': '2016-05-01',
+    'name': '王小虎',
+    'state': '上海',
+    'city': '普陀区',
+    'address': '上海市普陀区金沙江路 1519 弄',
+    'zip': 31,
+    'zip-name': '上海',
+    'zip-code': 4234,
+    'zip-size': 3256,
+  },
+]
 </script>
 
 <template>
-  <table class="text-red m-auto m-t-50 bg-blue-500/50 w-50vw" border>
+  <table class="m-auto m-t-10 bg-blue-500/50 w-70vw" border>
     <caption>表格2</caption>
     <!-- 表头 名称 年龄 身高 -->
     <thead>
@@ -60,7 +89,7 @@ const columns = [
           19
         </td>
         <td class="text-center">
-          171
+          17阿三顶顶顶顶顶顶顶顶顶顶1
         </td>
       </tr>
       <tr>
@@ -87,8 +116,8 @@ const columns = [
     </tfoot>
   </table>
 
-  <div class="text-red m-auto m-t-50 bg-blue-500/50 w-50vw">
-    <DHeader :columns="columns" />
+  <div class="m-auto m-t-10 bg-blue-500/50 w-70vw">
+    <DTable :columns="columns" :data="data" />
   </div>
 </template>
 
@@ -99,7 +128,7 @@ tr {
 
 th,
 td {
-  --at-apply: py-2 border-r-(1px red solid);
+  --at-apply: py-2 border-r-(1px #ff0000 solid);
 }
 
 th {

@@ -79,6 +79,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/demoChallenge/DivTable': RouteRecordInfo<
+      '/demoChallenge/DivTable',
+      '/demoChallenge/DivTable',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/demoChallenge/editorDiv': RouteRecordInfo<
       '/demoChallenge/editorDiv',
       '/demoChallenge/editorDiv',
@@ -173,13 +180,6 @@ declare module 'vue-router/auto-routes' {
     '/demoChallenge/svgComponent': RouteRecordInfo<
       '/demoChallenge/svgComponent',
       '/demoChallenge/svgComponent',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
-    '/demoChallenge/tableDemo': RouteRecordInfo<
-      '/demoChallenge/tableDemo',
-      '/demoChallenge/tableDemo',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -343,6 +343,12 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
+    'src/pages/demoChallenge/DivTable.vue': {
+      routes:
+        | '/demoChallenge/DivTable'
+      views:
+        | never
+    }
     'src/pages/demoChallenge/editorDiv.vue': {
       routes:
         | '/demoChallenge/editorDiv'
@@ -424,12 +430,6 @@ declare module 'vue-router/auto-routes' {
     'src/pages/demoChallenge/svgComponent.vue': {
       routes:
         | '/demoChallenge/svgComponent'
-      views:
-        | never
-    }
-    'src/pages/demoChallenge/tableDemo.vue': {
-      routes:
-        | '/demoChallenge/tableDemo'
       views:
         | never
     }
