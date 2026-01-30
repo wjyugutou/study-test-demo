@@ -81,8 +81,8 @@ async function initial() {
 </script>
 
 <template>
-  <div class="editor-content" :class="collapse ? '' : 'collapse'">
-    <div>
+  <div class="editor-content" :class="collapse ? 'collapse' : ''">
+    <div class="content-inner">
       <div v-html="html" />
       <textarea
         ref="textarea"

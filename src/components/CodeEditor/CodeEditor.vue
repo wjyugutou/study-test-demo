@@ -56,7 +56,7 @@ function copyCode() {
       <template #fallback>
         <Loading />
       </template>
-      <CodeEditorContent v-model="code" :collapse="!collapse" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
+      <CodeEditorContent v-model="code" :collapse="collapse" :langs="langs" :lang="lang!" :themes="themes" :theme="theme!" :is-edit="isEdit" />
     </Suspense>
   </div>
 </template>
