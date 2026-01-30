@@ -43,7 +43,6 @@ declare module 'vue' {
     StarportCarrier: typeof import('./../src/components/Starport/starportCarrier.vue')['default']
     StarportCraft: typeof import('./../src/components/Starport/starportCraft.vue')['default']
     TextFallenStreet: typeof import('./../src/components/TextFallenStreet.vue')['default']
-    'TextFallenStreet-Undetermined': typeof import('./../src/components/TextFallenStreet--undetermined.vue')['default']
     THeader: typeof import('./../src/components/Table/THeader.vue')['default']
     TheImage: typeof import('./../src/components/TheImage.vue')['default']
     Treelist: typeof import('./../src/components/Treelist/index.vue')['default']

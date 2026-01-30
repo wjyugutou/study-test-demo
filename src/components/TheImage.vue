@@ -14,9 +14,9 @@ function clickHandle() {
 
 <template>
   <!-- overflow-hidden transition-all duration-1000 relative  hover:border="yellow" -->
-  <div relative w-full h-full overflow-hidden @click="clickHandle">
-    <img w-full h-full :src="img" alt="">
-    <p text-white absolute bottom-0 left="50%" translate-x="-50%" cursor-pointer select-none>
+  <div h-full w-full relative overflow-hidden @click="clickHandle">
+    <img h-full w-full :src="img" alt="">
+    <p left="50%" translate-x="-50%" text-white cursor-pointer select-none bottom-0 absolute>
       {{ count }}
     </p>
   </div>
