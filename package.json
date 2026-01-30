@@ -9,7 +9,8 @@
     "lint": "eslint . --fix",
     "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
-    "test": "vitest -w"
+    "test": "vitest -w",
+    "build:docs": "vite build --outDir docs"
   },
   "dependencies": {
     "@tsparticles/vue3": "^3.0.1",

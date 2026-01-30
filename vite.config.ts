@@ -18,9 +18,7 @@ export default defineConfig(({ command, mode }) => ({
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
     },
-    outDir: 'docs',
-    assetsDir: 'assets/',
-    emptyOutDir: false,
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
