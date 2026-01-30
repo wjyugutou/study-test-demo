@@ -1,0 +1,1 @@
+import{d as e,o,c as s,b as t}from"./vue-BNDGywnP.js";const n={id:"video",class:"vjs-big-play-centered",src:""},r=e({description:"videojs demo",__name:"videojsPlayRemp",setup(c){return o(()=>{}),(a,d)=>(t(),s("video",n))}});export{r as default};

@@ -1,1 +1,0 @@
-import{d as o,c as t,i as n,F as c,z as a,o as s}from"../../assets/index-BaHEQj1m.js";const l=o({description:"svg组件",__name:"svgComponent",setup(m){return(r,p)=>{const e=a("SvgIcon");return s(),t(c,null,[n(e,{name:"icon-1",style:{width:"100px",height:"100px"}}),n(e,{name:"icon-2"}),n(e,{name:"icon-3"}),n(e,{name:"icon-4",color:"blue"})],64)}}});export{l as default};

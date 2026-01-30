@@ -19,10 +19,20 @@ export default defineConfig(({ command, mode }) => ({
       drop: mode === 'production' ? ['console', 'debugger'] : [],
     },
     emptyOutDir: true,
+    chunkSizeWarningLimit: 1000, // 调整警告阈值为1000kB
     rollupOptions: {
       output: {
         assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
         chunkFileNames: 'static/js/[name]-[hash].js',
+        manualChunks: {
+          // 拆分大型依赖
+          vue: ['vue', 'vue-router'],
+          shiki: ['shiki'],
+          matter: ['matter-js'],
+          particles: ['tsparticles', '@tsparticles/vue3'],
+          glmatrix: ['gl-matrix'],
+          lodash: ['lodash-es'],
+        },
       },
     },
   },
