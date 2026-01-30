@@ -11,7 +11,7 @@ const router = useRouter()
 const demochallengeList = router.options.routes.find(item => item.path === '/demoChallenge')!.children!.map(item => ({
   name: item.name as string,
   path: item.path as string,
-  // @ts-expect-error description
+  // @ts-expect-error description is undefined in some routes
   description: item.description as string | undefined,
 }))
 
