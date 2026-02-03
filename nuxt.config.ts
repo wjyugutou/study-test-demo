@@ -42,8 +42,4 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: 'page', mode: 'out-in' },
   },
-  ssr: false,
-  uno: {
-    configFile: './uno.config.ts',
-  },
 })
