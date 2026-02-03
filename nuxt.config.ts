@@ -15,13 +15,6 @@ export default defineNuxtConfig({
     '~/styles/variable.css',
   ],
   vite: {
-    css: {
-      postcss: {
-        plugins: [
-          require('autoprefixer'),
-        ],
-      },
-    },
     build: {
       rollupOptions: {
         output: {
