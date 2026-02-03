@@ -1,16 +1,16 @@
 {
-  "name": "vue-app",
+  "name": "nuxt-app",
   "type": "module",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "vite build",
-    "dev": "vite --port 3333",
+    "build": "nuxt build",
+    "dev": "nuxt dev --port 3333",
     "lint": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit",
-    "preview": "vite preview",
+    "typecheck": "nuxt typecheck",
+    "preview": "nuxt preview",
     "test": "vitest -w",
-    "build:docs": "vite build --outDir docs"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@tsparticles/vue3": "^3.0.1",
@@ -22,39 +22,35 @@
     "matter-js": "^0.20.0",
     "shiki": "^3.21.0",
     "tsparticles": "^3.9.1",
-    "vue": "^3.5.27",
-    "vue-cropper": "^1.1.4",
-    "vue-router": "^5.0.0"
+    "vue-cropper": "^1.1.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.2.0",
     "@floating-ui/vue": "^1.1.10",
     "@iconify-json/carbon": "^1.2.18",
     "@iconify-json/material-symbols": "^1.2.53",
+    "@nuxt/eslint": "^1.1.0",
+    "@pinia/nuxt": "^0.11.3",
     "@types/canvas-confetti": "^1.9.0",
     "@types/lodash-es": "^4.17.12",
     "@types/matter-js": "^0.20.2",
     "@types/node": "^25.1.0",
     "@unocss/eslint-plugin": "^66.6.0",
-    "@vitejs/plugin-vue": "^6.0.3",
+    "@unocss/nuxt": "^66.6.0",
     "@vue/test-utils": "^2.4.6",
-    "@webgpu/types": "^0.1.69",
+    "@vueuse/nuxt": "^12.7.0",
     "eslint": "^9.39.2",
+    "nuxt": "^4.1.1",
     "typescript": "5.7.2",
     "unocss": "^66.6.0",
-    "unplugin-auto-import": "^21.0.0",
-    "unplugin-svg-component": "^0.12.4",
-    "unplugin-vue-components": "^31.0.0",
-    "unplugin-vue-inspector": "^2.3.2",
-    "unplugin-vue-router": "^0.19.2",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.18",
-    "vue-tsc": "^3.2.4"
+    "vitest": "^4.0.18"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@parcel/watcher",
       "@tsparticles/engine",
       "esbuild",
+      "unrs-resolver",
       "vue-demi"
     ]
   }
