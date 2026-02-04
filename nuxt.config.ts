@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 5,
     typescriptBundlerResolution: true,
   },
+  ssr: true,
   experimental: { nitroAutoImports: true },
   modules: [
     '@unocss/nuxt',
@@ -20,7 +21,6 @@ export default defineNuxtConfig({
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
           chunkFileNames: 'static/js/[name]-[hash].js',
           manualChunks: {
-            shiki: ['shiki'],
             matter: ['matter-js'],
             glmatrix: ['gl-matrix'],
             lodash: ['lodash-es'],

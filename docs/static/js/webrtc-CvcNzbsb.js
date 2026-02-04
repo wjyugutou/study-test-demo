@@ -1,1 +1,0 @@
-import{d as a,U as s,c as o,b as c}from"./vue-BNDGywnP.js";const r={class:"h-full w-full"},d=a({__name:"webrtc",async setup(n){let e,t;return[e,t]=s(()=>navigator.mediaDevices.getUserMedia({video:!0,audio:!0})),e=await e,t(),(_,i)=>(c(),o("div",r," webRtc "))}});export{d as default};
