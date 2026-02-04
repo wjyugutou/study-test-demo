@@ -1,18 +1,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 5,
+    typescriptBundlerResolution: true,
   },
+  experimental: { nitroAutoImports: true },
   modules: [
     '@unocss/nuxt',
     '@vueuse/nuxt',
     '@pinia/nuxt',
   ],
   css: [
-    '~/styles/global.css',
-    '~/styles/componentsVariable.css',
-    '~/styles/transition.css',
-    '~/styles/variable.css',
+    '~/app/styles/global.css',
   ],
   vite: {
     build: {
