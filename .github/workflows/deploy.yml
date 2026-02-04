@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+
       - uses: actions/checkout@v4
       - run: corepack enable
       - uses: actions/setup-node@v4
@@ -21,7 +23,22 @@ jobs:
           version: 10.20.0
       # Pick your own package manager and build script
       - run: pnpm install
-      - run: NUXT_APP_BASE_URL=study-test-demo pnpm dlx nuxt build --preset github_pages
+            - name: Generate static site (with debug)  # 替换此步骤
+        run: |
+          # 1. 设置调试环境变量
+          export NITRO_LOG_LEVEL=debug
+          export NUXT_APP_BASE_URL=study-test-demo
+          
+          # 2. 执行生成命令，捕获详细日志
+          # 注意：关键是将 `nuxt build` 改为 `nuxt generate`
+          pnpm dlx nuxt build --preset github_pages 2>&1 | tee build.log || {
+            echo "❌ 构建失败！以下是最后100行日志："
+            tail -n 100 build.log
+            echo "正在检查可能出错的URL..."
+            grep -i "error\|fetching\|prerendering\|failed" build.log | head -30
+            exit 1
+          }
+          echo "✅ 静态站点生成成功！"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
