@@ -25,11 +25,6 @@ export default antfu({
       'vue/component-name-in-template-casing': [
         'error',
         'PascalCase',
-        {
-        // 为false检查全部组件，true 检查注册组件（对unplugin-vue-components无效），
-          registeredComponentsOnly: false,
-          ignores: [],
-        },
       ],
     },
   },

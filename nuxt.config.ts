@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   css: [
-    '~/app/styles/global.css',
+    '~/styles/global.css',
   ],
   vite: {
     build: {
