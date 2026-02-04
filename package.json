@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "nuxt build",
     "dev": "nuxt dev --port 3333",
     "lint": "eslint . --fix",
@@ -43,5 +44,13 @@
     "typescript": "5.7.2",
     "unocss": "^66.6.0",
     "vitest": "^4.0.18"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@tsparticles/engine",
+      "esbuild",
+      "vue-demi"
+    ]
   }
 }
