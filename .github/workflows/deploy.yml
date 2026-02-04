@@ -23,7 +23,7 @@ jobs:
           version: 10.20.0
       # Pick your own package manager and build script
       - run: pnpm install
-            - name: Generate static site (with debug)  # 替换此步骤
+      - name: Generate static site (with debug)  # 替换此步骤
         run: |
           # 1. 设置调试环境变量
           export NITRO_LOG_LEVEL=debug
