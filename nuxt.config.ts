@@ -16,6 +16,11 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
   },
   ssr: true,
+  // 添加路由规则，排除对 /200.html 的预渲染尝试
+  routeRules: {
+    '/200.html': { prerender: false },
+    '/404.html': { prerender: false },
+  },
   experimental: { nitroAutoImports: true },
   modules: [
     '@unocss/nuxt',
