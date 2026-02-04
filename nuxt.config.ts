@@ -23,7 +23,6 @@ export default defineNuxtConfig({
             vue: ['vue', 'vue-router'],
             shiki: ['shiki'],
             matter: ['matter-js'],
-            particles: ['tsparticles', '@tsparticles/vue3'],
             glmatrix: ['gl-matrix'],
             lodash: ['lodash-es'],
           },

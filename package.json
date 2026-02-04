@@ -13,6 +13,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/preset-stars": "^3.2.0",
     "@tsparticles/vue3": "^3.0.1",
     "@vueuse/core": "^14.2.0",
     "autoprefixer": "^10.4.24",
@@ -21,7 +23,6 @@
     "lodash-es": "^4.17.23",
     "matter-js": "^0.20.0",
     "shiki": "^3.22.0",
-    "tsparticles": "^3.9.1",
     "vue-cropper": "^1.1.4"
   },
   "devDependencies": {
@@ -43,14 +44,5 @@
     "typescript": "5.7.2",
     "unocss": "^66.6.0",
     "vitest": "^4.0.18"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "@tsparticles/engine",
-      "esbuild",
-      "unrs-resolver",
-      "vue-demi"
-    ]
   }
 }

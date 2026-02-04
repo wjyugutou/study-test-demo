@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@tsparticles/engine'
+  - esbuild
+  - vue-demi

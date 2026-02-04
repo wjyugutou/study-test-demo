@@ -208,6 +208,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" class="fixed bottom-0 left-0 right-0 top-0 z--1 dark:bg-[var(--bg-color)]" />
-  <slot />
+  <canvas ref="canvas" class="bottom-0 left-0 right-0 top-0 fixed z--1 dark:bg-[var(--bg-color)]" />
 </template>
