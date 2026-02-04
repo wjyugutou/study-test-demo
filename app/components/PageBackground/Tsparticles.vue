@@ -1,11 +1,7 @@
 <script lang='ts' setup>
-import { tsParticles as engine } from '@tsparticles/engine'
-// 导入你想要的预设
-import { loadStarsPreset } from '@tsparticles/preset-stars'
-// 引入 tsParticles 的 Vue 组件
-import VueParticles from '@tsparticles/vue3'
+import type { Container, Engine, ISourceOptions } from '@tsparticles/engine'
 
-const options = {
+const options: ISourceOptions = {
   background: {
     color: {
       value: 'transparent',
@@ -100,20 +96,13 @@ const options = {
   detectRetina: false,
 }
 
-async function particlesLoaded(container: any) {
-  console.log('Particles container loaded', container)
+async function particlesLoaded(container: Container) {
+  // console.log('Particles container loaded', container)
 }
-
-onMounted(() => {
-  // 加载预设
-  loadStarsPreset(engine)
-  console.log('ddddddddddddd')
-})
 </script>
 
 <template>
-  <!-- 引入并渲染 tsParticles 的 Vue 组件 -->
-  <VueParticles
+  <vue-particles
     id="tsparticles"
     :options="options"
     @particles-loaded="particlesLoaded"

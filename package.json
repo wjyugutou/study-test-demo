@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "^3.9.1",
-    "@tsparticles/preset-stars": "^3.2.0",
+    "@tsparticles/slim": "^3.9.1",
     "@tsparticles/vue3": "^3.0.1",
     "@vueuse/core": "^14.2.0",
     "autoprefixer": "^10.4.24",

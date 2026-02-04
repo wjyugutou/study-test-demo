@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const starBg = computed(() => route.meta.starBg !== false)
-const partBg = computed(() => !!route.meta.partBg)
+const starBg = computed(() => false,
+// route.meta.starBg !== false
+)
+const partBg = computed(() => true || !!route.meta.partBg)
 </script>
 
 <template>

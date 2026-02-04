@@ -14,7 +14,6 @@ withDefaults(defineProps<{
 
 <template>
   <ClientOnly>
-    <h1>阿三大苏打</h1>
     <CosmicStars v-if="starBg" />
     <Tsparticles v-if="partBg" />
     <slot />
