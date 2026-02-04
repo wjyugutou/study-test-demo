@@ -36,4 +36,3 @@ dist-ssr
 
 
 vite.config.ts.timestamp-**.*
-pnpm-lock.yaml
