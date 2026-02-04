@@ -14,9 +14,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.20.0
       # Pick your own package manager and build script
-      - run: npm install
-      - run: NUXT_APP_BASE_URL=study-test-demo npx nuxt build --preset github_pages
+      - run: pnpm install
+      - run: NUXT_APP_BASE_URL=study-test-demo pnpm github-pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
