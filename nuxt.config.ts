@@ -20,7 +20,6 @@ export default defineNuxtConfig({
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
           chunkFileNames: 'static/js/[name]-[hash].js',
           manualChunks: {
-            vue: ['vue', 'vue-router'],
             shiki: ['shiki'],
             matter: ['matter-js'],
             glmatrix: ['gl-matrix'],
