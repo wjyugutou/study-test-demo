@@ -4,6 +4,17 @@ export default defineNuxtConfig({
     compatibilityVersion: 5,
     typescriptBundlerResolution: true,
   },
+  app: {
+    buildAssetsDir: 'nuxt_assets',
+    head: {
+      title: 'Vue App',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+    },
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   ssr: true,
   experimental: { nitroAutoImports: true },
   modules: [
@@ -16,6 +27,7 @@ export default defineNuxtConfig({
   ],
   vite: {
     build: {
+      emptyOutDir: true,
       rollupOptions: {
         output: {
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
@@ -28,15 +40,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  },
-  app: {
-    head: {
-      title: 'Vue App',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      ],
-    },
-    pageTransition: { name: 'page', mode: 'out-in' },
   },
 })
