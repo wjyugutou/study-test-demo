@@ -17,7 +17,6 @@
     "@tsparticles/slim": "^3.9.1",
     "@tsparticles/vue3": "^3.0.1",
     "@vueuse/core": "^14.2.0",
-    "autoprefixer": "^10.4.24",
     "canvas-confetti": "^1.9.4",
     "gl-matrix": "^3.4.4",
     "lodash-es": "^4.17.23",
