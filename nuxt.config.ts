@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     typescriptBundlerResolution: true,
   },
   app: {
+    baseURL: '/study-test-demo/',
     buildAssetsDir: 'nuxt_assets',
     head: {
       title: 'Vue App',
