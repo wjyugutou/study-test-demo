@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2025-01-01',
+  compatibilityDate: '2025-01-01', // 指定应用程序的兼容日期
   future: {
     compatibilityVersion: 5,
     typescriptBundlerResolution: true,

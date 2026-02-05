@@ -41,7 +41,10 @@ const curIndex = computed(() => allDemo.findIndex(item => item.path === router.c
 
 const showDemoList = computed(() => {
   const arr = [allDemo[curIndex.value - 1], allDemo[curIndex.value], allDemo[curIndex.value + 1]]
-  return arr.filter(Boolean)
+  return arr.filter(Boolean) as {
+    path: string
+    label: string
+  }[]
 })
 
 function back() {
@@ -66,10 +69,10 @@ const title = computed(() => route.fullPath.split('/').at(-1))
 </script>
 
 <template>
-  <header class="mb-8px h-46px flex items-center justify-center py-5px">
+  <header class="mb-8px py-5px flex h-46px items-center justify-center">
     <div
       text="hover:gray-200 gray-400"
-      class="absolute left-0 h-30px inline-30px hover:cursor-pointer"
+      class="h-30px inline-30px left-0 absolute hover:cursor-pointer"
       i-carbon-chevron-left
       @click="back"
     />
@@ -80,8 +83,8 @@ const title = computed(() => route.fullPath.split('/').at(-1))
   <main class="relative overflow-hidden">
     <NuxtPage />
   </main>
-  <footer class="fixed bottom-0 left-0 right-0 flex items-center justify-between px-2 text-left text-26px">
-    <div class="z-2 cursor-pointer" @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
+  <footer class="text-26px px-2 text-left flex items-center bottom-0 left-0 right-0 justify-between fixed">
+    <div class="cursor-pointer z-2" @pointerenter="pointerEnterHandle" @pointerleave="pointerLeaveHandle">
       <template v-if="footerEnter">
         <div v-for="item in showDemoList" :key="item.path">
           <NuxtLink :to="item.path" replace>
@@ -93,7 +96,7 @@ const title = computed(() => route.fullPath.split('/').at(-1))
         {{ allDemo[curIndex]?.label }}
       </template>
     </div>
-    <div class="z-2 cursor-pointer" @click="listClickHandle">
+    <div class="cursor-pointer z-2" @click="listClickHandle">
       list
     </div>
   </footer>
