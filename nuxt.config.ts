@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
   },
   ssr: true,
-  // 添加路由规则，排除对 /200.html 的预渲染尝试
+  // fix: github pages排除对 /200.html 以及 /404.html, 预渲染尝试
   routeRules: {
     '/200.html': { prerender: false },
     '/404.html': { prerender: false },
@@ -33,17 +33,6 @@ export default defineNuxtConfig({
   vite: {
     build: {
       emptyOutDir: true,
-      rollupOptions: {
-        output: {
-          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-          chunkFileNames: 'static/js/[name]-[hash].js',
-          manualChunks: {
-            matter: ['matter-js'],
-            glmatrix: ['gl-matrix'],
-            lodash: ['lodash-es'],
-          },
-        },
-      },
     },
   },
 })
