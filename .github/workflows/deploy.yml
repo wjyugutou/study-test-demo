@@ -21,7 +21,7 @@ jobs:
           version: 10.20.0
       # Pick your own package manager and build script
       - run: npm install
-      - run: npx nuxt build --preset github_pages
+      - run: NUXT_APP_BASE_URL=study-test-demo npx nuxt build --preset github_pages
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
