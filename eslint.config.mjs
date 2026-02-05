@@ -1,11 +1,15 @@
 import antfu from '@antfu/eslint-config'
+import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default antfu({
+export default withNuxt(antfu({
   toml: false,
   yaml: false,
   test: false,
   jsx: false,
   unocss: true,
+  pnpm: true,
+  typescript: true,
+  standalone: false,
 }, [
   {
     rules: {
@@ -35,4 +39,4 @@ export default antfu({
       'jsonc/sort-keys': 0,
     },
   },
-])
+]))

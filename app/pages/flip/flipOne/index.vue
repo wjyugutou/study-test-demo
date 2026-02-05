@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { imgs } from '../data'
+import { imgs } from '../utils/data'
 
 defineOptions({
   name: 'FlipOne',
 })
 
-const scale = useStorage('size', 0.25)
+const scale = useSessionStorage('size', 0.25)
 const style = computed(() => ({
   width: `${100 * scale.value}rem`,
   height: `${50 * scale.value}rem`,
@@ -16,20 +16,22 @@ function toggleHandle() {
 </script>
 
 <template>
-  <div flex justify-center gap-2>
-    <button class="basicBtn" @click="toggleHandle">
-      ToggleSize
-    </button>
-  </div>
-
-  <RouterLink
-    v-for="item in imgs"
-    :key="item.id" :to="`/flip/flipTwo/${item.id}`"
-  >
-    <div pb-2>
-      <Starport :port-id="item.id" :style="style">
-        <TheImage :img="item.img" />
-      </Starport>
+  <div>
+    <div flex gap-2 justify-center>
+      <button class="basicBtn" @click="toggleHandle">
+        ToggleSize
+      </button>
     </div>
-  </RouterLink>
+
+    <NuxtLink
+      v-for="item in imgs"
+      :key="item.id" :to="`/flip/flipTwo/${item.id}`"
+    >
+      <div pb-2>
+        <Starport :port-id="item.id" :style="style">
+          <TheImage :img="item.img" />
+        </Starport>
+      </div>
+    </NuxtLink>
+  </div>
 </template>

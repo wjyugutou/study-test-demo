@@ -63,61 +63,63 @@ const data = [
 </script>
 
 <template>
-  <table class="m-auto m-t-10 bg-blue-500/50 w-70vw" border>
-    <caption>表格2</caption>
-    <!-- 表头 名称 年龄 身高 -->
-    <thead>
-      <THeader :columns="columns" />
-    </thead>
-    <tbody>
-      <tr>
-        <td class="text-center">
-          小明
-        </td>
-        <td class="text-center">
-          18
-        </td>
-        <td class="text-center">
-          170
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" rowspan="2" class="text-center">
-          小红
-        </td>
-        <td rowspan="0" class="text-center hidden">
-          19
-        </td>
-        <td class="text-center">
-          17阿三顶顶顶顶顶顶顶顶顶顶1
-        </td>
-      </tr>
-      <tr>
-        <td colspan="0" class="text-center hidden">
-          小王
-        </td>
-        <td colspan="0" class="text-center hidden">
-          20
-        </td>
-        <td class="text-center">
-          172
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="2" class="text-center">
-          Average age
-        </td>
-        <td class="text-center">
-          33
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+  <div>
+    <table class="m-auto m-t-10 bg-blue-500/50 w-70vw" border>
+      <caption>表格2</caption>
+      <!-- 表头 名称 年龄 身高 -->
+      <thead>
+        <THeader :columns="columns" />
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">
+            小明
+          </td>
+          <td class="text-center">
+            18
+          </td>
+          <td class="text-center">
+            170
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="2" class="text-center">
+            小红
+          </td>
+          <td rowspan="0" class="text-center hidden">
+            19
+          </td>
+          <td class="text-center">
+            17阿三顶顶顶顶顶顶顶顶顶顶1
+          </td>
+        </tr>
+        <tr>
+          <td colspan="0" class="text-center hidden">
+            小王
+          </td>
+          <td colspan="0" class="text-center hidden">
+            20
+          </td>
+          <td class="text-center">
+            172
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" class="text-center">
+            Average age
+          </td>
+          <td class="text-center">
+            33
+          </td>
+        </tr>
+      </tfoot>
+    </table>
 
-  <div class="m-auto m-t-10 bg-blue-500/50 w-70vw">
-    <DTable :columns="columns" :data="data" />
+    <div class="m-auto m-t-10 bg-blue-500/50 w-70vw">
+      <DTable :columns="columns" :data="data" />
+    </div>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { imgs } from '../data'
+import { imgs } from '../utils/data'
 
 defineOptions({ name: 'FlipTwo' })
 
@@ -9,24 +9,11 @@ const no = route.params.no as string
 const size = useSessionStorage('size', 100)
 
 const img = imgs.find(item => `${item.id}` === no)!.img
-
-const Comp = defineComponent({
-  setup() {
-    onMounted(() => {
-      console.log('test mounted')
-    })
-
-    onUnmounted(() => {
-      console.log('test unmounted')
-    })
-    return () => ''
-  },
-})
 </script>
 
 <template>
   <div>
-    <div flex justify-center gap-4>
+    <div flex gap-4 justify-center>
       <button class="basicBtn" @click="router.back">
         back
       </button>

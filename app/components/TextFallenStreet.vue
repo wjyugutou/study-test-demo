@@ -1,5 +1,4 @@
 <script lang='ts' setup>
-
 const props = defineProps<{
   list: { title: string, [key: string]: any }[]
 }>()
@@ -21,7 +20,7 @@ const TextFallenStreetItem = defineComponent((props) => {
     })
   })
 
-  return () => props.text.split('').map((str, index) => (h('span', { ref: ref => spans.value.push(ref as HTMLSpanElement) }, str)))
+  return () => props.text.split('').map(str => (h('span', { ref: ref => spans.value.push(ref as HTMLSpanElement) }, str)))
 }, {
   name: 'TextFallenStreetItem',
   props: { text: String, color: String },

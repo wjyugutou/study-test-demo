@@ -1,5 +1,9 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2025-01-01', // 指定应用程序的兼容日期
+  compatibilityDate: '2025-07-15', // 指定应用程序的兼容日期
+  devtools: { enabled: true },
+  modules: [
+    '@pinia/nuxt', 'dayjs-nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt',
+  ],
   future: {
     compatibilityVersion: 5,
     typescriptBundlerResolution: true,
@@ -21,12 +25,9 @@ export default defineNuxtConfig({
     '/200.html': { prerender: false },
     '/404.html': { prerender: false },
   },
-  experimental: { nitroAutoImports: true },
-  modules: [
-    '@unocss/nuxt',
-    '@vueuse/nuxt',
-    '@pinia/nuxt',
-  ],
+  experimental: {
+    nitroAutoImports: true,
+  },
   css: [
     '~/styles/global.css',
   ],
@@ -34,5 +35,13 @@ export default defineNuxtConfig({
     build: {
       emptyOutDir: true,
     },
+  },
+  eslint: {
+    config: {
+      standalone: false,
+    },
+  },
+  pages: {
+    pattern: ['!**/utils/**/*.ts'],
   },
 })

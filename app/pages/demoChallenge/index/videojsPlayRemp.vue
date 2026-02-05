@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-defineOptions({ description: 'videojs demo' })
+defineOptions({ description: '视频播放' })
 
 function initVideoPlayer() {
 

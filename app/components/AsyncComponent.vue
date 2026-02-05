@@ -27,15 +27,6 @@ function toggleStyle() {
 // }).then((val: any) => {
 //   console.log(`${val}lll`)
 // })
-
-const a = {}
-
-function asd() {
-  const a = 2
-  console.log(a)
-}
-
-asd()
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import type { ComputedRef } from 'vue'
-import type { VirtualListProps } from '.'
+import type { VirtualListProps } from './type'
 
 defineOptions({ name: 'VirtualList' })
 
@@ -36,7 +36,7 @@ function childHeightChange(node: HTMLElement, index: number) {
   itemMap.itemHeight[index] = node.clientHeight
 
   for (const itemHeight in itemMap.itemHeight)
-    height += itemMap.itemHeight[itemHeight] - 50
+    itemMap.itemHeight[itemHeight] && (height += itemMap.itemHeight[itemHeight] - 50)
   virtualContentHeight.value = height
 }
 

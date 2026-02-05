@@ -1,4 +1,8 @@
 <script lang='ts' setup>
+definePageMeta({
+  starBg: false,
+})
+
 const router = useRouter()
 const route = useRoute()
 
@@ -28,8 +32,8 @@ function handleClick(com: any) {
 </script>
 
 <template>
-  <div class="h-[calc(100vh-var(--footer-height))] max-w-full max-h-full">
-    <div class="h-42px flex gap-20px">
+  <div class="h-[calc(100vh-var(--footer-height))] max-h-full max-w-full">
+    <div class="flex gap-20px h-42px">
       <div
         v-for="item, index in nameMap" :key="index"
         class="cursor-pointer hover:text-blue" :class="index === route.query.type && 'text-blue'" @click="handleClick(item)"
@@ -42,11 +46,3 @@ function handleClick(com: any) {
     </div>
   </div>
 </template>
-
-<route lang="json">
-  {
-    "meta": {
-      "starBg": false
-    }
-  }
-</route>

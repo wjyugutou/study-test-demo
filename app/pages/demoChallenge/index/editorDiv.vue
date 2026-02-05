@@ -6,6 +6,6 @@ const data = ref({
 </script>
 
 <template>
-  // 如果需要赋值, 初始化之后在渲染组件
+  <!-- // 如果需要赋值, 初始化之后在渲染组件 -->
   <EditorDiv v-if="data.text" v-model="data" />
 </template>

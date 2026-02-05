@@ -2,7 +2,7 @@
 import type { WebGPUContext } from './utils'
 import { initWebGPU } from './utils'
 
-defineRouteMeta({
+definePageMeta({
   starBg: false,
 })
 
