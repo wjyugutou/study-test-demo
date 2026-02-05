@@ -4,8 +4,6 @@
   description?: string;
 }"
 >
-import type { CSSProperties } from 'vue'
-
 const props = defineProps<{
   list: T[]
 }>()
@@ -54,7 +52,7 @@ function wheel(e: WheelEvent) {
     </div>
     <div class="pt-16 flex w-fit transition-all duration-500 ease-out">
       <template v-for="item, i in searchResult" :key="item.path">
-        <RouterLink
+        <NuxtLink
           class="item"
           :class="i === activeIndex && 'active'"
           :title="item.name"
@@ -63,7 +61,7 @@ function wheel(e: WheelEvent) {
             opacity: i === activeIndex ? 1 : 0.7,
             scale: i === activeIndex ? 1 : 0.9,
           }"
-          :to="`/demoChallenge/${item.path}`"
+          :to="item.path"
         >
           <div class="p-5 h-full w-full overflow-hidden">
             <h1 class="text-lg text-transparent font-bold mb-3 text-center from-blue-400 to-purple-400 bg-gradient-to-r bg-clip-text">
@@ -77,7 +75,7 @@ function wheel(e: WheelEvent) {
           <div class="right transition-all duration-500 ease-out" />
           <div class="top transition-all duration-500 ease-out" />
           <div class="bottom transition-all duration-500 ease-out" />
-        </RouterLink>
+        </NuxtLink>
       </template>
     </div>
   </div>

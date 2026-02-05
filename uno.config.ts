@@ -21,7 +21,6 @@ export default defineConfig({
       warn: true,
     }),
   ],
-
   transformers: [
     transformerVariantGroup(),
     transformerDirectives(),
