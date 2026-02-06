@@ -66,10 +66,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <h1 class="text-(20 red-400)" @click="handleClickMore">
-      autoNavBar {{ a }}
-      <div class="" />
-    </h1>
     <div class="navbar h-10 w-50% overflow-hidden overflow-x-auto">
       <div ref="navbarScrollDom" class="whitespace-nowrap">
         <template v-for="item, index in displayList" :key="item.name">
