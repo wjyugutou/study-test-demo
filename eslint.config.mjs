@@ -9,7 +9,6 @@ export default withNuxt(antfu({
   unocss: true,
   pnpm: true,
   typescript: true,
-  standalone: false,
 }, [
   {
     rules: {

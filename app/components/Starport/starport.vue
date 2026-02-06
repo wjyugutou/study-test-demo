@@ -19,7 +19,7 @@ const injectState = inject(StarportKey)!
 
 const el = ref<HTMLDivElement>()
 
-const portIns = computed(() => injectState.getPortIns(`${props.portId}`, slots.default!()[0])!)
+const portIns = computed(() => injectState.getPortIns(`${props.portId}`, slots.default!()[0]!))
 
 portIns.value.proxy = true
 

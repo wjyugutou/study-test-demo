@@ -5,4 +5,4 @@
 - 提交更改。
 - 运行 `pnpm publish -r` 此命令将发布所有包含被更新版本且尚未出现在包注册源中的包。
 
-## [github-pages](https://wjyugutou.github.io/study-test-demo/)
+## [study-test-demo](https://wjyugutou.github.io/study-test-demo/)

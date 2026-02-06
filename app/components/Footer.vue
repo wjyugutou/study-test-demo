@@ -5,14 +5,14 @@ const router = useRouter()
 </script>
 
 <template>
-  <nav class="footer h-full flex items-center justify-center gap-2 text-xl">
-    <button class="icon-btn !outline-none" @click="router.push('/')">
+  <nav class="footer text-xl flex gap-2 h-full items-center justify-center">
+    <button class="icon-btn !outline-none">
       <div i-carbon-home />
     </button>
     <button class="icon-btn !outline-none" @click="router.push('/blog')">
       <div i-carbon-doc />
     </button>
-    <button class="icon-btn !outline-none" @click="toggleDark">
+    <button class="icon-btn !outline-none" @click="() => toggleDark()">
       <div v-if="isDark" i-carbon-moon />
       <div v-else i-carbon-sun />
     </button>

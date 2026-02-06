@@ -9,5 +9,5 @@
  * console.log(appConfig) // { foo: 'baz' }
  */
 export default defineAppConfig({
-  // foo: 'bar',
+  foo: 'bar',
 })
