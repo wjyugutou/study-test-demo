@@ -6,7 +6,7 @@ const loadingDirective: CustomDirective = {
   name: 'loading',
   mounted(el: HTMLElement, binding) {
     if (binding.value)
-      open(el)
+      open?.(el)
   },
   updated(el: HTMLElement, binding) {
     const value = binding.value
@@ -14,13 +14,13 @@ const loadingDirective: CustomDirective = {
 
     if (value !== oldValue) {
       if (value && !oldValue)
-        open(el)
+        open?.(el)
       else
-        close(el)
+        close?.(el)
     }
   },
   beforeUnmount(el) {
-    close(el)
+    close?.(el)
   },
 }
 

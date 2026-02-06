@@ -72,15 +72,16 @@ function removeLoading(el: HTMLElement) {
   }
 }
 
-export function useLoading() {
+function open(el: HTMLElement = document.body) {
+  addLoading(el)
+}
+
+function close(el: HTMLElement = document.body) {
+  removeLoading(el)
+}
+
+export function useLoading(): [typeof open, typeof close] {
   createLoadingCss()
 
-  function open(el: HTMLElement = document.body) {
-    addLoading(el)
-  }
-
-  function close(el: HTMLElement = document.body) {
-    removeLoading(el)
-  }
   return [open, close]
 }

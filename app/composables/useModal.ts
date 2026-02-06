@@ -1,6 +1,6 @@
 import type { Props as ModalProps } from '@/components/Modal/index.vue'
-import Modal from '@/components/Modal/index.vue'
 import { render } from 'vue'
+import Modal from '@/components/Modal/index.vue'
 
 interface CreateContainerOptions {
   id?: string
