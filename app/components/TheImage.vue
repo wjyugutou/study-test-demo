@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   img: string
 }>()
 const a = ref(false)
@@ -14,9 +14,9 @@ function clickHandle() {
 
 <template>
   <!-- overflow-hidden transition-all duration-1000 relative  hover:border="yellow" -->
-  <div h-full w-full relative overflow-hidden @click="clickHandle">
-    <img h-full w-full :src="img" alt="">
-    <p left="50%" translate-x="-50%" text-white cursor-pointer select-none bottom-0 absolute>
+  <div class="h-full w-full relative overflow-hidden" @click="clickHandle">
+    <img class="h-full w-full" :src="img" alt="">
+    <p class="text-white cursor-pointer select-none bottom-0 left-50% absolute -translate-x-50%">
       {{ count }}
     </p>
   </div>

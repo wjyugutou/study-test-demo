@@ -32,6 +32,12 @@ export default defineNuxtConfig({
   css: [
     '~/styles/global.css',
   ],
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
   vite: {
     build: {
       emptyOutDir: true,

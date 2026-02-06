@@ -15,11 +15,8 @@ const options: ISourceOptions = {
   interactivity: {
     events: {
       onClick: {
-        enable: false,
+        enable: true,
         mode: 'push',
-        load: () => {
-          console.log(11111)
-        },
       },
       onHover: {
         enable: true,
@@ -61,9 +58,9 @@ const options: ISourceOptions = {
       random: false,
       speed: 6,
       straight: false,
-      MoveGravity: {
-        enable: true,
-      },
+      // MoveGravity: {
+      //   enable: true,
+      // },
     },
     number: {
       density: {

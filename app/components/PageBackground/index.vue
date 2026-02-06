@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import CosmicStars from './CosmicStars.vue'
-import Tsparticles from './Tsparticles.vue'
-
 defineOptions({ name: 'PageBackground' })
 withDefaults(defineProps<{
   starBg: boolean
