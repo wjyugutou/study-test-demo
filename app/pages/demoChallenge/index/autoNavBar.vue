@@ -104,7 +104,7 @@ onMounted(() => {
   scrollbar-width: none;
 
   .navbar-tag {
-    --at-apply m-l-4 h-10 b b-gray-400 rounded p-x-2 hover:(bg-gray-400);
+    --at-apply: m-l-4 h-10 b b-gray-400 rounded p-x-2 hover:(bg-gray-400);
   }
 }
 </style>
