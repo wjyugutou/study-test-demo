@@ -45,22 +45,22 @@ onMounted(initial)
 </script>
 
 <template>
-  <div relative m-auto w-500px flex items-center justify-center :style="{ height: `${radius}px` }">
-    <div transition="~ 1s" relative h-500px w-500px perspective-300px>
-      <ol ref="carousel" absolute h-210px w-full preserve-3d transition="~">
+  <div class="m-auto flex w-500px items-center justify-center relative" :style="{ height: `${radius}px` }">
+    <div class="h-500px w-500px perspective-300px transition duration-1s relative">
+      <ol ref="carousel" class="preserve-3d h-210px w-full transition absolute">
         <template v-for="i in count" :key="i">
-          <li ref="items" border="~ 2px gray-400" absolute h-200px w-500px overflow-hidden b-rd-4 op-70>
-            <img pointer-events-none w-full translate-y--10px :src="i % 2 === 0 ? img : img1" alt="">
+          <li ref="items" class="border border-(2px gray-400) b-rd-4 op-70 h-200px w-500px absolute overflow-hidden">
+            <img class="w-full pointer-events-none translate-y--10px" :src="i % 2 === 0 ? img : img1" alt="">
           </li>
         </template>
       </ol>
     </div>
-    <div class="arrows" absolute top="50%" right-10px translate-y="-50%" flex flex-col gap-5>
-      <button border="~ gray-400" bg="gray-400/50" transform-rotate-180deg transition hover:bg-gray-400 @click="changeActiveUp">
-        <div i-carbon-caret-down text-8 />
+    <div class="arrows flex flex-col gap-5 right-10px top-1/2 absolute -translate-y-1/2">
+      <button class="border border-(gray-400) bg-gray-400/50 transform-rotate-180deg transition hover:bg-gray-400" @click="changeActiveUp">
+        <div class="i-carbon-caret-down text-8" />
       </button>
-      <button border="~ gray-400" bg="gray-400/50" transition hover:bg-gray-400 @click="changeActiveDown">
-        <div i-carbon-caret-down text-8 />
+      <button class="border border-(gray-400) bg-gray-400/50 transition hover:bg-gray-400" @click="changeActiveDown">
+        <div class="i-carbon-caret-down text-8" />
       </button>
     </div>
   </div>

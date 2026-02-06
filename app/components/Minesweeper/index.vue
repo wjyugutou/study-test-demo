@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useStorage } from '@vueuse/core'
 import GamePlay from './logic'
 
 defineOptions({ name: 'Minesweeper' })
@@ -66,38 +67,38 @@ function newGame(difficulty: 'easy' | 'normal' | 'hard') {
     </div>
 
     <div flex items-center justify-center>
-      <div p-3 flex items-center justify-center text-2xl>
+      <div text-2xl p-3 flex items-center justify-center>
         <div i-carbon-timer />
         {{ timeMS }}
       </div>
 
-      <div p-3 flex items-center justify-center text-2xl>
+      <div text-2xl p-3 flex items-center justify-center>
         <div i-carbon-switch-layer-3 />
         {{ mineRest }}
       </div>
     </div>
 
     <div flex="~ gap-1" justify-center>
-      <button bg-green-500 p-1 rounded text-black @click="toggleDev()">
+      <button text-black p-1 rounded bg-green-500 @click="toggleDev()">
         {{ isDev ? 'DEV' : 'NORMAL' }}
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="paly.reset()">
+      <button text-black p-1 rounded bg-green-500 @click="paly.reset()">
         NEW GAME
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="newGame('easy')">
+      <button text-black p-1 rounded bg-green-500 @click="newGame('easy')">
         easy
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="newGame('normal')">
+      <button text-black p-1 rounded bg-green-500 @click="newGame('normal')">
         normal
       </button>
-      <button bg-green-500 p-1 rounded text-black @click="newGame('hard')">
+      <button text-black p-1 rounded bg-green-500 @click="newGame('hard')">
         hard
       </button>
     </div>
 
     <div p-5>
       <div v-for="row, y in state" :key="y" flex items-center justify-center>
-        <MineBlock
+        <MinesweeperBlock
           v-for="block, x in row"
           :key="x"
           :is-dev="isDev"

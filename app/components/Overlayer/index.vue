@@ -32,6 +32,6 @@ function clickHandle(e: Event) {
 
 <style>
 .mask_container {
-  @apply: fixed top-0 left-0 right-0 bottom-0 bg-[var(--mask-bg-light)] z-[var(--mask-z-index)];
+  --at-apply: fixed top-0 left-0 right-0 bottom-0 bg-[var(--mask-bg-light)] z-[var(--mask-z-index)];
 }
 </style>

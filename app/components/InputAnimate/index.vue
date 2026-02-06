@@ -61,7 +61,7 @@ onMounted(() => {
     padding: 0 10px;
     pointer-events: none;
 
-    @apply: text-gray-500;
+    --at-apply: text-gray-500;
 
     & span {
       display: inline-block;
@@ -80,7 +80,7 @@ onMounted(() => {
     outline: none;
 
     &:focus,&:valid {
-      @apply: dark:b-b-#fff b-b-#000;
+      --at-apply: dark:b-b-#fff b-b-#000;
 
       & ~ label span {
         color: #07f419;

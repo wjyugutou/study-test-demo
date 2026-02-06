@@ -33,39 +33,39 @@ function canvasEraserChange(e: Event) {
 </script>
 
 <template>
-  <div border="~ gray-400" border-b="0" absolute top-0 z-1 h-50px w-full flex items-center gap-x-5px p-5px>
+  <div class="p-5px border border-(b-0 gray-400) flex gap-x-5px h-50px w-full items-center top-0 absolute z-1">
     <div class="toolitem">
-      <label for="strokeStyle" gap-5px>
+      <label for="strokeStyle" class="gap-5px">
         线条颜色:&nbsp;
       </label>
       <input id="strokeStyle" :value="state.config.strokeStyle" type="color" @change="toolChange">
     </div>
     <div class="toolitem">
-      <label for="lineWidth" gap-5px>
+      <label for="lineWidth" class="gap-5px">
         线条宽度:&nbsp;
       </label>
       <input id="lineWidth" :value="state.config.lineWidth" type="range" step="1" min="1" max="50" @click="toolChange">
     </div>
     <div class="toolitem">
-      <button id="clear" class="btn-mask" b-rd-5px p-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="clearCanvas">
+      <button id="clear" class="btn-mask p-5px border border-(gray-400) b-rd-5px hover:border-(#000 dark:#fff)" @click="clearCanvas">
         清空画布
       </button>
     </div>
     <div class="toolitem">
-      <button id="clear" class="btn-mask" :active.attr="!!state.eraser.enabled" b-rd-5px p-5px border="~ gray-400" hover:border="#000 dark:#fff" @click="state.setEraser(!state.eraser.enabled)">
+      <button id="clear" class="btn-mask p-5px border border-(gray-400) b-rd-5px hover:border-(#000 dark:#fff)" :active.attr="!!state.eraser.enabled" @click="state.setEraser(!state.eraser.enabled)">
         橡皮擦
       </button>&nbsp;
       <input id="eraserSize" :value="state.eraser.size" type="range" step="1" min="10" max="50" @change="canvasEraserChange">
     </div>
 
     <teleport v-if="state.eraser.enabled" :to="state.ctx?.canvas.parentElement || 'body'">
-      <div ref="eraser" :style="eraserStyle" pointer-events-none absolute top-0 z-10 h-20px w-20px border="~ #fff" />
+      <div ref="eraser" :style="eraserStyle" class="border border-(#fff) h-20px w-20px pointer-events-none top-0 absolute z-10" />
     </teleport>
   </div>
 </template>
 
 <style>
 .toolitem {
-  @apply: flex items-center;
+  --at-apply: flex items-center;
 }
 </style>

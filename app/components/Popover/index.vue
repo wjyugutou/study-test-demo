@@ -153,11 +153,11 @@ onMounted(() => {
 
 <style>
 .popover-container {
-  @apply: relative bg-[var(--popover-bg)] rounded-2;
+  --at-apply: relative bg-[var(--popover-bg)] rounded-2;
 }
 
 .popover_arrow {
-  @apply: w-15px h-15px bg-red-400  bg-[var(--popover-bg)];
+  --at-apply: w-15px h-15px bg-red-400  bg-[var(--popover-bg)];
 
   background-color: red;
 }

@@ -66,7 +66,7 @@ function copyCode() {
   overflow: hidden;
   border-radius: 10px;
 
-  @apply  border b-gray-400;
+  --at-apply  border b-gray-400;
 
   .editor-toolbar {
     display: flex;
@@ -75,7 +75,7 @@ function copyCode() {
     position: relative;
     padding: 0 10px;
 
-    @apply b-solid border-b b-gray-400;
+    --at-apply b-solid border-b b-gray-400;
 
     .tool-arrow {
       position: absolute;

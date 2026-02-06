@@ -27,6 +27,7 @@ export default defineNuxtConfig({
   // },
   experimental: {
     nitroAutoImports: true,
+    typedPages: true,
   },
   css: [
     '~/styles/global.css',

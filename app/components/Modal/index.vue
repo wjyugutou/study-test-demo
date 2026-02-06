@@ -83,11 +83,11 @@ function clickMaskHandle() {
 
 <style>
 .modal-container {
-  @apply: min-w-400px w-fit border-1 border-gray-400 border-rd-10px overflow-hidden z-[var(--modal-z-index)] mx-auto mt-15vh;
+  --at-apply: min-w-400px w-fit border-1 border-gray-400 border-rd-10px overflow-hidden z-[var(--modal-z-index)] mx-auto mt-15vh;
 }
 
 .modal-header {
-  @apply: h-10 pl-2 pr-10 text-7 border-b-1 border-gray-400 relative  bg-[var(--modal-header-bg)];
+  --at-apply: h-10 pl-2 pr-10 text-7 border-b-1 border-gray-400 relative  bg-[var(--modal-header-bg)];
 }
 
 .modal-title-text {
@@ -95,15 +95,15 @@ function clickMaskHandle() {
 }
 
 .modal-close {
-  @apply: absolute top-50% right-2 translate-y--50% i-carbon-close hover:text-#fff cursor-pointer text-26px;
+  --at-apply: absolute top-50% right-2 translate-y--50% i-carbon-close hover:text-#fff cursor-pointer text-26px;
 }
 
 .modal-content {
-  @apply: p-4 bg-[var(--modal-content-bg)]
+  --at-apply: p-4 bg-[var(--modal-content-bg)]
 }
 
 .modal-footer {
-  @apply: p-4  bg-[var(--modal-footer-bg)];
+  --at-apply: p-4  bg-[var(--modal-footer-bg)];
 }
 
 .modal-fade-enter-active {

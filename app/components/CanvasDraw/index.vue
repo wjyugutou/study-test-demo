@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import { CanvasConfigKey } from './canstans'
-import { createCanvasState } from './state'
 import { initDrawFn as bindFn } from './event'
+import { createCanvasState } from './state'
 
 defineOptions({ name: 'CanvasDraw' })
 const canvas = ref() as Ref<HTMLCanvasElement>
@@ -37,10 +37,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div relative h-full w-full pt-50px>
-    <CanvasTool />
-    <div relative h-full w-full overflow-hidden>
-      <canvas ref="canvas" h-full w-full border="~ gray-400" />
+  <div class="pt-50px h-full w-full relative">
+    <CanvasDrawTool />
+    <div class="h-full w-full relative overflow-hidden">
+      <canvas ref="canvas" class="border border-(gray-400) h-full w-full" />
     </div>
   </div>
 </template>

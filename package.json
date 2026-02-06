@@ -3,6 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "nuxt build",
@@ -19,6 +20,7 @@
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/slim": "^3.9.1",
     "@tsparticles/vue3": "^3.0.1",
+    "@vueuse/core": "^14.2.0",
     "@vueuse/nuxt": "14.2.0",
     "canvas-confetti": "^1.9.4",
     "dayjs": "^1.11.19",

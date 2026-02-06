@@ -23,7 +23,7 @@ function fireworks() {
   })
 }
 
-watch(() => props.passed, (val) => {
+watch(() => props.passed, () => {
   setTimeout(() => {
     fireworks()
   }, 100)
@@ -31,5 +31,5 @@ watch(() => props.passed, (val) => {
 </script>
 
 <template>
-  <canvas id="fireworks" class="fixed top-0 z--1 h-100vh w-100vw" />
+  <canvas id="fireworks" class="h-100vh w-100vw top-0 fixed z--1" />
 </template>

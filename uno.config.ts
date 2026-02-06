@@ -2,7 +2,7 @@ import {
   defineConfig,
   presetIcons,
   presetWind4,
-  transformerDirectives, // --at-apply: 代替@apply 避免警告信息
+  transformerDirectives, // --at-apply: 代替--at-apply 避免警告信息
   transformerVariantGroup,
 } from 'unocss'
 
