@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { StarportKey } from './constants'
+import { StarportKey } from './utils/constants'
 import { createStarportState } from './utils/state'
 
 defineOptions({ name: 'StarportCarrier' })

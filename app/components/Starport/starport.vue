@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { StarportKey } from './constants'
+import { StarportKey } from './utils/constants'
 
 defineOptions({ name: 'Starport' })
 

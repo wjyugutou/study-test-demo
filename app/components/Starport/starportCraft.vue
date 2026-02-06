@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import type { StyleValue } from 'vue'
-import { StarportKey } from './constants'
+import { StarportKey } from './utils/constants'
 
 defineOptions({ name: 'StarportCraft' })
 const props = defineProps<{
