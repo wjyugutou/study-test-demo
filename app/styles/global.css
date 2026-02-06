@@ -19,6 +19,10 @@ label {
   user-select: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 * {
   scrollbar-width: thin;
   /* 第一个是滚动调颜色，第二个是滚动轨道颜色 */
