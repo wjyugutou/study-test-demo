@@ -18,9 +18,10 @@ interface RequestMeta {
 
 type RequestContext = FetchContext<RequestResponse> & RequestMeta
 
-function handleError<T>(response: FetchResponse<RequestResponse<T>> & FetchResponse<ResponseType>) {
+function handleError<T>(response: FetchResponse<RequestResponse<T>>) {
+  const { $toast } = useNuxtApp()
   const err = (text: string) => {
-    console.error({ content: response?._data?.message ?? text })
+    $toast.error(text)
   }
   if (!response._data) {
     err('请求超时，服务器无响应！')
@@ -38,6 +39,7 @@ function handleError<T>(response: FetchResponse<RequestResponse<T>> & FetchRespo
       navigateTo('/')
     },
   }
+
   if (handleMap[response.status]) {
     handleMap[response.status]?.()
   }
@@ -71,13 +73,23 @@ const _fetch = $fetch.create({
     if (options.originResponse) {
       return response?._data
     }
+    else {
+      if (response?._data?.code !== 200) {
+        handleError(response || {} as FetchResponse<RequestResponse>)
 
-    // 成功返回
-    return response?._data?.data
+        return Promise.reject(response?._data?.message ?? null)
+      }
+
+      // 成功返回
+      return response?._data?.data
+    }
   },
   // 错误处理
-  onResponseError({ response }) {
-    handleError(response)
+  onResponseError(context) {
+    const { response } = context as RequestContext
+    console.error('onResponseError', context)
+
+    handleError(response || {} as FetchResponse<RequestResponse>)
     return Promise.reject(response?._data ?? null)
   },
 })

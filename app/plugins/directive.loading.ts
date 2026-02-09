@@ -1,9 +1,10 @@
-import type { CustomDirective } from '.'
+import type { Directive } from 'vue'
+
+console.log('directive-loading')
 
 const [open, close] = useLoading()
 
-const loadingDirective: CustomDirective = {
-  name: 'loading',
+const loadingDirective: Directive = {
   mounted(el: HTMLElement, binding) {
     if (binding.value)
       open?.(el)
@@ -24,4 +25,6 @@ const loadingDirective: CustomDirective = {
   },
 }
 
-export default loadingDirective
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.directive('loading', loadingDirective)
+})

@@ -1,5 +1,5 @@
 export default defineEventHandler((event) => {
-  console.log(JSON.stringify(event))
+  console.log(event)
 
   return {
     code: 200,

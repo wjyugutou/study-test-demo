@@ -20,6 +20,7 @@ export const useUserStore = defineStore('user', {
     },
     async logout() {
       await logoutApi()
+
       this.clearUserInfo()
     },
     clearUserInfo() {

@@ -81,6 +81,9 @@ function close(el: HTMLElement = document.body) {
 }
 
 export function useLoading(): [typeof open, typeof close] {
+  if (!import.meta.client) {
+    return [() => {}, () => {}]
+  }
   createLoadingCss()
 
   return [open, close]

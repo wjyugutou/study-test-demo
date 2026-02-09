@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt', 'dayjs-nuxt',
+    '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt', 'dayjs-nuxt', 'vue-sonner/nuxt',
   ],
   future: {
     compatibilityVersion: 5,
