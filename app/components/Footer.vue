@@ -6,7 +6,7 @@ const router = useRouter()
 
 <template>
   <nav class="footer text-xl flex gap-2 h-full items-center justify-center">
-    <button class="icon-btn !outline-none">
+    <button class="icon-btn !outline-none" @click="router.push('/')">
       <div class="i-carbon-home" />
     </button>
     <button class="icon-btn !outline-none" @click="router.push('/blog')">

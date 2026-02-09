@@ -191,6 +191,7 @@ function renderCubeByDrawElements() {
 function initial() {
   width.value = canvas.value!.parentElement!.clientWidth
   height.value = canvas.value!.parentElement!.clientHeight
+
   nextTick(() => {
     initGL()
     // renderCube()
@@ -199,13 +200,16 @@ function initial() {
   })
 }
 
-onMounted(() => {
-  initial()
+onMounted(async () => {
+  console.log('Cube Mounted')
+  requestAnimationFrame(() => {
+    initial() // 将 initial 调用移入 rAF 回调
+  })
 })
 </script>
 
 <template>
-  <div class="h-[calc(100vh-var(--footer-height))] max-w-full max-h-full">
+  <div class="h-[calc(100vh-var(--footer-height))] w-full">
     <canvas ref="canvas" :width="width" :height="height" />
   </div>
 </template>

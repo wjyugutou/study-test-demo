@@ -1,5 +1,5 @@
 @import url('./componentsVariable.css');
-@import url('./variable.css');
+/* @import url('./variable.css'); */
 @import url('./transition.css');
 
 :root{
@@ -32,7 +32,7 @@ button {
 
 
 .basicBtn {
-  @apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500;
+  --at-apply: w-fit px-5 py-1 rounded-5 bg-green-400 dark:bg-green-600 hover:bg-green-500;
 } 
 
 .btn-mask {

@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <NuxtLayout>
+  <main
+    class="min-h-100vh"
+  >
     <NuxtPage />
-  </NuxtLayout>
+  </main>
 </template>

@@ -1,8 +1,4 @@
 <script lang='ts' setup>
-definePageMeta({
-  middleware: 'index-logger',
-})
-
 const name = useSessionStorage('hi-name', '鱼骨头')
 
 const demochallengeList = [
@@ -72,7 +68,7 @@ button, a {
 </script>
 
 <template>
-  <div class="mx-auto px-4 py-8 container max-w-7xl lg:px-8 sm:px-6">
+  <div class="mx-auto container max-w-7xl">
     <!-- 顶部输入区域 -->
     <div class="mb-8 p-6 border border-white/10 rounded-xl from-blue-900/30 to-purple-900/30 bg-gradient-to-r backdrop-blur-sm">
       <h1 class="text-2xl text-white font-bold mb-4">
@@ -127,7 +123,7 @@ button, a {
     </div>
 
     <!-- 代码编辑器区域 -->
-    <div class="mb-8">
+    <div class="">
       <h2 class="text-xl text-white font-semibold mb-4">
         Code Editor
       </h2>

@@ -1,8 +1,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15', // 指定应用程序的兼容日期
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      apiBase: '/api',
+    },
+  },
   modules: [
-    '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt',
+    '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt', 'dayjs-nuxt',
   ],
   future: {
     compatibilityVersion: 5,
@@ -20,11 +25,6 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
   },
   ssr: true,
-  // fix: github pages排除对 /200.html 以及 /404.html, 预渲染尝试
-  // routeRules: {
-  //   '/200.html': { prerender: false },
-  //   '/404.html': { prerender: false },
-  // },
   experimental: {
     nitroAutoImports: true,
     typedPages: true,

@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import type { Container, Engine, ISourceOptions } from '@tsparticles/engine'
+import type { Container, ISourceOptions } from '@tsparticles/engine'
 
 const options: ISourceOptions = {
   background: {
@@ -94,7 +94,7 @@ const options: ISourceOptions = {
 }
 
 async function particlesLoaded(container: Container) {
-  // console.log('Particles container loaded', container)
+  import.meta.dev && console.log('Particles container loaded', container)
 }
 </script>
 

@@ -36,7 +36,8 @@ function handleClick(com: any) {
     <div class="flex gap-20px h-42px">
       <div
         v-for="item, index in nameMap" :key="index"
-        class="cursor-pointer hover:text-blue" :class="index === route.query.type && 'text-blue'" @click="handleClick(item)"
+        class="cursor-pointer hover:text-blue" :class="index === route.query.type && 'text-blue'"
+        @click="handleClick(item)"
       >
         {{ index }}
       </div>
