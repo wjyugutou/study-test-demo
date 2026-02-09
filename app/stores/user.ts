@@ -2,6 +2,9 @@ import type { LoginRequest, LoginResponse } from '~/api/login.d'
 import { loginApi, logoutApi } from '~/api/login'
 
 export const useUserStore = defineStore('user', {
+  persist: {
+    storage: piniaPluginPersistedstate.cookies(),
+  },
   state() {
     return {
       userInfo: null,

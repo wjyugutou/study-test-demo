@@ -4,10 +4,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: '/api',
+      appTitle: 'Nuxt App',
     },
   },
   modules: [
-    '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt', 'dayjs-nuxt', 'vue-sonner/nuxt',
+    '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@vueuse/nuxt', '@nuxt/eslint', '@unocss/nuxt', 'dayjs-nuxt', 'vue-sonner/nuxt',
   ],
   future: {
     compatibilityVersion: 5,

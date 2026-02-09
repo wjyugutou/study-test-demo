@@ -1,32 +1,20 @@
 <script lang='ts' setup>
 const name = useSessionStorage('hi-name', '鱼骨头')
 
-const demochallengeList = [
-  { name: 'autoNavBar', path: '/demoChallenge/autoNavBar', description: '自动导航栏' },
-  { name: 'DivTable', path: '/demoChallenge/DivTable', description: 'Div表格' },
-  { name: 'intersectionObserver', path: '/demoChallenge/intersectionObserver', description: '交叉观察器' },
-  { name: 'lens', path: '/demoChallenge/lens', description: '透镜效果' },
-  { name: 'webrtc', path: '/demoChallenge/webrtc', description: 'WebRTC' },
-  { name: 'waterfallFlowa', path: '/demoChallenge/waterfallFlowa', description: '瀑布流' },
-  { name: 'watchCarousel', path: '/demoChallenge/watchCarousel', description: '轮播图' },
-  { name: 'virtualScroll', path: '/demoChallenge/virtualScroll', description: '虚拟滚动' },
-  { name: 'videojsPlayRemp', path: '/demoChallenge/videojsPlayRemp', description: '视频播放' },
-  { name: 'svgComponent', path: '/demoChallenge/svgComponent', description: 'SVG组件' },
-  { name: 'scope', path: '/demoChallenge/scope', description: '作用域' },
-  { name: 'renderToString', path: '/demoChallenge/renderToString', description: '渲染字符串' },
-  { name: 'recorder', path: '/demoChallenge/recorder', description: '录音器' },
-  { name: 'popoverDemo', path: '/demoChallenge/popoverDemo', description: '弹出框' },
-  { name: 'minesweeperPage', path: '/demoChallenge/minesweeperPage', description: '扫雷' },
-  { name: 'matter', path: '/demoChallenge/matter', description: '物理引擎' },
-  { name: 'indexedDB', path: '/demoChallenge/indexedDB', description: 'IndexedDB' },
-  { name: 'fileUpload', path: '/demoChallenge/fileUpload', description: '文件上传' },
-  { name: 'ellipsePanel', path: '/demoChallenge/ellipsePanel', description: '椭圆面板' },
-  { name: 'editorDiv', path: '/demoChallenge/editorDiv', description: '编辑器Div' },
-  { name: 'digitalRain', path: '/demoChallenge/digitalRain', description: '数字雨' },
-  { name: 'canvasPlum', path: '/demoChallenge/canvasPlum', description: '画布梅花' },
-  { name: 'SemanticTags', path: '/demoChallenge/SemanticTags', description: '语义标签' },
-  { name: 'canvasDrawPage', path: '/demoChallenge/canvasDrawPage', description: '画布绘制' },
-]
+const demochallengeList = useRouter().options.routes.find(item => item.path === '/demoChallenge')!.children!.map(({ name, path }) => ({
+  name,
+  path,
+})) as {
+  path: string
+  name: string
+  description?: string | undefined
+}[]
+
+demochallengeList.push({
+  name: 'starport',
+  path: '/flip/flipOne',
+  // description: '',
+})
 
 demochallengeList.push({
   name: 'starport',

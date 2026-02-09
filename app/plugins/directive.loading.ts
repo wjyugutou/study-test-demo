@@ -1,7 +1,5 @@
 import type { Directive } from 'vue'
 
-console.log('directive-loading')
-
 const [open, close] = useLoading()
 
 const loadingDirective: Directive = {

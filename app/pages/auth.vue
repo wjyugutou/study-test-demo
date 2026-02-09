@@ -1,4 +1,7 @@
 <script lang='ts' setup>
+definePageMeta({
+  title: '认证页面',
+})
 const userStore = useUserStore()
 async function handleLogout() {
   await userStore.logout()

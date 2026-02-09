@@ -1,5 +1,6 @@
 export default defineEventHandler((event) => {
   console.log(event)
+  console.log('\n\n\n\n\n\n')
 
   return {
     code: 200,

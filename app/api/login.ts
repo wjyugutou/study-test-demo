@@ -5,5 +5,5 @@ export function loginApi(data: LoginRequest) {
 }
 
 export function logoutApi() {
-  return request.post('/user/logout')
+  return request.get('/user/logout')
 }
