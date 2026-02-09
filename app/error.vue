@@ -16,9 +16,8 @@ function handleError() {
       Error Page
     </h1>
     <h1>ErrorData: {{ error?.data }}</h1>
-    <h1>ErrorCode: {{ error?.statusCode || 500 }}</h1>
     <h1>ErrorStatus: {{ error?.status || 500 }}</h1>
-    <h1>ErrorMessage: {{ error?.message || 'Internal Server Error' }}</h1>
+    <h1>ErrorMessage: {{ error?.statusText || 'Internal Server Error' }}</h1>
     <button class="color-(green) hover:color-green-500" @click="handleError">
       返回首页
     </button>

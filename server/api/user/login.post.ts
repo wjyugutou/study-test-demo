@@ -1,7 +1,4 @@
-export default defineEventHandler((event) => {
-  console.log(event)
-  console.log('\n\n\n\n\n\n')
-
+export default defineEventHandler(() => {
   return {
     code: 200,
     message: '登录成功',
@@ -11,7 +8,6 @@ export default defineEventHandler((event) => {
         id: '123',
         name: 'Mock User',
         email: 'OZSdM@example.com',
-
       },
     },
   }
