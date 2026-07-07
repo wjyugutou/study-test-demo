@@ -21,7 +21,7 @@ type RequestContext = FetchContext<RequestResponse> & RequestMeta
 function handleError<T>(response: FetchResponse<RequestResponse<T>>) {
   const { $toast } = useNuxtApp()
   const err = (text: string) => {
-    $toast.error(text)
+    $toast?.error(text)
   }
   if (!response._data) {
     err('请求超时，服务器无响应！')

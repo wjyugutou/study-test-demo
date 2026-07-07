@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware((to) => {
     return
   }
   const userStore = useUserStore()
-  console.log('auth middleware', userStore.token)
+  console.log('auth.middleware', userStore.token)
 
   if (!userStore.token) {
     return navigateTo({ path: '/login', query: { redirect: to.path } })
